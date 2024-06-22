@@ -2,6 +2,7 @@
 
 #include "ch32v003fun.h"
 #include <stdio.h>
+#include <stdbool.h>
 #include "ssd1306_i2c.h"
 #include "ssd1306.h"
 #include "ch32v003_GPIO_branchless.h"
@@ -47,6 +48,9 @@ int main()
     
     int newk_x = 90;
 
+    bool rot_a_state = false;
+    bool rot_b_state = false;
+
 		while(1)
 		{
 
@@ -57,6 +61,29 @@ int main()
           GPIO_digitalWrite(BZR_PIN, high);
       } else {
           GPIO_digitalWrite(BZR_PIN, low);
+      }
+
+      uint8_t rot_a_is_pressed = !GPIO_digitalRead(ROT_A_PIN);
+      uint8_t rot_b_is_pressed = !GPIO_digitalRead(ROT_B_PIN);
+
+      if (rot_a_is_pressed != rot_a_state) {
+        rot_a_state = rot_a_is_pressed;
+
+        if (rot_a_state && !rot_b_state || !rot_a_state && rot_b_state) {
+          newk_x += 1;
+        } else if (!rot_a_state && !rot_b_state || rot_a_state && rot_b_state) {
+          newk_x -= 1;
+        }
+      }
+
+      if (rot_b_is_pressed != rot_b_state) {
+        rot_b_state = rot_b_is_pressed;
+
+        if (rot_a_state && rot_b_state || rot_a_state && rot_b_state) {
+          newk_x += 1;
+        } else if (!rot_a_state && rot_b_state || rot_a_state && !rot_b_state) {
+          newk_x -= 1;
+        }
       }
 
       // clear buffer for next mode
@@ -148,9 +175,7 @@ int main()
 
 
       ssd1306_refresh();    
-      Delay_Ms(100);
 
-      newk_x -= 10;
       if (newk_x < 0) {
         newk_x = 90;
       }
