@@ -46,16 +46,28 @@ int main()
 		
 		// printf("Looping on test modes...");
     
-    int newk_x = 90;
+    int newt_x = 90;
+    int newt_y = 20;
 
+    bool button_state = false;
     bool rot_a_state = false;
     bool rot_b_state = false;
+
+
+    ssd1306_setbuf(0);
+    ssd1306_drawImage(0, 0, movoid_title, 128, 64, 0);
+    ssd1306_refresh();
+	  Delay_Ms(5000);
+
+    int flip_c = 0;
+    bool flip_flag = false;
 
 		while(1)
 		{
 
       uint8_t button_is_pressed = !GPIO_digitalRead(BTN_PIN);
 
+      // buzzer on!
       if (button_is_pressed)
       {
           GPIO_digitalWrite(BZR_PIN, high);
@@ -63,34 +75,56 @@ int main()
           GPIO_digitalWrite(BZR_PIN, low);
       }
 
+      // increment step
+      if (button_state && !button_is_pressed){
+        newt_x -= 20;
+      }
+      button_state = button_is_pressed;
+
+      // get rotaly-encoder value
       uint8_t rot_a_is_pressed = !GPIO_digitalRead(ROT_A_PIN);
-      uint8_t rot_b_is_pressed = !GPIO_digitalRead(ROT_B_PIN);
+      uint8_t rot_b_state = !GPIO_digitalRead(ROT_B_PIN);
 
       if (rot_a_is_pressed != rot_a_state) {
         rot_a_state = rot_a_is_pressed;
 
-        if (rot_a_state && !rot_b_state || !rot_a_state && rot_b_state) {
-          newk_x += 1;
-        } else if (!rot_a_state && !rot_b_state || rot_a_state && rot_b_state) {
-          newk_x -= 1;
+        if (!rot_a_state && rot_b_state) {
+          newt_y += 3;
         }
+        if (rot_a_state && rot_b_state) {
+          newt_y -= 3;
+        } 
+      } 
+
+      // turn aroud
+      if (newt_x < 0) {
+        newt_x = 90;
       }
-
-      if (rot_b_is_pressed != rot_b_state) {
-        rot_b_state = rot_b_is_pressed;
-
-        if (rot_a_state && rot_b_state || rot_a_state && rot_b_state) {
-          newk_x += 1;
-        } else if (!rot_a_state && rot_b_state || rot_a_state && !rot_b_state) {
-          newk_x -= 1;
-        }
+      if (newt_y < 0) {
+        newt_y = 64;
+      } 
+      else if (newt_y > 64) {
+        newt_y = 0;
       }
 
       // clear buffer for next mode
       ssd1306_setbuf(0);
 
+      flip_c ++;
 
-      ssd1306_drawImage(newk_x, 20, newt_left, 24, 24, 0);
+      if (flip_c > 100) {
+        flip_flag = !flip_flag;
+        flip_c = 0;
+      }
+
+      if(flip_flag){
+        ssd1306_drawImage(newt_x, newt_y, newt_left, 24, 24, 0);
+      } else {
+        ssd1306_drawImage(newt_x, newt_y, newt_right, 24, 24, 0);
+      }
+
+
+      ssd1306_drawLine(10, 0, 10, SSD1306_H, 1);
 
       // switch(mode)
       // {
@@ -174,11 +208,9 @@ int main()
       // }
 
 
-      ssd1306_refresh();    
+      ssd1306_refresh();
 
-      if (newk_x < 0) {
-        newk_x = 90;
-      }
+      // Delay_Ms(3);
 		}
 	}
 	else
