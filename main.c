@@ -26,6 +26,14 @@ void init_gpio()
     GPIO_pinMode(ROT_B_PIN, GPIO_pinMode_I_pullUp, GPIO_Speed_10MHz);
 }
 
+struct car_state {
+  int car_x;
+  int car_y;
+  bool dest;
+};
+
+typedef struct car_state car_state_data;
+
 int main()
 {
 	// 48MHz internal clock
@@ -46,21 +54,28 @@ int main()
 		
 		// printf("Looping on test modes...");
     
-    int newt_x = 90;
+    int newt_x = 100;
     int newt_y = 20;
+
+    int newt_step = 25;
 
     bool button_state = false;
     bool rot_a_state = false;
     bool rot_b_state = false;
 
-
     ssd1306_setbuf(0);
     ssd1306_drawImage(0, 0, movoid_title, 128, 64, 0);
     ssd1306_refresh();
-	  Delay_Ms(5000);
+	  Delay_Ms(2000);
 
     int flip_c = 0;
     bool flip_flag = false;
+
+    car_state_data car_s[] = {
+      {75,10,true},
+      {50,50,false},
+      {25,20,true}
+    };
 
 		while(1)
 		{
@@ -77,7 +92,7 @@ int main()
 
       // increment step
       if (button_state && !button_is_pressed){
-        newt_x -= 20;
+        newt_x -= newt_step;
       }
       button_state = button_is_pressed;
 
@@ -98,7 +113,7 @@ int main()
 
       // turn aroud
       if (newt_x < 0) {
-        newt_x = 90;
+        newt_x = 100;
       }
       if (newt_y < 0) {
         newt_y = 64;
@@ -122,7 +137,6 @@ int main()
       } else {
         ssd1306_drawImage(newt_x, newt_y, newt_right, 24, 24, 0);
       }
-
 
       ssd1306_drawLine(10, 0, 10, SSD1306_H, 1);
 
@@ -206,7 +220,27 @@ int main()
         // 	default:
       // 		break;
       // }
+      
+      // 車を描画
+      for (int i = 0; i < 3; i++){
 
+        ssd1306_drawImage(car_s[i].car_x, car_s[i].car_y, car, 24, 24, 0);
+
+        if (flip_c % 25 == 0) {
+          if (car_s[i].dest) {
+            car_s[i].car_y ++;
+          } else {
+            car_s[i].car_y --;
+          }
+        }
+
+        if (car_s[i].car_y > 64) {
+          car_s[i].car_y = 0;
+        }
+        if (car_s[i].car_y < 0) {
+          car_s[i].car_y = 64;
+        }
+      }
 
       ssd1306_refresh();
 

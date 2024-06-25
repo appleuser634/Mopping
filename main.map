@@ -4,9 +4,9 @@ main.elf:     file format elf32-littleriscv
 SYMBOL TABLE:
 00000000 l    d  .init	00000000 .init
 000000a0 l    d  .text	00000000 .text
-00001194 l    d  .fini	00000000 .fini
+00001280 l    d  .fini	00000000 .fini
 20000000 l    d  .dalign	00000000 .dalign
-00001194 l    d  .dlalign	00000000 .dlalign
+00001280 l    d  .dlalign	00000000 .dlalign
 20000000 l    d  .data	00000000 .data
 20000000 l    d  .bss	00000000 .bss
 00000000 l    d  .riscv.attributes	00000000 .riscv.attributes
@@ -31,14 +31,15 @@ SYMBOL TABLE:
 00000516 l     F .text	00000014 __puts_uart
 000005c8 l     F .text	000001b4 mini_vpprintf
 000007a2 l     F .text	0000001e ssd1306_i2c_error.isra.0
-00000cd4 l     O .text	00000014 errstr
+00000d78 l     O .text	00000014 errstr
 000007c0 l     F .text	0000011a ssd1306_i2c_send.constprop.0.isra.0
 000008da l     F .text	0000001a ssd1306_cmd
 00000922 l     F .text	00000060 ssd1306_refresh
-00000ce8 l     O .text	0000001a ssd1306_init_array
-00000d94 l     O .text	00000400 movoid_title
-00000d4c l     O .text	00000048 newt_left
-00000d04 l     O .text	00000048 newt_right
+00000d8c l     O .text	0000001a ssd1306_init_array
+00000e80 l     O .text	00000400 movoid_title
+00000e38 l     O .text	00000048 newt_left
+00000da8 l     O .text	00000048 car
+00000df0 l     O .text	00000048 newt_right
 00000000 l    df *ABS*	00000000 muldi3.o
 00000000 l    df *ABS*	00000000 div.o
 0000077c g     F .text	00000026 printf
@@ -68,12 +69,13 @@ SYMBOL TABLE:
 000005a6 g     F .text	00000002 RCC_IRQHandler
 000005a6 g     F .text	00000002 TIM1_TRG_COM_IRQHandler
 000005a6 g     F .text	00000002 DMA1_Channel1_IRQHandler
+000023e9  w      .debug_info	00000000 .hidden main.c.57da8798
 000000a0 g     F .text	00000014 .hidden __mulsi3
 000005a6 g     F .text	00000002 DefaultIRQHandler
 20000000 g       .dalign	00000000 _data_vma
 000005a8 g     F .text	0000000e NMI_RCC_CSS_IRQHandler
 000008f4 g     F .text	00000012 memset
-000009e4 g     F .text	00000278 main
+000009e4 g     F .text	000002f6 main
 000005a6 g     F .text	00000002 DMA1_Channel5_IRQHandler
 000000b8 g     F .text	00000058 .hidden __divsi3
 00000982 g     F .text	00000062 SystemInit
@@ -81,13 +83,12 @@ SYMBOL TABLE:
 000005a6 g     F .text	00000002 DMA1_Channel3_IRQHandler
 000005a6 g     F .text	00000002 TIM1_UP_IRQHandler
 000005a6 g     F .text	00000002 WWDG_IRQHandler
-0000235c  w      .debug_info	00000000 .hidden main.c.575a93e8
 000005a6 g     F .text	00000002 TIM2_IRQHandler
 20000800 g       .bss	00000000 _eusrstack
 000005a6 g     F .text	00000002 SW_Handler
 000005a6 g     F .text	00000002 TIM1_BRK_IRQHandler
 20000000 g       .data	00000000 _edata
-00001194 g       .dlalign	00000000 _data_lma
+00001280 g       .dlalign	00000000 _data_lma
 00000110 g     F .text	00000024 .hidden __modsi3
 000005a6 g     F .text	00000002 DMA1_Channel2_IRQHandler
 0000052a g     F .text	0000007c handle_reset
@@ -95,6 +96,6 @@ SYMBOL TABLE:
 000005a6 g     F .text	00000002 USART1_IRQHandler
 000005b6 g     F .text	00000012 strlen
 000005a6 g     F .text	00000002 I2C1_ER_IRQHandler
-00001586  w      .debug_info	00000000 .hidden ch32v003fun.c.e3139169
+00001613  w      .debug_info	00000000 .hidden ch32v003fun.c.e3139169
 
 
