@@ -104,10 +104,10 @@ int main()
         rot_a_state = rot_a_is_pressed;
 
         if (!rot_a_state && rot_b_state) {
-          newt_y += 3;
+          newt_y -= 3;
         }
         if (rot_a_state && rot_b_state) {
-          newt_y -= 3;
+          newt_y += 3;
         } 
       } 
 

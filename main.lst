@@ -611,7 +611,7 @@ void ssd1306_drawImage(uint8_t x, uint8_t y, const unsigned char* input, uint8_t
      562:	0511                	add	a0,a0,4
      564:	feb54ee3          	blt	a0,a1,560 <handle_reset+0x36>
      568:	00001517          	auipc	a0,0x1
-     56c:	d1850513          	add	a0,a0,-744 # 1280 <_data_lma>
+     56c:	d1450513          	add	a0,a0,-748 # 127c <_data_lma>
      570:	20000597          	auipc	a1,0x20000
      574:	a9058593          	add	a1,a1,-1392 # 20000000 <ssd1306_buffer>
      578:	20000617          	auipc	a2,0x20000
@@ -842,14 +842,14 @@ uint8_t ssd1306_i2c_error(uint8_t err)
 	printf("ssd1306_i2c_error - timeout waiting for %s\n\r", errstr[err]);
      7a2:	6785                	lui	a5,0x1
      7a4:	050a                	sll	a0,a0,0x2
-     7a6:	d7878793          	add	a5,a5,-648 # d78 <errstr>
+     7a6:	d7478793          	add	a5,a5,-652 # d74 <errstr>
      7aa:	97aa                	add	a5,a5,a0
      7ac:	438c                	lw	a1,0(a5)
      7ae:	6505                	lui	a0,0x1
 uint8_t ssd1306_i2c_error(uint8_t err)
      7b0:	1151                	add	sp,sp,-12
 	printf("ssd1306_i2c_error - timeout waiting for %s\n\r", errstr[err]);
-     7b2:	d0050513          	add	a0,a0,-768 # d00 <main+0x31c>
+     7b2:	cfc50513          	add	a0,a0,-772 # cfc <main+0x318>
 uint8_t ssd1306_i2c_error(uint8_t err)
      7b6:	c406                	sw	ra,8(sp)
 	printf("ssd1306_i2c_error - timeout waiting for %s\n\r", errstr[err]);
@@ -1320,7 +1320,7 @@ uint8_t ssd1306_i2c_init(void)
 	// load I2C regs
 	ssd1306_i2c_setup();
      ad8:	fd2ff0ef          	jal	2aa <ssd1306_i2c_setup>
-     adc:	d8c40413          	add	s0,s0,-628 # d8c <ssd1306_init_array>
+     adc:	d8840413          	add	s0,s0,-632 # d88 <ssd1306_init_array>
 	while(*cmd_list != SSD1306_TERMINATE_CMDS)
      ae0:	00044503          	lbu	a0,0(s0)
      ae4:	0ff00793          	li	a5,255
@@ -1358,7 +1358,7 @@ uint8_t ssd1306_i2c_init(void)
      b16:	6605                	lui	a2,0x1
      b18:	04000713          	li	a4,64
      b1c:	08000693          	li	a3,128
-     b20:	e8060613          	add	a2,a2,-384 # e80 <movoid_title>
+     b20:	e7c60613          	add	a2,a2,-388 # e7c <movoid_title>
      b24:	4581                	li	a1,0
      b26:	4501                	li	a0,0
      b28:	fd6ff0ef          	jal	2fe <ssd1306_drawImage.constprop.0>
@@ -1375,7 +1375,7 @@ uint8_t ssd1306_i2c_init(void)
     car_state_data car_s[] = {
      b3a:	6585                	lui	a1,0x1
      b3c:	02400613          	li	a2,36
-     b40:	cdc58593          	add	a1,a1,-804 # cdc <main+0x2f8>
+     b40:	cd858593          	add	a1,a1,-808 # cd8 <main+0x2f4>
      b44:	1008                	add	a0,sp,32
      b46:	33c1                	jal	906 <memcpy>
      b48:	400117b7          	lui	a5,0x40011
@@ -1407,392 +1407,390 @@ uint8_t ssd1306_i2c_init(void)
 
       // buzzer on!
       if (button_is_pressed)
-     b6e:	10079863          	bnez	a5,c7e <main+0x29a>
+     b6e:	e3a1                	bnez	a5,bae <main+0x1ca>
       {
           GPIO_digitalWrite(BZR_PIN, high);
-     b72:	4732                	lw	a4,12(sp)
-     b74:	04000793          	li	a5,64
-     b78:	cb1c                	sw	a5,16(a4)
+     b70:	4732                	lw	a4,12(sp)
+     b72:	04000793          	li	a5,64
+     b76:	cb1c                	sw	a5,16(a4)
         newt_x -= newt_step;
       }
       button_state = button_is_pressed;
 
       // get rotaly-encoder value
       uint8_t rot_a_is_pressed = !GPIO_digitalRead(ROT_A_PIN);
-     b7a:	47b2                	lw	a5,12(sp)
+     b78:	47b2                	lw	a5,12(sp)
       uint8_t rot_b_state = !GPIO_digitalRead(ROT_B_PIN);
 
       if (rot_a_is_pressed != rot_a_state) {
-     b7c:	4602                	lw	a2,0(sp)
+     b7a:	4602                	lw	a2,0(sp)
       uint8_t rot_a_is_pressed = !GPIO_digitalRead(ROT_A_PIN);
-     b7e:	4798                	lw	a4,8(a5)
+     b7c:	4798                	lw	a4,8(a5)
       uint8_t rot_b_state = !GPIO_digitalRead(ROT_B_PIN);
-     b80:	400117b7          	lui	a5,0x40011
-     b84:	80078793          	add	a5,a5,-2048 # 40010800 <__global_pointer$+0x20010000>
-     b88:	02077713          	and	a4,a4,32
-     b8c:	479c                	lw	a5,8(a5)
+     b7e:	400117b7          	lui	a5,0x40011
+     b82:	80078793          	add	a5,a5,-2048 # 40010800 <__global_pointer$+0x20010000>
+     b86:	02077713          	and	a4,a4,32
+     b8a:	479c                	lw	a5,8(a5)
       if (rot_a_is_pressed != rot_a_state) {
-     b8e:	00173693          	seqz	a3,a4
-     b92:	14c68163          	beq	a3,a2,cd4 <main+0x2f0>
-     b96:	8b91                	and	a5,a5,4
+     b8c:	00173693          	seqz	a3,a4
+     b90:	12c68e63          	beq	a3,a2,ccc <main+0x2e8>
+     b94:	8b91                	and	a5,a5,4
         rot_a_state = rot_a_is_pressed;
 
         if (!rot_a_state && rot_b_state) {
-     b98:	0e070b63          	beqz	a4,c8e <main+0x2aa>
-     b9c:	12079363          	bnez	a5,cc2 <main+0x2de>
-        rot_a_state = rot_a_is_pressed;
-     ba0:	c002                	sw	zero,0(sp)
-          newt_y += 3;
-     ba2:	048d                	add	s1,s1,3 # 40021003 <__global_pointer$+0x20020803>
+     b96:	c31d                	beqz	a4,bbc <main+0x1d8>
+     b98:	12079163          	bnez	a5,cba <main+0x2d6>
           newt_y -= 3;
+     b9c:	c002                	sw	zero,0(sp)
+     b9e:	14f5                	add	s1,s1,-3 # 40020ffd <__global_pointer$+0x200207fd>
+          newt_y += 3;
         } 
       } 
 
       // turn aroud
       if (newt_x < 0) {
-     ba4:	10044263          	bltz	s0,ca8 <main+0x2c4>
+     ba0:	12044863          	bltz	s0,cd0 <main+0x2ec>
         newt_x = 100;
       }
       if (newt_y < 0) {
+     ba4:	0204d363          	bgez	s1,bca <main+0x1e6>
         newt_y = 64;
+     ba8:	04000493          	li	s1,64
+     bac:	a01d                	j	bd2 <main+0x1ee>
+          GPIO_digitalWrite(BZR_PIN, low);
+     bae:	46b2                	lw	a3,12(sp)
+     bb0:	004007b7          	lui	a5,0x400
+     bb4:	ca9c                	sw	a5,16(a3)
+      if (button_state && !button_is_pressed){
+     bb6:	d369                	beqz	a4,b78 <main+0x194>
+        newt_x -= newt_step;
+     bb8:	141d                	add	s0,s0,-25
+     bba:	bf7d                	j	b78 <main+0x194>
+        if (rot_a_state && rot_b_state) {
+     bbc:	10079563          	bnez	a5,cc6 <main+0x2e2>
+        rot_a_state = rot_a_is_pressed;
+     bc0:	4785                	li	a5,1
+     bc2:	c03e                	sw	a5,0(sp)
+          newt_y += 3;
+     bc4:	048d                	add	s1,s1,3
+      if (newt_x < 0) {
+     bc6:	0c044d63          	bltz	s0,ca0 <main+0x2bc>
       } 
       else if (newt_y > 64) {
-     ba8:	04000793          	li	a5,64
-     bac:	1097c163          	blt	a5,s1,cae <main+0x2ca>
-     bb0:	200007b7          	lui	a5,0x20000
-     bb4:	00078513          	mv	a0,a5
-     bb8:	40000613          	li	a2,1024
-     bbc:	4581                	li	a1,0
-     bbe:	3b1d                	jal	8f4 <memset>
+     bca:	04000793          	li	a5,64
+     bce:	0c97cc63          	blt	a5,s1,ca6 <main+0x2c2>
+     bd2:	200007b7          	lui	a5,0x20000
+     bd6:	00078513          	mv	a0,a5
+     bda:	40000613          	li	a2,1024
+     bde:	4581                	li	a1,0
+     be0:	3b11                	jal	8f4 <memset>
       }
 
       // clear buffer for next mode
       ssd1306_setbuf(0);
 
       flip_c ++;
-     bc0:	4792                	lw	a5,4(sp)
-     bc2:	0785                	add	a5,a5,1 # 20000001 <ssd1306_buffer+0x1>
-     bc4:	c23e                	sw	a5,4(sp)
+     be2:	4792                	lw	a5,4(sp)
+     be4:	0785                	add	a5,a5,1 # 20000001 <ssd1306_buffer+0x1>
+     be6:	c23e                	sw	a5,4(sp)
 
       if (flip_c > 100) {
-     bc6:	4712                	lw	a4,4(sp)
-     bc8:	06500793          	li	a5,101
-     bcc:	00f71763          	bne	a4,a5,bda <main+0x1f6>
+     be8:	4712                	lw	a4,4(sp)
+     bea:	06500793          	li	a5,101
+     bee:	00f71763          	bne	a4,a5,bfc <main+0x218>
         flip_flag = !flip_flag;
-     bd0:	47a2                	lw	a5,8(sp)
+     bf2:	47a2                	lw	a5,8(sp)
         flip_c = 0;
-     bd2:	c202                	sw	zero,4(sp)
+     bf4:	c202                	sw	zero,4(sp)
         flip_flag = !flip_flag;
-     bd4:	0017c793          	xor	a5,a5,1
-     bd8:	c43e                	sw	a5,8(sp)
+     bf6:	0017c793          	xor	a5,a5,1
+     bfa:	c43e                	sw	a5,8(sp)
       }
 
       if(flip_flag){
-     bda:	47a2                	lw	a5,8(sp)
+     bfc:	47a2                	lw	a5,8(sp)
         ssd1306_drawImage(newt_x, newt_y, newt_left, 24, 24, 0);
-     bdc:	0ff47513          	zext.b	a0,s0
-     be0:	0ff4f593          	zext.b	a1,s1
-     be4:	4761                	li	a4,24
-     be6:	46e1                	li	a3,24
+     bfe:	0ff47513          	zext.b	a0,s0
+     c02:	0ff4f593          	zext.b	a1,s1
+     c06:	4761                	li	a4,24
+     c08:	46e1                	li	a3,24
       if(flip_flag){
-     be8:	c7e9                	beqz	a5,cb2 <main+0x2ce>
+     c0a:	c3c5                	beqz	a5,caa <main+0x2c6>
         ssd1306_drawImage(newt_x, newt_y, newt_left, 24, 24, 0);
-     bea:	6605                	lui	a2,0x1
-     bec:	e3860613          	add	a2,a2,-456 # e38 <newt_left>
+     c0c:	6605                	lui	a2,0x1
+     c0e:	e3460613          	add	a2,a2,-460 # e34 <newt_left>
       } else {
         ssd1306_drawImage(newt_x, newt_y, newt_right, 24, 24, 0);
-     bf0:	f0eff0ef          	jal	2fe <ssd1306_drawImage.constprop.0>
+     c12:	eecff0ef          	jal	2fe <ssd1306_drawImage.constprop.0>
         flip_c = 0;
-     bf4:	4781                	li	a5,0
+     c16:	4781                	li	a5,0
 			ssd1306_drawPixel(y, x, color);
-     bf6:	0ff7f593          	zext.b	a1,a5
-     bfa:	4529                	li	a0,10
-     bfc:	ca3e                	sw	a5,20(sp)
-     bfe:	ff4ff0ef          	jal	3f2 <ssd1306_drawPixel.constprop.0>
-     c02:	47d2                	lw	a5,20(sp)
+     c18:	0ff7f593          	zext.b	a1,a5
+     c1c:	4529                	li	a0,10
+     c1e:	ca3e                	sw	a5,20(sp)
+     c20:	fd2ff0ef          	jal	3f2 <ssd1306_drawPixel.constprop.0>
+     c24:	47d2                	lw	a5,20(sp)
 	for(x=x0;x<=x1;x++)
-     c04:	04100713          	li	a4,65
-     c08:	0785                	add	a5,a5,1
-     c0a:	01079693          	sll	a3,a5,0x10
-     c0e:	82c1                	srl	a3,a3,0x10
-     c10:	07c2                	sll	a5,a5,0x10
-     c12:	87c1                	sra	a5,a5,0x10
-     c14:	fee691e3          	bne	a3,a4,bf6 <main+0x212>
+     c26:	04100713          	li	a4,65
+     c2a:	0785                	add	a5,a5,1
+     c2c:	01079693          	sll	a3,a5,0x10
+     c30:	82c1                	srl	a3,a3,0x10
+     c32:	07c2                	sll	a5,a5,0x10
+     c34:	87c1                	sra	a5,a5,0x10
+     c36:	fee691e3          	bne	a3,a4,c18 <main+0x234>
       // 車を描画
       for (int i = 0; i < 3; i++){
 
         ssd1306_drawImage(car_s[i].car_x, car_s[i].car_y, car, 24, 24, 0);
 
         if (flip_c % 25 == 0) {
-     c18:	4512                	lw	a0,4(sp)
-     c1a:	45e5                	li	a1,25
-     c1c:	cf4ff0ef          	jal	110 <__modsi3>
-     c20:	82aa                	mv	t0,a0
-     c22:	101c                	add	a5,sp,32
+     c3a:	4512                	lw	a0,4(sp)
+     c3c:	45e5                	li	a1,25
+     c3e:	cd2ff0ef          	jal	110 <__modsi3>
+     c42:	82aa                	mv	t0,a0
+     c44:	101c                	add	a5,sp,32
         ssd1306_drawImage(car_s[i].car_x, car_s[i].car_y, car, 24, 24, 0);
-     c24:	6385                	lui	t2,0x1
-     c26:	0047a303          	lw	t1,4(a5)
-     c2a:	0007c503          	lbu	a0,0(a5)
-     c2e:	da838613          	add	a2,t2,-600 # da8 <car>
-     c32:	4761                	li	a4,24
-     c34:	46e1                	li	a3,24
-     c36:	0ff37593          	zext.b	a1,t1
-     c3a:	ce16                	sw	t0,28(sp)
-     c3c:	ca3e                	sw	a5,20(sp)
-     c3e:	cc1a                	sw	t1,24(sp)
-     c40:	ebeff0ef          	jal	2fe <ssd1306_drawImage.constprop.0>
+     c46:	6385                	lui	t2,0x1
+     c48:	0047a303          	lw	t1,4(a5)
+     c4c:	0007c503          	lbu	a0,0(a5)
+     c50:	da438613          	add	a2,t2,-604 # da4 <car>
+     c54:	4761                	li	a4,24
+     c56:	46e1                	li	a3,24
+     c58:	0ff37593          	zext.b	a1,t1
+     c5c:	ce16                	sw	t0,28(sp)
+     c5e:	ca3e                	sw	a5,20(sp)
+     c60:	cc1a                	sw	t1,24(sp)
+     c62:	e9cff0ef          	jal	2fe <ssd1306_drawImage.constprop.0>
         if (flip_c % 25 == 0) {
-     c44:	42f2                	lw	t0,28(sp)
-     c46:	47d2                	lw	a5,20(sp)
-     c48:	6385                	lui	t2,0x1
-     c4a:	00029963          	bnez	t0,c5c <main+0x278>
+     c66:	42f2                	lw	t0,28(sp)
+     c68:	47d2                	lw	a5,20(sp)
+     c6a:	6385                	lui	t2,0x1
+     c6c:	00029963          	bnez	t0,c7e <main+0x29a>
           if (car_s[i].dest) {
-     c4e:	0087c703          	lbu	a4,8(a5)
-     c52:	4362                	lw	t1,24(sp)
-     c54:	c33d                	beqz	a4,cba <main+0x2d6>
+     c70:	0087c703          	lbu	a4,8(a5)
+     c74:	4362                	lw	t1,24(sp)
+     c76:	cf15                	beqz	a4,cb2 <main+0x2ce>
             car_s[i].car_y ++;
-     c56:	0305                	add	t1,t1,1
+     c78:	0305                	add	t1,t1,1
           } else {
             car_s[i].car_y --;
-     c58:	0067a223          	sw	t1,4(a5)
+     c7a:	0067a223          	sw	t1,4(a5)
           }
         }
 
         if (car_s[i].car_y > 64) {
-     c5c:	43d8                	lw	a4,4(a5)
-     c5e:	04000693          	li	a3,64
-     c62:	04e6ce63          	blt	a3,a4,cbe <main+0x2da>
+     c7e:	43d8                	lw	a4,4(a5)
+     c80:	04000693          	li	a3,64
+     c84:	02e6c963          	blt	a3,a4,cb6 <main+0x2d2>
           car_s[i].car_y = 0;
         }
         if (car_s[i].car_y < 0) {
-     c66:	00075463          	bgez	a4,c6e <main+0x28a>
+     c88:	00075463          	bgez	a4,c90 <main+0x2ac>
           car_s[i].car_y = 64;
-     c6a:	04000713          	li	a4,64
-     c6e:	c3d8                	sw	a4,4(a5)
+     c8c:	04000713          	li	a4,64
+     c90:	c3d8                	sw	a4,4(a5)
       for (int i = 0; i < 3; i++){
-     c70:	07b1                	add	a5,a5,12
-     c72:	00d8                	add	a4,sp,68
-     c74:	fae799e3          	bne	a5,a4,c26 <main+0x242>
+     c92:	07b1                	add	a5,a5,12
+     c94:	00d8                	add	a4,sp,68
+     c96:	fae799e3          	bne	a5,a4,c48 <main+0x264>
         }
       }
 
       ssd1306_refresh();
-     c78:	316d                	jal	922 <ssd1306_refresh>
+     c9a:	3161                	jal	922 <ssd1306_refresh>
       button_state = button_is_pressed;
-     c7a:	4742                	lw	a4,16(sp)
+     c9c:	4742                	lw	a4,16(sp)
 		{
-     c7c:	b5d5                	j	b60 <main+0x17c>
-          GPIO_digitalWrite(BZR_PIN, low);
-     c7e:	46b2                	lw	a3,12(sp)
-     c80:	004007b7          	lui	a5,0x400
-     c84:	ca9c                	sw	a5,16(a3)
-      if (button_state && !button_is_pressed){
-     c86:	ee070ae3          	beqz	a4,b7a <main+0x196>
-        newt_x -= newt_step;
-     c8a:	141d                	add	s0,s0,-25
-     c8c:	b5fd                	j	b7a <main+0x196>
-        if (rot_a_state && rot_b_state) {
-     c8e:	e3a1                	bnez	a5,cce <main+0x2ea>
-          newt_y -= 3;
-     c90:	4785                	li	a5,1
-     c92:	c03e                	sw	a5,0(sp)
-     c94:	14f5                	add	s1,s1,-3
-      if (newt_x < 0) {
-     c96:	00045463          	bgez	s0,c9e <main+0x2ba>
+     c9e:	b5c9                	j	b60 <main+0x17c>
         newt_x = 100;
-     c9a:	06400413          	li	s0,100
-      if (newt_y < 0) {
-     c9e:	f004d5e3          	bgez	s1,ba8 <main+0x1c4>
-        newt_y = 64;
-     ca2:	04000493          	li	s1,64
-     ca6:	b729                	j	bb0 <main+0x1cc>
-        newt_x = 100;
-     ca8:	06400413          	li	s0,100
-     cac:	bdf5                	j	ba8 <main+0x1c4>
+     ca0:	06400413          	li	s0,100
+     ca4:	b71d                	j	bca <main+0x1e6>
         newt_y = 0;
-     cae:	4481                	li	s1,0
-     cb0:	b701                	j	bb0 <main+0x1cc>
+     ca6:	4481                	li	s1,0
+     ca8:	b72d                	j	bd2 <main+0x1ee>
         ssd1306_drawImage(newt_x, newt_y, newt_right, 24, 24, 0);
-     cb2:	6605                	lui	a2,0x1
-     cb4:	df060613          	add	a2,a2,-528 # df0 <newt_right>
-     cb8:	bf25                	j	bf0 <main+0x20c>
+     caa:	6605                	lui	a2,0x1
+     cac:	dec60613          	add	a2,a2,-532 # dec <newt_right>
+     cb0:	b78d                	j	c12 <main+0x22e>
             car_s[i].car_y --;
-     cba:	137d                	add	t1,t1,-1
-     cbc:	bf71                	j	c58 <main+0x274>
+     cb2:	137d                	add	t1,t1,-1
+     cb4:	b7d9                	j	c7a <main+0x296>
           car_s[i].car_y = 64;
-     cbe:	4701                	li	a4,0
-     cc0:	b77d                	j	c6e <main+0x28a>
+     cb6:	4701                	li	a4,0
+     cb8:	bfe1                	j	c90 <main+0x2ac>
         rot_a_state = rot_a_is_pressed;
-     cc2:	c002                	sw	zero,0(sp)
+     cba:	c002                	sw	zero,0(sp)
       if (newt_x < 0) {
-     cc4:	ee0452e3          	bgez	s0,ba8 <main+0x1c4>
+     cbc:	f00457e3          	bgez	s0,bca <main+0x1e6>
         newt_x = 100;
-     cc8:	06400413          	li	s0,100
-     ccc:	b5d5                	j	bb0 <main+0x1cc>
+     cc0:	06400413          	li	s0,100
+     cc4:	b739                	j	bd2 <main+0x1ee>
         rot_a_state = rot_a_is_pressed;
-     cce:	4785                	li	a5,1
-     cd0:	c03e                	sw	a5,0(sp)
-     cd2:	bfcd                	j	cc4 <main+0x2e0>
+     cc6:	4785                	li	a5,1
+     cc8:	c03e                	sw	a5,0(sp)
+     cca:	bfcd                	j	cbc <main+0x2d8>
       if (newt_x < 0) {
-     cd4:	ec045ee3          	bgez	s0,bb0 <main+0x1cc>
-     cd8:	b7c9                	j	c9a <main+0x2b6>
-     cda:	0000                	unimp
-     cdc:	0000004b          	.insn	4, 0x004b
-     ce0:	000a                	c.slli	zero,0x2
+     ccc:	f00453e3          	bgez	s0,bd2 <main+0x1ee>
+        newt_x = 100;
+     cd0:	06400413          	li	s0,100
+     cd4:	bdc1                	j	ba4 <main+0x1c0>
+     cd6:	0000                	unimp
+     cd8:	0000004b          	.insn	4, 0x004b
+     cdc:	000a                	c.slli	zero,0x2
+     cde:	0000                	unimp
+     ce0:	0001                	nop
      ce2:	0000                	unimp
-     ce4:	0001                	nop
+     ce4:	0032                	c.slli	zero,0xc
      ce6:	0000                	unimp
      ce8:	0032                	c.slli	zero,0xc
      cea:	0000                	unimp
-     cec:	0032                	c.slli	zero,0xc
+     cec:	0000                	unimp
      cee:	0000                	unimp
-     cf0:	0000                	unimp
+     cf0:	0019                	c.nop	6
      cf2:	0000                	unimp
-     cf4:	0019                	c.nop	6
+     cf4:	0014                	.insn	2, 0x0014
      cf6:	0000                	unimp
-     cf8:	0014                	.insn	2, 0x0014
+     cf8:	0001                	nop
      cfa:	0000                	unimp
-     cfc:	0001                	nop
-     cfe:	0000                	unimp
-     d00:	31647373          	csrrc	t1,0x316,8
-     d04:	5f363033          	.insn	4, 0x5f363033
-     d08:	3269                	jal	692 <mini_vpprintf+0xca>
-     d0a:	72655f63          	bge	a0,t1,1448 <_data_lma+0x1c8>
-     d0e:	6f72                	.insn	2, 0x6f72
-     d10:	2072                	.insn	2, 0x2072
-     d12:	202d                	jal	d3c <main+0x358>
-     d14:	6974                	.insn	2, 0x6974
-     d16:	656d                	lui	a0,0x1b
-     d18:	2074756f          	jal	a0,4871e <main.c.57da8798+0x46335>
-     d1c:	74696177          	.insn	4, 0x74696177
-     d20:	6e69                	lui	t3,0x1a
-     d22:	6f662067          	.insn	4, 0x6f662067
-     d26:	2072                	.insn	2, 0x2072
-     d28:	7325                	lui	t1,0xfffe9
-     d2a:	0d0a                	sll	s10,s10,0x2
-     d2c:	0000                	unimp
-     d2e:	0000                	unimp
-     d30:	6f6e                	.insn	2, 0x6f6e
-     d32:	2074                	.insn	2, 0x2074
-     d34:	7562                	.insn	2, 0x7562
-     d36:	00007973          	csrrc	s2,ustatus,0
-     d3a:	0000                	unimp
-     d3c:	616d                	add	sp,sp,240
-     d3e:	72657473          	csrrc	s0,mhpmevent6h,10
-     d42:	6d20                	.insn	2, 0x6d20
-     d44:	0065646f          	jal	s0,56d4a <main.c.57da8798+0x54961>
-     d48:	7274                	.insn	2, 0x7274
-     d4a:	6e61                	lui	t3,0x18
-     d4c:	74696d73          	csrrs	s10,0x746,18
-     d50:	6d20                	.insn	2, 0x6d20
-     d52:	0065646f          	jal	s0,56d58 <main.c.57da8798+0x5496f>
-     d56:	0000                	unimp
-     d58:	7874                	.insn	2, 0x7874
-     d5a:	6520                	.insn	2, 0x6520
-     d5c:	706d                	c.lui	zero,0xffffb
-     d5e:	7974                	.insn	2, 0x7974
-     d60:	0000                	unimp
-     d62:	0000                	unimp
-     d64:	7274                	.insn	2, 0x7274
-     d66:	6e61                	lui	t3,0x18
-     d68:	74696d73          	csrrs	s10,0x746,18
-     d6c:	6320                	.insn	2, 0x6320
-     d6e:	6c706d6f          	jal	s10,7c34 <main.c.57da8798+0x584b>
-     d72:	7465                	lui	s0,0xffff9
-     d74:	0065                	c.nop	25
+     cfc:	31647373          	csrrc	t1,0x316,8
+     d00:	5f363033          	.insn	4, 0x5f363033
+     d04:	3269                	jal	68e <mini_vpprintf+0xc6>
+     d06:	72655f63          	bge	a0,t1,1444 <_data_lma+0x1c8>
+     d0a:	6f72                	.insn	2, 0x6f72
+     d0c:	2072                	.insn	2, 0x2072
+     d0e:	202d                	jal	d38 <main+0x354>
+     d10:	6974                	.insn	2, 0x6974
+     d12:	656d                	lui	a0,0x1b
+     d14:	2074756f          	jal	a0,4871a <main.c.57da8798+0x46331>
+     d18:	74696177          	.insn	4, 0x74696177
+     d1c:	6e69                	lui	t3,0x1a
+     d1e:	6f662067          	.insn	4, 0x6f662067
+     d22:	2072                	.insn	2, 0x2072
+     d24:	7325                	lui	t1,0xfffe9
+     d26:	0d0a                	sll	s10,s10,0x2
+     d28:	0000                	unimp
+     d2a:	0000                	unimp
+     d2c:	6f6e                	.insn	2, 0x6f6e
+     d2e:	2074                	.insn	2, 0x2074
+     d30:	7562                	.insn	2, 0x7562
+     d32:	00007973          	csrrc	s2,ustatus,0
+     d36:	0000                	unimp
+     d38:	616d                	add	sp,sp,240
+     d3a:	72657473          	csrrc	s0,mhpmevent6h,10
+     d3e:	6d20                	.insn	2, 0x6d20
+     d40:	0065646f          	jal	s0,56d46 <main.c.57da8798+0x5495d>
+     d44:	7274                	.insn	2, 0x7274
+     d46:	6e61                	lui	t3,0x18
+     d48:	74696d73          	csrrs	s10,0x746,18
+     d4c:	6d20                	.insn	2, 0x6d20
+     d4e:	0065646f          	jal	s0,56d54 <main.c.57da8798+0x5496b>
+     d52:	0000                	unimp
+     d54:	7874                	.insn	2, 0x7874
+     d56:	6520                	.insn	2, 0x6520
+     d58:	706d                	c.lui	zero,0xffffb
+     d5a:	7974                	.insn	2, 0x7974
+     d5c:	0000                	unimp
+     d5e:	0000                	unimp
+     d60:	7274                	.insn	2, 0x7274
+     d62:	6e61                	lui	t3,0x18
+     d64:	74696d73          	csrrs	s10,0x746,18
+     d68:	6320                	.insn	2, 0x6320
+     d6a:	6c706d6f          	jal	s10,7c30 <main.c.57da8798+0x5847>
+     d6e:	7465                	lui	s0,0xffff9
+     d70:	0065                	c.nop	25
 	...
 
-00000d78 <errstr>:
-     d78:	0d30 0000 0d3c 0000 0d48 0000 0d58 0000     0...<...H...X...
-     d88:	0d64 0000                                   d...
+00000d74 <errstr>:
+     d74:	0d2c 0000 0d38 0000 0d44 0000 0d54 0000     ,...8...D...T...
+     d84:	0d60 0000                                   `...
 
-00000d8c <ssd1306_init_array>:
-     d8c:	d5ae a880 d33f 4000 148d 0020 c8a1 12da     ....?..@.. .....
-     d9c:	8f81 f1d9 40db a6a4 ffaf 0000               .....@......
+00000d88 <ssd1306_init_array>:
+     d88:	d5ae a880 d33f 4000 148d 0020 c8a1 12da     ....?..@.. .....
+     d98:	8f81 f1d9 40db a6a4 ffaf 0000               .....@......
 
-00000da8 <car>:
+00000da4 <car>:
 	...
-     db0:	0000 007c 7c00 0000 007c ff03 03c0 c0ff     ..|..|..|.......
-     dc0:	ff03 00c0 c07f 7f00 00c0 c07f 7c00 0040     .............|@.
-     dd0:	407c 7c00 0340 40fc ff03 03c0 00fc 7c00     |@.|@..@.......|
-     de0:	0000 0074 7c00 0000 0000 0000 0000 0000     ..t..|..........
+     dac:	0000 007c 7c00 0000 007c ff03 03c0 c0ff     ..|..|..|.......
+     dbc:	ff03 00c0 c07f 7f00 00c0 c07f 7c00 0040     .............|@.
+     dcc:	407c 7c00 0340 40fc ff03 03c0 00fc 7c00     |@.|@..@.......|
+     ddc:	0000 0074 7c00 0000 0000 0000 0000 0000     ..t..|..........
 
-00000df0 <newt_right>:
-     df0:	0000 0000 0000 f00f 0f00 00f0 3c3c 3c00     ............<<.<
-     e00:	003c 00f0 f0c0 c000 03f3 f30f 0f03 c3fc     <...............
-     e10:	fc3f 3fc3 ff3f 3fff ffff ff00 00f0 f0ff     ?..??..?........
-     e20:	c003 033c 3cc0 0000 0000 0000 0000 0000     ..<..<..........
+00000dec <newt_right>:
+     dec:	0000 0000 0000 f00f 0f00 00f0 3c3c 3c00     ............<<.<
+     dfc:	003c 00f0 f0c0 c000 03f3 f30f 0f03 c3fc     <...............
+     e0c:	fc3f 3fc3 ff3f 3fff ffff ff00 00f0 f0ff     ?..??..?........
+     e1c:	c003 033c 3cc0 0000 0000 0000 0000 0000     ..<..<..........
 	...
 
-00000e38 <newt_left>:
+00000e34 <newt_left>:
 	...
-     e48:	0000 c003 033c 3cc0 ff00 00f0 f0ff ff3f     ....<..<......?.
-     e58:	3fff ffff c3fc fc3f 3fc3 03f3 f30f 0f03     .?....?..?......
-     e68:	00f0 f0c0 c000 3c3c 3c00 003c f00f 0f00     ......<<.<<.....
-     e78:	00f0 0000 0000 0000                         ........
+     e44:	0000 c003 033c 3cc0 ff00 00f0 f0ff ff3f     ....<..<......?.
+     e54:	3fff ffff c3fc fc3f 3fc3 03f3 f30f 0f03     .?....?..?......
+     e64:	00f0 f0c0 c000 3c3c 3c00 003c f00f 0f00     ......<<.<<.....
+     e74:	00f0 0000 0000 0000                         ........
 
-00000e80 <movoid_title>:
-     e80:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
-     e90:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
-     ea0:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
-     eb0:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
-     ec0:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
-     ed0:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
-     ee0:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
-     ef0:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
-     f00:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
-     f10:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
-     f20:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
-     f30:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
-     f40:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
-     f50:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
-     f60:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
-     f70:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
-     f80:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
-     f90:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
-     fa0:	f8ff ff7f ffff ffff ffff ffff ffff ffff     ................
-     fb0:	f8ff ff7f ffff ffff ffff ffff ffff ffff     ................
-     fc0:	f8ff ff3f ffff ffff ffff ffff ffff ffff     ..?.............
-     fd0:	f8ff fe3f ff0f ffff ffff f0ff e0ff ffff     ..?.............
-     fe0:	f8ff fe3f ff0f ffff ffff f0ff e07f ffff     ..?.............
-     ff0:	fcff fe3f ff0f ffff ffff f0ff c03f ffff     ..?.........?...
-    1000:	fcff fe3f ff0f ffff ffff f0ff c03f ffff     ..?.........?...
-    1010:	fcff ff3f ffff ffff ffff f0ff c01f ffff     ..?.............
-    1020:	fcff ff3f ffff ffff ffff f0ff 901f ffff     ..?.............
-    1030:	fcff ff3f ffff ffff ffff f0ff 904f ffff     ..?.........O...
-    1040:	fcff 0f00 800f 8003 60f0 f800 904f ffff     .........`..O...
-    1050:	fcff 0f1e 8707 83c3 60f0 78f0 3067 ff7f     .........`.xg0..
-    1060:	fcff 0f1f 8707 c3c3 e0f0 78f0 3067 ff7f     ...........xg0..
-    1070:	feff 0f1f 8787 c1c3 e0f0 78f8 3073 ff7f     ...........xs0..
-    1080:	feff 0f1f 8387 c1c1 f0f0 78f8 707b ff7f     ...........x{p..
-    1090:	feff 0f1f 8387 e1c1 f0f0 78f8 7838 ff7f     ...........x8x..
-    10a0:	feff 071f 8387 e0e1 f0f0 78f8 783c ff7f     ...........x<x..
-    10b0:	feff 071f c387 f0e1 f0f0 78f8 f83c ff7f     ...........x<...
-    10c0:	feff 071f c387 f0e1 f0e0 78f8 f83f ff7f     ...........x?...
-    10d0:	feff 870f c383 f0e1 f060 38f8 f83f ff3f     ........`..8?.?.
-    10e0:	feff 870f c383 f8e1 f061 3c78 f83f ff3f     ........a.x<?.?.
-    10f0:	feff 870f c3c3 f8e1 f061 3c7c f83f ff3f     ........a.|<?.?.
-    1100:	ffff 870f c3c3 f8e0 f821 3c7c f83f ff3f     ........!.|<?.?.
-    1110:	ffff 870f c1c3 fce0 f821 3c7c f81f ff3f     ........!.|<..?.
-    1120:	ffff 0300 c0c3 fc00 f801 3c00 fc1f ff3f     ...........<..?.
-    1130:	ffff 0700 e0c3 fe00 f803 3c00 fc3f ff3f     ...........<?.?.
-    1140:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
-    1150:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
-    1160:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
-    1170:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
-    1180:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
-    1190:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
-    11a0:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
-    11b0:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
-    11c0:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
-    11d0:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
-    11e0:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
-    11f0:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
-    1200:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
-    1210:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
-    1220:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
-    1230:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
-    1240:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
-    1250:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
-    1260:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
-    1270:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
+00000e7c <movoid_title>:
+     e7c:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
+     e8c:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
+     e9c:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
+     eac:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
+     ebc:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
+     ecc:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
+     edc:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
+     eec:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
+     efc:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
+     f0c:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
+     f1c:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
+     f2c:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
+     f3c:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
+     f4c:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
+     f5c:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
+     f6c:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
+     f7c:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
+     f8c:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
+     f9c:	f8ff ff7f ffff ffff ffff ffff ffff ffff     ................
+     fac:	f8ff ff7f ffff ffff ffff ffff ffff ffff     ................
+     fbc:	f8ff ff3f ffff ffff ffff ffff ffff ffff     ..?.............
+     fcc:	f8ff fe3f ff0f ffff ffff f0ff e0ff ffff     ..?.............
+     fdc:	f8ff fe3f ff0f ffff ffff f0ff e07f ffff     ..?.............
+     fec:	fcff fe3f ff0f ffff ffff f0ff c03f ffff     ..?.........?...
+     ffc:	fcff fe3f ff0f ffff ffff f0ff c03f ffff     ..?.........?...
+    100c:	fcff ff3f ffff ffff ffff f0ff c01f ffff     ..?.............
+    101c:	fcff ff3f ffff ffff ffff f0ff 901f ffff     ..?.............
+    102c:	fcff ff3f ffff ffff ffff f0ff 904f ffff     ..?.........O...
+    103c:	fcff 0f00 800f 8003 60f0 f800 904f ffff     .........`..O...
+    104c:	fcff 0f1e 8707 83c3 60f0 78f0 3067 ff7f     .........`.xg0..
+    105c:	fcff 0f1f 8707 c3c3 e0f0 78f0 3067 ff7f     ...........xg0..
+    106c:	feff 0f1f 8787 c1c3 e0f0 78f8 3073 ff7f     ...........xs0..
+    107c:	feff 0f1f 8387 c1c1 f0f0 78f8 707b ff7f     ...........x{p..
+    108c:	feff 0f1f 8387 e1c1 f0f0 78f8 7838 ff7f     ...........x8x..
+    109c:	feff 071f 8387 e0e1 f0f0 78f8 783c ff7f     ...........x<x..
+    10ac:	feff 071f c387 f0e1 f0f0 78f8 f83c ff7f     ...........x<...
+    10bc:	feff 071f c387 f0e1 f0e0 78f8 f83f ff7f     ...........x?...
+    10cc:	feff 870f c383 f0e1 f060 38f8 f83f ff3f     ........`..8?.?.
+    10dc:	feff 870f c383 f8e1 f061 3c78 f83f ff3f     ........a.x<?.?.
+    10ec:	feff 870f c3c3 f8e1 f061 3c7c f83f ff3f     ........a.|<?.?.
+    10fc:	ffff 870f c3c3 f8e0 f821 3c7c f83f ff3f     ........!.|<?.?.
+    110c:	ffff 870f c1c3 fce0 f821 3c7c f81f ff3f     ........!.|<..?.
+    111c:	ffff 0300 c0c3 fc00 f801 3c00 fc1f ff3f     ...........<..?.
+    112c:	ffff 0700 e0c3 fe00 f803 3c00 fc3f ff3f     ...........<?.?.
+    113c:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
+    114c:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
+    115c:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
+    116c:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
+    117c:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
+    118c:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
+    119c:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
+    11ac:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
+    11bc:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
+    11cc:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
+    11dc:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
+    11ec:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
+    11fc:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
+    120c:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
+    121c:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
+    122c:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
+    123c:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
+    124c:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
+    125c:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
+    126c:	ffff ffff ffff ffff ffff ffff ffff ffff     ................
