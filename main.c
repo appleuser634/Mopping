@@ -26,9 +26,26 @@ void init_gpio()
     GPIO_pinMode(ROT_B_PIN, GPIO_pinMode_I_pullUp, GPIO_Speed_10MHz);
 }
 
+void opening()
+{
+    ssd1306_setbuf(0);
+    ssd1306_drawImage(0, 0, movoid_title, 128, 64, 0);
+    ssd1306_refresh();
+	  Delay_Ms(2000);
+}
+
+void game_over()
+{
+    ssd1306_setbuf(0);
+    ssd1306_drawstr_sz(0,16, "GAME OVER", 1, fontsize_16x16);
+    ssd1306_refresh();
+	  Delay_Ms(2000);
+}
+
 struct car_state {
   int car_x;
   int car_y;
+  int car_step;
   bool dest;
 };
 
@@ -60,25 +77,25 @@ int main()
     int newt_step = 25;
 
     bool button_state = false;
-    bool rot_a_state = false;
-    bool rot_b_state = false;
 
-    ssd1306_setbuf(0);
-    ssd1306_drawImage(0, 0, movoid_title, 128, 64, 0);
-    ssd1306_refresh();
-	  Delay_Ms(2000);
+    uint8_t rot_a_state = !GPIO_digitalRead(ROT_A_PIN);
+    uint8_t rot_b_state = !GPIO_digitalRead(ROT_B_PIN);
+
+    opening();
+
 
     int flip_c = 0;
     bool flip_flag = false;
 
     car_state_data car_s[] = {
-      {75,10,true},
-      {50,50,false},
-      {25,20,true}
+      {75,10,2,true},
+      {50,50,2,false},
+      {25,20,2,true}
     };
 
-		while(1)
-		{
+    bool run_flag = true;
+
+    while (run_flag) {
 
       uint8_t button_is_pressed = !GPIO_digitalRead(BTN_PIN);
 
@@ -221,31 +238,38 @@ int main()
       // 		break;
       // }
       
-      // 車を描画
       for (int i = 0; i < 3; i++){
 
+        // 車を描画
         ssd1306_drawImage(car_s[i].car_x, car_s[i].car_y, car, 24, 24, 0);
 
+        // 車を進める
         if (flip_c % 25 == 0) {
           if (car_s[i].dest) {
-            car_s[i].car_y ++;
+            car_s[i].car_y += car_s[i].car_step;
           } else {
-            car_s[i].car_y --;
+            car_s[i].car_y -= car_s[i].car_step;
           }
         }
 
+        // 車のループ
         if (car_s[i].car_y > 64) {
           car_s[i].car_y = 0;
         }
         if (car_s[i].car_y < 0) {
           car_s[i].car_y = 64;
         }
+
+        // 当たり判定
+        if (car_s[i].car_x == newt_x && (car_s[i].car_y + 6) <= newt_y && (car_s[i].car_y + 18) >= newt_y ) {
+          game_over();
+          run_flag = false;
+          break;
+        }
       }
-
       ssd1306_refresh();
-
       // Delay_Ms(3);
-		}
+    }
 	}
 	else
 		// printf("failed.\n\r");
