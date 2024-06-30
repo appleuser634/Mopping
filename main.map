@@ -51,6 +51,7 @@ SYMBOL TABLE:
 000005b0 g     F .text	00000002 SysTick_Handler
 000005b0 g     F .text	00000002 PVD_IRQHandler
 000005b2 g     F .text	0000000e NMI_Handler
+00002571  w      .debug_info	00000000 .hidden main.c.2f3cab53
 00000000 g     F .init	0000009c InterruptVectorDefault
 20000000 g       .bss	00000000 _sbss
 00000920 g     F .text	0000001c memcpy
@@ -79,7 +80,6 @@ SYMBOL TABLE:
 000009fe g     F .text	000003be main
 000005b0 g     F .text	00000002 DMA1_Channel5_IRQHandler
 000000b8 g     F .text	00000058 .hidden __divsi3
-00002571  w      .debug_info	00000000 .hidden main.c.5db06c59
 0000099c g     F .text	00000062 SystemInit
 00000000 g       .init	00000000 _sinit
 000005b0 g     F .text	00000002 DMA1_Channel3_IRQHandler

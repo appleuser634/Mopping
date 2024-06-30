@@ -69,18 +69,15 @@ int main()
     
       int newt_x = 100;
       int newt_y = 20;
-
       int newt_step = 25;
+      
+      int flip_c = 0;
+      bool flip_flag = false;
 
       bool button_state = false;
 
       uint8_t rot_a_state = !GPIO_digitalRead(ROT_A_PIN);
       uint8_t rot_b_state = !GPIO_digitalRead(ROT_B_PIN);
-
-
-
-      int flip_c = 0;
-      bool flip_flag = false;
 
       car_state_data car_s[] = {
         {75,10,2,true},
