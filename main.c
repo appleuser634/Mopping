@@ -37,7 +37,7 @@ void opening()
 void game_over()
 {
     ssd1306_setbuf(0);
-    ssd1306_drawstr_sz(0,16, "GAME OVER", 1, fontsize_16x16);
+    ssd1306_drawstr_sz(0,16, "GAME OVER", 1, fontsize_8x8);
     ssd1306_refresh();
 	  Delay_Ms(2000);
 }
@@ -60,9 +60,9 @@ int main()
 
 	Delay_Ms( 200 );
 
-	if(!ssd1306_i2c_init())
-	{
+	if (!ssd1306_i2c_init()) {
 		ssd1306_init();
+
     opening();
 
     while (1) {
@@ -76,13 +76,14 @@ int main()
 
       bool button_state = false;
 
-      uint8_t rot_a_state = !GPIO_digitalRead(ROT_A_PIN);
-      uint8_t rot_b_state = !GPIO_digitalRead(ROT_B_PIN);
+      uint8_t rot_a_pre_state = GPIO_digitalRead(ROT_A_PIN);
+      uint8_t rot_b_pre_state = GPIO_digitalRead(ROT_B_PIN);
 
       car_state_data car_s[] = {
         {75,10,2,true},
         {50,50,2,false},
-        {25,20,2,true}
+        {25,20,4,true},
+        {0,20,2,false}
       };
 
       bool run_flag = true;
@@ -106,33 +107,54 @@ int main()
         button_state = button_is_pressed;
 
         // get rotaly-encoder value
-        uint8_t rot_a_is_pressed = !GPIO_digitalRead(ROT_A_PIN);
-        uint8_t rot_b_state = !GPIO_digitalRead(ROT_B_PIN);
+        uint8_t rot_a_state = GPIO_digitalRead(ROT_A_PIN);
+        uint8_t rot_b_state = GPIO_digitalRead(ROT_B_PIN);
 
-        if (rot_a_is_pressed != rot_a_state) {
-          rot_a_state = rot_a_is_pressed;
-
-          if (!rot_a_state && rot_b_state) {
-            newt_y -= 3;
+        if (rot_a_state && rot_b_state) {
+          if (!rot_a_pre_state && rot_b_pre_state) {
+            newt_y += 4;
+          } else if (rot_a_pre_state && !rot_b_pre_state) {
+            newt_y -= 4;
           }
-          if (rot_a_state && rot_b_state) {
-            newt_y += 3;
-          } 
         } 
+        
+        if (!rot_a_state && !rot_b_state) {
+          if (!rot_a_pre_state && rot_b_pre_state) {
+            newt_y -= 4;
+          } else if (rot_a_pre_state && !rot_b_pre_state) {
+            newt_y += 4;
+          }
+        } 
+
+        rot_a_pre_state = rot_a_state;
+        rot_b_pre_state = rot_b_state;
 
         // turn aroud
         if (newt_x < 0) {
           newt_x = 100;
         }
         if (newt_y < 0) {
-          newt_y = 64;
-        } 
-        else if (newt_y > 64) {
           newt_y = 0;
+        } 
+        else if (newt_y > 40) {
+          newt_y = 40;
         }
 
         // clear buffer for next mode
         ssd1306_setbuf(0);
+
+        if (rot_a_state) {
+          ssd1306_fillRect(0, 0, 10, 32, 1);
+        } else {
+          ssd1306_fillRect(0, 0, 10, 32, 0);
+        }
+        
+        if (rot_b_state) {
+          ssd1306_fillRect(0, 32, 10, 32, 1);
+        } else {
+          ssd1306_fillRect(0, 32, 10, 32, 0);
+        }
+
 
         flip_c ++;
 
@@ -146,8 +168,6 @@ int main()
         } else {
           ssd1306_drawImage(newt_x, newt_y, newt_right, 24, 24, 0);
         }
-
-        ssd1306_drawLine(10, 0, 10, SSD1306_H, 1);
 
         // switch(mode)
         // {
@@ -230,7 +250,7 @@ int main()
         // 		break;
         // }
         
-        for (int i = 0; i < 3; i++){
+        for (int i = 0; i < 4; i++){
 
           // 車を描画
           ssd1306_drawImage(car_s[i].car_x, car_s[i].car_y, car, 24, 24, 0);
@@ -253,14 +273,18 @@ int main()
           }
 
           // 当たり判定
-          if (car_s[i].car_x == newt_x && (car_s[i].car_y + 6) <= newt_y && (car_s[i].car_y + 18) >= newt_y ) {
-            game_over();
-            run_flag = false;
-            break;
+          if (car_s[i].car_x == newt_x) {
+            if ((car_s[i].car_y + 6) <= newt_y && (car_s[i].car_y + 18) >= newt_y ) {
+              game_over();
+              run_flag = false;
+              break;
+            }
           }
         }
+        
+        ssd1306_drawLine(10, 0, 10, SSD1306_H, 1);
+
         ssd1306_refresh();
-        // Delay_Ms(3);
       }
     }
   }
