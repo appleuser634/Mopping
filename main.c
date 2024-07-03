@@ -34,12 +34,49 @@ void opening()
 	  Delay_Ms(2000);
 }
 
+void clear()
+{
+    ssd1306_setbuf(0);
+    ssd1306_drawstr_sz(0,16, "CLEAR!!", 1, fontsize_8x8);
+    ssd1306_refresh();
+    GPIO_digitalWrite(BZR_PIN, high);
+    Delay_Ms(300);
+    GPIO_digitalWrite(BZR_PIN, low);
+    Delay_Ms(300);
+    GPIO_digitalWrite(BZR_PIN, high);
+    Delay_Ms(800);
+    GPIO_digitalWrite(BZR_PIN, low);
+	  Delay_Ms(2000);
+}
+
 void game_over()
 {
     ssd1306_setbuf(0);
     ssd1306_drawstr_sz(0,16, "GAME OVER", 1, fontsize_8x8);
     ssd1306_refresh();
+    for (int i = 0; i < 500; i++) {
+      GPIO_digitalWrite(BZR_PIN, high);
+      Delay_Ms(1);
+      GPIO_digitalWrite(BZR_PIN, low);
+      Delay_Ms(1);
+    }
 	  Delay_Ms(2000);
+}
+
+void draw_road()
+{
+    int road_line[] = {105,10};
+    int dot_line[] = {85,60,35};
+
+    for (int i = 0; i < 2; i++) {
+      ssd1306_drawLine(road_line[i], 0, road_line[i], SSD1306_H, 1);
+    }
+
+    for (int i = 0; i < 3; i++) {
+      for (int j = 0; j < SSD1306_H; j+=10) {
+        ssd1306_drawLine(dot_line[i], j, dot_line[i], j+7, 1);
+      }
+    }
 }
 
 struct car_state {
@@ -83,7 +120,7 @@ int main()
         {75,10,2,true},
         {50,50,2,false},
         {25,20,4,true},
-        {0,20,2,false}
+        {0,10,2,false}
       };
 
       bool run_flag = true;
@@ -129,10 +166,6 @@ int main()
         rot_a_pre_state = rot_a_state;
         rot_b_pre_state = rot_b_state;
 
-        // turn aroud
-        if (newt_x < 0) {
-          newt_x = 100;
-        }
         if (newt_y < 0) {
           newt_y = 0;
         } 
@@ -142,19 +175,6 @@ int main()
 
         // clear buffer for next mode
         ssd1306_setbuf(0);
-
-        if (rot_a_state) {
-          ssd1306_fillRect(0, 0, 10, 32, 1);
-        } else {
-          ssd1306_fillRect(0, 0, 10, 32, 0);
-        }
-        
-        if (rot_b_state) {
-          ssd1306_fillRect(0, 32, 10, 32, 1);
-        } else {
-          ssd1306_fillRect(0, 32, 10, 32, 0);
-        }
-
 
         flip_c ++;
 
@@ -265,25 +285,30 @@ int main()
           }
 
           // 車のループ
-          if (car_s[i].car_y > 64) {
-            car_s[i].car_y = 0;
+          if (car_s[i].car_y > 61) {
+            car_s[i].car_y = -21;
           }
-          if (car_s[i].car_y < 0) {
-            car_s[i].car_y = 64;
+          if (car_s[i].car_y < -21) {
+            car_s[i].car_y = 61;
           }
 
           // 当たり判定
           if (car_s[i].car_x == newt_x) {
-            if ((car_s[i].car_y + 6) <= newt_y && (car_s[i].car_y + 18) >= newt_y ) {
+            if ((car_s[i].car_y + 3) <= newt_y && (car_s[i].car_y + 21) >= newt_y ) {
               game_over();
               run_flag = false;
               break;
             }
           }
         }
-        
-        ssd1306_drawLine(10, 0, 10, SSD1306_H, 1);
 
+        // 道の端に着いたらクリア
+        if (newt_x < 0) {
+          clear();
+          run_flag = false;
+        }
+        
+        draw_road();
         ssd1306_refresh();
       }
     }

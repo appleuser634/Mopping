@@ -244,16 +244,16 @@ void ssd1306_xorPixel(uint8_t x, uint8_t y)
  * draw a an image from an array, directly into to the display buffer
  * the color modes allow for overwriting and even layering (sprites!)
  */
-void ssd1306_drawImage(uint8_t x, uint8_t y, const unsigned char* input, uint8_t width, uint8_t height, uint8_t color_mode) {
-	uint8_t x_absolute;
-	uint8_t y_absolute;
+void ssd1306_drawImage(int x, int y, const unsigned char* input, uint8_t width, uint8_t height, uint8_t color_mode) {
+	int x_absolute;
+	int y_absolute;
 	uint8_t pixel;
 	uint8_t bytes_to_draw = width / 8;
 	uint16_t buffer_addr;
 
 	for (uint8_t line = 0; line < height; line++) {
 		y_absolute = y + line;
-		if (y_absolute >= SSD1306_H) {
+		if (y_absolute >= SSD1306_H || y_absolute < 0) {
 			break;
 		}
 
