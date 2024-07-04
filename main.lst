@@ -276,7 +276,7 @@ void ssd1306_i2c_setup(void)
      2c8:	4047d703          	lhu	a4,1028(a5) # 40005404 <__global_pointer$+0x20004c04>
 	tempreg &= ~I2C_CTLR2_FREQ;
      2cc:	66c1                	lui	a3,0x10
-     2ce:	fc068693          	add	a3,a3,-64 # ffc0 <main.c.5aee23e1+0xd7d7>
+     2ce:	fc068693          	add	a3,a3,-64 # ffc0 <main.c.41c1edcd+0xd7b5>
      2d2:	8f75                	and	a4,a4,a3
 	tempreg |= (FUNCONF_SYSTEM_CORE_CLOCK/SSD1306_I2C_PRERATE)&I2C_CTLR2_FREQ;
      2d4:	01876713          	or	a4,a4,24
@@ -752,7 +752,7 @@ void ssd1306_drawImage(int x, int y, const unsigned char* input, uint8_t width, 
      614:	00d65363          	bge	a2,a3,61a <_write.constprop.0+0x3e>
      618:	471d                	li	a4,7
      61a:	00027637          	lui	a2,0x27
-     61e:	10160613          	add	a2,a2,257 # 27101 <main.c.5aee23e1+0x24918>
+     61e:	10160613          	add	a2,a2,257 # 27101 <main.c.41c1edcd+0x248f6>
      622:	00032583          	lw	a1,0(t1) # 1000 <main+0x466>
      626:	0805f513          	and	a0,a1,128
      62a:	ed3d                	bnez	a0,6a8 <_write.constprop.0+0xcc>
@@ -1107,7 +1107,7 @@ uint8_t ssd1306_i2c_send(uint8_t addr, uint8_t *data, uint8_t sz)
 	while((I2C1->STAR2 & I2C_STAR2_BUSY) && (timeout--));
      968:	400057b7          	lui	a5,0x40005
 	timeout = TIMEOUT_MAX;
-     96c:	6a070713          	add	a4,a4,1696 # 186a0 <main.c.5aee23e1+0x15eb7>
+     96c:	6a070713          	add	a4,a4,1696 # 186a0 <main.c.41c1edcd+0x15e95>
 	while((I2C1->STAR2 & I2C_STAR2_BUSY) && (timeout--));
      970:	40078793          	add	a5,a5,1024 # 40005400 <__global_pointer$+0x20004c00>
      974:	567d                	li	a2,-1
@@ -1134,7 +1134,7 @@ uint8_t ssd1306_i2c_send(uint8_t addr, uint8_t *data, uint8_t sz)
 	while(sz--)
      992:	0ff5f593          	zext.b	a1,a1
      996:	67e1                	lui	a5,0x18
-     998:	6a178793          	add	a5,a5,1697 # 186a1 <main.c.5aee23e1+0x15eb8>
+     998:	6a178793          	add	a5,a5,1697 # 186a1 <main.c.41c1edcd+0x15e96>
 		while(!(I2C1->STAR1 & I2C_STAR1_TXE) && (timeout--));
      99c:	01475683          	lhu	a3,20(a4)
      9a0:	0806f693          	and	a3,a3,128
@@ -1165,11 +1165,11 @@ uint8_t ssd1306_i2c_send(uint8_t addr, uint8_t *data, uint8_t sz)
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_BYTE_TRANSMITTED)) && (timeout--));
      9c6:	00070637          	lui	a2,0x70
 	timeout = TIMEOUT_MAX;
-     9ca:	6a068693          	add	a3,a3,1696 # 186a0 <main.c.5aee23e1+0x15eb7>
+     9ca:	6a068693          	add	a3,a3,1696 # 186a0 <main.c.41c1edcd+0x15e95>
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      9ce:	40070713          	add	a4,a4,1024 # 40005400 <__global_pointer$+0x20004c00>
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_BYTE_TRANSMITTED)) && (timeout--));
-     9d2:	08460613          	add	a2,a2,132 # 70084 <main.c.5aee23e1+0x6d89b>
+     9d2:	08460613          	add	a2,a2,132 # 70084 <main.c.41c1edcd+0x6d879>
      9d6:	55fd                	li	a1,-1
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      9d8:	01475503          	lhu	a0,20(a4)
@@ -1206,11 +1206,11 @@ uint8_t ssd1306_i2c_send(uint8_t addr, uint8_t *data, uint8_t sz)
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED)) && (timeout--));
      a10:	000706b7          	lui	a3,0x70
 	timeout = TIMEOUT_MAX;
-     a14:	6a070713          	add	a4,a4,1696 # 186a0 <main.c.5aee23e1+0x15eb7>
+     a14:	6a070713          	add	a4,a4,1696 # 186a0 <main.c.41c1edcd+0x15e95>
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      a18:	40060613          	add	a2,a2,1024 # 40005400 <__global_pointer$+0x20004c00>
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED)) && (timeout--));
-     a1c:	08268693          	add	a3,a3,130 # 70082 <main.c.5aee23e1+0x6d899>
+     a1c:	08268693          	add	a3,a3,130 # 70082 <main.c.41c1edcd+0x6d877>
      a20:	537d                	li	t1,-1
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      a22:	01465283          	lhu	t0,20(a2)
@@ -1237,11 +1237,11 @@ uint8_t ssd1306_i2c_send(uint8_t addr, uint8_t *data, uint8_t sz)
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      a52:	40005737          	lui	a4,0x40005
 	timeout = TIMEOUT_MAX;
-     a56:	6a068693          	add	a3,a3,1696 # 186a0 <main.c.5aee23e1+0x15eb7>
+     a56:	6a068693          	add	a3,a3,1696 # 186a0 <main.c.41c1edcd+0x15e95>
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      a5a:	40070713          	add	a4,a4,1024 # 40005400 <__global_pointer$+0x20004c00>
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_MODE_SELECT)) && (timeout--));
-     a5e:	0605                	add	a2,a2,1 # 30001 <main.c.5aee23e1+0x2d818>
+     a5e:	0605                	add	a2,a2,1 # 30001 <main.c.41c1edcd+0x2d7f6>
      a60:	537d                	li	t1,-1
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      a62:	01475283          	lhu	t0,20(a4)
@@ -1374,7 +1374,7 @@ uint8_t ssd1306_i2c_send(uint8_t addr, uint8_t *data, uint8_t sz)
      b40:	400217b7          	lui	a5,0x40021
      b44:	01080737          	lui	a4,0x1080
      b48:	0007a223          	sw	zero,4(a5) # 40021004 <__global_pointer$+0x20020804>
-     b4c:	08170713          	add	a4,a4,129 # 1080081 <main.c.5aee23e1+0x107d898>
+     b4c:	08170713          	add	a4,a4,129 # 1080081 <main.c.41c1edcd+0x107d876>
      b50:	c398                	sw	a4,0(a5)
      b52:	009f0737          	lui	a4,0x9f0
      b56:	c798                	sw	a4,8(a5)
@@ -1401,9 +1401,9 @@ uint8_t ssd1306_i2c_send(uint8_t addr, uint8_t *data, uint8_t sz)
      b98:	8082                	ret
 
 00000b9a <main>:
-};
-
-typedef struct car_state car_state_data;
+    ssd1306_refresh();
+  }
+}
 
 int main()
 {
@@ -1449,7 +1449,7 @@ int main()
      bd8:	40078793          	add	a5,a5,1024 # 40011400 <__global_pointer$+0x20010c00>
      bdc:	4398                	lw	a4,0(a5)
 	Delay_Ms( 200 );
-     bde:	f8050513          	add	a0,a0,-128 # 124f80 <main.c.5aee23e1+0x122797>
+     bde:	f8050513          	add	a0,a0,-128 # 124f80 <main.c.41c1edcd+0x122775>
     GPIO_pinMode(BZR_PIN, GPIO_pinMode_O_pushPull, GPIO_Speed_10MHz);
      be2:	8f75                	and	a4,a4,a3
      be4:	c398                	sw	a4,0(a5)
@@ -1585,195 +1585,151 @@ uint8_t ssd1306_i2c_init(void)
      cba:	3d39                	jal	ad8 <ssd1306_refresh>
 	  Delay_Ms(2000);
      cbc:	00b72537          	lui	a0,0xb72
-     cc0:	b0050513          	add	a0,a0,-1280 # b71b00 <main.c.5aee23e1+0xb6f317>
+     cc0:	b0050513          	add	a0,a0,-1280 # b71b00 <main.c.41c1edcd+0xb6f2f5>
      cc4:	d10ff0ef          	jal	1d4 <DelaySysTick>
-      int flip_c = 0;
-      bool flip_flag = false;
-
-      bool button_state = false;
-
-      uint8_t rot_a_pre_state = GPIO_digitalRead(ROT_A_PIN);
+  uint8_t rot_a_pre_state = GPIO_digitalRead(ROT_A_PIN);
      cc8:	400117b7          	lui	a5,0x40011
      ccc:	40078793          	add	a5,a5,1024 # 40011400 <__global_pointer$+0x20010c00>
      cd0:	c03e                	sw	a5,0(sp)
      cd2:	4782                	lw	a5,0(sp)
-      uint8_t rot_b_pre_state = GPIO_digitalRead(ROT_B_PIN);
+  uint8_t rot_b_pre_state = GPIO_digitalRead(ROT_B_PIN);
      cd4:	40011737          	lui	a4,0x40011
-
-      car_state_data car_s[] = {
+  car_state_data car_s[] = {
      cd8:	6585                	lui	a1,0x1
-      uint8_t rot_a_pre_state = GPIO_digitalRead(ROT_A_PIN);
+  uint8_t rot_a_pre_state = GPIO_digitalRead(ROT_A_PIN);
      cda:	479c                	lw	a5,8(a5)
-      uint8_t rot_b_pre_state = GPIO_digitalRead(ROT_B_PIN);
+  uint8_t rot_b_pre_state = GPIO_digitalRead(ROT_B_PIN);
      cdc:	80070713          	add	a4,a4,-2048 # 40010800 <__global_pointer$+0x20010000>
-      car_state_data car_s[] = {
+  car_state_data car_s[] = {
      ce0:	04000613          	li	a2,64
-      uint8_t rot_a_pre_state = GPIO_digitalRead(ROT_A_PIN);
+  uint8_t rot_a_pre_state = GPIO_digitalRead(ROT_A_PIN);
      ce4:	8395                	srl	a5,a5,0x5
      ce6:	8b85                	and	a5,a5,1
-      car_state_data car_s[] = {
+  car_state_data car_s[] = {
      ce8:	f6858593          	add	a1,a1,-152 # f68 <main+0x3ce>
      cec:	1848                	add	a0,sp,52
-      uint8_t rot_b_pre_state = GPIO_digitalRead(ROT_B_PIN);
+  uint8_t rot_b_pre_state = GPIO_digitalRead(ROT_B_PIN);
      cee:	4704                	lw	s1,8(a4)
-      uint8_t rot_a_pre_state = GPIO_digitalRead(ROT_A_PIN);
-     cf0:	c83e                	sw	a5,16(sp)
-      car_state_data car_s[] = {
+  uint8_t rot_a_pre_state = GPIO_digitalRead(ROT_A_PIN);
+     cf0:	c63e                	sw	a5,12(sp)
+  car_state_data car_s[] = {
      cf2:	33e9                	jal	abc <memcpy>
-      int newt_x = 100;
+  int newt_x = 100;
      cf4:	06400793          	li	a5,100
      cf8:	c23e                	sw	a5,4(sp)
-     cfa:	47c2                	lw	a5,16(sp)
-      uint8_t rot_b_pre_state = GPIO_digitalRead(ROT_B_PIN);
+     cfa:	47b2                	lw	a5,12(sp)
+  uint8_t rot_b_pre_state = GPIO_digitalRead(ROT_B_PIN);
      cfc:	8089                	srl	s1,s1,0x2
      cfe:	8885                	and	s1,s1,1
-      bool button_state = false;
-     d00:	ca02                	sw	zero,20(sp)
-      bool flip_flag = false;
-     d02:	c602                	sw	zero,12(sp)
-      int flip_c = 0;
-     d04:	c402                	sw	zero,8(sp)
-      int newt_y = 20;
-     d06:	4451                	li	s0,20
-
-      bool run_flag = true;
-
-      while (run_flag) {
-
-        uint8_t button_is_pressed = !GPIO_digitalRead(BTN_PIN);
+  bool flip_flag = false;
+     d00:	c802                	sw	zero,16(sp)
+  int flip_c = 0;
+     d02:	c402                	sw	zero,8(sp)
+  int newt_y = 20;
+     d04:	4451                	li	s0,20
+  bool button_state = false;
+     d06:	ca02                	sw	zero,20(sp)
+    uint8_t button_is_pressed = !GPIO_digitalRead(BTN_PIN);
      d08:	40011737          	lui	a4,0x40011
      d0c:	4718                	lw	a4,8(a4)
      d0e:	46d2                	lw	a3,20(sp)
      d10:	8b41                	and	a4,a4,16
      d12:	00173613          	seqz	a2,a4
      d16:	ca32                	sw	a2,20(sp)
-
-        // buzzer on!
-        if (button_is_pressed)
+    if (button_is_pressed)
      d18:	eb15                	bnez	a4,d4c <main+0x1b2>
-        {
-            GPIO_digitalWrite(BZR_PIN, high);
+        GPIO_digitalWrite(BZR_PIN, high);
      d1a:	4682                	lw	a3,0(sp)
      d1c:	04000713          	li	a4,64
      d20:	ca98                	sw	a4,16(a3)
-          newt_x -= newt_step;
-        }
-        button_state = button_is_pressed;
-
-        // get rotaly-encoder value
-        uint8_t rot_a_state = GPIO_digitalRead(ROT_A_PIN);
+    uint8_t rot_a_state = GPIO_digitalRead(ROT_A_PIN);
      d22:	4702                	lw	a4,0(sp)
      d24:	4718                	lw	a4,8(a4)
      d26:	8315                	srl	a4,a4,0x5
      d28:	8b05                	and	a4,a4,1
      d2a:	cc3a                	sw	a4,24(sp)
-        uint8_t rot_b_state = GPIO_digitalRead(ROT_B_PIN);
+    uint8_t rot_b_state = GPIO_digitalRead(ROT_B_PIN);
      d2c:	40011737          	lui	a4,0x40011
      d30:	80070713          	add	a4,a4,-2048 # 40010800 <__global_pointer$+0x20010000>
      d34:	4718                	lw	a4,8(a4)
      d36:	8309                	srl	a4,a4,0x2
      d38:	8b05                	and	a4,a4,1
-     d3a:	c83a                	sw	a4,16(sp)
-
-        if (rot_a_state && rot_b_state) {
+     d3a:	c63a                	sw	a4,12(sp)
+    if (rot_a_state && rot_b_state) {
      d3c:	4762                	lw	a4,24(sp)
      d3e:	c31d                	beqz	a4,d64 <main+0x1ca>
-     d40:	4742                	lw	a4,16(sp)
+     d40:	4732                	lw	a4,12(sp)
      d42:	c715                	beqz	a4,d6e <main+0x1d4>
-          if (!rot_a_pre_state && rot_b_pre_state) {
+      if (!rot_a_pre_state && rot_b_pre_state) {
      d44:	ef89                	bnez	a5,d5e <main+0x1c4>
      d46:	c485                	beqz	s1,d6e <main+0x1d4>
-        
-        if (!rot_a_state && !rot_b_state) {
-          if (!rot_a_pre_state && rot_b_pre_state) {
-            newt_y -= 4;
-          } else if (rot_a_pre_state && !rot_b_pre_state) {
-            newt_y += 4;
+        newt_y += 4;
      d48:	0411                	add	s0,s0,4
      d4a:	a015                	j	d6e <main+0x1d4>
-            GPIO_digitalWrite(BZR_PIN, low);
+        GPIO_digitalWrite(BZR_PIN, low);
      d4c:	4602                	lw	a2,0(sp)
      d4e:	00400737          	lui	a4,0x400
      d52:	ca18                	sw	a4,16(a2)
-        if (button_state && !button_is_pressed){
+    if (button_state && !button_is_pressed){
      d54:	d6f9                	beqz	a3,d22 <main+0x188>
-          newt_x -= newt_step;
+      newt_x -= newt_step;
      d56:	4712                	lw	a4,4(sp)
-     d58:	171d                	add	a4,a4,-25 # 3fffe7 <main.c.5aee23e1+0x3fd7fe>
+     d58:	171d                	add	a4,a4,-25 # 3fffe7 <main.c.41c1edcd+0x3fd7dc>
      d5a:	c23a                	sw	a4,4(sp)
      d5c:	b7d9                	j	d22 <main+0x188>
-          } else if (rot_a_pre_state && !rot_b_pre_state) {
+      } else if (rot_a_pre_state && !rot_b_pre_state) {
      d5e:	e881                	bnez	s1,d6e <main+0x1d4>
-            newt_y -= 4;
+        newt_y -= 4;
      d60:	1471                	add	s0,s0,-4
      d62:	a031                	j	d6e <main+0x1d4>
-        if (!rot_a_state && !rot_b_state) {
-     d64:	4742                	lw	a4,16(sp)
+    if (!rot_a_state && !rot_b_state) {
+     d64:	4732                	lw	a4,12(sp)
      d66:	e701                	bnez	a4,d6e <main+0x1d4>
-          if (!rot_a_pre_state && rot_b_pre_state) {
+      if (!rot_a_pre_state && rot_b_pre_state) {
      d68:	1c079663          	bnez	a5,f34 <main+0x39a>
      d6c:	f8f5                	bnez	s1,d60 <main+0x1c6>
-        rot_b_pre_state = rot_b_state;
-
-        if (newt_y < 0) {
-          newt_y = 0;
-        } 
-        else if (newt_y > 40) {
+    else if (newt_y > 40) {
      d6e:	02800793          	li	a5,40
      d72:	1c87d463          	bge	a5,s0,f3a <main+0x3a0>
      d76:	02800413          	li	s0,40
-          newt_y = 40;
-        }
-
-        // clear buffer for next mode
-        ssd1306_setbuf(0);
+    ssd1306_setbuf(0);
      d7a:	3b0d                	jal	aac <ssd1306_setbuf.constprop.0>
-
-        flip_c ++;
+    flip_c ++;
      d7c:	47a2                	lw	a5,8(sp)
      d7e:	0785                	add	a5,a5,1
      d80:	c43e                	sw	a5,8(sp)
-
-        if (flip_c > 100) {
+    if (flip_c > 100) {
      d82:	4722                	lw	a4,8(sp)
      d84:	06500793          	li	a5,101
      d88:	00f71763          	bne	a4,a5,d96 <main+0x1fc>
-          flip_flag = !flip_flag;
-     d8c:	47b2                	lw	a5,12(sp)
-          flip_c = 0;
+      flip_flag = !flip_flag;
+     d8c:	47c2                	lw	a5,16(sp)
+      flip_c = 0;
      d8e:	c402                	sw	zero,8(sp)
-          flip_flag = !flip_flag;
+      flip_flag = !flip_flag;
      d90:	0017c793          	xor	a5,a5,1
-     d94:	c63e                	sw	a5,12(sp)
-        }
-
-        if(flip_flag){
-     d96:	47b2                	lw	a5,12(sp)
-          ssd1306_drawImage(newt_x, newt_y, newt_left, 24, 24, 0);
+     d94:	c83e                	sw	a5,16(sp)
+    if(flip_flag){
+     d96:	47c2                	lw	a5,16(sp)
+      ssd1306_drawImage(newt_x, newt_y, newt_left, 24, 24, 0);
      d98:	4761                	li	a4,24
      d9a:	46e1                	li	a3,24
-        if(flip_flag){
+    if(flip_flag){
      d9c:	1a078363          	beqz	a5,f42 <main+0x3a8>
-          ssd1306_drawImage(newt_x, newt_y, newt_left, 24, 24, 0);
+      ssd1306_drawImage(newt_x, newt_y, newt_left, 24, 24, 0);
      da0:	6609                	lui	a2,0x2
      da2:	cf460613          	add	a2,a2,-780 # 1cf4 <newt_left>
-        } else {
-          ssd1306_drawImage(newt_x, newt_y, newt_right, 24, 24, 0);
+      ssd1306_drawImage(newt_x, newt_y, newt_right, 24, 24, 0);
      da6:	4512                	lw	a0,4(sp)
      da8:	85a2                	mv	a1,s0
      daa:	1844                	add	s1,sp,52
      dac:	f30ff0ef          	jal	4dc <ssd1306_drawImage.constprop.0>
-
-          // 車を描画
-          ssd1306_drawImage(car_s[i].car_x, car_s[i].car_y, car, 24, 24, 0);
-
-          // 車を進める
-          if (flip_c % 25 == 0) {
+      if (flip_c % 25 == 0) {
      db0:	4522                	lw	a0,8(sp)
      db2:	45e5                	li	a1,25
      db4:	b5cff0ef          	jal	110 <__modsi3>
      db8:	832a                	mv	t1,a0
-          ssd1306_drawImage(car_s[i].car_x, car_s[i].car_y, car, 24, 24, 0);
+      ssd1306_drawImage(car_s[i].car_x, car_s[i].car_y, car, 24, 24, 0);
      dba:	6289                	lui	t0,0x2
      dbc:	4088                	lw	a0,0(s1)
      dbe:	40cc                	lw	a1,4(s1)
@@ -1784,53 +1740,41 @@ uint8_t ssd1306_i2c_init(void)
      dca:	ce2a                	sw	a0,28(sp)
      dcc:	d02e                	sw	a1,32(sp)
      dce:	f0eff0ef          	jal	4dc <ssd1306_drawImage.constprop.0>
-          if (flip_c % 25 == 0) {
+      if (flip_c % 25 == 0) {
      dd2:	5312                	lw	t1,36(sp)
      dd4:	4572                	lw	a0,28(sp)
      dd6:	6289                	lui	t0,0x2
      dd8:	00031a63          	bnez	t1,dec <main+0x252>
-            if (car_s[i].dest) {
+        if (car_s[i].dest) {
      ddc:	00c4c703          	lbu	a4,12(s1) # 4002100c <__global_pointer$+0x2002080c>
-              car_s[i].car_y += car_s[i].car_step;
+          car_s[i].car_y += car_s[i].car_step;
      de0:	449c                	lw	a5,8(s1)
-            if (car_s[i].dest) {
+        if (car_s[i].dest) {
      de2:	5582                	lw	a1,32(sp)
      de4:	16070363          	beqz	a4,f4a <main+0x3b0>
-              car_s[i].car_y += car_s[i].car_step;
+          car_s[i].car_y += car_s[i].car_step;
      de8:	97ae                	add	a5,a5,a1
      dea:	c0dc                	sw	a5,4(s1)
-              car_s[i].car_y -= car_s[i].car_step;
-            }
-          }
-
-          // 車のループ
-          if (car_s[i].car_y > 61) {
+      if (car_s[i].car_y > 61) {
      dec:	40dc                	lw	a5,4(s1)
      dee:	03d00713          	li	a4,61
      df2:	14f74f63          	blt	a4,a5,f50 <main+0x3b6>
-            car_s[i].car_y = -21;
-          }
-          if (car_s[i].car_y < -21) {
+      if (car_s[i].car_y < -21) {
      df6:	572d                	li	a4,-21
      df8:	00e7d463          	bge	a5,a4,e00 <main+0x266>
-            car_s[i].car_y = 61;
+        car_s[i].car_y = 61;
      dfc:	03d00793          	li	a5,61
-          }
-
-          // 当たり判定
-          if (car_s[i].car_x == newt_x) {
+      if (car_s[i].car_x == newt_x) {
      e00:	4712                	lw	a4,4(sp)
      e02:	c0dc                	sw	a5,4(s1)
-     e04:	14e51c63          	bne	a0,a4,f5c <main+0x3c2>
-            if (
-              (car_s[i].car_y + 3) <= newt_y && (car_s[i].car_y + 21) >= newt_y 
+     e04:	14a71c63          	bne	a4,a0,f5c <main+0x3c2>
+          (car_s[i].car_y + 3) <= newt_y && (car_s[i].car_y + 21) >= newt_y 
      e08:	00278713          	add	a4,a5,2
-            if (
+        if (
      e0c:	14875463          	bge	a4,s0,f54 <main+0x3ba>
-              (car_s[i].car_y + 3) <= newt_y && (car_s[i].car_y + 21) >= newt_y 
+          (car_s[i].car_y + 3) <= newt_y && (car_s[i].car_y + 21) >= newt_y 
      e10:	07d5                	add	a5,a5,21
-              ||
-              (car_s[i].car_y + 3) <= (newt_y + 21) && (car_s[i].car_y + 21) >= (newt_y + 21)
+          (car_s[i].car_y + 3) <= (newt_y + 21) && (car_s[i].car_y + 21) >= (newt_y + 21)
      e12:	1487c563          	blt	a5,s0,f5c <main+0x3c2>
     ssd1306_setbuf(0);
      e16:	3959                	jal	aac <ssd1306_setbuf.constprop.0>
@@ -1868,14 +1812,9 @@ uint8_t ssd1306_i2c_init(void)
      e4e:	fce9                	bnez	s1,e28 <main+0x28e>
 	  Delay_Ms(2000);
      e50:	00b72537          	lui	a0,0xb72
-     e54:	b0050513          	add	a0,a0,-1280 # b71b00 <main.c.5aee23e1+0xb6f317>
+     e54:	b0050513          	add	a0,a0,-1280 # b71b00 <main.c.41c1edcd+0xb6f2f5>
      e58:	b7cff0ef          	jal	1d4 <DelaySysTick>
-            }
-          }
-        }
-
-        // 道の端に着いたらクリア
-        if (newt_x < 0) {
+    if (newt_x < 0) {
      e5c:	4792                	lw	a5,4(sp)
      e5e:	0607d063          	bgez	a5,ebe <main+0x324>
     ssd1306_setbuf(0);
@@ -1894,7 +1833,7 @@ uint8_t ssd1306_i2c_init(void)
     GPIO_digitalWrite(BZR_PIN, high);
      e7a:	cb1c                	sw	a5,16(a4)
     Delay_Ms(300);
-     e7c:	74050513          	add	a0,a0,1856 # 1b7740 <main.c.5aee23e1+0x1b4f57>
+     e7c:	74050513          	add	a0,a0,1856 # 1b7740 <main.c.41c1edcd+0x1b4f35>
      e80:	b54ff0ef          	jal	1d4 <DelaySysTick>
     GPIO_digitalWrite(BZR_PIN, low);
      e84:	4782                	lw	a5,0(sp)
@@ -1904,7 +1843,7 @@ uint8_t ssd1306_i2c_init(void)
     GPIO_digitalWrite(BZR_PIN, low);
      e8e:	cb84                	sw	s1,16(a5)
     Delay_Ms(300);
-     e90:	74050513          	add	a0,a0,1856 # 1b7740 <main.c.5aee23e1+0x1b4f57>
+     e90:	74050513          	add	a0,a0,1856 # 1b7740 <main.c.41c1edcd+0x1b4f35>
      e94:	b40ff0ef          	jal	1d4 <DelaySysTick>
     GPIO_digitalWrite(BZR_PIN, high);
      e98:	4702                	lw	a4,0(sp)
@@ -1914,19 +1853,18 @@ uint8_t ssd1306_i2c_init(void)
     GPIO_digitalWrite(BZR_PIN, high);
      ea2:	cb1c                	sw	a5,16(a4)
     Delay_Ms(800);
-     ea4:	e0050513          	add	a0,a0,-512 # 493e00 <main.c.5aee23e1+0x491617>
+     ea4:	e0050513          	add	a0,a0,-512 # 493e00 <main.c.41c1edcd+0x4915f5>
      ea8:	b2cff0ef          	jal	1d4 <DelaySysTick>
     GPIO_digitalWrite(BZR_PIN, low);
      eac:	4782                	lw	a5,0(sp)
 	  Delay_Ms(2000);
      eae:	00b72537          	lui	a0,0xb72
-     eb2:	b0050513          	add	a0,a0,-1280 # b71b00 <main.c.5aee23e1+0xb6f317>
+     eb2:	b0050513          	add	a0,a0,-1280 # b71b00 <main.c.41c1edcd+0xb6f2f5>
     GPIO_digitalWrite(BZR_PIN, low);
      eb6:	cb84                	sw	s1,16(a5)
 	  Delay_Ms(2000);
      eb8:	b1cff0ef          	jal	1d4 <DelaySysTick>
-          clear();
-          run_flag = false;
+      run_flag = false;
      ebc:	4481                	li	s1,0
     int dot_line[] = {85,60,35};
      ebe:	05500793          	li	a5,85
@@ -1969,45 +1907,42 @@ uint8_t ssd1306_i2c_init(void)
      f10:	47f2                	lw	a5,28(sp)
      f12:	04600693          	li	a3,70
      f16:	5702                	lw	a4,32(sp)
-     f18:	07a9                	add	a5,a5,10 # 40000a <main.c.5aee23e1+0x3fd821>
+     f18:	07a9                	add	a5,a5,10 # 40000a <main.c.41c1edcd+0x3fd7ff>
      f1a:	03410313          	add	t1,sp,52
      f1e:	fcd79be3          	bne	a5,a3,ef4 <main+0x35a>
     for (int i = 0; i < 3; i++) {
      f22:	0711                	add	a4,a4,4
      f24:	fc6717e3          	bne	a4,t1,ef2 <main+0x358>
-        }
-        
-        draw_road();
-        ssd1306_refresh();
+    ssd1306_refresh();
      f28:	3e45                	jal	ad8 <ssd1306_refresh>
-      while (run_flag) {
+  while (run_flag) {
      f2a:	da0484e3          	beqz	s1,cd2 <main+0x138>
-     f2e:	44c2                	lw	s1,16(sp)
+     f2e:	44b2                	lw	s1,12(sp)
      f30:	47e2                	lw	a5,24(sp)
      f32:	bbd9                	j	d08 <main+0x16e>
-          } else if (rot_a_pre_state && !rot_b_pre_state) {
+      } else if (rot_a_pre_state && !rot_b_pre_state) {
      f34:	e2049de3          	bnez	s1,d6e <main+0x1d4>
      f38:	bd01                	j	d48 <main+0x1ae>
      f3a:	e40450e3          	bgez	s0,d7a <main+0x1e0>
      f3e:	4401                	li	s0,0
      f40:	bd2d                	j	d7a <main+0x1e0>
-          ssd1306_drawImage(newt_x, newt_y, newt_right, 24, 24, 0);
+      ssd1306_drawImage(newt_x, newt_y, newt_right, 24, 24, 0);
      f42:	6609                	lui	a2,0x2
      f44:	cac60613          	add	a2,a2,-852 # 1cac <newt_right>
      f48:	bdb9                	j	da6 <main+0x20c>
-              car_s[i].car_y -= car_s[i].car_step;
+          car_s[i].car_y -= car_s[i].car_step;
      f4a:	8d9d                	sub	a1,a1,a5
      f4c:	c0cc                	sw	a1,4(s1)
      f4e:	bd79                	j	dec <main+0x252>
-            car_s[i].car_y = 61;
+        car_s[i].car_y = 61;
      f50:	57ad                	li	a5,-21
      f52:	b57d                	j	e00 <main+0x266>
-              (car_s[i].car_y + 3) <= (newt_y + 21) && (car_s[i].car_y + 21) >= (newt_y + 21)
+          (car_s[i].car_y + 3) <= (newt_y + 21) && (car_s[i].car_y + 21) >= (newt_y + 21)
      f54:	01240713          	add	a4,s0,18
-              ||
+          ||
      f58:	eaf75de3          	bge	a4,a5,e12 <main+0x278>
-        for (int i = 0; i < 4; i++){
-     f5c:	04c1                	add	s1,s1,16 # 400010 <main.c.5aee23e1+0x3fd827>
+    for (int i = 0; i < 4; i++){
+     f5c:	04c1                	add	s1,s1,16 # 400010 <main.c.41c1edcd+0x3fd805>
      f5e:	18dc                	add	a5,sp,116
      f60:	e4979ee3          	bne	a5,s1,dbc <main+0x222>
      f64:	4485                	li	s1,1
@@ -2052,7 +1987,7 @@ uint8_t ssd1306_i2c_init(void)
      fba:	202d                	jal	fe4 <main+0x44a>
      fbc:	6974                	.insn	2, 0x6974
      fbe:	656d                	lui	a0,0x1b
-     fc0:	2074756f          	jal	a0,489c6 <main.c.5aee23e1+0x461dd>
+     fc0:	2074756f          	jal	a0,489c6 <main.c.41c1edcd+0x461bb>
      fc4:	74696177          	.insn	4, 0x74696177
      fc8:	6e69                	lui	t3,0x1a
      fca:	6f662067          	.insn	4, 0x6f662067
@@ -2077,12 +2012,12 @@ uint8_t ssd1306_i2c_init(void)
      ff8:	616d                	add	sp,sp,240
      ffa:	72657473          	csrrc	s0,mhpmevent6h,10
      ffe:	6d20                	.insn	2, 0x6d20
-    1000:	0065646f          	jal	s0,57006 <main.c.5aee23e1+0x5481d>
+    1000:	0065646f          	jal	s0,57006 <main.c.41c1edcd+0x547fb>
     1004:	7274                	.insn	2, 0x7274
     1006:	6e61                	lui	t3,0x18
     1008:	74696d73          	csrrs	s10,0x746,18
     100c:	6d20                	.insn	2, 0x6d20
-    100e:	0065646f          	jal	s0,57014 <main.c.5aee23e1+0x5482b>
+    100e:	0065646f          	jal	s0,57014 <main.c.41c1edcd+0x54809>
     1012:	0000                	unimp
     1014:	7874                	.insn	2, 0x7874
     1016:	6520                	.insn	2, 0x6520
@@ -2094,7 +2029,7 @@ uint8_t ssd1306_i2c_init(void)
     1022:	6e61                	lui	t3,0x18
     1024:	74696d73          	csrrs	s10,0x746,18
     1028:	6320                	.insn	2, 0x6320
-    102a:	6c706d6f          	jal	s10,7ef0 <main.c.5aee23e1+0x5707>
+    102a:	6c706d6f          	jal	s10,7ef0 <main.c.41c1edcd+0x56e5>
     102e:	7465                	lui	s0,0xffff9
     1030:	0065                	c.nop	25
 	...

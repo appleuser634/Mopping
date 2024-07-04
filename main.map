@@ -73,11 +73,11 @@ SYMBOL TABLE:
 0000074c g     F .text	00000002 RCC_IRQHandler
 0000074c g     F .text	00000002 TIM1_TRG_COM_IRQHandler
 0000074c g     F .text	00000002 DMA1_Channel1_IRQHandler
+0000280b  w      .debug_info	00000000 .hidden main.c.41c1edcd
 000000a0 g     F .text	00000014 .hidden __mulsi3
 0000074c g     F .text	00000002 DefaultIRQHandler
 20000000 g       .dalign	00000000 _data_vma
 0000074e g     F .text	0000000e NMI_RCC_CSS_IRQHandler
-000027e9  w      .debug_info	00000000 .hidden main.c.5aee23e1
 00000a9a g     F .text	00000012 memset
 00000b9a g     F .text	000003ce main
 0000074c g     F .text	00000002 DMA1_Channel5_IRQHandler
@@ -100,6 +100,6 @@ SYMBOL TABLE:
 0000074c g     F .text	00000002 USART1_IRQHandler
 0000075c g     F .text	00000012 strlen
 0000074c g     F .text	00000002 I2C1_ER_IRQHandler
-00001a13  w      .debug_info	00000000 .hidden ch32v003fun.c.e3139169
+00001a35  w      .debug_info	00000000 .hidden ch32v003fun.c.e3139169
 
 
