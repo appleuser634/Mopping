@@ -276,7 +276,7 @@ void ssd1306_i2c_setup(void)
      2c8:	4047d703          	lhu	a4,1028(a5) # 40005404 <__global_pointer$+0x20004b44>
 	tempreg &= ~I2C_CTLR2_FREQ;
      2cc:	66c1                	lui	a3,0x10
-     2ce:	fc068693          	add	a3,a3,-64 # ffc0 <main.c.dc9fcaf1+0xd7b5>
+     2ce:	fc068693          	add	a3,a3,-64 # ffc0 <main.c.d4502cf4+0xd7bf>
      2d2:	8f75                	and	a4,a4,a3
 	tempreg |= (FUNCONF_SYSTEM_CORE_CLOCK/SSD1306_I2C_PRERATE)&I2C_CTLR2_FREQ;
      2d4:	01876713          	or	a4,a4,24
@@ -752,7 +752,7 @@ void ssd1306_drawImage(int x, int y, const unsigned char* input, uint8_t width, 
      614:	00d65363          	bge	a2,a3,61a <_write.constprop.0+0x3e>
      618:	471d                	li	a4,7
      61a:	00027637          	lui	a2,0x27
-     61e:	10160613          	add	a2,a2,257 # 27101 <main.c.dc9fcaf1+0x248f6>
+     61e:	10160613          	add	a2,a2,257 # 27101 <main.c.d4502cf4+0x24900>
      622:	00032583          	lw	a1,0(t1) # 1000 <main+0x1be>
      626:	0805f513          	and	a0,a1,128
      62a:	ed3d                	bnez	a0,6a8 <_write.constprop.0+0xcc>
@@ -1107,7 +1107,7 @@ uint8_t ssd1306_i2c_send(uint8_t addr, uint8_t *data, uint8_t sz)
 	while((I2C1->STAR2 & I2C_STAR2_BUSY) && (timeout--));
      968:	400057b7          	lui	a5,0x40005
 	timeout = TIMEOUT_MAX;
-     96c:	6a070713          	add	a4,a4,1696 # 186a0 <main.c.dc9fcaf1+0x15e95>
+     96c:	6a070713          	add	a4,a4,1696 # 186a0 <main.c.d4502cf4+0x15e9f>
 	while((I2C1->STAR2 & I2C_STAR2_BUSY) && (timeout--));
      970:	40078793          	add	a5,a5,1024 # 40005400 <__global_pointer$+0x20004b40>
      974:	567d                	li	a2,-1
@@ -1134,7 +1134,7 @@ uint8_t ssd1306_i2c_send(uint8_t addr, uint8_t *data, uint8_t sz)
 	while(sz--)
      992:	0ff5f593          	zext.b	a1,a1
      996:	67e1                	lui	a5,0x18
-     998:	6a178793          	add	a5,a5,1697 # 186a1 <main.c.dc9fcaf1+0x15e96>
+     998:	6a178793          	add	a5,a5,1697 # 186a1 <main.c.d4502cf4+0x15ea0>
 		while(!(I2C1->STAR1 & I2C_STAR1_TXE) && (timeout--));
      99c:	01475683          	lhu	a3,20(a4)
      9a0:	0806f693          	and	a3,a3,128
@@ -1165,11 +1165,11 @@ uint8_t ssd1306_i2c_send(uint8_t addr, uint8_t *data, uint8_t sz)
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_BYTE_TRANSMITTED)) && (timeout--));
      9c6:	00070637          	lui	a2,0x70
 	timeout = TIMEOUT_MAX;
-     9ca:	6a068693          	add	a3,a3,1696 # 186a0 <main.c.dc9fcaf1+0x15e95>
+     9ca:	6a068693          	add	a3,a3,1696 # 186a0 <main.c.d4502cf4+0x15e9f>
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      9ce:	40070713          	add	a4,a4,1024 # 40005400 <__global_pointer$+0x20004b40>
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_BYTE_TRANSMITTED)) && (timeout--));
-     9d2:	08460613          	add	a2,a2,132 # 70084 <main.c.dc9fcaf1+0x6d879>
+     9d2:	08460613          	add	a2,a2,132 # 70084 <main.c.d4502cf4+0x6d883>
      9d6:	55fd                	li	a1,-1
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      9d8:	01475503          	lhu	a0,20(a4)
@@ -1206,11 +1206,11 @@ uint8_t ssd1306_i2c_send(uint8_t addr, uint8_t *data, uint8_t sz)
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED)) && (timeout--));
      a10:	000706b7          	lui	a3,0x70
 	timeout = TIMEOUT_MAX;
-     a14:	6a070713          	add	a4,a4,1696 # 186a0 <main.c.dc9fcaf1+0x15e95>
+     a14:	6a070713          	add	a4,a4,1696 # 186a0 <main.c.d4502cf4+0x15e9f>
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      a18:	40060613          	add	a2,a2,1024 # 40005400 <__global_pointer$+0x20004b40>
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED)) && (timeout--));
-     a1c:	08268693          	add	a3,a3,130 # 70082 <main.c.dc9fcaf1+0x6d877>
+     a1c:	08268693          	add	a3,a3,130 # 70082 <main.c.d4502cf4+0x6d881>
      a20:	537d                	li	t1,-1
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      a22:	01465283          	lhu	t0,20(a2)
@@ -1237,11 +1237,11 @@ uint8_t ssd1306_i2c_send(uint8_t addr, uint8_t *data, uint8_t sz)
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      a52:	40005737          	lui	a4,0x40005
 	timeout = TIMEOUT_MAX;
-     a56:	6a068693          	add	a3,a3,1696 # 186a0 <main.c.dc9fcaf1+0x15e95>
+     a56:	6a068693          	add	a3,a3,1696 # 186a0 <main.c.d4502cf4+0x15e9f>
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      a5a:	40070713          	add	a4,a4,1024 # 40005400 <__global_pointer$+0x20004b40>
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_MODE_SELECT)) && (timeout--));
-     a5e:	0605                	add	a2,a2,1 # 30001 <main.c.dc9fcaf1+0x2d7f6>
+     a5e:	0605                	add	a2,a2,1 # 30001 <main.c.d4502cf4+0x2d800>
      a60:	537d                	li	t1,-1
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      a62:	01475283          	lhu	t0,20(a4)
@@ -1667,7 +1667,7 @@ bool game_loop(car_state_data car_s[])
      cde:	fcf9                	bnez	s1,cbc <game_loop+0x184>
 	  Delay_Ms(2000);
      ce0:	00b72537          	lui	a0,0xb72
-     ce4:	b0050513          	add	a0,a0,-1280 # b71b00 <main.c.dc9fcaf1+0xb6f2f5>
+     ce4:	b0050513          	add	a0,a0,-1280 # b71b00 <main.c.d4502cf4+0xb6f2ff>
      ce8:	cecff0ef          	jal	1d4 <DelaySysTick>
         ) {
           game_over();
@@ -1713,13 +1713,13 @@ bool game_loop(car_state_data car_s[])
     GPIO_digitalWrite(BZR_PIN, high);
      d2c:	c81c                	sw	a5,16(s0)
     Delay_Ms(300);
-     d2e:	74050513          	add	a0,a0,1856 # 1b7740 <main.c.dc9fcaf1+0x1b4f35>
+     d2e:	74050513          	add	a0,a0,1856 # 1b7740 <main.c.d4502cf4+0x1b4f3f>
      d32:	ca2ff0ef          	jal	1d4 <DelaySysTick>
     GPIO_digitalWrite(BZR_PIN, low);
      d36:	004004b7          	lui	s1,0x400
     Delay_Ms(300);
      d3a:	001b7537          	lui	a0,0x1b7
-     d3e:	74050513          	add	a0,a0,1856 # 1b7740 <main.c.dc9fcaf1+0x1b4f35>
+     d3e:	74050513          	add	a0,a0,1856 # 1b7740 <main.c.d4502cf4+0x1b4f3f>
     GPIO_digitalWrite(BZR_PIN, low);
      d42:	c804                	sw	s1,16(s0)
     Delay_Ms(300);
@@ -1731,11 +1731,11 @@ bool game_loop(car_state_data car_s[])
     GPIO_digitalWrite(BZR_PIN, high);
      d50:	c81c                	sw	a5,16(s0)
     Delay_Ms(800);
-     d52:	e0050513          	add	a0,a0,-512 # 493e00 <main.c.dc9fcaf1+0x4915f5>
+     d52:	e0050513          	add	a0,a0,-512 # 493e00 <main.c.d4502cf4+0x4915ff>
      d56:	c7eff0ef          	jal	1d4 <DelaySysTick>
 	  Delay_Ms(2000);
      d5a:	00b72537          	lui	a0,0xb72
-     d5e:	b0050513          	add	a0,a0,-1280 # b71b00 <main.c.dc9fcaf1+0xb6f2f5>
+     d5e:	b0050513          	add	a0,a0,-1280 # b71b00 <main.c.d4502cf4+0xb6f2ff>
     GPIO_digitalWrite(BZR_PIN, low);
      d62:	c804                	sw	s1,16(s0)
 	  Delay_Ms(2000);
@@ -1809,7 +1809,7 @@ bool game_loop(car_state_data car_s[])
      de8:	400217b7          	lui	a5,0x40021
      dec:	01080737          	lui	a4,0x1080
      df0:	0007a223          	sw	zero,4(a5) # 40021004 <__global_pointer$+0x20020744>
-     df4:	08170713          	add	a4,a4,129 # 1080081 <main.c.dc9fcaf1+0x107d876>
+     df4:	08170713          	add	a4,a4,129 # 1080081 <main.c.d4502cf4+0x107d880>
      df8:	c398                	sw	a4,0(a5)
      dfa:	009f0737          	lui	a4,0x9f0
      dfe:	c798                	sw	a4,8(a5)
@@ -1881,7 +1881,7 @@ int main()
      e80:	40078793          	add	a5,a5,1024 # 40011400 <__global_pointer$+0x20010b40>
      e84:	4398                	lw	a4,0(a5)
 	Delay_Ms( 200 );
-     e86:	f8050513          	add	a0,a0,-128 # 124f80 <main.c.dc9fcaf1+0x122775>
+     e86:	f8050513          	add	a0,a0,-128 # 124f80 <main.c.d4502cf4+0x12277f>
     GPIO_pinMode(BZR_PIN, GPIO_pinMode_O_pushPull, GPIO_Speed_10MHz);
      e8a:	8f75                	and	a4,a4,a3
      e8c:	c398                	sw	a4,0(a5)
@@ -2017,7 +2017,7 @@ uint8_t ssd1306_i2c_init(void)
      f62:	3e9d                	jal	ad8 <ssd1306_refresh>
 	  Delay_Ms(2000);
      f64:	00b72537          	lui	a0,0xb72
-     f68:	b0050513          	add	a0,a0,-1280 # b71b00 <main.c.dc9fcaf1+0xb6f2f5>
+     f68:	b0050513          	add	a0,a0,-1280 # b71b00 <main.c.d4502cf4+0xb6f2ff>
      f6c:	a68ff0ef          	jal	1d4 <DelaySysTick>
 		ssd1306_init();
 
@@ -2081,7 +2081,7 @@ uint8_t ssd1306_i2c_init(void)
      fc2:	202d                	jal	fec <main+0x1aa>
      fc4:	6974                	.insn	2, 0x6974
      fc6:	656d                	lui	a0,0x1b
-     fc8:	2074756f          	jal	a0,489ce <main.c.dc9fcaf1+0x461c3>
+     fc8:	2074756f          	jal	a0,489ce <main.c.d4502cf4+0x461cd>
      fcc:	74696177          	.insn	4, 0x74696177
      fd0:	6e69                	lui	t3,0x1a
      fd2:	6f662067          	.insn	4, 0x6f662067
@@ -2106,12 +2106,12 @@ uint8_t ssd1306_i2c_init(void)
     1000:	616d                	add	sp,sp,240
     1002:	72657473          	csrrc	s0,mhpmevent6h,10
     1006:	6d20                	.insn	2, 0x6d20
-    1008:	0065646f          	jal	s0,5700e <main.c.dc9fcaf1+0x54803>
+    1008:	0065646f          	jal	s0,5700e <main.c.d4502cf4+0x5480d>
     100c:	7274                	.insn	2, 0x7274
     100e:	6e61                	lui	t3,0x18
     1010:	74696d73          	csrrs	s10,0x746,18
     1014:	6d20                	.insn	2, 0x6d20
-    1016:	0065646f          	jal	s0,5701c <main.c.dc9fcaf1+0x54811>
+    1016:	0065646f          	jal	s0,5701c <main.c.d4502cf4+0x5481b>
     101a:	0000                	unimp
     101c:	7874                	.insn	2, 0x7874
     101e:	6520                	.insn	2, 0x6520
@@ -2123,7 +2123,7 @@ uint8_t ssd1306_i2c_init(void)
     102a:	6e61                	lui	t3,0x18
     102c:	74696d73          	csrrs	s10,0x746,18
     1030:	6320                	.insn	2, 0x6320
-    1032:	6c706d6f          	jal	s10,7ef8 <main.c.dc9fcaf1+0x56ed>
+    1032:	6c706d6f          	jal	s10,7ef8 <main.c.d4502cf4+0x56f7>
     1036:	7465                	lui	s0,0xffff9
     1038:	0065                	c.nop	25
 	...
