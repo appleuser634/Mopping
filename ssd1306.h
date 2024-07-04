@@ -253,6 +253,11 @@ void ssd1306_drawImage(int x, int y, const unsigned char* input, uint8_t width, 
 
 	for (uint8_t line = 0; line < height; line++) {
 		y_absolute = y + line;
+
+    if (y_absolute < 0) {
+      continue;
+    }
+
 		if (y_absolute >= SSD1306_H || y_absolute < 0) {
 			break;
 		}

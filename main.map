@@ -4,9 +4,9 @@ main.elf:     file format elf32-littleriscv
 SYMBOL TABLE:
 00000000 l    d  .init	00000000 .init
 000000a0 l    d  .text	00000000 .text
-00001d44 l    d  .fini	00000000 .fini
+00001d34 l    d  .fini	00000000 .fini
 20000000 l    d  .dalign	00000000 .dalign
-00001d44 l    d  .dlalign	00000000 .dlalign
+00001d34 l    d  .dlalign	00000000 .dlalign
 20000000 l    d  .data	00000000 .data
 20000000 l    d  .bss	00000000 .bss
 00000000 l    d  .riscv.attributes	00000000 .riscv.attributes
@@ -26,80 +26,80 @@ SYMBOL TABLE:
 000002fe l     F .text	00000042 ssd1306_drawPixel
 20000000 l     O .bss	00000400 ssd1306_buffer
 00000340 l     F .text	0000008a ssd1306_drawstr_sz.constprop.0
-00001050 l     O .text	00000800 fontdata
+00001040 l     O .text	00000800 fontdata
 000003ca l     F .text	00000112 ssd1306_drawLine.constprop.0
-000004dc l     F .text	00000102 ssd1306_drawImage.constprop.0
-000005de l     F .text	0000000c internal_handle_input.constprop.0
-000005ea l     F .text	000000e0 _write.constprop.0
-000006ca l     F .text	00000014 __puts_uart
-0000077c l     F .text	000001b4 mini_vpprintf
-00000956 l     F .text	0000001e ssd1306_i2c_error.isra.0
-0000103c l     O .text	00000014 errstr
-00000974 l     F .text	0000011a ssd1306_i2c_send.constprop.0.isra.0
-00000a8e l     F .text	0000001a ssd1306_cmd
-00000aba l     F .text	00000010 ssd1306_setbuf.constprop.0
-00000ae6 l     F .text	00000060 ssd1306_refresh
-00001850 l     O .text	0000001a ssd1306_init_array
-0000186c l     O .text	00000400 movoid_title
-00001cfc l     O .text	00000048 newt_left
-00001c6c l     O .text	00000048 car
-00001cb4 l     O .text	00000048 newt_right
+000004dc l     F .text	000000f4 ssd1306_drawImage.constprop.0
+000005d0 l     F .text	0000000c internal_handle_input.constprop.0
+000005dc l     F .text	000000e0 _write.constprop.0
+000006bc l     F .text	00000014 __puts_uart
+0000076e l     F .text	000001b4 mini_vpprintf
+00000948 l     F .text	0000001e ssd1306_i2c_error.isra.0
+0000102c l     O .text	00000014 errstr
+00000966 l     F .text	0000011a ssd1306_i2c_send.constprop.0.isra.0
+00000a80 l     F .text	0000001a ssd1306_cmd
+00000aac l     F .text	00000010 ssd1306_setbuf.constprop.0
+00000ad8 l     F .text	00000060 ssd1306_refresh
+00001840 l     O .text	0000001a ssd1306_init_array
+0000185c l     O .text	00000400 movoid_title
+00001cec l     O .text	00000048 newt_left
+00001c5c l     O .text	00000048 car
+00001ca4 l     O .text	00000048 newt_right
 00000000 l    df *ABS*	00000000 muldi3.o
 00000000 l    df *ABS*	00000000 div.o
-00000930 g     F .text	00000026 printf
+00000922 g     F .text	00000026 printf
 20000800 g       .data	00000000 __global_pointer$
-0000075a g     F .text	00000002 TIM1_CC_IRQHandler
-0000075a g     F .text	00000002 HardFault_Handler
-0000075a g     F .text	00000002 SysTick_Handler
-0000075a g     F .text	00000002 PVD_IRQHandler
-0000075c g     F .text	0000000e NMI_Handler
+0000074c g     F .text	00000002 TIM1_CC_IRQHandler
+0000074c g     F .text	00000002 HardFault_Handler
+0000074c g     F .text	00000002 SysTick_Handler
+0000074c g     F .text	00000002 PVD_IRQHandler
+0000074e g     F .text	0000000e NMI_Handler
 00000000 g     F .init	0000009c InterruptVectorDefault
 20000000 g       .bss	00000000 _sbss
-00000aca g     F .text	0000001c memcpy
+00000abc g     F .text	0000001c memcpy
 00000000 g     F .init	0000009c InterruptVector
 000000c0 g     F .text	0000002c .hidden __hidden___udivsi3
 000000c0 g     F .text	0000002c .hidden __udivsi3
 000000a0 g       .init	00000000 _einit
-0000075a g     F .text	00000002 SPI1_IRQHandler
-0000075a g     F .text	00000002 AWU_IRQHandler
-0000075a g     F .text	00000002 EXTI7_0_IRQHandler
-0000075a g     F .text	00000002 DMA1_Channel4_IRQHandler
-0000075a g     F .text	00000002 ADC1_IRQHandler
+0000074c g     F .text	00000002 SPI1_IRQHandler
+0000074c g     F .text	00000002 AWU_IRQHandler
+0000074c g     F .text	00000002 EXTI7_0_IRQHandler
+0000074c g     F .text	00000002 DMA1_Channel4_IRQHandler
+0000074c g     F .text	00000002 ADC1_IRQHandler
 20000400 g       .bss	00000000 _ebss
-0000075a g     F .text	00000002 DMA1_Channel7_IRQHandler
+0000074c g     F .text	00000002 DMA1_Channel7_IRQHandler
 000000ec g     F .text	00000008 .hidden __umodsi3
-0000075a g     F .text	00000002 I2C1_EV_IRQHandler
-0000075a g     F .text	00000002 DMA1_Channel6_IRQHandler
-0000075a g     F .text	00000002 RCC_IRQHandler
-0000075a g     F .text	00000002 TIM1_TRG_COM_IRQHandler
-0000075a g     F .text	00000002 DMA1_Channel1_IRQHandler
-000027ed  w      .debug_info	00000000 .hidden main.c.396eca86
+0000074c g     F .text	00000002 I2C1_EV_IRQHandler
+0000074c g     F .text	00000002 DMA1_Channel6_IRQHandler
+0000074c g     F .text	00000002 RCC_IRQHandler
+0000074c g     F .text	00000002 TIM1_TRG_COM_IRQHandler
+0000074c g     F .text	00000002 DMA1_Channel1_IRQHandler
 000000a0 g     F .text	00000014 .hidden __mulsi3
-0000075a g     F .text	00000002 DefaultIRQHandler
+0000074c g     F .text	00000002 DefaultIRQHandler
 20000000 g       .dalign	00000000 _data_vma
-0000075c g     F .text	0000000e NMI_RCC_CSS_IRQHandler
-00000aa8 g     F .text	00000012 memset
-00000ba8 g     F .text	000003c6 main
-0000075a g     F .text	00000002 DMA1_Channel5_IRQHandler
+0000074e g     F .text	0000000e NMI_RCC_CSS_IRQHandler
+000027e9  w      .debug_info	00000000 .hidden main.c.5aee23e1
+00000a9a g     F .text	00000012 memset
+00000b9a g     F .text	000003c6 main
+0000074c g     F .text	00000002 DMA1_Channel5_IRQHandler
 000000b8 g     F .text	00000058 .hidden __divsi3
-00000b46 g     F .text	00000062 SystemInit
+00000b38 g     F .text	00000062 SystemInit
 00000000 g       .init	00000000 _sinit
-0000075a g     F .text	00000002 DMA1_Channel3_IRQHandler
-0000075a g     F .text	00000002 TIM1_UP_IRQHandler
-0000075a g     F .text	00000002 WWDG_IRQHandler
-0000075a g     F .text	00000002 TIM2_IRQHandler
+0000074c g     F .text	00000002 DMA1_Channel3_IRQHandler
+0000074c g     F .text	00000002 TIM1_UP_IRQHandler
+0000074c g     F .text	00000002 WWDG_IRQHandler
+0000074c g     F .text	00000002 TIM2_IRQHandler
 20000800 g       .bss	00000000 _eusrstack
-0000075a g     F .text	00000002 SW_Handler
-0000075a g     F .text	00000002 TIM1_BRK_IRQHandler
+0000074c g     F .text	00000002 SW_Handler
+0000074c g     F .text	00000002 TIM1_BRK_IRQHandler
 20000000 g       .data	00000000 _edata
-00001d44 g       .dlalign	00000000 _data_lma
+00001d34 g       .dlalign	00000000 _data_lma
 00000110 g     F .text	00000024 .hidden __modsi3
-0000075a g     F .text	00000002 DMA1_Channel2_IRQHandler
-000006de g     F .text	0000007c handle_reset
-0000075a g     F .text	00000002 FLASH_IRQHandler
-0000075a g     F .text	00000002 USART1_IRQHandler
-0000076a g     F .text	00000012 strlen
-0000075a g     F .text	00000002 I2C1_ER_IRQHandler
-00001a17  w      .debug_info	00000000 .hidden ch32v003fun.c.e3139169
+0000074c g     F .text	00000002 DMA1_Channel2_IRQHandler
+000006d0 g     F .text	0000007c handle_reset
+0000074c g     F .text	00000002 FLASH_IRQHandler
+0000074c g     F .text	00000002 USART1_IRQHandler
+0000075c g     F .text	00000012 strlen
+0000074c g     F .text	00000002 I2C1_ER_IRQHandler
+00001a13  w      .debug_info	00000000 .hidden ch32v003fun.c.e3139169
 
 
