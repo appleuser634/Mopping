@@ -294,7 +294,11 @@ int main()
 
           // 当たり判定
           if (car_s[i].car_x == newt_x) {
-            if ((car_s[i].car_y + 3) <= newt_y && (car_s[i].car_y + 21) >= newt_y ) {
+            if (
+              (car_s[i].car_y + 3) <= newt_y && (car_s[i].car_y + 21) >= newt_y 
+              ||
+              (car_s[i].car_y + 3) <= (newt_y + 21) && (car_s[i].car_y + 21) >= (newt_y + 21)
+            ) {
               game_over();
               run_flag = false;
               break;
