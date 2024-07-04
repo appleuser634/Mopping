@@ -88,7 +88,28 @@ struct car_state {
 
 typedef struct car_state car_state_data;
 
-void game_loop()
+car_state_data car_s_1[] = {
+  {75,10,2,true},
+  {50,50,2,false},
+  {25,20,4,true},
+  {0,10,2,false}
+};
+
+car_state_data car_s_2[] = {
+  {75,10,4,true},
+  {50,50,2,false},
+  {25,20,4,true},
+  {0,10,2,false}
+};
+
+car_state_data car_s_3[] = {
+  {75,10,4,true},
+  {50,50,4,false},
+  {25,20,4,true},
+  {0,10,4,false}
+};
+
+bool game_loop(car_state_data car_s[])
 {
   int newt_x = 100;
   int newt_y = 20;
@@ -102,16 +123,7 @@ void game_loop()
   uint8_t rot_a_pre_state = GPIO_digitalRead(ROT_A_PIN);
   uint8_t rot_b_pre_state = GPIO_digitalRead(ROT_B_PIN);
 
-  car_state_data car_s[] = {
-    {75,10,2,true},
-    {50,50,2,false},
-    {25,20,4,true},
-    {0,10,2,false}
-  };
-
-  bool run_flag = true;
-
-  while (run_flag) {
+  while (1) {
 
     uint8_t button_is_pressed = !GPIO_digitalRead(BTN_PIN);
 
@@ -286,8 +298,7 @@ void game_loop()
           (car_s[i].car_y + 3) <= (newt_y + 21) && (car_s[i].car_y + 21) >= (newt_y + 21)
         ) {
           game_over();
-          run_flag = false;
-          break;
+          return false;
         }
       }
     }
@@ -295,7 +306,7 @@ void game_loop()
     // 道の端に着いたらクリア
     if (newt_x < 0) {
       clear();
-      run_flag = false;
+      return true;
     }
     
     draw_road();
@@ -318,8 +329,27 @@ int main()
     opening();
 
     int stage = 1;
+    bool result = false;
     while (1) {
-      game_loop();
+      switch (stage) {
+        case 1:
+          result = game_loop(car_s_1);
+          break;
+        case 2:
+          result = game_loop(car_s_2);
+          break;
+        case 3:
+          result = game_loop(car_s_3);
+          break;
+      }
+
+      if (result) {
+        stage ++;
+      }
+
+      if (stage > 3) {
+        stage = 1;
+      }
     }
   }
 }
