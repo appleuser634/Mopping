@@ -276,7 +276,7 @@ void ssd1306_i2c_setup(void)
      2c8:	4047d703          	lhu	a4,1028(a5) # 40005404 <__global_pointer$+0x20004afc>
 	tempreg &= ~I2C_CTLR2_FREQ;
      2cc:	66c1                	lui	a3,0x10
-     2ce:	fc068693          	add	a3,a3,-64 # ffc0 <main.c.adf167c7+0xd766>
+     2ce:	fc068693          	add	a3,a3,-64 # ffc0 <main.c.2c9542ec+0xd6a7>
      2d2:	8f75                	and	a4,a4,a3
 	tempreg |= (FUNCONF_SYSTEM_CORE_CLOCK/SSD1306_I2C_PRERATE)&I2C_CTLR2_FREQ;
      2d4:	01876713          	or	a4,a4,24
@@ -711,7 +711,7 @@ void ssd1306_drawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint8_
      594:	00d65363          	bge	a2,a3,59a <_write.constprop.0+0x3e>
      598:	471d                	li	a4,7
      59a:	00027637          	lui	a2,0x27
-     59e:	10160613          	add	a2,a2,257 # 27101 <main.c.adf167c7+0x248a7>
+     59e:	10160613          	add	a2,a2,257 # 27101 <main.c.2c9542ec+0x247e8>
      5a2:	00032583          	lw	a1,0(t1)
      5a6:	0805f513          	and	a0,a1,128
      5aa:	ed3d                	bnez	a0,628 <_write.constprop.0+0xcc>
@@ -801,7 +801,7 @@ void ssd1306_drawLine(uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint8_
      688:	0511                	add	a0,a0,4
      68a:	feb54ee3          	blt	a0,a1,686 <handle_reset+0x36>
      68e:	00001517          	auipc	a0,0x1
-     692:	fae50513          	add	a0,a0,-82 # 163c <_data_lma>
+     692:	03a50513          	add	a0,a0,58 # 16c8 <_data_lma>
      696:	20000597          	auipc	a1,0x20000
      69a:	96a58593          	add	a1,a1,-1686 # 20000000 <car_s_3>
      69e:	20000617          	auipc	a2,0x20000
@@ -1032,14 +1032,14 @@ uint8_t ssd1306_i2c_error(uint8_t err)
 	printf("ssd1306_i2c_error - timeout waiting for %s\n\r", errstr[err]);
      8c8:	6785                	lui	a5,0x1
      8ca:	050a                	sll	a0,a0,0x2
-     8cc:	0ac78793          	add	a5,a5,172 # 10ac <errstr>
+     8cc:	0f078793          	add	a5,a5,240 # 10f0 <errstr>
      8d0:	97aa                	add	a5,a5,a0
      8d2:	438c                	lw	a1,0(a5)
      8d4:	6505                	lui	a0,0x1
 uint8_t ssd1306_i2c_error(uint8_t err)
      8d6:	1151                	add	sp,sp,-12
 	printf("ssd1306_i2c_error - timeout waiting for %s\n\r", errstr[err]);
-     8d8:	03450513          	add	a0,a0,52 # 1034 <main+0x1d6>
+     8d8:	07850513          	add	a0,a0,120 # 1078 <main+0x21a>
 uint8_t ssd1306_i2c_error(uint8_t err)
      8dc:	c406                	sw	ra,8(sp)
 	printf("ssd1306_i2c_error - timeout waiting for %s\n\r", errstr[err]);
@@ -1066,7 +1066,7 @@ uint8_t ssd1306_i2c_send(uint8_t addr, uint8_t *data, uint8_t sz)
 	while((I2C1->STAR2 & I2C_STAR2_BUSY) && (timeout--));
      8e8:	400057b7          	lui	a5,0x40005
 	timeout = TIMEOUT_MAX;
-     8ec:	6a070713          	add	a4,a4,1696 # 186a0 <main.c.adf167c7+0x15e46>
+     8ec:	6a070713          	add	a4,a4,1696 # 186a0 <main.c.2c9542ec+0x15d87>
 	while((I2C1->STAR2 & I2C_STAR2_BUSY) && (timeout--));
      8f0:	40078793          	add	a5,a5,1024 # 40005400 <__global_pointer$+0x20004af8>
      8f4:	567d                	li	a2,-1
@@ -1093,7 +1093,7 @@ uint8_t ssd1306_i2c_send(uint8_t addr, uint8_t *data, uint8_t sz)
 	while(sz--)
      912:	0ff5f593          	zext.b	a1,a1
      916:	67e1                	lui	a5,0x18
-     918:	6a178793          	add	a5,a5,1697 # 186a1 <main.c.adf167c7+0x15e47>
+     918:	6a178793          	add	a5,a5,1697 # 186a1 <main.c.2c9542ec+0x15d88>
 		while(!(I2C1->STAR1 & I2C_STAR1_TXE) && (timeout--));
      91c:	01475683          	lhu	a3,20(a4)
      920:	0806f693          	and	a3,a3,128
@@ -1124,11 +1124,11 @@ uint8_t ssd1306_i2c_send(uint8_t addr, uint8_t *data, uint8_t sz)
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_BYTE_TRANSMITTED)) && (timeout--));
      946:	00070637          	lui	a2,0x70
 	timeout = TIMEOUT_MAX;
-     94a:	6a068693          	add	a3,a3,1696 # 186a0 <main.c.adf167c7+0x15e46>
+     94a:	6a068693          	add	a3,a3,1696 # 186a0 <main.c.2c9542ec+0x15d87>
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      94e:	40070713          	add	a4,a4,1024 # 40005400 <__global_pointer$+0x20004af8>
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_BYTE_TRANSMITTED)) && (timeout--));
-     952:	08460613          	add	a2,a2,132 # 70084 <main.c.adf167c7+0x6d82a>
+     952:	08460613          	add	a2,a2,132 # 70084 <main.c.2c9542ec+0x6d76b>
      956:	55fd                	li	a1,-1
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      958:	01475503          	lhu	a0,20(a4)
@@ -1165,11 +1165,11 @@ uint8_t ssd1306_i2c_send(uint8_t addr, uint8_t *data, uint8_t sz)
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED)) && (timeout--));
      990:	000706b7          	lui	a3,0x70
 	timeout = TIMEOUT_MAX;
-     994:	6a070713          	add	a4,a4,1696 # 186a0 <main.c.adf167c7+0x15e46>
+     994:	6a070713          	add	a4,a4,1696 # 186a0 <main.c.2c9542ec+0x15d87>
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      998:	40060613          	add	a2,a2,1024 # 40005400 <__global_pointer$+0x20004af8>
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED)) && (timeout--));
-     99c:	08268693          	add	a3,a3,130 # 70082 <main.c.adf167c7+0x6d828>
+     99c:	08268693          	add	a3,a3,130 # 70082 <main.c.2c9542ec+0x6d769>
      9a0:	537d                	li	t1,-1
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      9a2:	01465283          	lhu	t0,20(a2)
@@ -1196,11 +1196,11 @@ uint8_t ssd1306_i2c_send(uint8_t addr, uint8_t *data, uint8_t sz)
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      9d2:	40005737          	lui	a4,0x40005
 	timeout = TIMEOUT_MAX;
-     9d6:	6a068693          	add	a3,a3,1696 # 186a0 <main.c.adf167c7+0x15e46>
+     9d6:	6a068693          	add	a3,a3,1696 # 186a0 <main.c.2c9542ec+0x15d87>
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      9da:	40070713          	add	a4,a4,1024 # 40005400 <__global_pointer$+0x20004af8>
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_MODE_SELECT)) && (timeout--));
-     9de:	0605                	add	a2,a2,1 # 30001 <main.c.adf167c7+0x2d7a7>
+     9de:	0605                	add	a2,a2,1 # 30001 <main.c.2c9542ec+0x2d6e8>
      9e0:	537d                	li	t1,-1
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      9e2:	01475283          	lhu	t0,20(a4)
@@ -1488,7 +1488,7 @@ bool game_loop(car_state_data car_s[])
      b76:	4781                	li	a5,0
      b78:	4761                	li	a4,24
      b7a:	46e1                	li	a3,24
-     b7c:	5f460613          	add	a2,a2,1524 # 15f4 <newt_left>
+     b7c:	68060613          	add	a2,a2,1664 # 1680 <newt_left>
     } else {
       ssd1306_drawImage(newt_x, newt_y, newt_right, 24, 24, 0);
      b80:	4502                	lw	a0,0(sp)
@@ -1532,7 +1532,7 @@ bool game_loop(car_state_data car_s[])
      bae:	6605                	lui	a2,0x1
      bb0:	04000713          	li	a4,64
      bb4:	02800693          	li	a3,40
-     bb8:	42460613          	add	a2,a2,1060 # 1424 <clear>
+     bb8:	4b060613          	add	a2,a2,1200 # 14b0 <clear>
      bbc:	4581                	li	a1,0
      bbe:	4781                	li	a5,0
      bc0:	02800513          	li	a0,40
@@ -1549,13 +1549,13 @@ bool game_loop(car_state_data car_s[])
     GPIO_digitalWrite(BZR_PIN, high);
      bda:	c81c                	sw	a5,16(s0)
     Delay_Ms(300);
-     bdc:	74050513          	add	a0,a0,1856 # 1b7740 <main.c.adf167c7+0x1b4ee6>
+     bdc:	74050513          	add	a0,a0,1856 # 1b7740 <main.c.2c9542ec+0x1b4e27>
      be0:	df4ff0ef          	jal	1d4 <DelaySysTick>
     GPIO_digitalWrite(BZR_PIN, low);
      be4:	004004b7          	lui	s1,0x400
     Delay_Ms(300);
      be8:	001b7537          	lui	a0,0x1b7
-     bec:	74050513          	add	a0,a0,1856 # 1b7740 <main.c.adf167c7+0x1b4ee6>
+     bec:	74050513          	add	a0,a0,1856 # 1b7740 <main.c.2c9542ec+0x1b4e27>
     GPIO_digitalWrite(BZR_PIN, low);
      bf0:	c804                	sw	s1,16(s0)
     Delay_Ms(300);
@@ -1567,11 +1567,11 @@ bool game_loop(car_state_data car_s[])
     GPIO_digitalWrite(BZR_PIN, high);
      bfe:	c81c                	sw	a5,16(s0)
     Delay_Ms(800);
-     c00:	e0050513          	add	a0,a0,-512 # 493e00 <main.c.adf167c7+0x4915a6>
+     c00:	e0050513          	add	a0,a0,-512 # 493e00 <main.c.2c9542ec+0x4914e7>
      c04:	dd0ff0ef          	jal	1d4 <DelaySysTick>
 	  Delay_Ms(2000);
      c08:	00b72537          	lui	a0,0xb72
-     c0c:	b0050513          	add	a0,a0,-1280 # b71b00 <main.c.adf167c7+0xb6f2a6>
+     c0c:	b0050513          	add	a0,a0,-1280 # b71b00 <main.c.2c9542ec+0xb6f1e7>
     GPIO_digitalWrite(BZR_PIN, low);
      c10:	c804                	sw	s1,16(s0)
 	  Delay_Ms(2000);
@@ -1592,7 +1592,7 @@ bool game_loop(car_state_data car_s[])
      c2a:	4781                	li	a5,0
      c2c:	4761                	li	a4,24
      c2e:	46e1                	li	a3,24
-     c30:	5ac60613          	add	a2,a2,1452 # 15ac <newt_right>
+     c30:	63860613          	add	a2,a2,1592 # 1638 <newt_right>
      c34:	b7b1                	j	b80 <game_loop+0xc8>
       ssd1306_drawImage(car_s[i].car_x, car_s[i].car_y, car, 24, 24, 0);
      c36:	0042a583          	lw	a1,4(t0)
@@ -1601,7 +1601,7 @@ bool game_loop(car_state_data car_s[])
      c40:	4781                	li	a5,0
      c42:	4761                	li	a4,24
      c44:	46e1                	li	a3,24
-     c46:	56460613          	add	a2,a2,1380 # 1564 <car>
+     c46:	5f060613          	add	a2,a2,1520 # 15f0 <car>
      c4a:	d41e                	sw	t2,40(sp)
      c4c:	d216                	sw	t0,36(sp)
      c4e:	eb0ff0ef          	jal	2fe <ssd1306_drawImage>
@@ -1658,7 +1658,7 @@ bool game_loop(car_state_data car_s[])
      cb2:	4781                	li	a5,0
      cb4:	04000713          	li	a4,64
      cb8:	02000693          	li	a3,32
-     cbc:	32448613          	add	a2,s1,804 # 1324 <game_over_img>
+     cbc:	3b048613          	add	a2,s1,944 # 13b0 <game_over_img>
      cc0:	4581                	li	a1,0
      cc2:	4551                	li	a0,20
      cc4:	e3aff0ef          	jal	2fe <ssd1306_drawImage>
@@ -1668,7 +1668,7 @@ bool game_loop(car_state_data car_s[])
      ccc:	85a2                	mv	a1,s0
      cce:	03200713          	li	a4,50
      cd2:	02000693          	li	a3,32
-     cd6:	25c60613          	add	a2,a2,604 # 125c <go_car_img>
+     cd6:	2e860613          	add	a2,a2,744 # 12e8 <go_car_img>
      cda:	03700513          	li	a0,55
      cde:	e20ff0ef          	jal	2fe <ssd1306_drawImage>
       ssd1306_refresh();
@@ -1687,7 +1687,7 @@ bool game_loop(car_state_data car_s[])
       GPIO_digitalWrite(BZR_PIN, high);
      d00:	c81c                	sw	a5,16(s0)
       Delay_Ms(1);
-     d02:	77050513          	add	a0,a0,1904 # 1770 <_data_lma+0x134>
+     d02:	77050513          	add	a0,a0,1904 # 1770 <_data_lma+0xa8>
      d06:	cceff0ef          	jal	1d4 <DelaySysTick>
       GPIO_digitalWrite(BZR_PIN, low);
      d0a:	004007b7          	lui	a5,0x400
@@ -1696,7 +1696,7 @@ bool game_loop(car_state_data car_s[])
       GPIO_digitalWrite(BZR_PIN, low);
      d10:	c81c                	sw	a5,16(s0)
       Delay_Ms(6);
-     d12:	ca050513          	add	a0,a0,-864 # 8ca0 <main.c.adf167c7+0x6446>
+     d12:	ca050513          	add	a0,a0,-864 # 8ca0 <main.c.2c9542ec+0x6387>
     for (int i = 0; i < 50; i++) {
      d16:	14fd                	add	s1,s1,-1
       Delay_Ms(6);
@@ -1705,7 +1705,7 @@ bool game_loop(car_state_data car_s[])
      d1c:	fcf9                	bnez	s1,cfa <game_loop+0x242>
     Delay_Ms(100);
      d1e:	00092537          	lui	a0,0x92
-     d22:	7c050513          	add	a0,a0,1984 # 927c0 <main.c.adf167c7+0x8ff66>
+     d22:	7c050513          	add	a0,a0,1984 # 927c0 <main.c.2c9542ec+0x8fea7>
       GPIO_digitalWrite(BZR_PIN, high);
      d26:	40011437          	lui	s0,0x40011
     Delay_Ms(100);
@@ -1719,7 +1719,7 @@ bool game_loop(car_state_data car_s[])
       GPIO_digitalWrite(BZR_PIN, high);
      d3c:	c81c                	sw	a5,16(s0)
       Delay_Ms(1);
-     d3e:	77050513          	add	a0,a0,1904 # 1770 <_data_lma+0x134>
+     d3e:	77050513          	add	a0,a0,1904 # 1770 <_data_lma+0xa8>
      d42:	c92ff0ef          	jal	1d4 <DelaySysTick>
       GPIO_digitalWrite(BZR_PIN, low);
      d46:	004007b7          	lui	a5,0x400
@@ -1728,7 +1728,7 @@ bool game_loop(car_state_data car_s[])
       GPIO_digitalWrite(BZR_PIN, low);
      d4c:	c81c                	sw	a5,16(s0)
       Delay_Ms(6);
-     d4e:	ca050513          	add	a0,a0,-864 # 8ca0 <main.c.adf167c7+0x6446>
+     d4e:	ca050513          	add	a0,a0,-864 # 8ca0 <main.c.2c9542ec+0x6387>
     for (int i = 0; i < 50; i++) {
      d52:	14fd                	add	s1,s1,-1
       Delay_Ms(6);
@@ -1737,7 +1737,7 @@ bool game_loop(car_state_data car_s[])
      d58:	fcf9                	bnez	s1,d36 <game_loop+0x27e>
 	  Delay_Ms(2000);
      d5a:	00b72537          	lui	a0,0xb72
-     d5e:	b0050513          	add	a0,a0,-1280 # b71b00 <main.c.adf167c7+0xb6f2a6>
+     d5e:	b0050513          	add	a0,a0,-1280 # b71b00 <main.c.2c9542ec+0xb6f1e7>
      d62:	c72ff0ef          	jal	1d4 <DelaySysTick>
           return false;
      d66:	4501                	li	a0,0
@@ -1801,7 +1801,7 @@ bool game_loop(car_state_data car_s[])
      dd4:	47f2                	lw	a5,28(sp)
      dd6:	04600693          	li	a3,70
      dda:	5702                	lw	a4,32(sp)
-     ddc:	07a9                	add	a5,a5,10 # 40000a <main.c.adf167c7+0x3fd7b0>
+     ddc:	07a9                	add	a5,a5,10 # 40000a <main.c.2c9542ec+0x3fd6f1>
      dde:	fcd79de3          	bne	a5,a3,db8 <game_loop+0x300>
     for (int i = 0; i < 3; i++) {
      de2:	0711                	add	a4,a4,4
@@ -1828,7 +1828,7 @@ bool game_loop(car_state_data car_s[])
      e04:	400217b7          	lui	a5,0x40021
      e08:	01080737          	lui	a4,0x1080
      e0c:	0007a223          	sw	zero,4(a5) # 40021004 <__global_pointer$+0x200206fc>
-     e10:	08170713          	add	a4,a4,129 # 1080081 <main.c.adf167c7+0x107d827>
+     e10:	08170713          	add	a4,a4,129 # 1080081 <main.c.2c9542ec+0x107d768>
      e14:	c398                	sw	a4,0(a5)
      e16:	009f0737          	lui	a4,0x9f0
      e1a:	c798                	sw	a4,8(a5)
@@ -1900,7 +1900,7 @@ int main()
      e9c:	40078793          	add	a5,a5,1024 # 40011400 <__global_pointer$+0x20010af8>
      ea0:	4398                	lw	a4,0(a5)
 	Delay_Ms( 200 );
-     ea2:	f8050513          	add	a0,a0,-128 # 124f80 <main.c.adf167c7+0x122726>
+     ea2:	f8050513          	add	a0,a0,-128 # 124f80 <main.c.2c9542ec+0x122667>
     GPIO_pinMode(BZR_PIN, GPIO_pinMode_O_pushPull, GPIO_Speed_10MHz);
      ea6:	8f75                	and	a4,a4,a3
      ea8:	c398                	sw	a4,0(a5)
@@ -2003,7 +2003,7 @@ uint8_t ssd1306_i2c_init(void)
 	// load I2C regs
 	ssd1306_i2c_setup();
      f46:	b64ff0ef          	jal	2aa <ssd1306_i2c_setup>
-     f4a:	0c040413          	add	s0,s0,192 # 10c0 <ssd1306_init_array>
+     f4a:	10440413          	add	s0,s0,260 # 1104 <ssd1306_init_array>
 	while(*cmd_list != SSD1306_TERMINATE_CMDS)
      f4e:	00044503          	lbu	a0,0(s0)
      f52:	0ff00793          	li	a5,255
@@ -2017,286 +2017,328 @@ uint8_t ssd1306_i2c_init(void)
      f5a:	3cc9                	jal	a2c <ssd1306_setbuf.constprop.0>
 	ssd1306_refresh();
      f5c:	3cf5                	jal	a58 <ssd1306_refresh>
+    for (int i = 0; i < 30; i+=2) {
      f5e:	a021                	j	f66 <main+0x108>
 		if(ssd1306_cmd(*cmd_list++))
      f60:	0405                	add	s0,s0,1
      f62:	3c79                	jal	a00 <ssd1306_cmd>
      f64:	d56d                	beqz	a0,f4e <main+0xf0>
-        c = 0;
+	uint8_t *cmd_list = (uint8_t *)ssd1306_init_array;
      f66:	4401                	li	s0,0
-     f68:	4481                	li	s1,0
       ssd1306_setbuf(0);
-     f6a:	34c9                	jal	a2c <ssd1306_setbuf.constprop.0>
-      if (c > 50) {
-     f6c:	03200793          	li	a5,50
-     f70:	0487d363          	bge	a5,s0,fb6 <main+0x158>
-        ssd1306_drawImage(100, 0, start, 24, 64, 0);
-     f74:	4781                	li	a5,0
-        ssd1306_drawImage(100, 0, start, 24, 64, 1);
-     f76:	6605                	lui	a2,0x1
-     f78:	04000713          	li	a4,64
-     f7c:	46e1                	li	a3,24
-     f7e:	0dc60613          	add	a2,a2,220 # 10dc <start>
-     f82:	4581                	li	a1,0
-     f84:	06400513          	li	a0,100
-     f88:	b76ff0ef          	jal	2fe <ssd1306_drawImage>
+     f68:	34d1                	jal	a2c <ssd1306_setbuf.constprop.0>
+      ssd1306_drawImage(i, 0, title, 24, 64, 0);
+     f6a:	6605                	lui	a2,0x1
+     f6c:	4781                	li	a5,0
+     f6e:	8522                	mv	a0,s0
+     f70:	04000713          	li	a4,64
+     f74:	46e1                	li	a3,24
+     f76:	16860613          	add	a2,a2,360 # 1168 <title>
+     f7a:	4581                	li	a1,0
+     f7c:	b82ff0ef          	jal	2fe <ssd1306_drawImage>
       ssd1306_refresh();
-     f8c:	34f1                	jal	a58 <ssd1306_refresh>
-      uint8_t button_is_pressed = !GPIO_digitalRead(BTN_PIN);
-     f8e:	400117b7          	lui	a5,0x40011
-     f92:	4798                	lw	a4,8(a5)
-     f94:	40078793          	add	a5,a5,1024 # 40011400 <__global_pointer$+0x20010af8>
-     f98:	8b41                	and	a4,a4,16
-     f9a:	00173693          	seqz	a3,a4
-      if (button_is_pressed)
-     f9e:	ef11                	bnez	a4,fba <main+0x15c>
-          GPIO_digitalWrite(BZR_PIN, high);
+     f80:	3ce1                	jal	a58 <ssd1306_refresh>
+      Delay_Ms(100);
+     f82:	00092537          	lui	a0,0x92
+     f86:	7c050513          	add	a0,a0,1984 # 927c0 <main.c.2c9542ec+0x8fea7>
+     f8a:	a4aff0ef          	jal	1d4 <DelaySysTick>
+    for (int i = 0; i < 30; i+=2) {
+     f8e:	0409                	add	s0,s0,2
+     f90:	47f9                	li	a5,30
+     f92:	fcf41be3          	bne	s0,a5,f68 <main+0x10a>
+    int c = 0;
+     f96:	4401                	li	s0,0
+    bool button_state = false;
+     f98:	4481                	li	s1,0
+      ssd1306_setbuf(0);
+     f9a:	3c49                	jal	a2c <ssd1306_setbuf.constprop.0>
+      ssd1306_drawImage(30, 0, title, 24, 64, 0);
+     f9c:	6605                	lui	a2,0x1
+     f9e:	4781                	li	a5,0
      fa0:	04000713          	li	a4,64
-     fa4:	cb98                	sw	a4,16(a5)
+     fa4:	46e1                	li	a3,24
+     fa6:	16860613          	add	a2,a2,360 # 1168 <title>
+     faa:	4581                	li	a1,0
+     fac:	4579                	li	a0,30
+     fae:	b50ff0ef          	jal	2fe <ssd1306_drawImage>
+      if (c > 50) {
+     fb2:	03200793          	li	a5,50
+     fb6:	0487d263          	bge	a5,s0,ffa <main+0x19c>
+        ssd1306_drawImage(80, 20, start, 24, 24, 0);
+     fba:	4781                	li	a5,0
+        ssd1306_drawImage(80, 20, start, 24, 24, 1);
+     fbc:	6605                	lui	a2,0x1
+     fbe:	4761                	li	a4,24
+     fc0:	46e1                	li	a3,24
+     fc2:	12060613          	add	a2,a2,288 # 1120 <start>
+     fc6:	45d1                	li	a1,20
+     fc8:	05000513          	li	a0,80
+     fcc:	b32ff0ef          	jal	2fe <ssd1306_drawImage>
+      ssd1306_refresh();
+     fd0:	3461                	jal	a58 <ssd1306_refresh>
+      uint8_t button_is_pressed = !GPIO_digitalRead(BTN_PIN);
+     fd2:	400117b7          	lui	a5,0x40011
+     fd6:	4798                	lw	a4,8(a5)
+     fd8:	40078793          	add	a5,a5,1024 # 40011400 <__global_pointer$+0x20010af8>
+     fdc:	8b41                	and	a4,a4,16
+     fde:	00173693          	seqz	a3,a4
+      if (button_is_pressed)
+     fe2:	ef11                	bnez	a4,ffe <main+0x1a0>
+          GPIO_digitalWrite(BZR_PIN, high);
+     fe4:	04000713          	li	a4,64
+     fe8:	cb98                	sw	a4,16(a5)
       c ++;      
-     fa6:	0405                	add	s0,s0,1
+     fea:	0405                	add	s0,s0,1
       if (c > 100) {
-     fa8:	06500793          	li	a5,101
-     fac:	00f41363          	bne	s0,a5,fb2 <main+0x154>
+     fec:	06500793          	li	a5,101
+     ff0:	00f41363          	bne	s0,a5,ff6 <main+0x198>
         c = 0;
-     fb0:	4401                	li	s0,0
-     fb2:	84b6                	mv	s1,a3
-     fb4:	bf5d                	j	f6a <main+0x10c>
-        ssd1306_drawImage(100, 0, start, 24, 64, 1);
-     fb6:	4785                	li	a5,1
-     fb8:	bf7d                	j	f76 <main+0x118>
+     ff4:	4401                	li	s0,0
+     ff6:	84b6                	mv	s1,a3
+     ff8:	b74d                	j	f9a <main+0x13c>
+        ssd1306_drawImage(80, 20, start, 24, 24, 1);
+     ffa:	4785                	li	a5,1
+     ffc:	b7c1                	j	fbc <main+0x15e>
           GPIO_digitalWrite(BZR_PIN, low);
-     fba:	00400737          	lui	a4,0x400
-     fbe:	cb98                	sw	a4,16(a5)
+     ffe:	00400737          	lui	a4,0x400
+    1002:	cb98                	sw	a4,16(a5)
       if (button_state && !button_is_pressed){
-     fc0:	d0fd                	beqz	s1,fa6 <main+0x148>
+    1004:	d0fd                	beqz	s1,fea <main+0x18c>
 		ssd1306_init();
 
     opening();
 
     int stage = 1;
     bool result = false;
-     fc2:	4301                	li	t1,0
+    1006:	4301                	li	t1,0
     int stage = 1;
-     fc4:	4405                	li	s0,1
+    1008:	4405                	li	s0,1
     ssd1306_drawImage(40, 0, level_1, 24, 64, 0);
-     fc6:	6485                	lui	s1,0x1
-     fc8:	c01a                	sw	t1,0(sp)
+    100a:	6485                	lui	s1,0x1
+    100c:	c01a                	sw	t1,0(sp)
     ssd1306_setbuf(0);
-     fca:	348d                	jal	a2c <ssd1306_setbuf.constprop.0>
+    100e:	3c39                	jal	a2c <ssd1306_setbuf.constprop.0>
     ssd1306_drawImage(40, 0, level_1, 24, 64, 0);
-     fcc:	4781                	li	a5,0
-     fce:	04000713          	li	a4,64
-     fd2:	46e1                	li	a3,24
-     fd4:	19c48613          	add	a2,s1,412 # 119c <level_1>
-     fd8:	4581                	li	a1,0
-     fda:	02800513          	li	a0,40
-     fde:	b20ff0ef          	jal	2fe <ssd1306_drawImage>
+    1010:	4781                	li	a5,0
+    1012:	04000713          	li	a4,64
+    1016:	46e1                	li	a3,24
+    1018:	22848613          	add	a2,s1,552 # 1228 <level_1>
+    101c:	4581                	li	a1,0
+    101e:	02800513          	li	a0,40
+    1022:	adcff0ef          	jal	2fe <ssd1306_drawImage>
     ssd1306_refresh();
-     fe2:	3c9d                	jal	a58 <ssd1306_refresh>
+    1026:	3c0d                	jal	a58 <ssd1306_refresh>
 	  Delay_Ms(1500);
-     fe4:	00895537          	lui	a0,0x895
-     fe8:	44050513          	add	a0,a0,1088 # 895440 <main.c.adf167c7+0x892be6>
-     fec:	9e8ff0ef          	jal	1d4 <DelaySysTick>
+    1028:	00895537          	lui	a0,0x895
+    102c:	44050513          	add	a0,a0,1088 # 895440 <main.c.2c9542ec+0x892b27>
+    1030:	9a4ff0ef          	jal	1d4 <DelaySysTick>
     while (1) {
  
       show_level(stage);
       switch (stage) {
-     ff0:	4789                	li	a5,2
-     ff2:	02f40363          	beq	s0,a5,1018 <main+0x1ba>
-     ff6:	478d                	li	a5,3
-     ff8:	02f40563          	beq	s0,a5,1022 <main+0x1c4>
-     ffc:	4785                	li	a5,1
-     ffe:	4302                	lw	t1,0(sp)
-    1000:	00f41863          	bne	s0,a5,1010 <main+0x1b2>
+    1034:	4789                	li	a5,2
+    1036:	02f40363          	beq	s0,a5,105c <main+0x1fe>
+    103a:	478d                	li	a5,3
+    103c:	02f40563          	beq	s0,a5,1066 <main+0x208>
+    1040:	4785                	li	a5,1
+    1042:	4302                	lw	t1,0(sp)
+    1044:	00f41863          	bne	s0,a5,1054 <main+0x1f6>
         case 1:
           result = game_loop(car_s_1);
-    1004:	20000537          	lui	a0,0x20000
-    1008:	0b450513          	add	a0,a0,180 # 200000b4 <car_s_1>
+    1048:	20000537          	lui	a0,0x20000
+    104c:	0b450513          	add	a0,a0,180 # 200000b4 <car_s_1>
           break;
         case 2:
           result = game_loop(car_s_2);
-    100c:	3475                	jal	ab8 <game_loop>
-    100e:	832a                	mv	t1,a0
+    1050:	34a5                	jal	ab8 <game_loop>
+    1052:	832a                	mv	t1,a0
         case 3:
           result = game_loop(car_s_3);
           break;
       }
 
       if (result) {
-    1010:	fa030ce3          	beqz	t1,fc8 <main+0x16a>
+    1054:	fa030ce3          	beqz	t1,100c <main+0x1ae>
         stage ++;
-    1014:	0405                	add	s0,s0,1
-    1016:	bf4d                	j	fc8 <main+0x16a>
+    1058:	0405                	add	s0,s0,1
+    105a:	bf4d                	j	100c <main+0x1ae>
           result = game_loop(car_s_2);
-    1018:	20000537          	lui	a0,0x20000
-    101c:	06450513          	add	a0,a0,100 # 20000064 <car_s_2>
-    1020:	b7f5                	j	100c <main+0x1ae>
+    105c:	20000537          	lui	a0,0x20000
+    1060:	06450513          	add	a0,a0,100 # 20000064 <car_s_2>
+    1064:	b7f5                	j	1050 <main+0x1f2>
           result = game_loop(car_s_3);
-    1022:	20000537          	lui	a0,0x20000
-    1026:	00050513          	mv	a0,a0
-    102a:	3479                	jal	ab8 <game_loop>
-    102c:	832a                	mv	t1,a0
+    1066:	20000537          	lui	a0,0x20000
+    106a:	00050513          	mv	a0,a0
+    106e:	34a9                	jal	ab8 <game_loop>
+    1070:	832a                	mv	t1,a0
       if (result) {
-    102e:	dd49                	beqz	a0,fc8 <main+0x16a>
+    1072:	dd49                	beqz	a0,100c <main+0x1ae>
       }
 
       if (stage > 3) {
         stage = 1;
-    1030:	4405                	li	s0,1
-    1032:	bf59                	j	fc8 <main+0x16a>
-    1034:	31647373          	csrrc	t1,0x316,8
-    1038:	5f363033          	.insn	4, 0x5f363033
-    103c:	3269                	jal	9c6 <ssd1306_i2c_send.constprop.0.isra.0+0xe0>
-    103e:	72655f63          	bge	a0,t1,177c <_data_lma+0x140>
-    1042:	6f72                	.insn	2, 0x6f72
-    1044:	2072                	.insn	2, 0x2072
-    1046:	202d                	jal	1070 <main+0x212>
-    1048:	6974                	.insn	2, 0x6974
-    104a:	656d                	lui	a0,0x1b
-    104c:	2074756f          	jal	a0,48a52 <main.c.adf167c7+0x461f8>
-    1050:	74696177          	.insn	4, 0x74696177
-    1054:	6e69                	lui	t3,0x1a
-    1056:	6f662067          	.insn	4, 0x6f662067
-    105a:	2072                	.insn	2, 0x2072
-    105c:	7325                	lui	t1,0xfffe9
-    105e:	0d0a                	sll	s10,s10,0x2
-    1060:	0000                	unimp
-    1062:	0000                	unimp
-    1064:	6f6e                	.insn	2, 0x6f6e
-    1066:	2074                	.insn	2, 0x2074
-    1068:	7562                	.insn	2, 0x7562
-    106a:	00007973          	csrrc	s2,ustatus,0
-    106e:	0000                	unimp
-    1070:	616d                	add	sp,sp,240
-    1072:	72657473          	csrrc	s0,mhpmevent6h,10
-    1076:	6d20                	.insn	2, 0x6d20
-    1078:	0065646f          	jal	s0,5707e <main.c.adf167c7+0x54824>
-    107c:	7274                	.insn	2, 0x7274
-    107e:	6e61                	lui	t3,0x18
-    1080:	74696d73          	csrrs	s10,0x746,18
-    1084:	6d20                	.insn	2, 0x6d20
-    1086:	0065646f          	jal	s0,5708c <main.c.adf167c7+0x54832>
-    108a:	0000                	unimp
-    108c:	7874                	.insn	2, 0x7874
-    108e:	6520                	.insn	2, 0x6520
-    1090:	706d                	c.lui	zero,0xffffb
-    1092:	7974                	.insn	2, 0x7974
-    1094:	0000                	unimp
-    1096:	0000                	unimp
-    1098:	7274                	.insn	2, 0x7274
-    109a:	6e61                	lui	t3,0x18
-    109c:	74696d73          	csrrs	s10,0x746,18
-    10a0:	6320                	.insn	2, 0x6320
-    10a2:	6c706d6f          	jal	s10,7f68 <main.c.adf167c7+0x570e>
-    10a6:	7465                	lui	s0,0xffff9
-    10a8:	0065                	c.nop	25
+    1074:	4405                	li	s0,1
+    1076:	bf59                	j	100c <main+0x1ae>
+    1078:	31647373          	csrrc	t1,0x316,8
+    107c:	5f363033          	.insn	4, 0x5f363033
+    1080:	3269                	jal	a0a <ssd1306_cmd+0xa>
+    1082:	72655f63          	bge	a0,t1,17c0 <_data_lma+0xf8>
+    1086:	6f72                	.insn	2, 0x6f72
+    1088:	2072                	.insn	2, 0x2072
+    108a:	202d                	jal	10b4 <main+0x256>
+    108c:	6974                	.insn	2, 0x6974
+    108e:	656d                	lui	a0,0x1b
+    1090:	2074756f          	jal	a0,48a96 <main.c.2c9542ec+0x4617d>
+    1094:	74696177          	.insn	4, 0x74696177
+    1098:	6e69                	lui	t3,0x1a
+    109a:	6f662067          	.insn	4, 0x6f662067
+    109e:	2072                	.insn	2, 0x2072
+    10a0:	7325                	lui	t1,0xfffe9
+    10a2:	0d0a                	sll	s10,s10,0x2
+    10a4:	0000                	unimp
+    10a6:	0000                	unimp
+    10a8:	6f6e                	.insn	2, 0x6f6e
+    10aa:	2074                	.insn	2, 0x2074
+    10ac:	7562                	.insn	2, 0x7562
+    10ae:	00007973          	csrrc	s2,ustatus,0
+    10b2:	0000                	unimp
+    10b4:	616d                	add	sp,sp,240
+    10b6:	72657473          	csrrc	s0,mhpmevent6h,10
+    10ba:	6d20                	.insn	2, 0x6d20
+    10bc:	0065646f          	jal	s0,570c2 <main.c.2c9542ec+0x547a9>
+    10c0:	7274                	.insn	2, 0x7274
+    10c2:	6e61                	lui	t3,0x18
+    10c4:	74696d73          	csrrs	s10,0x746,18
+    10c8:	6d20                	.insn	2, 0x6d20
+    10ca:	0065646f          	jal	s0,570d0 <main.c.2c9542ec+0x547b7>
+    10ce:	0000                	unimp
+    10d0:	7874                	.insn	2, 0x7874
+    10d2:	6520                	.insn	2, 0x6520
+    10d4:	706d                	c.lui	zero,0xffffb
+    10d6:	7974                	.insn	2, 0x7974
+    10d8:	0000                	unimp
+    10da:	0000                	unimp
+    10dc:	7274                	.insn	2, 0x7274
+    10de:	6e61                	lui	t3,0x18
+    10e0:	74696d73          	csrrs	s10,0x746,18
+    10e4:	6320                	.insn	2, 0x6320
+    10e6:	6c706d6f          	jal	s10,7fac <main.c.2c9542ec+0x5693>
+    10ea:	7465                	lui	s0,0xffff9
+    10ec:	0065                	c.nop	25
 	...
 
-000010ac <errstr>:
-    10ac:	1064 0000 1070 0000 107c 0000 108c 0000     d...p...|.......
-    10bc:	1098 0000                                   ....
+000010f0 <errstr>:
+    10f0:	10a8 0000 10b4 0000 10c0 0000 10d0 0000     ................
+    1100:	10dc 0000                                   ....
 
-000010c0 <ssd1306_init_array>:
-    10c0:	d5ae a880 d33f 4000 148d 0020 c8a1 12da     ....?..@.. .....
-    10d0:	8f81 f1d9 40db a6a4 ffaf 0000               .....@......
+00001104 <ssd1306_init_array>:
+    1104:	d5ae a880 d33f 4000 148d 0020 c8a1 12da     ....?..@.. .....
+    1114:	8f81 f1d9 40db a6a4 ffaf 0000               .....@......
 
-000010dc <start>:
-    10dc:	0000 0000 c001 0300 00e0 e003 ff07 0720     .............. .
-    10ec:	20ff ff07 0420 2000 0004 0320 20ff 0300     . .. .. .. .. ..
-    10fc:	0020 2001 0000 04e0 0000 0e06 0700 80bf      .. ............
-    110c:	ff05 04c0 4070 0004 0320 2007 c707 0720     ....p@.. .. .. .
-    111c:	20e7 0004 0420 2000 ff07 00e0 0000 0004     . .. .. ........
-    112c:	0700 0080 f007 0400 00fe 1f04 06c0 e003     ................
-    113c:	8001 0120 209c 9807 0720 6080 0706 0400     .. .. .. ..`....
-    114c:	0038 c007 0200 0000 0100 00c0 e003 0300     8...............
-    115c:	07e0 20ff ff07 0620 2000 0004 0620 2000     ... .. .. .. .. 
-    116c:	fb03 0020 2001 0100 00a0 0000 c001 0700     .. .. ..........
-    117c:	80f7 f707 0ec0 400e 060c 0c20 2047 e30c     .......@.. .G ..
-    118c:	0400 20e3 7004 0220 2010 4c01 00c0 00c1     ... .p .. .L....
+00001120 <start>:
+    1120:	0000 0000 0004 7c00 0000 0004 0000 0000     .......|........
+    1130:	0068 1400 0000 0014 7800 0000 0000 7800     h........x.....x
+    1140:	0000 0014 1400 0000 0078 0000 0000 0004     ........x.......
+    1150:	7c00 0000 0004 0000 0000 0024 5400 0000     .|........$..T..
+    1160:	0054 4800 0000 0000                         T..H....
 
-0000119c <level_1>:
+00001168 <title>:
 	...
-    11bc:	0f00 e0ff ff0f 0fe0 f0ff 000c 0c10 1000     ................
-    11cc:	0004 0310 20fe 0200 0060 c001 0000 0000     ..... ..`.......
-    11dc:	0000 000f 1f00 0000 801f 1800 0080 8008     ................
-    11ec:	0c00 0080 0007 0000 0006 3f00 0000 00ff     ...........?....
-    11fc:	fd07 0f00 00e1 010f 0c00 001e 3e0c 0400     .............>..
-    120c:	0007 8103 0000 0071 0d00 0000 0001 000f     ......q.........
-    121c:	0f00 0000 800f 0c00 0080 800c 0c00 e0ff     ................
-    122c:	ff0c 0cf0 f07f 000c 0c10 1000 ff07 00f0     ................
+    1170:	0000 00f8 0401 0200 00fa 0603 0200 0002     ................
+    1180:	0202 0300 00fe 0202 0300 00fe 0000 0000     ................
+    1190:	0000 fe03 0200 0002 fe03 0000 0000 0000     ................
+    11a0:	0000 00f8 0401 0200 00fa 0603 0200 0002     ................
+    11b0:	0202 0200 0002 0401 0000 00f8 0000 0000     ................
+    11c0:	0006 1800 0000 0020 c000 0300 00b0 dc00     ...... .........
+    11d0:	0000 0026 1a00 0000 0006 0000 0000 00f8     ..&.............
+    11e0:	0401 0200 00fa 0603 0200 0002 0202 0200     ................
+    11f0:	0002 0401 0000 00f8 0000 0300 00fe 0202     ................
+    1200:	0300 00fe 0400 0000 0018 6000 0100 00a0     ...........`....
+    1210:	5000 0000 002c 1600 0300 00fe 0000 0000     .P..,...........
 	...
 
-0000125c <go_car_img>:
+00001228 <level_1>:
 	...
-    126c:	3f00 0000 2400 00c0 2400 00b0 3000 0010     .?...$...$...0..
-    127c:	1000 0020 0000 0060 0900 0000 0900 0000     .. ...`.........
-    128c:	0900 0000 0000 0000 0000 0000 0000 0000     ................
-    129c:	0e00 0000 1f00 0080 3f00 00c0 3f00 00c0     .........?...?..
-    12ac:	3f00 00c0 3f00 00c0 ff00 00c0 df01 00fc     .?...?..........
-    12bc:	8f01 80ff 8f01 c0ff df01 e0ff ff00 e0ff     ................
-    12cc:	3f00 f0ff 3f00 f0ff 3f00 f0ff 3e00 f0ff     .?...?...?...>..
-    12dc:	3e00 f0ff 3f00 70e0 3f00 70c0 3f00 60c0     .>...?.p.?.p.?.`
-    12ec:	3f00 e0c0 ff00 c0c1 df01 80c3 8f01 00ff     .?..............
-    12fc:	8f01 00c0 df01 00c0 ff00 00c0 3f00 0080     .............?..
-    130c:	3f00 0080 3f00 0000 3f00 0000 3e00 0000     .?...?...?...>..
+    1248:	0f00 e0ff ff0f 0fe0 f0ff 000c 0c10 1000     ................
+    1258:	0004 0310 20fe 0200 0060 c001 0000 0000     ..... ..`.......
+    1268:	0000 000f 1f00 0000 801f 1800 0080 8008     ................
+    1278:	0c00 0080 0007 0000 0006 3f00 0000 00ff     ...........?....
+    1288:	fd07 0f00 00e1 010f 0c00 001e 3e0c 0400     .............>..
+    1298:	0007 8103 0000 0071 0d00 0000 0001 000f     ......q.........
+    12a8:	0f00 0000 800f 0c00 0080 800c 0c00 e0ff     ................
+    12b8:	ff0c 0cf0 f07f 000c 0c10 1000 ff07 00f0     ................
 	...
 
-00001324 <game_over_img>:
+000012e8 <go_car_img>:
 	...
-    1354:	601e c0c0 601e c0c0 9801 c0cc 9801 c0cc     .`...`..........
-    1364:	9801 c0cc 9801 c0cc e01f 003f e01f 003f     ..........?...?.
-	...
-    137c:	1818 00ff 1818 00ff 9819 c000 9819 c000     ................
-    138c:	9819 001f 9819 001f e007 c000 e007 c000     ................
-    139c:	0000 00ff 0000 00ff f801 0000 f801 0000     ................
-    13ac:	0006 00ff 0006 00ff 0018 c00c 0018 c00c     ................
-    13bc:	0006 c00c 0006 c00c f801 00ff f801 00ff     ................
-	...
-    13d4:	e007 c03c e007 c03c 1818 c0cc 1818 c0cc     ..<...<.........
-    13e4:	1818 c0c0 1818 c0c0 e007 003f e007 003f     ..........?...?.
-	...
-
-00001424 <clear>:
-    1424:	0000 1f00 00fe 0000 0600 0000 0000 000e     ................
-    1434:	0000 fbff 0000 0300 00f3 0000 7100 0000     .............q..
-    1444:	0000 0031 0100 f0fc 0000 ff03 0090 0000     ..1.............
-    1454:	981f c03c 0200 3c18 00c0 1803 3003 fd07     ..<....<.....0..
-    1464:	0398 0030 983d 3003 3d38 0398 1f30 98fd     ..0.=..08=..0...
-    1474:	c03f cd01 3f80 01c0 8099 0000 1106 0080     ?....?..........
-    1484:	0000 0061 c03f 0000 3f00 88c0 0000 3003     ..a.?....?.....0
-    1494:	00a8 0300 a830 0000 3003 0070 0300 0030     ....0....0p...0.
-    14a4:	0000 c03f 0068 3f00 a8c0 0000 0000 0088     ..?.h..?........
-    14b4:	0000 7000 0000 3030 0000 3300 f030 0000     ...p..00...30...
-    14c4:	3033 0028 3300 2830 0000 3033 00f0 0f00     30(..30(..30....
-    14d4:	00c0 0000 c00f 0008 0000 f800 0000 0000     ................
-    14e4:	0008 3000 0000 0000 0030 0048 3000 a800     ...0....0.H..0..
-    14f4:	0000 0030 00a8 3f00 90f0 0000 f03f 0000     ..0....?....?...
-	...
-    150c:	6000 0c00 03c0 0070 c00c 3803 3000 d933     .`....p....8.03.
-    151c:	0098 3030 8978 3080 1830 808c 3030 c40c     ..00x..00...00..
-    152c:	0fc0 ffc0 c0c4 c00f c6f8 0040 0100 60f6     ..........@....`
-    153c:	0000 ce07 0060 0f00 f08d 0000 1c7e 0070     ....`.......~.p.
-    154c:	3000 d038 0000 f100 00a0 0300 20f3 0000     .08.......... ..
-    155c:	860f 00c0 3c00 8000                         .....<..
-
-00001564 <car>:
-	...
-    156c:	0000 007c 7c00 0000 007c ff03 03c0 c0ff     ..|..|..|.......
-    157c:	ff03 00c0 c07f 7f00 00c0 c07f 7c00 0040     .............|@.
-    158c:	407c 7c00 0340 40fc ff03 03c0 00fc 7c00     |@.|@..@.......|
-    159c:	0000 0074 7c00 0000 0000 0000 0000 0000     ..t..|..........
-
-000015ac <newt_right>:
-    15ac:	0000 0000 0000 f00f 0f00 00f0 3c3c 3c00     ............<<.<
-    15bc:	003c 00f0 f0c0 c000 03f3 f30f 0f03 c3fc     <...............
-    15cc:	fc3f 3fc3 ff3f 3fff ffff ff00 00f0 f0ff     ?..??..?........
-    15dc:	c003 033c 3cc0 0000 0000 0000 0000 0000     ..<..<..........
+    12f8:	3f00 0000 2400 00c0 2400 00b0 3000 0010     .?...$...$...0..
+    1308:	1000 0020 0000 0060 0900 0000 0900 0000     .. ...`.........
+    1318:	0900 0000 0000 0000 0000 0000 0000 0000     ................
+    1328:	0e00 0000 1f00 0080 3f00 00c0 3f00 00c0     .........?...?..
+    1338:	3f00 00c0 3f00 00c0 ff00 00c0 df01 00fc     .?...?..........
+    1348:	8f01 80ff 8f01 c0ff df01 e0ff ff00 e0ff     ................
+    1358:	3f00 f0ff 3f00 f0ff 3f00 f0ff 3e00 f0ff     .?...?...?...>..
+    1368:	3e00 f0ff 3f00 70e0 3f00 70c0 3f00 60c0     .>...?.p.?.p.?.`
+    1378:	3f00 e0c0 ff00 c0c1 df01 80c3 8f01 00ff     .?..............
+    1388:	8f01 00c0 df01 00c0 ff00 00c0 3f00 0080     .............?..
+    1398:	3f00 0080 3f00 0000 3f00 0000 3e00 0000     .?...?...?...>..
 	...
 
-000015f4 <newt_left>:
+000013b0 <game_over_img>:
 	...
-    1604:	0000 c003 033c 3cc0 ff00 00f0 f0ff ff3f     ....<..<......?.
-    1614:	3fff ffff c3fc fc3f 3fc3 03f3 f30f 0f03     .?....?..?......
-    1624:	00f0 f0c0 c000 3c3c 3c00 003c f00f 0f00     ......<<.<<.....
-    1634:	00f0 0000 0000 0000                         ........
+    13e0:	601e c0c0 601e c0c0 9801 c0cc 9801 c0cc     .`...`..........
+    13f0:	9801 c0cc 9801 c0cc e01f 003f e01f 003f     ..........?...?.
+	...
+    1408:	1818 00ff 1818 00ff 9819 c000 9819 c000     ................
+    1418:	9819 001f 9819 001f e007 c000 e007 c000     ................
+    1428:	0000 00ff 0000 00ff f801 0000 f801 0000     ................
+    1438:	0006 00ff 0006 00ff 0018 c00c 0018 c00c     ................
+    1448:	0006 c00c 0006 c00c f801 00ff f801 00ff     ................
+	...
+    1460:	e007 c03c e007 c03c 1818 c0cc 1818 c0cc     ..<...<.........
+    1470:	1818 c0c0 1818 c0c0 e007 003f e007 003f     ..........?...?.
+	...
+
+000014b0 <clear>:
+    14b0:	0000 1f00 00fe 0000 0600 0000 0000 000e     ................
+    14c0:	0000 fbff 0000 0300 00f3 0000 7100 0000     .............q..
+    14d0:	0000 0031 0100 f0fc 0000 ff03 0090 0000     ..1.............
+    14e0:	981f c03c 0200 3c18 00c0 1803 3003 fd07     ..<....<.....0..
+    14f0:	0398 0030 983d 3003 3d38 0398 1f30 98fd     ..0.=..08=..0...
+    1500:	c03f cd01 3f80 01c0 8099 0000 1106 0080     ?....?..........
+    1510:	0000 0061 c03f 0000 3f00 88c0 0000 3003     ..a.?....?.....0
+    1520:	00a8 0300 a830 0000 3003 0070 0300 0030     ....0....0p...0.
+    1530:	0000 c03f 0068 3f00 a8c0 0000 0000 0088     ..?.h..?........
+    1540:	0000 7000 0000 3030 0000 3300 f030 0000     ...p..00...30...
+    1550:	3033 0028 3300 2830 0000 3033 00f0 0f00     30(..30(..30....
+    1560:	00c0 0000 c00f 0008 0000 f800 0000 0000     ................
+    1570:	0008 3000 0000 0000 0030 0048 3000 a800     ...0....0.H..0..
+    1580:	0000 0030 00a8 3f00 90f0 0000 f03f 0000     ..0....?....?...
+	...
+    1598:	6000 0c00 03c0 0070 c00c 3803 3000 d933     .`....p....8.03.
+    15a8:	0098 3030 8978 3080 1830 808c 3030 c40c     ..00x..00...00..
+    15b8:	0fc0 ffc0 c0c4 c00f c6f8 0040 0100 60f6     ..........@....`
+    15c8:	0000 ce07 0060 0f00 f08d 0000 1c7e 0070     ....`.......~.p.
+    15d8:	3000 d038 0000 f100 00a0 0300 20f3 0000     .08.......... ..
+    15e8:	860f 00c0 3c00 8000                         .....<..
+
+000015f0 <car>:
+	...
+    15f8:	0000 007c 7c00 0000 007c ff03 03c0 c0ff     ..|..|..|.......
+    1608:	ff03 00c0 c07f 7f00 00c0 c07f 7c00 0040     .............|@.
+    1618:	407c 7c00 0340 40fc ff03 03c0 00fc 7c00     |@.|@..@.......|
+    1628:	0000 0074 7c00 0000 0000 0000 0000 0000     ..t..|..........
+
+00001638 <newt_right>:
+    1638:	0000 0000 0000 f00f 0f00 00f0 3c3c 3c00     ............<<.<
+    1648:	003c 00f0 f0c0 c000 03f3 f30f 0f03 c3fc     <...............
+    1658:	fc3f 3fc3 ff3f 3fff ffff ff00 00f0 f0ff     ?..??..?........
+    1668:	c003 033c 3cc0 0000 0000 0000 0000 0000     ..<..<..........
+	...
+
+00001680 <newt_left>:
+	...
+    1690:	0000 c003 033c 3cc0 ff00 00f0 f0ff ff3f     ....<..<......?.
+    16a0:	3fff ffff c3fc fc3f 3fc3 03f3 f30f 0f03     .?....?..?......
+    16b0:	00f0 f0c0 c000 3c3c 3c00 003c f00f 0f00     ......<<.<<.....
+    16c0:	00f0 0000 0000 0000                         ........

@@ -31,13 +31,23 @@ void opening()
     bool button_state = false;
 
     int c = 0;
+
+    for (int i = 0; i < 30; i+=2) {
+      ssd1306_setbuf(0);
+      ssd1306_drawImage(i, 0, title, 24, 64, 0);
+      ssd1306_refresh();
+      Delay_Ms(100);
+    }
+    
     while (1) {
       ssd1306_setbuf(0);
 
+      ssd1306_drawImage(30, 0, title, 24, 64, 0);
+
       if (c > 50) {
-        ssd1306_drawImage(100, 0, start, 24, 64, 0);
+        ssd1306_drawImage(80, 20, start, 24, 24, 0);
       } else {
-        ssd1306_drawImage(100, 0, start, 24, 64, 1);
+        ssd1306_drawImage(80, 20, start, 24, 24, 1);
       }
 
       ssd1306_refresh();
