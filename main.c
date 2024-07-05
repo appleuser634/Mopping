@@ -78,7 +78,18 @@ void opening()
 void show_level(int stage)
 {
     ssd1306_setbuf(0);
-    ssd1306_drawImage(40, 0, level_1, 24, 64, 0);
+    
+    switch (stage) {
+        case 1:
+          ssd1306_drawImage(40, 0, level_1, 24, 64, 0);
+          break;
+        case 2:
+          ssd1306_drawImage(40, 0, level_2, 24, 64, 0);
+          break;
+        case 3:
+          ssd1306_drawImage(40, 0, level_3, 24, 64, 0);
+          break;
+    }
     ssd1306_refresh();
 	  Delay_Ms(1500);
 }
