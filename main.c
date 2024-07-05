@@ -105,7 +105,7 @@ car_state_data car_s_2[] = {
 
 car_state_data car_s_3[] = {
   {5,75,10,4,true},
-  {5,75,30,2,true},
+  {5,75,30,4,true},
   {5,50,50,4,false},
   {5,25,20,4,true},
   {5,0,10,4,false}
