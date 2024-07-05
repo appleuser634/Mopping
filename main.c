@@ -285,9 +285,9 @@ bool game_loop(car_state_data car_s[])
       // 当たり判定
       if (car_s[i].car_x == newt_x) {
         if (
-          (car_s[i].car_y + 3) <= newt_y && (car_s[i].car_y + 21) >= newt_y 
+          (car_s[i].car_y + 7) <= newt_y && (car_s[i].car_y + 17) >= newt_y 
           ||
-          (car_s[i].car_y + 3) <= (newt_y + 21) && (car_s[i].car_y + 21) >= (newt_y + 21)
+          (car_s[i].car_y + 7) <= (newt_y + 17) && (car_s[i].car_y + 17) >= (newt_y + 17)
         ) {
           game_over();
           return false;

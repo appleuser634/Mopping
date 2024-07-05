@@ -37,7 +37,7 @@ SYMBOL TABLE:
 00000a00 l     F .text	0000001a ssd1306_cmd
 00000a2c l     F .text	00000010 ssd1306_setbuf.constprop.0
 00000a58 l     F .text	00000060 ssd1306_refresh
-00000ab8 l     F .text	00000344 game_loop
+00000ab8 l     F .text	00000346 game_loop
 0000182c l     O .text	00000048 newt_left
 0000165c l     O .text	00000140 clear
 000017e4 l     O .text	00000048 newt_right
@@ -87,10 +87,10 @@ SYMBOL TABLE:
 20000000 g       .dalign	00000000 _data_vma
 000006ce g     F .text	0000000e NMI_RCC_CSS_IRQHandler
 00000a1a g     F .text	00000012 memset
-00000e5e g     F .text	00000244 main
+00000e60 g     F .text	00000244 main
 000006cc g     F .text	00000002 DMA1_Channel5_IRQHandler
 000000b8 g     F .text	00000058 .hidden __divsi3
-00000dfc g     F .text	00000062 SystemInit
+00000dfe g     F .text	00000062 SystemInit
 00000000 g       .init	00000000 _sinit
 000006cc g     F .text	00000002 DMA1_Channel3_IRQHandler
 000006cc g     F .text	00000002 TIM1_UP_IRQHandler
