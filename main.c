@@ -70,7 +70,7 @@ void show_level(int stage)
     ssd1306_setbuf(0);
     ssd1306_drawImage(40, 0, level_1, 24, 64, 0);
     ssd1306_refresh();
-	  Delay_Ms(1000);
+	  Delay_Ms(1500);
 }
 
 void show_clear()
@@ -85,19 +85,29 @@ void show_clear()
     GPIO_digitalWrite(BZR_PIN, high);
     Delay_Ms(800);
     GPIO_digitalWrite(BZR_PIN, low);
-	  Delay_Ms(1000);
+	  Delay_Ms(2000);
 }
 
 void game_over()
 {
-    ssd1306_setbuf(0);
-    ssd1306_drawstr_sz(0,16, "GAME OVER", 1, fontsize_8x8);
-    ssd1306_refresh();
-    for (int i = 0; i < 500; i++) {
+    for (int i = -32; i < 64; i++) {
+      ssd1306_setbuf(0);
+      ssd1306_drawImage(20, 0, game_over_img, 32, 64, 0);
+      ssd1306_drawImage(55, i, go_car_img, 32, 50, 0);
+      ssd1306_refresh();
+    }
+    for (int i = 0; i < 50; i++) {
       GPIO_digitalWrite(BZR_PIN, high);
       Delay_Ms(1);
       GPIO_digitalWrite(BZR_PIN, low);
+      Delay_Ms(6);
+    }
+    Delay_Ms(100);
+    for (int i = 0; i < 50; i++) {
+      GPIO_digitalWrite(BZR_PIN, high);
       Delay_Ms(1);
+      GPIO_digitalWrite(BZR_PIN, low);
+      Delay_Ms(6);
     }
 	  Delay_Ms(2000);
 }
