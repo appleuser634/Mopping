@@ -28,16 +28,55 @@ void init_gpio()
 
 void opening()
 {
-    ssd1306_setbuf(0);
-    ssd1306_drawImage(0, 0, movoid_title, 128, 64, 0);
-    ssd1306_refresh();
-	  Delay_Ms(2000);
+    bool button_state = false;
+
+    int c = 0;
+    while (1) {
+      ssd1306_setbuf(0);
+
+      if (c > 50) {
+        ssd1306_drawImage(100, 0, start, 24, 64, 0);
+      } else {
+        ssd1306_drawImage(100, 0, start, 24, 64, 1);
+      }
+
+      ssd1306_refresh();
+
+      uint8_t button_is_pressed = !GPIO_digitalRead(BTN_PIN);
+      
+      // buzzer on!
+      if (button_is_pressed)
+      {
+          GPIO_digitalWrite(BZR_PIN, high);
+      } else {
+          GPIO_digitalWrite(BZR_PIN, low);
+      }
+
+      // ボタンを押して離した後にゲームに移る
+      if (button_state && !button_is_pressed){
+        break;
+      }
+      button_state = button_is_pressed;
+      
+      c ++;      
+      if (c > 100) {
+        c = 0;
+      } 
+    }
 }
 
-void clear()
+void show_level(int stage)
 {
     ssd1306_setbuf(0);
-    ssd1306_drawstr_sz(0,16, "CLEAR!!", 1, fontsize_8x8);
+    ssd1306_drawImage(40, 0, level_1, 24, 64, 0);
+    ssd1306_refresh();
+	  Delay_Ms(1000);
+}
+
+void show_clear()
+{
+    ssd1306_setbuf(0);
+    ssd1306_drawImage(40, 0, clear, 40, 64, 0);
     ssd1306_refresh();
     GPIO_digitalWrite(BZR_PIN, high);
     Delay_Ms(300);
@@ -46,7 +85,7 @@ void clear()
     GPIO_digitalWrite(BZR_PIN, high);
     Delay_Ms(800);
     GPIO_digitalWrite(BZR_PIN, low);
-	  Delay_Ms(2000);
+	  Delay_Ms(1000);
 }
 
 void game_over()
@@ -227,7 +266,7 @@ bool game_loop(car_state_data car_s[])
 
     // 道の端に着いたらクリア
     if (newt_x < 0) {
-      clear();
+      show_clear();
       return true;
     }
     
@@ -253,6 +292,8 @@ int main()
     int stage = 1;
     bool result = false;
     while (1) {
+ 
+      show_level(stage);
       switch (stage) {
         case 1:
           result = game_loop(car_s_1);
