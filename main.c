@@ -80,6 +80,7 @@ void draw_road()
 }
 
 struct car_state {
+  int car_n;
   int car_x;
   int car_y;
   int car_step;
@@ -89,24 +90,25 @@ struct car_state {
 typedef struct car_state car_state_data;
 
 car_state_data car_s_1[] = {
-  {75,10,2,true},
-  {50,50,2,false},
-  {25,20,4,true},
-  {0,10,2,false}
+  {4,75,10,2,true},
+  {4,50,70,2,true},
+  {4,25,20,4,false},
+  {4,0,10,2,false}
 };
 
 car_state_data car_s_2[] = {
-  {75,10,4,true},
-  {50,50,2,false},
-  {25,20,4,true},
-  {0,10,2,false}
+  {4,75,10,4,true},
+  {4,50,50,2,false},
+  {4,25,20,2,true},
+  {4,0,10,4,false}
 };
 
 car_state_data car_s_3[] = {
-  {75,10,4,true},
-  {50,50,4,false},
-  {25,20,4,true},
-  {0,10,4,false}
+  {5,75,10,4,true},
+  {5,75,30,2,true},
+  {5,50,50,4,false},
+  {5,25,20,4,true},
+  {5,0,10,4,false}
 };
 
 bool game_loop(car_state_data car_s[])
@@ -187,7 +189,8 @@ bool game_loop(car_state_data car_s[])
       ssd1306_drawImage(newt_x, newt_y, newt_right, 24, 24, 0);
     }
     
-    for (int i = 0; i < 4; i++){
+    int car_n = car_s[0].car_n;
+    for (int i = 0; i < car_n; i++){
 
       // 車を描画
       ssd1306_drawImage(car_s[i].car_x, car_s[i].car_y, car, 24, 24, 0);
