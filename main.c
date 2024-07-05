@@ -28,8 +28,16 @@ void init_gpio()
 
 void opening()
 {
-    bool button_state = false;
 
+    GPIO_digitalWrite(BZR_PIN, high);
+    Delay_Ms(100);
+    GPIO_digitalWrite(BZR_PIN, low);
+    Delay_Ms(50);
+    GPIO_digitalWrite(BZR_PIN, high);
+    Delay_Ms(100);
+    GPIO_digitalWrite(BZR_PIN, low);
+
+    bool button_state = false;
     int c = 0;
 
     for (int i = 0; i < 30; i+=2) {
@@ -88,6 +96,12 @@ void show_level(int stage)
           break;
         case 3:
           ssd1306_drawImage(40, 0, level_3, 24, 64, 0);
+          break;
+        case 4:
+          ssd1306_drawImage(40, 0, level_4, 24, 64, 0);
+          break;
+        case 5:
+          ssd1306_drawImage(40, 0, level_5, 24, 64, 0);
           break;
     }
     ssd1306_refresh();
@@ -168,18 +182,40 @@ car_state_data car_s_1[] = {
 
 car_state_data car_s_2[] = {
   {4,75,10,4,true},
-  {4,50,50,2,false},
-  {4,25,20,2,true},
-  {4,0,10,4,false}
+  {4,50,20,4,true},
+  {4,25,30,4,true},
+  {4,0,40,4,true},
 };
 
 car_state_data car_s_3[] = {
-  {5,75,10,4,true},
-  {5,75,30,4,true},
-  {5,50,50,4,false},
-  {5,25,20,4,true},
-  {5,0,10,4,false}
+  {6,75,10,4,true},
+  {6,75,30,4,true},
+  {6,50,50,8,false},
+  {6,25,20,4,true},
+  {6,0,30,5,false},
+  {6,0,50,5,false}
 };
+
+car_state_data car_s_4[] = {
+  {7,75,10,4,true},
+  {7,75,30,4,true},
+  {7,50,50,6,false},
+  {7,25,20,6,true},
+  {7,25,40,6,true},
+  {7,0,30,5,false},
+  {7,0,50,5,false}
+};
+
+car_state_data car_s_5[] = {
+  {6,75,10,4,false},
+  {6,75,30,4,true},
+  {6,50,50,8,false},
+  {6,25,20,4,true},
+  {6,0,30,5,false},
+  {6,0,50,5,true}
+};
+
+
 
 bool game_loop(car_state_data car_s[])
 {
@@ -335,13 +371,19 @@ int main()
         case 3:
           result = game_loop(car_s_3);
           break;
+        case 4:
+          result = game_loop(car_s_4);
+          break;
+        case 5:
+          result = game_loop(car_s_5);
+          break;
       }
 
       if (result) {
         stage ++;
       }
 
-      if (stage > 3) {
+      if (stage > 5) {
         stage = 1;
       }
     }

@@ -4,11 +4,11 @@ main.elf:     file format elf32-littleriscv
 SYMBOL TABLE:
 00000000 l    d  .init	00000000 .init
 000000a0 l    d  .text	00000000 .text
-00001874 l    d  .fini	00000000 .fini
+00001ab0 l    d  .fini	00000000 .fini
 20000000 l    d  .dalign	00000000 .dalign
-00001874 l    d  .dlalign	00000000 .dlalign
+00001ab0 l    d  .dlalign	00000000 .dlalign
 20000000 l    d  .data	00000000 .data
-20000108 l    d  .bss	00000000 .bss
+20000220 l    d  .bss	00000000 .bss
 00000000 l    d  .riscv.attributes	00000000 .riscv.attributes
 00000000 l    d  .debug_info	00000000 .debug_info
 00000000 l    d  .debug_abbrev	00000000 .debug_abbrev
@@ -24,7 +24,7 @@ SYMBOL TABLE:
 000001ea l     F .text	000000c0 mini_itoa.part.0
 000002aa l     F .text	00000054 ssd1306_i2c_setup
 000002fe l     F .text	0000010a ssd1306_drawImage
-20000108 l     O .bss	00000400 ssd1306_buffer
+20000220 l     O .bss	00000400 ssd1306_buffer
 00000408 l     F .text	00000038 ssd1306_drawPixel.constprop.0
 00000440 l     F .text	00000110 ssd1306_drawLine.constprop.0
 00000550 l     F .text	0000000c internal_handle_input.constprop.0
@@ -32,38 +32,42 @@ SYMBOL TABLE:
 0000063c l     F .text	00000014 __puts_uart
 000006ee l     F .text	000001b4 mini_vpprintf
 000008c8 l     F .text	0000001e ssd1306_i2c_error.isra.0
-0000111c l     O .text	00000014 errstr
+000011d8 l     O .text	00000014 errstr
 000008e6 l     F .text	0000011a ssd1306_i2c_send.constprop.0.isra.0
 00000a00 l     F .text	0000001a ssd1306_cmd
 00000a2c l     F .text	00000010 ssd1306_setbuf.constprop.0
 00000a58 l     F .text	00000060 ssd1306_refresh
 00000ab8 l     F .text	00000346 game_loop
-0000182c l     O .text	00000048 newt_left
-0000165c l     O .text	00000140 clear
-000017e4 l     O .text	00000048 newt_right
-0000179c l     O .text	00000048 car
-0000155c l     O .text	00000100 game_over_img
-00001494 l     O .text	000000c8 go_car_img
-00001130 l     O .text	0000001a ssd1306_init_array
-00001194 l     O .text	000000c0 title
-0000114c l     O .text	00000048 start
-000013d4 l     O .text	000000c0 level_1
-200000b4 l     O .data	00000050 car_s_1
-00001314 l     O .text	000000c0 level_2
-00001254 l     O .text	000000c0 level_3
-20000064 l     O .data	00000050 car_s_2
-20000000 l     O .data	00000064 car_s_3
+00001a68 l     O .text	00000048 newt_left
+00001898 l     O .text	00000140 clear
+00001a20 l     O .text	00000048 newt_right
+000019d8 l     O .text	00000048 car
+00001798 l     O .text	00000100 game_over_img
+000016d0 l     O .text	000000c8 go_car_img
+000011ec l     O .text	0000001a ssd1306_init_array
+00001250 l     O .text	000000c0 title
+00001208 l     O .text	00000048 start
+00001610 l     O .text	000000c0 level_1
+00001550 l     O .text	000000c0 level_2
+00001490 l     O .text	000000c0 level_3
+000013d0 l     O .text	000000c0 level_4
+00001310 l     O .text	000000c0 level_5
+200001cc l     O .data	00000050 car_s_1
+2000017c l     O .data	00000050 car_s_2
+20000104 l     O .data	00000078 car_s_3
+20000078 l     O .data	0000008c car_s_4
+20000000 l     O .data	00000078 car_s_5
 00000000 l    df *ABS*	00000000 muldi3.o
 00000000 l    df *ABS*	00000000 div.o
 000008a2 g     F .text	00000026 printf
-20000908 g       .data	00000000 __global_pointer$
+20000a20 g       .data	00000000 __global_pointer$
 000006cc g     F .text	00000002 TIM1_CC_IRQHandler
 000006cc g     F .text	00000002 HardFault_Handler
 000006cc g     F .text	00000002 SysTick_Handler
 000006cc g     F .text	00000002 PVD_IRQHandler
 000006ce g     F .text	0000000e NMI_Handler
 00000000 g     F .init	0000009c InterruptVectorDefault
-20000108 g       .bss	00000000 _sbss
+20000220 g       .bss	00000000 _sbss
 00000a3c g     F .text	0000001c memcpy
 00000000 g     F .init	0000009c InterruptVector
 000000c0 g     F .text	0000002c .hidden __hidden___udivsi3
@@ -74,7 +78,7 @@ SYMBOL TABLE:
 000006cc g     F .text	00000002 EXTI7_0_IRQHandler
 000006cc g     F .text	00000002 DMA1_Channel4_IRQHandler
 000006cc g     F .text	00000002 ADC1_IRQHandler
-20000508 g       .bss	00000000 _ebss
+20000620 g       .bss	00000000 _ebss
 000006cc g     F .text	00000002 DMA1_Channel7_IRQHandler
 000000ec g     F .text	00000008 .hidden __umodsi3
 000006cc g     F .text	00000002 I2C1_EV_IRQHandler
@@ -87,9 +91,10 @@ SYMBOL TABLE:
 20000000 g       .dalign	00000000 _data_vma
 000006ce g     F .text	0000000e NMI_RCC_CSS_IRQHandler
 00000a1a g     F .text	00000012 memset
-00000e60 g     F .text	00000244 main
+00000e60 g     F .text	000002d6 main
 000006cc g     F .text	00000002 DMA1_Channel5_IRQHandler
 000000b8 g     F .text	00000058 .hidden __divsi3
+00002985  w      .debug_info	00000000 .hidden main.c.95c201a2
 00000dfe g     F .text	00000062 SystemInit
 00000000 g       .init	00000000 _sinit
 000006cc g     F .text	00000002 DMA1_Channel3_IRQHandler
@@ -99,9 +104,8 @@ SYMBOL TABLE:
 20000800 g       .bss	00000000 _eusrstack
 000006cc g     F .text	00000002 SW_Handler
 000006cc g     F .text	00000002 TIM1_BRK_IRQHandler
-20000108 g       .data	00000000 _edata
-00001874 g       .dlalign	00000000 _data_lma
-00002916  w      .debug_info	00000000 .hidden main.c.9f50ad4d
+20000220 g       .data	00000000 _edata
+00001ab0 g       .dlalign	00000000 _data_lma
 00000110 g     F .text	00000024 .hidden __modsi3
 000006cc g     F .text	00000002 DMA1_Channel2_IRQHandler
 00000650 g     F .text	0000007c handle_reset
@@ -109,6 +113,6 @@ SYMBOL TABLE:
 000006cc g     F .text	00000002 USART1_IRQHandler
 000006dc g     F .text	00000012 strlen
 000006cc g     F .text	00000002 I2C1_ER_IRQHandler
-00001b40  w      .debug_info	00000000 .hidden ch32v003fun.c.e3139169
+00001baf  w      .debug_info	00000000 .hidden ch32v003fun.c.e3139169
 
 
