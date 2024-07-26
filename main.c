@@ -357,29 +357,29 @@ int main()
     opening();
 
     int stage = 1;
-    bool result = false;
+    bool stage_clear = false;
     while (1) {
  
       show_level(stage);
       switch (stage) {
         case 1:
-          result = game_loop(car_s_1);
+          stage_clear = game_loop(car_s_1);
           break;
         case 2:
-          result = game_loop(car_s_2);
+          stage_clear = game_loop(car_s_2);
           break;
         case 3:
-          result = game_loop(car_s_3);
+          stage_clear = game_loop(car_s_3);
           break;
         case 4:
-          result = game_loop(car_s_4);
+          stage_clear = game_loop(car_s_4);
           break;
         case 5:
-          result = game_loop(car_s_5);
+          stage_clear = game_loop(car_s_5);
           break;
       }
 
-      if (result) {
+      if (stage_clear) {
         stage ++;
       }
 
