@@ -63,12 +63,12 @@ void opening()
       uint8_t button_is_pressed = !GPIO_digitalRead(BTN_PIN);
       
       // buzzer on!
-      if (button_is_pressed)
-      {
-          GPIO_digitalWrite(BZR_PIN, high);
-      } else {
-          GPIO_digitalWrite(BZR_PIN, low);
-      }
+      // if (button_is_pressed)
+      // {
+      //     GPIO_digitalWrite(BZR_PIN, high);
+      // } else {
+      //     GPIO_digitalWrite(BZR_PIN, low);
+      // }
 
       // ボタンを押して離した後にゲームに移る
       if (button_state && !button_is_pressed){
