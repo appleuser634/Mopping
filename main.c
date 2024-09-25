@@ -124,8 +124,11 @@ void draw_road()
 
 bool game_loop()
 {
-  int kuina_x = 20;
-  int kuina_y = 30;
+  int init_kuina_x = 15;
+  int init_kuina_y = 45;
+
+  int kuina_x = init_kuina_x;
+  int kuina_y = init_kuina_y;
   
   int flip_c = 0;
   bool flip_flag = false;
@@ -133,7 +136,7 @@ bool game_loop()
   bool button_state = false;
   
   bool jump_flag = false;
-  int max_jump = 20;
+  int max_jump = 25;
   int jump_progress = 0;
 
   while (1) {
@@ -150,6 +153,7 @@ bool game_loop()
     if (jump_flag && (max_jump * 2) < jump_progress){
       jump_progress = 0;
       jump_flag = false;
+      kuina_y = init_kuina_y;
     }
     else if (jump_flag && max_jump >= jump_progress){
       kuina_y -= 1;

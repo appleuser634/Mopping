@@ -281,7 +281,7 @@ void ssd1306_i2c_setup(void)
  2de:	4047d703          	lhu	a4,1028(a5) # 40005404 <__global_pointer$+0x20004c04>
 	tempreg &= ~I2C_CTLR2_FREQ;
  2e2:	66c1                	lui	a3,0x10
- 2e4:	fc068693          	addi	a3,a3,-64 # ffc0 <main.c.0dad9b4f+0xdd29>
+ 2e4:	fc068693          	addi	a3,a3,-64 # ffc0 <main.c.a1016660+0xdd2a>
  2e8:	8f75                	and	a4,a4,a3
 	tempreg |= (FUNCONF_SYSTEM_CORE_CLOCK/SSD1306_I2C_PRERATE)&I2C_CTLR2_FREQ;
  2ea:	01876713          	ori	a4,a4,24
@@ -482,7 +482,7 @@ void ssd1306_drawImage(int x, int y, const unsigned char* input, uint8_t width, 
  42c:	87ba                	mv	a5,a4
  42e:	00027737          	lui	a4,0x27
  432:	e00006b7          	lui	a3,0xe0000
- 436:	10170713          	addi	a4,a4,257 # 27101 <main.c.0dad9b4f+0x24e6a>
+ 436:	10170713          	addi	a4,a4,257 # 27101 <main.c.a1016660+0x24e6b>
  43a:	0f468693          	addi	a3,a3,244 # e00000f4 <__global_pointer$+0xbffff8f4>
  43e:	4290                	lw	a2,0(a3)
  440:	08067593          	andi	a1,a2,128
@@ -833,7 +833,7 @@ uint8_t ssd1306_i2c_send(uint8_t addr, uint8_t *data, uint8_t sz)
 	while((I2C1->STAR2 & I2C_STAR2_BUSY) && (timeout--));
  774:	400057b7          	lui	a5,0x40005
 	timeout = TIMEOUT_MAX;
- 778:	6a070713          	addi	a4,a4,1696 # 186a0 <main.c.0dad9b4f+0x16409>
+ 778:	6a070713          	addi	a4,a4,1696 # 186a0 <main.c.a1016660+0x1640a>
 	while((I2C1->STAR2 & I2C_STAR2_BUSY) && (timeout--));
  77c:	40078793          	addi	a5,a5,1024 # 40005400 <__global_pointer$+0x20004c00>
  780:	567d                	li	a2,-1
@@ -847,7 +847,7 @@ uint8_t ssd1306_i2c_send(uint8_t addr, uint8_t *data, uint8_t sz)
  790:	4501                	li	a0,0
  792:	a821                	j	7aa <ssd1306_i2c_send.constprop.0.isra.0+0x38>
  794:	67e1                	lui	a5,0x18
- 796:	6a178793          	addi	a5,a5,1697 # 186a1 <main.c.0dad9b4f+0x1640a>
+ 796:	6a178793          	addi	a5,a5,1697 # 186a1 <main.c.a1016660+0x1640b>
 	// send data one byte at a time
 	while(sz--)
 	{
@@ -882,11 +882,11 @@ uint8_t ssd1306_i2c_send(uint8_t addr, uint8_t *data, uint8_t sz)
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_BYTE_TRANSMITTED)) && (timeout--));
  7c0:	00070637          	lui	a2,0x70
 	timeout = TIMEOUT_MAX;
- 7c4:	6a068693          	addi	a3,a3,1696 # 186a0 <main.c.0dad9b4f+0x16409>
+ 7c4:	6a068693          	addi	a3,a3,1696 # 186a0 <main.c.a1016660+0x1640a>
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
  7c8:	40070713          	addi	a4,a4,1024 # 40005400 <__global_pointer$+0x20004c00>
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_BYTE_TRANSMITTED)) && (timeout--));
- 7cc:	08460613          	addi	a2,a2,132 # 70084 <main.c.0dad9b4f+0x6dded>
+ 7cc:	08460613          	addi	a2,a2,132 # 70084 <main.c.a1016660+0x6ddee>
  7d0:	55fd                	li	a1,-1
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
  7d2:	01475503          	lhu	a0,20(a4)
@@ -928,11 +928,11 @@ uint8_t ssd1306_i2c_send(uint8_t addr, uint8_t *data, uint8_t sz)
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED)) && (timeout--));
  816:	00070737          	lui	a4,0x70
 	timeout = TIMEOUT_MAX;
- 81a:	6a060613          	addi	a2,a2,1696 # 186a0 <main.c.0dad9b4f+0x16409>
+ 81a:	6a060613          	addi	a2,a2,1696 # 186a0 <main.c.a1016660+0x1640a>
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
  81e:	40068693          	addi	a3,a3,1024 # 40005400 <__global_pointer$+0x20004c00>
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED)) && (timeout--));
- 822:	08270713          	addi	a4,a4,130 # 70082 <main.c.0dad9b4f+0x6ddeb>
+ 822:	08270713          	addi	a4,a4,130 # 70082 <main.c.a1016660+0x6ddec>
  826:	537d                	li	t1,-1
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
  828:	0146d283          	lhu	t0,20(a3)
@@ -959,11 +959,11 @@ uint8_t ssd1306_i2c_send(uint8_t addr, uint8_t *data, uint8_t sz)
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
  858:	40005737          	lui	a4,0x40005
 	timeout = TIMEOUT_MAX;
- 85c:	6a068693          	addi	a3,a3,1696 # 186a0 <main.c.0dad9b4f+0x16409>
+ 85c:	6a068693          	addi	a3,a3,1696 # 186a0 <main.c.a1016660+0x1640a>
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
  860:	40070713          	addi	a4,a4,1024 # 40005400 <__global_pointer$+0x20004c00>
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_MODE_SELECT)) && (timeout--));
- 864:	0605                	addi	a2,a2,1 # 30001 <main.c.0dad9b4f+0x2dd6a>
+ 864:	0605                	addi	a2,a2,1 # 30001 <main.c.a1016660+0x2dd6b>
  866:	537d                	li	t1,-1
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
  868:	01475283          	lhu	t0,20(a4)
@@ -1095,7 +1095,7 @@ uint8_t ssd1306_cmd(uint8_t cmd)
  948:	400217b7          	lui	a5,0x40021
  94c:	01080737          	lui	a4,0x1080
  950:	0007a223          	sw	zero,4(a5) # 40021004 <__global_pointer$+0x20020804>
- 954:	08170713          	addi	a4,a4,129 # 1080081 <main.c.0dad9b4f+0x107ddea>
+ 954:	08170713          	addi	a4,a4,129 # 1080081 <main.c.a1016660+0x107ddeb>
  958:	c398                	sw	a4,0(a5)
  95a:	009f0737          	lui	a4,0x9f0
  95e:	c798                	sw	a4,8(a5)
@@ -1164,7 +1164,7 @@ void DelaySysTick( uint32_t n )
  9d8:	cb98                	sw	a4,16(a5)
  9da:	4698                	lw	a4,8(a3)
  9dc:	001257b7          	lui	a5,0x125
- 9e0:	f8078793          	addi	a5,a5,-128 # 124f80 <main.c.0dad9b4f+0x122ce9>
+ 9e0:	f8078793          	addi	a5,a5,-128 # 124f80 <main.c.a1016660+0x122cea>
  9e4:	973e                	add	a4,a4,a5
 	while( ((int32_t)( SysTick->CNT - targend )) < 0 );
  9e6:	469c                	lw	a5,8(a3)
@@ -1233,7 +1233,7 @@ uint8_t ssd1306_i2c_init(void)
 	while(*cmd_list != SSD1306_TERMINATE_CMDS)
  a3a:	00044503          	lbu	a0,0(s0)
  a3e:	0ff00793          	li	a5,255
- a42:	0af51563          	bne	a0,a5,aec <main+0x158>
+ a42:	0af51263          	bne	a0,a5,ae6 <main+0x152>
 		if(ssd1306_cmd(*cmd_list++))
 			return 1;
 	}
@@ -1241,20 +1241,20 @@ uint8_t ssd1306_i2c_init(void)
 	// clear display
 	ssd1306_setbuf(0);
  a46:	35bd                	jal	8b4 <ssd1306_setbuf.constprop.0>
-	ssd1306_refresh();
- a48:	3d61                	jal	8e0 <ssd1306_refresh>
     for (int i = 0; i < 30; i+=2) {
- a4a:	c002                	sw	zero,0(sp)
+ a48:	4401                	li	s0,0
+	ssd1306_refresh();
+ a4a:	3d59                	jal	8e0 <ssd1306_refresh>
       ssd1306_setbuf(0);
  a4c:	35a5                	jal	8b4 <ssd1306_setbuf.constprop.0>
       ssd1306_drawImage(i, 0, title, 24, 64, 0);
- a4e:	4502                	lw	a0,0(sp)
- a50:	6485                	lui	s1,0x1
- a52:	4781                	li	a5,0
- a54:	04000713          	li	a4,64
- a58:	46e1                	li	a3,24
- a5a:	c8048613          	addi	a2,s1,-896 # c80 <title>
- a5e:	4581                	li	a1,0
+ a4e:	6485                	lui	s1,0x1
+ a50:	4781                	li	a5,0
+ a52:	04000713          	li	a4,64
+ a56:	46e1                	li	a3,24
+ a58:	c8048613          	addi	a2,s1,-896 # c80 <title>
+ a5c:	4581                	li	a1,0
+ a5e:	8522                	mv	a0,s0
  a60:	8b5ff0ef          	jal	314 <ssd1306_drawImage>
       ssd1306_refresh();
  a64:	3db5                	jal	8e0 <ssd1306_refresh>
@@ -1262,178 +1262,178 @@ uint8_t ssd1306_i2c_init(void)
  a66:	e000f6b7          	lui	a3,0xe000f
  a6a:	4698                	lw	a4,8(a3)
  a6c:	000927b7          	lui	a5,0x92
- a70:	7c078793          	addi	a5,a5,1984 # 927c0 <main.c.0dad9b4f+0x90529>
+ a70:	7c078793          	addi	a5,a5,1984 # 927c0 <main.c.a1016660+0x9052a>
  a74:	973e                	add	a4,a4,a5
 	while( ((int32_t)( SysTick->CNT - targend )) < 0 );
  a76:	469c                	lw	a5,8(a3)
  a78:	8f99                	sub	a5,a5,a4
  a7a:	fe07cee3          	bltz	a5,a76 <main+0xe2>
     for (int i = 0; i < 30; i+=2) {
- a7e:	4782                	lw	a5,0(sp)
- a80:	0789                	addi	a5,a5,2
- a82:	c03e                	sw	a5,0(sp)
- a84:	4702                	lw	a4,0(sp)
- a86:	47f9                	li	a5,30
- a88:	fcf712e3          	bne	a4,a5,a4c <main+0xb8>
+ a7e:	0409                	addi	s0,s0,2
+ a80:	47f9                	li	a5,30
+ a82:	fcf415e3          	bne	s0,a5,a4c <main+0xb8>
     int c = 0;
- a8c:	4401                	li	s0,0
+ a86:	4401                	li	s0,0
     bool button_state = false;
- a8e:	c402                	sw	zero,8(sp)
+ a88:	c202                	sw	zero,4(sp)
       ssd1306_setbuf(0);
- a90:	3515                	jal	8b4 <ssd1306_setbuf.constprop.0>
+ a8a:	352d                	jal	8b4 <ssd1306_setbuf.constprop.0>
       ssd1306_drawImage(30, 0, title, 24, 64, 0);
- a92:	4781                	li	a5,0
- a94:	c8048613          	addi	a2,s1,-896
- a98:	04000713          	li	a4,64
- a9c:	46e1                	li	a3,24
- a9e:	4581                	li	a1,0
- aa0:	4579                	li	a0,30
- aa2:	873ff0ef          	jal	314 <ssd1306_drawImage>
+ a8c:	4781                	li	a5,0
+ a8e:	c8048613          	addi	a2,s1,-896
+ a92:	04000713          	li	a4,64
+ a96:	46e1                	li	a3,24
+ a98:	4581                	li	a1,0
+ a9a:	4579                	li	a0,30
+ a9c:	879ff0ef          	jal	314 <ssd1306_drawImage>
       if (c > 50) {
- aa6:	03200793          	li	a5,50
- aaa:	6605                	lui	a2,0x1
- aac:	0487d363          	bge	a5,s0,af2 <main+0x15e>
+ aa0:	03200793          	li	a5,50
+ aa4:	6605                	lui	a2,0x1
+ aa6:	0487d363          	bge	a5,s0,aec <main+0x158>
         ssd1306_drawImage(80, 20, start, 24, 24, 0);
- ab0:	4781                	li	a5,0
+ aaa:	4781                	li	a5,0
         ssd1306_drawImage(80, 20, start, 24, 24, 1);
- ab2:	4761                	li	a4,24
- ab4:	86ba                	mv	a3,a4
- ab6:	c3860613          	addi	a2,a2,-968 # c38 <start>
- aba:	45d1                	li	a1,20
- abc:	05000513          	li	a0,80
- ac0:	855ff0ef          	jal	314 <ssd1306_drawImage>
+ aac:	4761                	li	a4,24
+ aae:	86ba                	mv	a3,a4
+ ab0:	c3860613          	addi	a2,a2,-968 # c38 <start>
+ ab4:	45d1                	li	a1,20
+ ab6:	05000513          	li	a0,80
+ aba:	85bff0ef          	jal	314 <ssd1306_drawImage>
       ssd1306_refresh();
- ac4:	3d31                	jal	8e0 <ssd1306_refresh>
+ abe:	350d                	jal	8e0 <ssd1306_refresh>
       uint8_t button_is_pressed = !GPIO_digitalRead(BTN_PIN);
- ac6:	400117b7          	lui	a5,0x40011
- aca:	40078793          	addi	a5,a5,1024 # 40011400 <__global_pointer$+0x20010c00>
- ace:	479c                	lw	a5,8(a5)
+ ac0:	400117b7          	lui	a5,0x40011
+ ac4:	40078793          	addi	a5,a5,1024 # 40011400 <__global_pointer$+0x20010c00>
+ ac8:	479c                	lw	a5,8(a5)
       if (button_state && !button_is_pressed){
- ad0:	4722                	lw	a4,8(sp)
- ad2:	8b89                	andi	a5,a5,2
- ad4:	c311                	beqz	a4,ad8 <main+0x144>
- ad6:	e385                	bnez	a5,af6 <main+0x162>
+ aca:	4712                	lw	a4,4(sp)
+ acc:	8b89                	andi	a5,a5,2
+ ace:	c311                	beqz	a4,ad2 <main+0x13e>
+ ad0:	e385                	bnez	a5,af0 <main+0x15c>
       button_state = button_is_pressed;
- ad8:	0017b793          	seqz	a5,a5
- adc:	c43e                	sw	a5,8(sp)
+ ad2:	0017b793          	seqz	a5,a5
+ ad6:	c23e                	sw	a5,4(sp)
       c ++;      
- ade:	0405                	addi	s0,s0,1
+ ad8:	0405                	addi	s0,s0,1
       if (c > 100) {
- ae0:	06500793          	li	a5,101
- ae4:	faf416e3          	bne	s0,a5,a90 <main+0xfc>
+ ada:	06500793          	li	a5,101
+ ade:	faf416e3          	bne	s0,a5,a8a <main+0xf6>
         c = 0;
- ae8:	4401                	li	s0,0
- aea:	b75d                	j	a90 <main+0xfc>
+ ae2:	4401                	li	s0,0
+ ae4:	b75d                	j	a8a <main+0xf6>
 		if(ssd1306_cmd(*cmd_list++))
- aec:	0405                	addi	s0,s0,1
- aee:	3b61                	jal	886 <ssd1306_cmd.isra.0>
- af0:	b7a9                	j	a3a <main+0xa6>
+ ae6:	0405                	addi	s0,s0,1
+ ae8:	3b79                	jal	886 <ssd1306_cmd.isra.0>
+ aea:	bf81                	j	a3a <main+0xa6>
         ssd1306_drawImage(80, 20, start, 24, 24, 1);
- af2:	4785                	li	a5,1
- af4:	bf7d                	j	ab2 <main+0x11e>
+ aec:	4785                	li	a5,1
+ aee:	bf7d                	j	aac <main+0x118>
 		ssd1306_init();
 
     opening();
     
     // clear display
     ssd1306_setbuf(0);
- af6:	3b7d                	jal	8b4 <ssd1306_setbuf.constprop.0>
+ af0:	33d1                	jal	8b4 <ssd1306_setbuf.constprop.0>
+    ssd1306_refresh();
+ af2:	33fd                	jal	8e0 <ssd1306_refresh>
   int jump_progress = 0;
- af8:	4401                	li	s0,0
-    ssd1306_refresh();
- afa:	33dd                	jal	8e0 <ssd1306_refresh>
+ af4:	4401                	li	s0,0
   bool jump_flag = false;
- afc:	4481                	li	s1,0
+ af6:	4481                	li	s1,0
   bool button_state = false;
- afe:	c802                	sw	zero,16(sp)
+ af8:	c602                	sw	zero,12(sp)
   bool flip_flag = false;
- b00:	c602                	sw	zero,12(sp)
+ afa:	c402                	sw	zero,8(sp)
   int flip_c = 0;
- b02:	c202                	sw	zero,4(sp)
+ afc:	c002                	sw	zero,0(sp)
+  int kuina_y = init_kuina_y;
+ afe:	02d00593          	li	a1,45
     uint8_t button_is_pressed = !GPIO_digitalRead(BTN_PIN); 
- b04:	400117b7          	lui	a5,0x40011
- b08:	40078793          	addi	a5,a5,1024 # 40011400 <__global_pointer$+0x20010c00>
- b0c:	479c                	lw	a5,8(a5)
+ b02:	400117b7          	lui	a5,0x40011
+ b06:	40078793          	addi	a5,a5,1024 # 40011400 <__global_pointer$+0x20010c00>
+ b0a:	479c                	lw	a5,8(a5)
     if (button_state && !button_is_pressed && !jump_flag){
- b0e:	4742                	lw	a4,16(sp)
- b10:	8b89                	andi	a5,a5,2
- b12:	c311                	beqz	a4,b16 <main+0x182>
- b14:	efb1                	bnez	a5,b70 <main+0x1dc>
+ b0c:	4732                	lw	a4,12(sp)
+ b0e:	8b89                	andi	a5,a5,2
+ b10:	c311                	beqz	a4,b14 <main+0x180>
+ b12:	efb9                	bnez	a5,b70 <main+0x1dc>
     button_state = button_is_pressed;
- b16:	0017b793          	seqz	a5,a5
- b1a:	c83e                	sw	a5,16(sp)
+ b14:	0017b793          	seqz	a5,a5
+ b18:	c63e                	sw	a5,12(sp)
     if (jump_flag && (max_jump * 2) < jump_progress){
- b1c:	cc99                	beqz	s1,b3a <main+0x1a6>
- b1e:	02800793          	li	a5,40
- b22:	0487cc63          	blt	a5,s0,b7a <main+0x1e6>
+ b1a:	cc89                	beqz	s1,b34 <main+0x1a0>
+ b1c:	03200793          	li	a5,50
+ b20:	0487cc63          	blt	a5,s0,b78 <main+0x1e4>
     else if (jump_flag && max_jump >= jump_progress){
- b26:	4751                	li	a4,20
+ b24:	4765                	li	a4,25
       jump_progress += 1;
- b28:	00140793          	addi	a5,s0,1
+ b26:	00140793          	addi	a5,s0,1
     else if (jump_flag && max_jump >= jump_progress){
- b2c:	04874463          	blt	a4,s0,b74 <main+0x1e0>
+ b2a:	04874563          	blt	a4,s0,b74 <main+0x1e0>
       kuina_y -= 1;
- b30:	4702                	lw	a4,0(sp)
- b32:	177d                	addi	a4,a4,-1 # 9effff <main.c.0dad9b4f+0x9edd68>
+ b2e:	15fd                	addi	a1,a1,-1
       kuina_y += 1;
- b34:	44a2                	lw	s1,8(sp)
- b36:	c03a                	sw	a4,0(sp)
+ b30:	4492                	lw	s1,4(sp)
       jump_progress += 1;
- b38:	843e                	mv	s0,a5
+ b32:	843e                	mv	s0,a5
     flip_c ++;
- b3a:	4792                	lw	a5,4(sp)
- b3c:	0785                	addi	a5,a5,1
- b3e:	c23e                	sw	a5,4(sp)
+ b34:	4782                	lw	a5,0(sp)
+ b36:	0785                	addi	a5,a5,1
+ b38:	c03e                	sw	a5,0(sp)
     if (flip_c > 20) {
- b40:	4712                	lw	a4,4(sp)
- b42:	47d5                	li	a5,21
- b44:	00f71763          	bne	a4,a5,b52 <main+0x1be>
+ b3a:	4702                	lw	a4,0(sp)
+ b3c:	47d5                	li	a5,21
+ b3e:	00f71763          	bne	a4,a5,b4c <main+0x1b8>
       flip_flag = !flip_flag;
- b48:	47b2                	lw	a5,12(sp)
+ b42:	47a2                	lw	a5,8(sp)
       flip_c = 0;
- b4a:	c202                	sw	zero,4(sp)
+ b44:	c002                	sw	zero,0(sp)
       flip_flag = !flip_flag;
- b4c:	0017c793          	xori	a5,a5,1
- b50:	c63e                	sw	a5,12(sp)
+ b46:	0017c793          	xori	a5,a5,1
+ b4a:	c43e                	sw	a5,8(sp)
     if(flip_flag){
- b52:	47b2                	lw	a5,12(sp)
- b54:	c795                	beqz	a5,b80 <main+0x1ec>
+ b4c:	47a2                	lw	a5,8(sp)
+ b4e:	cb95                	beqz	a5,b82 <main+0x1ee>
       ssd1306_drawImage(kuina_x, kuina_y, kuina_1, 16, 16, 0);
- b56:	4741                	li	a4,16
- b58:	6605                	lui	a2,0x1
- b5a:	4781                	li	a5,0
- b5c:	86ba                	mv	a3,a4
- b5e:	d6060613          	addi	a2,a2,-672 # d60 <kuina_1>
+ b50:	4741                	li	a4,16
+ b52:	6605                	lui	a2,0x1
+ b54:	4781                	li	a5,0
+ b56:	86ba                	mv	a3,a4
+ b58:	d6060613          	addi	a2,a2,-672 # d60 <kuina_1>
       ssd1306_drawImage(kuina_x, kuina_y, kuina_2, 16, 16, 0);
- b62:	4582                	lw	a1,0(sp)
- b64:	4551                	li	a0,20
- b66:	faeff0ef          	jal	314 <ssd1306_drawImage>
+ b5c:	453d                	li	a0,15
+ b5e:	c82e                	sw	a1,16(sp)
+ b60:	fb4ff0ef          	jal	314 <ssd1306_drawImage>
+ b64:	45c2                	lw	a1,16(sp)
+ b66:	c82e                	sw	a1,16(sp)
     ssd1306_refresh();
- b6a:	3b9d                	jal	8e0 <ssd1306_refresh>
+ b68:	3ba5                	jal	8e0 <ssd1306_refresh>
     ssd1306_setbuf(0);
- b6c:	33a1                	jal	8b4 <ssd1306_setbuf.constprop.0>
+ b6a:	33a9                	jal	8b4 <ssd1306_setbuf.constprop.0>
   while (1) {
- b6e:	bf59                	j	b04 <main+0x170>
+ b6c:	45c2                	lw	a1,16(sp)
+ b6e:	bf51                	j	b02 <main+0x16e>
     button_state = button_is_pressed;
- b70:	c802                	sw	zero,16(sp)
- b72:	b775                	j	b1e <main+0x18a>
+ b70:	c602                	sw	zero,12(sp)
+ b72:	b76d                	j	b1c <main+0x188>
       kuina_y += 1;
- b74:	4702                	lw	a4,0(sp)
- b76:	0705                	addi	a4,a4,1
- b78:	bf75                	j	b34 <main+0x1a0>
+ b74:	0585                	addi	a1,a1,1
+ b76:	bf6d                	j	b30 <main+0x19c>
       jump_progress = 0;
- b7a:	4401                	li	s0,0
+ b78:	4401                	li	s0,0
       jump_flag = false;
- b7c:	4481                	li	s1,0
- b7e:	bf75                	j	b3a <main+0x1a6>
+ b7a:	4481                	li	s1,0
+      kuina_y = init_kuina_y;
+ b7c:	02d00593          	li	a1,45
+ b80:	bf55                	j	b34 <main+0x1a0>
       ssd1306_drawImage(kuina_x, kuina_y, kuina_2, 16, 16, 0);
- b80:	4741                	li	a4,16
- b82:	6605                	lui	a2,0x1
- b84:	4781                	li	a5,0
- b86:	86ba                	mv	a3,a4
- b88:	d4060613          	addi	a2,a2,-704 # d40 <kuina_2>
- b8c:	bfd9                	j	b62 <main+0x1ce>
- b8e:	0000                	unimp
+ b82:	4741                	li	a4,16
+ b84:	6605                	lui	a2,0x1
+ b86:	4781                	li	a5,0
+ b88:	86ba                	mv	a3,a4
+ b8a:	d4060613          	addi	a2,a2,-704 # d40 <kuina_2>
+ b8e:	b7f9                	j	b5c <main+0x1c8>
  b90:	31647373          	.insn	4, 0x31647373
  b94:	5f363033          	.insn	4, 0x5f363033
  b98:	3269                	jal	522 <handle_reset+0x4a>
@@ -1443,7 +1443,7 @@ uint8_t ssd1306_i2c_init(void)
  ba2:	202d                	jal	bcc <main+0x238>
  ba4:	6974                	.insn	2, 0x6974
  ba6:	656d                	lui	a0,0x1b
- ba8:	2074756f          	jal	a0,485ae <main.c.0dad9b4f+0x46317>
+ ba8:	2074756f          	jal	a0,485ae <main.c.a1016660+0x46318>
  bac:	74696177          	.insn	4, 0x74696177
  bb0:	6e69                	lui	t3,0x1a
  bb2:	6f662067          	.insn	4, 0x6f662067
@@ -1460,12 +1460,12 @@ uint8_t ssd1306_i2c_init(void)
  bcc:	616d                	addi	sp,sp,240
  bce:	72657473          	.insn	4, 0x72657473
  bd2:	6d20                	.insn	2, 0x6d20
- bd4:	0065646f          	jal	s0,56bda <main.c.0dad9b4f+0x54943>
+ bd4:	0065646f          	jal	s0,56bda <main.c.a1016660+0x54944>
  bd8:	7274                	.insn	2, 0x7274
  bda:	6e61                	lui	t3,0x18
  bdc:	74696d73          	.insn	4, 0x74696d73
  be0:	6d20                	.insn	2, 0x6d20
- be2:	0065646f          	jal	s0,56be8 <main.c.0dad9b4f+0x54951>
+ be2:	0065646f          	jal	s0,56be8 <main.c.a1016660+0x54952>
  be6:	0000                	unimp
  be8:	7874                	.insn	2, 0x7874
  bea:	6520                	.insn	2, 0x6520
@@ -1477,7 +1477,7 @@ uint8_t ssd1306_i2c_init(void)
  bf6:	6e61                	lui	t3,0x18
  bf8:	74696d73          	.insn	4, 0x74696d73
  bfc:	6320                	.insn	2, 0x6320
- bfe:	6c706d6f          	jal	s10,7ac4 <main.c.0dad9b4f+0x582d>
+ bfe:	6c706d6f          	jal	s10,7ac4 <main.c.a1016660+0x582e>
  c02:	7465                	lui	s0,0xffff9
  c04:	0065                	c.nop	25
 	...
