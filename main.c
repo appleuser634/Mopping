@@ -2,7 +2,6 @@
 
 #include "ch32v003fun.h"
 #include <stdio.h>
-#include <stdlib.h>
 #include <stdbool.h>
 #include "ssd1306_i2c.h"
 #include "ssd1306.h"
@@ -97,13 +96,13 @@ void show_clear()
 
 void game_over()
 {
-    for (int i = -32; i < 64; i++) {
-      ssd1306_setbuf(0);
-      ssd1306_drawImage(20, 0, game_over_img, 32, 64, 0);
-      ssd1306_drawImage(55, i, go_car_img, 32, 50, 0);
-      ssd1306_refresh();
-    }
-    Delay_Ms(100);
+    // for (int i = -32; i < 64; i++) {
+    //   ssd1306_setbuf(0);
+    //   ssd1306_drawImage(20, 0, game_over_img, 32, 64, 0);
+    //   ssd1306_drawImage(55, i, go_car_img, 32, 50, 0);
+    //   ssd1306_refresh();
+    // }
+    // Delay_Ms(100);
 	  Delay_Ms(2000);
 }
 
@@ -136,6 +135,23 @@ int get_random(void)
 	return random_8 % 11;
 }
 
+void string_concat(char *dest, const char *src) {
+    // destの末尾を見つける
+    while (*dest != '\0') {
+        dest++;
+    }
+    
+    // srcをdestにコピーする
+    while (*src != '\0') {
+        *dest = *src;
+        dest++;
+        src++;
+    }
+    
+    // 最後にヌル文字を追加
+    *dest = '\0';
+}
+
 bool game_loop()
 {
   int init_kuina_x = 15;
@@ -150,11 +166,13 @@ bool game_loop()
   bool button_state = false;
   
   bool jump_flag = false;
-  int max_jump = 25;
+  int max_jump = 30;
   int jump_progress = 0;
 
   int character_x = 130;
   int character_y = 53;
+  int character_w = 8;
+  int character_h = 8;
 
   bool danger_flag = false;
 
@@ -165,6 +183,8 @@ bool game_loop()
   int character_num = 0;
 
   int random_n = get_random();
+
+  int score = 0;
 
   while (1) {
 
@@ -207,15 +227,27 @@ bool game_loop()
     if (danger_flag){
       if (random_n <= 5){
         character_num = 0;
+        character_y = 53;
+        character_w = 8;
+        character_h = 8;
       }
       else if (random_n <= 8){
         character_num = 1;
+        character_y = 45;
+        character_w = 16;
+        character_h = 16;
       }
       else if (random_n <= 9){
         character_num = 2;
+        character_y = 53;
+        character_w = 16;
+        character_h = 8;
       }
       else if (random_n <= 10){
         character_num = 3;
+        character_y = 53;
+        character_w = 8;
+        character_h = 8;
       }
     }
 
@@ -265,7 +297,14 @@ bool game_loop()
     if (character_x < 0){
       character_x = 130;
       danger_flag = false;
-    } 
+      if (character_num == 1){
+        score += 10;
+      }
+      else if (character_num == 2){
+        score += 50;
+      }
+    }
+    score += 1;
     
     // earthworm_x -= 1;
     // if (earthworm_x < -32){
@@ -273,7 +312,15 @@ bool game_loop()
     // } 
     
     // hit judge
-    // if (kuina_x < mongoose_x && (kuina_x + 16) > mongoose_x && )
+    if (kuina_x < character_x && (kuina_x + character_w) > character_x && kuina_y > (init_kuina_y - character_h)) {
+      game_over();
+      break;
+    }
+
+    // draw jump score
+    char score_txt[30] = "Score:"; 
+    string_concat(score_txt, "10");
+		ssd1306_drawstr_sz(0,0, score_txt, 1, fontsize_8x8);
 
     // draw_road();
     ssd1306_refresh();
