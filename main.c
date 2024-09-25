@@ -107,20 +107,33 @@ void game_over()
 	  Delay_Ms(2000);
 }
 
-void draw_road()
+#define NOISE_BITS 8
+#define NOISE_MASK ((1<<NOISE_BITS)-1)
+#define NOISE_POLY_TAP0 31
+#define NOISE_POLY_TAP1 21
+#define NOISE_POLY_TAP2 1
+#define NOISE_POLY_TAP3 0
+uint32_t lfsr = 1;
+
+/*
+ * random byte generator
+ */
+int get_random(void)
 {
-    int road_line[] = {105,10};
-    int dot_line[] = {85,60,35};
+	uint8_t bit;
+	uint32_t new_data;
+	
+	for(bit=0;bit<NOISE_BITS;bit++)
+	{
+		new_data = ((lfsr>>NOISE_POLY_TAP0) ^
+					(lfsr>>NOISE_POLY_TAP1) ^
+					(lfsr>>NOISE_POLY_TAP2) ^
+					(lfsr>>NOISE_POLY_TAP3));
+		lfsr = (lfsr<<1) | (new_data&1);
+	}
 
-    for (int i = 0; i < 2; i++) {
-      ssd1306_drawLine(road_line[i], 0, road_line[i], SSD1306_H, 1);
-    }
-
-    for (int i = 0; i < 3; i++) {
-      for (int j = 0; j < SSD1306_H; j+=10) {
-        ssd1306_drawLine(dot_line[i], j, dot_line[i], j+7, 1);
-      }
-    }
+  int random_8 = lfsr&NOISE_MASK;
+	return random_8 % 11;
 }
 
 bool game_loop()
@@ -140,11 +153,18 @@ bool game_loop()
   int max_jump = 25;
   int jump_progress = 0;
 
-  int mongoose_x = 130;
-  int mongoose_y = 45;
+  int character_x = 130;
+  int character_y = 53;
 
-  int earthworm_x = 130;
-  int earthworm_y = 49;
+  bool danger_flag = false;
+
+  // 0 is grass      50%
+  // 1 is pineapple  30%
+  // 2 is mongoose   10%
+  // 3 is earthworm  10%
+  int character_num = 0;
+
+  int random_n = get_random();
 
   while (1) {
 
@@ -177,32 +197,83 @@ bool game_loop()
       flip_c = 0;
     }
 
-    if(flip_flag){
-      // draw mongoose
-      ssd1306_drawImage(mongoose_x, mongoose_y, mongoose_1, 32, 16, 0);
-      //draw earthworm
-      // ssd1306_drawImage(earthworm_x, earthworm_y, earthworm_1, 16, 16, 0);
+    // get random number
+    if (!danger_flag){
+      random_n = get_random();
+      danger_flag = true;
+    }
+
+    // decision character
+    if (danger_flag){
+      if (random_n <= 5){
+        character_num = 0;
+      }
+      else if (random_n <= 8){
+        character_num = 1;
+      }
+      else if (random_n <= 9){
+        character_num = 2;
+      }
+      else if (random_n <= 10){
+        character_num = 3;
+      }
+    }
+
+
+    // show character
+    if (flip_flag){
+      if (character_num == 0){
+        // draw grass
+        ssd1306_drawImage(character_x, character_y, grass_1, 8, 8, 0);
+      }
+      else if (character_num == 1){
+        // draw pineapple
+        ssd1306_drawImage(character_x, character_y, pineapple_1, 16, 16, 0);
+      }
+      else if (character_num == 2){
+        // draw mongoose
+        ssd1306_drawImage(character_x, character_y, mongoose_1, 16, 8, 0);
+      }
+      else if (character_num == 3){
+        // draw earthworm
+        ssd1306_drawImage(character_x, character_y, earthworm_1, 8, 8, 0);
+      }
       // draw kuina
       ssd1306_drawImage(kuina_x, kuina_y, kuina_1, 16, 16, 0);
     } else {
-      // draw mongoose
-      //ssd1306_drawImage(mongoose_x, mongoose_y, mongoose_2, 30, 12, 0);
-      ssd1306_drawImage(mongoose_x, mongoose_y, mongoose_2, 32, 16, 0);
-      //draw earthworm
-      // ssd1306_drawImage(earthworm_x, earthworm_y, earthworm_2, 16, 16, 0);
+      if (character_num == 0){
+        // draw grass
+        ssd1306_drawImage(character_x, character_y, grass_1, 8, 8, 0);
+      }
+      else if (character_num == 1){
+        // draw pineapple
+        ssd1306_drawImage(character_x, character_y, pineapple_1, 16, 16, 0);
+      }
+      else if (character_num == 2){
+        // draw mongoose
+        ssd1306_drawImage(character_x, character_y, mongoose_2, 16, 8, 0);
+      }
+      else if (character_num == 3){
+        // draw earthworm
+        ssd1306_drawImage(character_x, character_y, earthworm_2, 8, 8, 0);
+      }
       // draw kuina
       ssd1306_drawImage(kuina_x, kuina_y, kuina_2, 16, 16, 0);
     }
     
-    mongoose_x -= 1;
-    if (mongoose_x < -32){
-      mongoose_x = 130;
+    character_x -= 1;
+    if (character_x < 0){
+      character_x = 130;
+      danger_flag = false;
     } 
     
     // earthworm_x -= 1;
     // if (earthworm_x < -32){
     //   earthworm_x = 130;
     // } 
+    
+    // hit judge
+    // if (kuina_x < mongoose_x && (kuina_x + 16) > mongoose_x && )
 
     // draw_road();
     ssd1306_refresh();
