@@ -2,6 +2,7 @@
 
 #include "ch32v003fun.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h>
 #include "ssd1306_i2c.h"
 #include "ssd1306.h"
@@ -139,12 +140,18 @@ bool game_loop()
   int max_jump = 25;
   int jump_progress = 0;
 
+  int mongoose_x = 130;
+  int mongoose_y = 45;
+
+  int earthworm_x = 130;
+  int earthworm_y = 49;
+
   while (1) {
 
     uint8_t button_is_pressed = !GPIO_digitalRead(BTN_PIN); 
 
     // jump trigger
-    if (button_state && !button_is_pressed && !jump_flag){
+    if (!button_state && button_is_pressed && !jump_flag){
       jump_flag = true;
     }
     button_state = button_is_pressed;
@@ -171,11 +178,31 @@ bool game_loop()
     }
 
     if(flip_flag){
+      // draw mongoose
+      ssd1306_drawImage(mongoose_x, mongoose_y, mongoose_1, 32, 16, 0);
+      //draw earthworm
+      // ssd1306_drawImage(earthworm_x, earthworm_y, earthworm_1, 16, 16, 0);
+      // draw kuina
       ssd1306_drawImage(kuina_x, kuina_y, kuina_1, 16, 16, 0);
     } else {
+      // draw mongoose
+      //ssd1306_drawImage(mongoose_x, mongoose_y, mongoose_2, 30, 12, 0);
+      ssd1306_drawImage(mongoose_x, mongoose_y, mongoose_2, 32, 16, 0);
+      //draw earthworm
+      // ssd1306_drawImage(earthworm_x, earthworm_y, earthworm_2, 16, 16, 0);
+      // draw kuina
       ssd1306_drawImage(kuina_x, kuina_y, kuina_2, 16, 16, 0);
     }
     
+    mongoose_x -= 1;
+    if (mongoose_x < -32){
+      mongoose_x = 130;
+    } 
+    
+    // earthworm_x -= 1;
+    // if (earthworm_x < -32){
+    //   earthworm_x = 130;
+    // } 
 
     // draw_road();
     ssd1306_refresh();
