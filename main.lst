@@ -290,7 +290,7 @@ void ssd1306_i2c_setup(void)
      2f0:	4047d703          	lhu	a4,1028(a5) # 40005404 <__global_pointer$+0x20004c04>
 	tempreg &= ~I2C_CTLR2_FREQ;
      2f4:	66c1                	lui	a3,0x10
-     2f6:	fc068693          	addi	a3,a3,-64 # ffc0 <main.c.8c2684e9+0xd8cc>
+     2f6:	fc068693          	addi	a3,a3,-64 # ffc0 <main.c.46010771+0xd8cc>
      2fa:	8f75                	and	a4,a4,a3
 	tempreg |= (FUNCONF_SYSTEM_CORE_CLOCK/SSD1306_I2C_PRERATE)&I2C_CTLR2_FREQ;
      2fc:	01876713          	ori	a4,a4,24
@@ -548,7 +548,7 @@ int get_random(void)
      496:	87ba                	mv	a5,a4
      498:	00027737          	lui	a4,0x27
      49c:	e00006b7          	lui	a3,0xe0000
-     4a0:	10170713          	addi	a4,a4,257 # 27101 <main.c.8c2684e9+0x24a0d>
+     4a0:	10170713          	addi	a4,a4,257 # 27101 <main.c.46010771+0x24a0d>
      4a4:	0f468693          	addi	a3,a3,244 # e00000f4 <__global_pointer$+0xbffff8f4>
      4a8:	4290                	lw	a2,0(a3)
      4aa:	08067593          	andi	a1,a2,128
@@ -897,7 +897,7 @@ uint8_t ssd1306_i2c_send(uint8_t addr, uint8_t *data, uint8_t sz)
 	while((I2C1->STAR2 & I2C_STAR2_BUSY) && (timeout--));
      7d6:	400057b7          	lui	a5,0x40005
 	timeout = TIMEOUT_MAX;
-     7da:	6a070713          	addi	a4,a4,1696 # 186a0 <main.c.8c2684e9+0x15fac>
+     7da:	6a070713          	addi	a4,a4,1696 # 186a0 <main.c.46010771+0x15fac>
 	while((I2C1->STAR2 & I2C_STAR2_BUSY) && (timeout--));
      7de:	40078793          	addi	a5,a5,1024 # 40005400 <__global_pointer$+0x20004c00>
      7e2:	567d                	li	a2,-1
@@ -911,7 +911,7 @@ uint8_t ssd1306_i2c_send(uint8_t addr, uint8_t *data, uint8_t sz)
      7f2:	4501                	li	a0,0
      7f4:	a821                	j	80c <ssd1306_i2c_send.constprop.0.isra.0+0x38>
      7f6:	67e1                	lui	a5,0x18
-     7f8:	6a178793          	addi	a5,a5,1697 # 186a1 <main.c.8c2684e9+0x15fad>
+     7f8:	6a178793          	addi	a5,a5,1697 # 186a1 <main.c.46010771+0x15fad>
 	// send data one byte at a time
 	while(sz--)
 	{
@@ -946,11 +946,11 @@ uint8_t ssd1306_i2c_send(uint8_t addr, uint8_t *data, uint8_t sz)
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_BYTE_TRANSMITTED)) && (timeout--));
      822:	00070637          	lui	a2,0x70
 	timeout = TIMEOUT_MAX;
-     826:	6a068693          	addi	a3,a3,1696 # 186a0 <main.c.8c2684e9+0x15fac>
+     826:	6a068693          	addi	a3,a3,1696 # 186a0 <main.c.46010771+0x15fac>
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      82a:	40070713          	addi	a4,a4,1024 # 40005400 <__global_pointer$+0x20004c00>
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_BYTE_TRANSMITTED)) && (timeout--));
-     82e:	08460613          	addi	a2,a2,132 # 70084 <main.c.8c2684e9+0x6d990>
+     82e:	08460613          	addi	a2,a2,132 # 70084 <main.c.46010771+0x6d990>
      832:	55fd                	li	a1,-1
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      834:	01475503          	lhu	a0,20(a4)
@@ -992,11 +992,11 @@ uint8_t ssd1306_i2c_send(uint8_t addr, uint8_t *data, uint8_t sz)
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED)) && (timeout--));
      878:	00070737          	lui	a4,0x70
 	timeout = TIMEOUT_MAX;
-     87c:	6a060613          	addi	a2,a2,1696 # 186a0 <main.c.8c2684e9+0x15fac>
+     87c:	6a060613          	addi	a2,a2,1696 # 186a0 <main.c.46010771+0x15fac>
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      880:	40068693          	addi	a3,a3,1024 # 40005400 <__global_pointer$+0x20004c00>
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED)) && (timeout--));
-     884:	08270713          	addi	a4,a4,130 # 70082 <main.c.8c2684e9+0x6d98e>
+     884:	08270713          	addi	a4,a4,130 # 70082 <main.c.46010771+0x6d98e>
      888:	537d                	li	t1,-1
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      88a:	0146d283          	lhu	t0,20(a3)
@@ -1023,11 +1023,11 @@ uint8_t ssd1306_i2c_send(uint8_t addr, uint8_t *data, uint8_t sz)
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      8ba:	40005737          	lui	a4,0x40005
 	timeout = TIMEOUT_MAX;
-     8be:	6a068693          	addi	a3,a3,1696 # 186a0 <main.c.8c2684e9+0x15fac>
+     8be:	6a068693          	addi	a3,a3,1696 # 186a0 <main.c.46010771+0x15fac>
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      8c2:	40070713          	addi	a4,a4,1024 # 40005400 <__global_pointer$+0x20004c00>
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_MODE_SELECT)) && (timeout--));
-     8c6:	0605                	addi	a2,a2,1 # 30001 <main.c.8c2684e9+0x2d90d>
+     8c6:	0605                	addi	a2,a2,1 # 30001 <main.c.46010771+0x2d90d>
      8c8:	537d                	li	t1,-1
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      8ca:	01475283          	lhu	t0,20(a4)
@@ -1159,7 +1159,7 @@ uint8_t ssd1306_cmd(uint8_t cmd)
      9aa:	400217b7          	lui	a5,0x40021
      9ae:	01080737          	lui	a4,0x1080
      9b2:	0007a223          	sw	zero,4(a5) # 40021004 <__global_pointer$+0x20020804>
-     9b6:	08170713          	addi	a4,a4,129 # 1080081 <main.c.8c2684e9+0x107d98d>
+     9b6:	08170713          	addi	a4,a4,129 # 1080081 <main.c.46010771+0x107d98d>
      9ba:	c398                	sw	a4,0(a5)
      9bc:	009f0737          	lui	a4,0x9f0
      9c0:	c798                	sw	a4,8(a5)
@@ -1212,7 +1212,7 @@ int main()
     GPIO_port_enable(GPIO_port_D);
      a16:	4c1c                	lw	a5,24(s0)
 	Delay_Ms( 200 );
-     a18:	f8050513          	addi	a0,a0,-128 # 124f80 <main.c.8c2684e9+0x12288c>
+     a18:	f8050513          	addi	a0,a0,-128 # 124f80 <main.c.46010771+0x12288c>
     GPIO_port_enable(GPIO_port_D);
      a1c:	0207e793          	ori	a5,a5,32
      a20:	cc1c                	sw	a5,24(s0)
@@ -1320,7 +1320,7 @@ uint8_t ssd1306_i2c_init(void)
      ab4:	3579                	jal	942 <ssd1306_refresh>
       Delay_Ms(100);
      ab6:	00092537          	lui	a0,0x92
-     aba:	7c050513          	addi	a0,a0,1984 # 927c0 <main.c.8c2684e9+0x900cc>
+     aba:	7c050513          	addi	a0,a0,1984 # 927c0 <main.c.46010771+0x900cc>
      abe:	f42ff0ef          	jal	200 <DelaySysTick>
     for (int i = 0; i < 30; i+=2) {
      ac2:	0409                	addi	s0,s0,2
@@ -1613,7 +1613,7 @@ uint8_t ssd1306_i2c_init(void)
      cc2:	35378793          	addi	a5,a5,851 # 726f6353 <__global_pointer$+0x526f5b53>
      cc6:	c0be                	sw	a5,64(sp)
      cc8:	6791                	lui	a5,0x4
-     cca:	a6578793          	addi	a5,a5,-1435 # 3a65 <main.c.8c2684e9+0x1371>
+     cca:	a6578793          	addi	a5,a5,-1435 # 3a65 <main.c.46010771+0x1371>
      cce:	4659                	li	a2,22
      cd0:	4581                	li	a1,0
      cd2:	00a8                	addi	a0,sp,72
@@ -1781,7 +1781,7 @@ uint8_t ssd1306_i2c_init(void)
      e14:	f6e7dae3          	bge	a5,a4,d88 <main+0x392>
 	  Delay_Ms(2000);
      e18:	00b72537          	lui	a0,0xb72
-     e1c:	b0050513          	addi	a0,a0,-1280 # b71b00 <main.c.8c2684e9+0xb6f40c>
+     e1c:	b0050513          	addi	a0,a0,-1280 # b71b00 <main.c.46010771+0xb6f40c>
      e20:	be0ff0ef          	jal	200 <DelaySysTick>
 }
      e24:	bb11                	j	b38 <main+0x142>
@@ -1841,7 +1841,7 @@ uint8_t ssd1306_i2c_init(void)
      e8a:	202d                	jal	eb4 <main+0x4be>
      e8c:	6974                	.insn	2, 0x6974
      e8e:	656d                	lui	a0,0x1b
-     e90:	2074756f          	jal	a0,48896 <main.c.8c2684e9+0x461a2>
+     e90:	2074756f          	jal	a0,48896 <main.c.46010771+0x461a2>
      e94:	74696177          	.insn	4, 0x74696177
      e98:	6e69                	lui	t3,0x1a
      e9a:	6f662067          	.insn	4, 0x6f662067
@@ -1860,12 +1860,12 @@ uint8_t ssd1306_i2c_init(void)
      eb8:	616d                	addi	sp,sp,240
      eba:	72657473          	.insn	4, 0x72657473
      ebe:	6d20                	.insn	2, 0x6d20
-     ec0:	0065646f          	jal	s0,56ec6 <main.c.8c2684e9+0x547d2>
+     ec0:	0065646f          	jal	s0,56ec6 <main.c.46010771+0x547d2>
      ec4:	7274                	.insn	2, 0x7274
      ec6:	6e61                	lui	t3,0x18
      ec8:	74696d73          	.insn	4, 0x74696d73
      ecc:	6d20                	.insn	2, 0x6d20
-     ece:	0065646f          	jal	s0,56ed4 <main.c.8c2684e9+0x547e0>
+     ece:	0065646f          	jal	s0,56ed4 <main.c.46010771+0x547e0>
      ed2:	0000                	unimp
      ed4:	7874                	.insn	2, 0x7874
      ed6:	6520                	.insn	2, 0x6520
@@ -1877,7 +1877,7 @@ uint8_t ssd1306_i2c_init(void)
      ee2:	6e61                	lui	t3,0x18
      ee4:	74696d73          	.insn	4, 0x74696d73
      ee8:	6320                	.insn	2, 0x6320
-     eea:	6c706d6f          	jal	s10,7db0 <main.c.8c2684e9+0x56bc>
+     eea:	6c706d6f          	jal	s10,7db0 <main.c.46010771+0x56bc>
      eee:	7465                	lui	s0,0xffff9
      ef0:	0065                	c.nop	25
 	...

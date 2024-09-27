@@ -63,7 +63,6 @@ SYMBOL TABLE:
 20000020 g       .bss	00000000 _sbss
 00000926 g     F .text	0000001c memcpy
 00000000 g     F .init	0000009c InterruptVector
-000026f4  w      .debug_info	00000000 .hidden main.c.8c2684e9
 000000c0 g     F .text	0000002c .hidden __hidden___udivsi3
 000000c0 g     F .text	0000002c .hidden __udivsi3
 000000a0 g       .init	00000000 _einit
@@ -96,6 +95,7 @@ SYMBOL TABLE:
 000005b6 g     F .text	00000002 WWDG_IRQHandler
 000005b6 g     F .text	00000002 TIM2_IRQHandler
 20000800 g       .bss	00000000 _eusrstack
+000026f4  w      .debug_info	00000000 .hidden main.c.46010771
 000005b6 g     F .text	00000002 SW_Handler
 000005b6 g     F .text	00000002 TIM1_BRK_IRQHandler
 20000020 g       .data	00000000 _edata

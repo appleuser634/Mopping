@@ -7,7 +7,53 @@
 #include "ssd1306.h"
 #include "ch32v003_GPIO_branchless.h"
 
-#include "bomb.h"
+#include "images.h"
+
+#define NOISE_BITS 8
+#define NOISE_MASK ((1<<NOISE_BITS)-1)
+#define NOISE_POLY_TAP0 31
+#define NOISE_POLY_TAP1 21
+#define NOISE_POLY_TAP2 1
+#define NOISE_POLY_TAP3 0
+uint32_t lfsr = 1;
+
+/*
+ * random byte generator
+ */
+int get_random(void)
+{
+	uint8_t bit;
+	uint32_t new_data;
+	
+	for(bit=0;bit<NOISE_BITS;bit++)
+	{
+		new_data = ((lfsr>>NOISE_POLY_TAP0) ^
+					(lfsr>>NOISE_POLY_TAP1) ^
+					(lfsr>>NOISE_POLY_TAP2) ^
+					(lfsr>>NOISE_POLY_TAP3));
+		lfsr = (lfsr<<1) | (new_data&1);
+	}
+
+  int random_8 = lfsr&NOISE_MASK;
+	return random_8 % 11;
+}
+
+void string_concat(char *dest, const char *src) {
+    // destの末尾を見つける
+    while (*dest != '\0') {
+        dest++;
+    }
+    
+    // srcをdestにコピーする
+    while (*src != '\0') {
+        *dest = *src;
+        dest++;
+        src++;
+    }
+    
+    // 最後にヌル文字を追加
+    *dest = '\0';
+}
 
 #define BTN_PIN GPIOv_from_PORT_PIN(GPIO_port_D, 1)
 
@@ -106,51 +152,6 @@ void game_over()
 	  Delay_Ms(2000);
 }
 
-#define NOISE_BITS 8
-#define NOISE_MASK ((1<<NOISE_BITS)-1)
-#define NOISE_POLY_TAP0 31
-#define NOISE_POLY_TAP1 21
-#define NOISE_POLY_TAP2 1
-#define NOISE_POLY_TAP3 0
-uint32_t lfsr = 1;
-
-/*
- * random byte generator
- */
-int get_random(void)
-{
-	uint8_t bit;
-	uint32_t new_data;
-	
-	for(bit=0;bit<NOISE_BITS;bit++)
-	{
-		new_data = ((lfsr>>NOISE_POLY_TAP0) ^
-					(lfsr>>NOISE_POLY_TAP1) ^
-					(lfsr>>NOISE_POLY_TAP2) ^
-					(lfsr>>NOISE_POLY_TAP3));
-		lfsr = (lfsr<<1) | (new_data&1);
-	}
-
-  int random_8 = lfsr&NOISE_MASK;
-	return random_8 % 11;
-}
-
-void string_concat(char *dest, const char *src) {
-    // destの末尾を見つける
-    while (*dest != '\0') {
-        dest++;
-    }
-    
-    // srcをdestにコピーする
-    while (*src != '\0') {
-        *dest = *src;
-        dest++;
-        src++;
-    }
-    
-    // 最後にヌル文字を追加
-    *dest = '\0';
-}
 
 bool game_loop()
 {
