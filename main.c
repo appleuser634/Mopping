@@ -174,10 +174,7 @@ bool game_loop()
   int max_jump = 30;
   int jump_progress = 0;
 
-  int character_x = 130;
-  int character_y = 53;
-  int character_w = 8;
-  int character_h = 8;
+  struct character enemy = {130,53,8,8};
 
   bool danger_flag = false;
 
@@ -185,7 +182,7 @@ bool game_loop()
   // 1 is pineapple  30%
   // 2 is mongoose   10%
   // 3 is earthworm  10%
-  int character_num = 0;
+  int enemy_num = 0;
 
   int random_n = get_random();
 
@@ -231,81 +228,81 @@ bool game_loop()
     // decision character
     if (danger_flag){
       if (random_n <= 5){
-        character_num = 0;
-        character_y = 53;
-        character_w = 8;
-        character_h = 8;
+        enemy_num = 0;
+        enemy.y = 53;
+        enemy.w = 8;
+        enemy.h = 8;
       }
       else if (random_n <= 8){
-        character_num = 1;
-        character_y = 45;
-        character_w = 16;
-        character_h = 16;
+        enemy_num = 1;
+        enemy.y = 45;
+        enemy.w = 16;
+        enemy.h = 16;
       }
       else if (random_n <= 9){
-        character_num = 2;
-        character_y = 53;
-        character_w = 16;
-        character_h = 8;
+        enemy_num = 2;
+        enemy.y = 53;
+        enemy.w = 16;
+        enemy.h = 8;
       }
       else if (random_n <= 10){
-        character_num = 3;
-        character_y = 53;
-        character_w = 8;
-        character_h = 8;
+        enemy_num = 3;
+        enemy.y = 53;
+        enemy.w = 8;
+        enemy.h = 8;
       }
     }
 
 
     // show character
     if (flip_flag){
-      if (character_num == 0){
+      if (enemy_num == 0){
         // draw grass
-        ssd1306_drawImage(character_x, character_y, grass_1, 8, 8, 0);
+        ssd1306_drawImage(enemy.x, enemy.y, grass_1, 8, 8, 0);
       }
-      else if (character_num == 1){
+      else if (enemy_num == 1){
         // draw pineapple
-        ssd1306_drawImage(character_x, character_y, pineapple_1, 16, 16, 0);
+        ssd1306_drawImage(enemy.x, enemy.y, pineapple_1, 16, 16, 0);
       }
-      else if (character_num == 2){
+      else if (enemy_num == 2){
         // draw mongoose
-        ssd1306_drawImage(character_x, character_y, mongoose_1, 16, 8, 0);
+        ssd1306_drawImage(enemy.x, enemy.y, mongoose_1, 16, 8, 0);
       }
-      else if (character_num == 3){
+      else if (enemy_num == 3){
         // draw earthworm
-        ssd1306_drawImage(character_x, character_y, earthworm_1, 8, 8, 0);
+        ssd1306_drawImage(enemy.x, enemy.y, earthworm_1, 8, 8, 0);
       }
       // draw kuina
       ssd1306_drawImage(kuina.x, kuina.y, kuina_1, 16, 16, 0);
     } else {
-      if (character_num == 0){
+      if (enemy_num == 0){
         // draw grass
-        ssd1306_drawImage(character_x, character_y, grass_1, 8, 8, 0);
+        ssd1306_drawImage(enemy.x, enemy.y, grass_1, 8, 8, 0);
       }
-      else if (character_num == 1){
+      else if (enemy_num == 1){
         // draw pineapple
-        ssd1306_drawImage(character_x, character_y, pineapple_1, 16, 16, 0);
+        ssd1306_drawImage(enemy.x, enemy.y, pineapple_1, 16, 16, 0);
       }
-      else if (character_num == 2){
+      else if (enemy_num == 2){
         // draw mongoose
-        ssd1306_drawImage(character_x, character_y, mongoose_2, 16, 8, 0);
+        ssd1306_drawImage(enemy.x, enemy.y, mongoose_2, 16, 8, 0);
       }
-      else if (character_num == 3){
+      else if (enemy_num == 3){
         // draw earthworm
-        ssd1306_drawImage(character_x, character_y, earthworm_2, 8, 8, 0);
+        ssd1306_drawImage(enemy.x, enemy.y, earthworm_2, 8, 8, 0);
       }
       // draw kuina
       ssd1306_drawImage(kuina.x, kuina.y, kuina_2, 16, 16, 0);
     }
     
-    character_x -= 1;
-    if (character_x < 0){
-      character_x = 130;
+    enemy.x -= 1;
+    if (enemy.x < 0){
+      enemy.x = 130;
       danger_flag = false;
-      if (character_num == 1){
+      if (enemy_num == 1){
         score += 10;
       }
-      else if (character_num == 2){
+      else if (enemy_num == 2){
         score += 50;
       }
     }
@@ -317,7 +314,7 @@ bool game_loop()
     // } 
     
     // hit judge
-    if (kuina.x < character_x && (kuina.x + character_w) > character_x && kuina.y > (init_kuina_y - character_h)) {
+    if (kuina.x < enemy.x && (kuina.x + enemy.w) > enemy.x && kuina.y > (init_kuina_y - enemy.h)) {
       game_over();
       break;
     }

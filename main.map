@@ -69,12 +69,11 @@ SYMBOL TABLE:
 000005b6 g     F .text	00000002 SPI1_IRQHandler
 000005b6 g     F .text	00000002 AWU_IRQHandler
 000005b6 g     F .text	00000002 EXTI7_0_IRQHandler
-00001918  w      .debug_info	00000000 .hidden ch32v003fun.c.6d50d047
+000018fd  w      .debug_info	00000000 .hidden ch32v003fun.c.6d50d047
 000005b6 g     F .text	00000002 DMA1_Channel4_IRQHandler
 000005b6 g     F .text	00000002 ADC1_IRQHandler
 20000420 g       .bss	00000000 _ebss
 000005b6 g     F .text	00000002 DMA1_Channel7_IRQHandler
-000026ee  w      .debug_info	00000000 .hidden main.c.e70586a3
 000000ec g     F .text	00000008 .hidden __umodsi3
 000005b6 g     F .text	00000002 I2C1_EV_IRQHandler
 000005b6 g     F .text	00000002 DMA1_Channel6_IRQHandler
@@ -89,6 +88,7 @@ SYMBOL TABLE:
 000009f6 g     F .text	0000047e main
 000005b6 g     F .text	00000002 DMA1_Channel5_IRQHandler
 000000b8 g     F .text	00000058 .hidden __divsi3
+000026d3  w      .debug_info	00000000 .hidden main.c.3af01452
 000009a2 g     F .text	00000054 SystemInit
 00000000 g       .init	00000000 _sinit
 000005b6 g     F .text	00000002 DMA1_Channel3_IRQHandler

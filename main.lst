@@ -290,7 +290,7 @@ void ssd1306_i2c_setup(void)
      2f0:	4047d703          	lhu	a4,1028(a5) # 40005404 <__global_pointer$+0x20004c04>
 	tempreg &= ~I2C_CTLR2_FREQ;
      2f4:	66c1                	lui	a3,0x10
-     2f6:	fc068693          	addi	a3,a3,-64 # ffc0 <main.c.e70586a3+0xd8d2>
+     2f6:	fc068693          	addi	a3,a3,-64 # ffc0 <main.c.3af01452+0xd8ed>
      2fa:	8f75                	and	a4,a4,a3
 	tempreg |= (FUNCONF_SYSTEM_CORE_CLOCK/SSD1306_I2C_PRERATE)&I2C_CTLR2_FREQ;
      2fc:	01876713          	ori	a4,a4,24
@@ -548,7 +548,7 @@ int get_random(void)
      496:	87ba                	mv	a5,a4
      498:	00027737          	lui	a4,0x27
      49c:	e00006b7          	lui	a3,0xe0000
-     4a0:	10170713          	addi	a4,a4,257 # 27101 <main.c.e70586a3+0x24a13>
+     4a0:	10170713          	addi	a4,a4,257 # 27101 <main.c.3af01452+0x24a2e>
      4a4:	0f468693          	addi	a3,a3,244 # e00000f4 <__global_pointer$+0xbffff8f4>
      4a8:	4290                	lw	a2,0(a3)
      4aa:	08067593          	andi	a1,a2,128
@@ -897,7 +897,7 @@ uint8_t ssd1306_i2c_send(uint8_t addr, uint8_t *data, uint8_t sz)
 	while((I2C1->STAR2 & I2C_STAR2_BUSY) && (timeout--));
      7d6:	400057b7          	lui	a5,0x40005
 	timeout = TIMEOUT_MAX;
-     7da:	6a070713          	addi	a4,a4,1696 # 186a0 <main.c.e70586a3+0x15fb2>
+     7da:	6a070713          	addi	a4,a4,1696 # 186a0 <main.c.3af01452+0x15fcd>
 	while((I2C1->STAR2 & I2C_STAR2_BUSY) && (timeout--));
      7de:	40078793          	addi	a5,a5,1024 # 40005400 <__global_pointer$+0x20004c00>
      7e2:	567d                	li	a2,-1
@@ -911,7 +911,7 @@ uint8_t ssd1306_i2c_send(uint8_t addr, uint8_t *data, uint8_t sz)
      7f2:	4501                	li	a0,0
      7f4:	a821                	j	80c <ssd1306_i2c_send.constprop.0.isra.0+0x38>
      7f6:	67e1                	lui	a5,0x18
-     7f8:	6a178793          	addi	a5,a5,1697 # 186a1 <main.c.e70586a3+0x15fb3>
+     7f8:	6a178793          	addi	a5,a5,1697 # 186a1 <main.c.3af01452+0x15fce>
 	// send data one byte at a time
 	while(sz--)
 	{
@@ -946,11 +946,11 @@ uint8_t ssd1306_i2c_send(uint8_t addr, uint8_t *data, uint8_t sz)
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_BYTE_TRANSMITTED)) && (timeout--));
      822:	00070637          	lui	a2,0x70
 	timeout = TIMEOUT_MAX;
-     826:	6a068693          	addi	a3,a3,1696 # 186a0 <main.c.e70586a3+0x15fb2>
+     826:	6a068693          	addi	a3,a3,1696 # 186a0 <main.c.3af01452+0x15fcd>
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      82a:	40070713          	addi	a4,a4,1024 # 40005400 <__global_pointer$+0x20004c00>
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_BYTE_TRANSMITTED)) && (timeout--));
-     82e:	08460613          	addi	a2,a2,132 # 70084 <main.c.e70586a3+0x6d996>
+     82e:	08460613          	addi	a2,a2,132 # 70084 <main.c.3af01452+0x6d9b1>
      832:	55fd                	li	a1,-1
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      834:	01475503          	lhu	a0,20(a4)
@@ -992,11 +992,11 @@ uint8_t ssd1306_i2c_send(uint8_t addr, uint8_t *data, uint8_t sz)
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED)) && (timeout--));
      878:	00070737          	lui	a4,0x70
 	timeout = TIMEOUT_MAX;
-     87c:	6a060613          	addi	a2,a2,1696 # 186a0 <main.c.e70586a3+0x15fb2>
+     87c:	6a060613          	addi	a2,a2,1696 # 186a0 <main.c.3af01452+0x15fcd>
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      880:	40068693          	addi	a3,a3,1024 # 40005400 <__global_pointer$+0x20004c00>
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED)) && (timeout--));
-     884:	08270713          	addi	a4,a4,130 # 70082 <main.c.e70586a3+0x6d994>
+     884:	08270713          	addi	a4,a4,130 # 70082 <main.c.3af01452+0x6d9af>
      888:	537d                	li	t1,-1
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      88a:	0146d283          	lhu	t0,20(a3)
@@ -1023,11 +1023,11 @@ uint8_t ssd1306_i2c_send(uint8_t addr, uint8_t *data, uint8_t sz)
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      8ba:	40005737          	lui	a4,0x40005
 	timeout = TIMEOUT_MAX;
-     8be:	6a068693          	addi	a3,a3,1696 # 186a0 <main.c.e70586a3+0x15fb2>
+     8be:	6a068693          	addi	a3,a3,1696 # 186a0 <main.c.3af01452+0x15fcd>
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      8c2:	40070713          	addi	a4,a4,1024 # 40005400 <__global_pointer$+0x20004c00>
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_MODE_SELECT)) && (timeout--));
-     8c6:	0605                	addi	a2,a2,1 # 30001 <main.c.e70586a3+0x2d913>
+     8c6:	0605                	addi	a2,a2,1 # 30001 <main.c.3af01452+0x2d92e>
      8c8:	537d                	li	t1,-1
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      8ca:	01475283          	lhu	t0,20(a4)
@@ -1159,7 +1159,7 @@ uint8_t ssd1306_cmd(uint8_t cmd)
      9aa:	400217b7          	lui	a5,0x40021
      9ae:	01080737          	lui	a4,0x1080
      9b2:	0007a223          	sw	zero,4(a5) # 40021004 <__global_pointer$+0x20020804>
-     9b6:	08170713          	addi	a4,a4,129 # 1080081 <main.c.e70586a3+0x107d993>
+     9b6:	08170713          	addi	a4,a4,129 # 1080081 <main.c.3af01452+0x107d9ae>
      9ba:	c398                	sw	a4,0(a5)
      9bc:	009f0737          	lui	a4,0x9f0
      9c0:	c798                	sw	a4,8(a5)
@@ -1212,7 +1212,7 @@ int main()
     GPIO_port_enable(GPIO_port_D);
      a16:	4c1c                	lw	a5,24(s0)
 	Delay_Ms( 200 );
-     a18:	f8050513          	addi	a0,a0,-128 # 124f80 <main.c.e70586a3+0x122892>
+     a18:	f8050513          	addi	a0,a0,-128 # 124f80 <main.c.3af01452+0x1228ad>
     GPIO_port_enable(GPIO_port_D);
      a1c:	0207e793          	ori	a5,a5,32
      a20:	cc1c                	sw	a5,24(s0)
@@ -1320,7 +1320,7 @@ uint8_t ssd1306_i2c_init(void)
      ab4:	3579                	jal	942 <ssd1306_refresh>
       Delay_Ms(100);
      ab6:	00092537          	lui	a0,0x92
-     aba:	7c050513          	addi	a0,a0,1984 # 927c0 <main.c.e70586a3+0x900d2>
+     aba:	7c050513          	addi	a0,a0,1984 # 927c0 <main.c.3af01452+0x900ed>
      abe:	f42ff0ef          	jal	200 <DelaySysTick>
     for (int i = 0; i < 30; i+=2) {
      ac2:	0409                	addi	s0,s0,2
@@ -1393,27 +1393,24 @@ uint8_t ssd1306_i2c_init(void)
      b36:	3531                	jal	942 <ssd1306_refresh>
   int random_n = get_random();
      b38:	8dfff0ef          	jal	416 <get_random>
-  struct character kuina = {init_kuina_x,init_kuina_y,16,16};
-     b3c:	02d00793          	li	a5,45
-     b40:	c83e                	sw	a5,16(sp)
-  int character_y = 53;
-     b42:	03500793          	li	a5,53
-  int character_h = 8;
+  struct character enemy = {130,53,8,8};
+     b3c:	03500793          	li	a5,53
+     b40:	c03e                	sw	a5,0(sp)
+     b42:	08200793          	li	a5,130
      b46:	4421                	li	s0,8
-  int character_y = 53;
-     b48:	c03e                	sw	a5,0(sp)
-  int character_x = 130;
-     b4a:	08200793          	li	a5,130
+     b48:	c23e                	sw	a5,4(sp)
+  struct character kuina = {init_kuina_x,init_kuina_y,16,16};
+     b4a:	02d00793          	li	a5,45
   int random_n = get_random();
      b4e:	d02a                	sw	a0,32(sp)
-  int character_num = 0;
-     b50:	4481                	li	s1,0
+  struct character enemy = {130,53,8,8};
+     b50:	c422                	sw	s0,8(sp)
+  struct character kuina = {init_kuina_x,init_kuina_y,16,16};
+     b52:	c83e                	sw	a5,16(sp)
+  int enemy_num = 0;
+     b54:	4481                	li	s1,0
   bool danger_flag = false;
-     b52:	ce02                	sw	zero,28(sp)
-  int character_w = 8;
-     b54:	c422                	sw	s0,8(sp)
-  int character_x = 130;
-     b56:	c23e                	sw	a5,4(sp)
+     b56:	ce02                	sw	zero,28(sp)
   int jump_progress = 0;
      b58:	cc02                	sw	zero,24(sp)
   bool jump_flag = false;
@@ -1495,12 +1492,12 @@ uint8_t ssd1306_i2c_init(void)
     if (flip_flag){
      bdc:	47d2                	lw	a5,20(sp)
      bde:	cfa5                	beqz	a5,c56 <main+0x260>
-      if (character_num == 0){
+      if (enemy_num == 0){
      be0:	1c048563          	beqz	s1,daa <main+0x3b4>
-      else if (character_num == 1){
+      else if (enemy_num == 1){
      be4:	4785                	li	a5,1
      be6:	02f49e63          	bne	s1,a5,c22 <main+0x22c>
-        ssd1306_drawImage(character_x, character_y, pineapple_1, 16, 16, 0);
+        ssd1306_drawImage(enemy.x, enemy.y, pineapple_1, 16, 16, 0);
      bea:	4582                	lw	a1,0(sp)
      bec:	4512                	lw	a0,4(sp)
      bee:	4741                	li	a4,16
@@ -1527,14 +1524,14 @@ uint8_t ssd1306_i2c_init(void)
       jump_flag = false;
      c16:	d202                	sw	zero,36(sp)
      c18:	b761                	j	ba0 <main+0x1aa>
-        character_y = 45;
+        enemy.y = 45;
      c1a:	02d00793          	li	a5,45
      c1e:	c03e                	sw	a5,0(sp)
      c20:	b7e9                	j	bea <main+0x1f4>
-      else if (character_num == 2){
+      else if (enemy_num == 2){
      c22:	4789                	li	a5,2
      c24:	00f49e63          	bne	s1,a5,c40 <main+0x24a>
-        ssd1306_drawImage(character_x, character_y, mongoose_1, 16, 8, 0);
+        ssd1306_drawImage(enemy.x, enemy.y, mongoose_1, 16, 8, 0);
      c28:	4582                	lw	a1,0(sp)
      c2a:	4512                	lw	a0,4(sp)
      c2c:	6609                	lui	a2,0x2
@@ -1545,7 +1542,7 @@ uint8_t ssd1306_i2c_init(void)
      c38:	eeeff0ef          	jal	326 <ssd1306_drawImage>
      c3c:	4489                	li	s1,2
      c3e:	a241                	j	dbe <main+0x3c8>
-        ssd1306_drawImage(character_x, character_y, earthworm_1, 8, 8, 0);
+        ssd1306_drawImage(enemy.x, enemy.y, earthworm_1, 8, 8, 0);
      c40:	4582                	lw	a1,0(sp)
      c42:	4512                	lw	a0,4(sp)
      c44:	4721                	li	a4,8
@@ -1555,9 +1552,9 @@ uint8_t ssd1306_i2c_init(void)
      c4e:	ed8ff0ef          	jal	326 <ssd1306_drawImage>
      c52:	448d                	li	s1,3
      c54:	a2ad                	j	dbe <main+0x3c8>
-      if (character_num == 0){
+      if (enemy_num == 0){
      c56:	e095                	bnez	s1,c7a <main+0x284>
-        ssd1306_drawImage(character_x, character_y, grass_1, 8, 8, 0);
+        ssd1306_drawImage(enemy.x, enemy.y, grass_1, 8, 8, 0);
      c58:	4582                	lw	a1,0(sp)
      c5a:	4512                	lw	a0,4(sp)
      c5c:	4721                	li	a4,8
@@ -1573,10 +1570,10 @@ uint8_t ssd1306_i2c_init(void)
      c72:	86ba                	mv	a3,a4
      c74:	82860613          	addi	a2,a2,-2008 # 1828 <kuina_2>
      c78:	aa89                	j	dca <main+0x3d4>
-      else if (character_num == 1){
+      else if (enemy_num == 1){
      c7a:	4785                	li	a5,1
      c7c:	00f49e63          	bne	s1,a5,c98 <main+0x2a2>
-        ssd1306_drawImage(character_x, character_y, pineapple_1, 16, 16, 0);
+        ssd1306_drawImage(enemy.x, enemy.y, pineapple_1, 16, 16, 0);
      c80:	4582                	lw	a1,0(sp)
      c82:	4512                	lw	a0,4(sp)
      c84:	4741                	li	a4,16
@@ -1587,10 +1584,10 @@ uint8_t ssd1306_i2c_init(void)
      c90:	e96ff0ef          	jal	326 <ssd1306_drawImage>
      c94:	4485                	li	s1,1
      c96:	bfd9                	j	c6c <main+0x276>
-      else if (character_num == 2){
+      else if (enemy_num == 2){
      c98:	4789                	li	a5,2
      c9a:	1cf49063          	bne	s1,a5,e5a <main+0x464>
-        ssd1306_drawImage(character_x, character_y, mongoose_2, 16, 8, 0);
+        ssd1306_drawImage(enemy.x, enemy.y, mongoose_2, 16, 8, 0);
      c9e:	4582                	lw	a1,0(sp)
      ca0:	4512                	lw	a0,4(sp)
      ca2:	6609                	lui	a2,0x2
@@ -1601,18 +1598,18 @@ uint8_t ssd1306_i2c_init(void)
      cae:	e78ff0ef          	jal	326 <ssd1306_drawImage>
      cb2:	4489                	li	s1,2
      cb4:	bf65                	j	c6c <main+0x276>
-      character_x = 130;
+      enemy.x = 130;
      cb6:	08200793          	li	a5,130
       danger_flag = false;
      cba:	ce02                	sw	zero,28(sp)
-      character_x = 130;
+      enemy.x = 130;
      cbc:	c23e                	sw	a5,4(sp)
     char score_txt[30] = "Score:"; 
      cbe:	726f67b7          	lui	a5,0x726f6
      cc2:	35378793          	addi	a5,a5,851 # 726f6353 <__global_pointer$+0x526f5b53>
      cc6:	c0be                	sw	a5,64(sp)
      cc8:	6791                	lui	a5,0x4
-     cca:	a6578793          	addi	a5,a5,-1435 # 3a65 <main.c.e70586a3+0x1377>
+     cca:	a6578793          	addi	a5,a5,-1435 # 3a65 <main.c.3af01452+0x1392>
      cce:	4659                	li	a2,22
      cd0:	4581                	li	a1,0
      cd2:	00a8                	addi	a0,sp,72
@@ -1721,16 +1718,16 @@ uint8_t ssd1306_i2c_init(void)
      d98:	b7b9                	j	ce6 <main+0x2f0>
     if (flip_flag){
      d9a:	4752                	lw	a4,20(sp)
-        character_h = 8;
+        enemy.h = 8;
      d9c:	843e                	mv	s0,a5
-        character_w = 8;
+        enemy.w = 8;
      d9e:	c43e                	sw	a5,8(sp)
-        character_y = 53;
+        enemy.y = 53;
      da0:	03500793          	li	a5,53
      da4:	c03e                	sw	a5,0(sp)
     if (flip_flag){
      da6:	ea0709e3          	beqz	a4,c58 <main+0x262>
-        ssd1306_drawImage(character_x, character_y, grass_1, 8, 8, 0);
+        ssd1306_drawImage(enemy.x, enemy.y, grass_1, 8, 8, 0);
      daa:	4582                	lw	a1,0(sp)
      dac:	4512                	lw	a0,4(sp)
      dae:	4721                	li	a4,8
@@ -1749,16 +1746,16 @@ uint8_t ssd1306_i2c_init(void)
      dca:	45c2                	lw	a1,16(sp)
      dcc:	453d                	li	a0,15
      dce:	d58ff0ef          	jal	326 <ssd1306_drawImage>
-    character_x -= 1;
+    enemy.x -= 1;
      dd2:	4792                	lw	a5,4(sp)
      dd4:	17fd                	addi	a5,a5,-1
      dd6:	c23e                	sw	a5,4(sp)
-    if (character_x < 0){
+    if (enemy.x < 0){
      dd8:	4712                	lw	a4,4(sp)
      dda:	57fd                	li	a5,-1
      ddc:	ecf70de3          	beq	a4,a5,cb6 <main+0x2c0>
      de0:	4732                	lw	a4,12(sp)
-    if (kuina.x < character_x && (kuina.x + character_w) > character_x && kuina.y > (init_kuina_y - character_h)) {
+    if (kuina.x < enemy.x && (kuina.x + enemy.w) > enemy.x && kuina.y > (init_kuina_y - enemy.h)) {
      de2:	47bd                	li	a5,15
      de4:	ce3a                	sw	a4,28(sp)
      de6:	4712                	lw	a4,4(sp)
@@ -1779,46 +1776,46 @@ uint8_t ssd1306_i2c_init(void)
      e12:	f6e7dae3          	bge	a5,a4,d86 <main+0x390>
 	  Delay_Ms(2000);
      e16:	00b72537          	lui	a0,0xb72
-     e1a:	b0050513          	addi	a0,a0,-1280 # b71b00 <main.c.e70586a3+0xb6f412>
+     e1a:	b0050513          	addi	a0,a0,-1280 # b71b00 <main.c.3af01452+0xb6f42d>
      e1e:	be2ff0ef          	jal	200 <DelaySysTick>
 }
      e22:	bb19                	j	b38 <main+0x142>
     if (flip_flag){
      e24:	47d2                	lw	a5,20(sp)
-        character_h = 16;
+        enemy.h = 16;
      e26:	4441                	li	s0,16
-        character_w = 16;
+        enemy.w = 16;
      e28:	c422                	sw	s0,8(sp)
     if (flip_flag){
      e2a:	de0798e3          	bnez	a5,c1a <main+0x224>
-        character_y = 45;
+        enemy.y = 45;
      e2e:	02d00793          	li	a5,45
      e32:	c03e                	sw	a5,0(sp)
      e34:	b5b1                	j	c80 <main+0x28a>
-        character_h = 8;
+        enemy.h = 8;
      e36:	843e                	mv	s0,a5
     if (flip_flag){
      e38:	4752                	lw	a4,20(sp)
-        character_w = 16;
+        enemy.w = 16;
      e3a:	47c1                	li	a5,16
      e3c:	c43e                	sw	a5,8(sp)
-        character_y = 53;
+        enemy.y = 53;
      e3e:	03500793          	li	a5,53
      e42:	c03e                	sw	a5,0(sp)
     if (flip_flag){
      e44:	de0712e3          	bnez	a4,c28 <main+0x232>
      e48:	bd99                	j	c9e <main+0x2a8>
      e4a:	4752                	lw	a4,20(sp)
-        character_h = 8;
+        enemy.h = 8;
      e4c:	843e                	mv	s0,a5
-        character_w = 8;
+        enemy.w = 8;
      e4e:	c43e                	sw	a5,8(sp)
-        character_y = 53;
+        enemy.y = 53;
      e50:	03500793          	li	a5,53
      e54:	c03e                	sw	a5,0(sp)
     if (flip_flag){
      e56:	de0715e3          	bnez	a4,c40 <main+0x24a>
-        ssd1306_drawImage(character_x, character_y, earthworm_2, 8, 8, 0);
+        ssd1306_drawImage(enemy.x, enemy.y, earthworm_2, 8, 8, 0);
      e5a:	4582                	lw	a1,0(sp)
      e5c:	4512                	lw	a0,4(sp)
      e5e:	4721                	li	a4,8
@@ -1838,7 +1835,7 @@ uint8_t ssd1306_i2c_init(void)
      e86:	202d                	jal	eb0 <main+0x4ba>
      e88:	6974                	.insn	2, 0x6974
      e8a:	656d                	lui	a0,0x1b
-     e8c:	2074756f          	jal	a0,48892 <main.c.e70586a3+0x461a4>
+     e8c:	2074756f          	jal	a0,48892 <main.c.3af01452+0x461bf>
      e90:	74696177          	.insn	4, 0x74696177
      e94:	6e69                	lui	t3,0x1a
      e96:	6f662067          	.insn	4, 0x6f662067
@@ -1857,12 +1854,12 @@ uint8_t ssd1306_i2c_init(void)
      eb4:	616d                	addi	sp,sp,240
      eb6:	72657473          	.insn	4, 0x72657473
      eba:	6d20                	.insn	2, 0x6d20
-     ebc:	0065646f          	jal	s0,56ec2 <main.c.e70586a3+0x547d4>
+     ebc:	0065646f          	jal	s0,56ec2 <main.c.3af01452+0x547ef>
      ec0:	7274                	.insn	2, 0x7274
      ec2:	6e61                	lui	t3,0x18
      ec4:	74696d73          	.insn	4, 0x74696d73
      ec8:	6d20                	.insn	2, 0x6d20
-     eca:	0065646f          	jal	s0,56ed0 <main.c.e70586a3+0x547e2>
+     eca:	0065646f          	jal	s0,56ed0 <main.c.3af01452+0x547fd>
      ece:	0000                	unimp
      ed0:	7874                	.insn	2, 0x7874
      ed2:	6520                	.insn	2, 0x6520
@@ -1874,7 +1871,7 @@ uint8_t ssd1306_i2c_init(void)
      ede:	6e61                	lui	t3,0x18
      ee0:	74696d73          	.insn	4, 0x74696d73
      ee4:	6320                	.insn	2, 0x6320
-     ee6:	6c706d6f          	jal	s10,7dac <main.c.e70586a3+0x56be>
+     ee6:	6c706d6f          	jal	s10,7dac <main.c.3af01452+0x56d9>
      eea:	7465                	lui	s0,0xffff9
      eec:	0065                	c.nop	25
 	...
