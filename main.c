@@ -152,15 +152,19 @@ void game_over()
 	  Delay_Ms(2000);
 }
 
+struct character {
+  int x;
+  int y;
+  int w;
+  int h;
+};
 
 bool game_loop()
 {
   int init_kuina_x = 15;
   int init_kuina_y = 45;
-
-  int kuina_x = init_kuina_x;
-  int kuina_y = init_kuina_y;
-  
+  struct character kuina = {init_kuina_x,init_kuina_y,16,16};
+ 
   int flip_c = 0;
   bool flip_flag = false;
 
@@ -201,14 +205,14 @@ bool game_loop()
     if (jump_flag && (max_jump * 2) < jump_progress){
       jump_progress = 0;
       jump_flag = false;
-      kuina_y = init_kuina_y;
+      kuina.y = init_kuina_y;
     }
     else if (jump_flag && max_jump >= jump_progress){
-      kuina_y -= 1;
+      kuina.y -= 1;
       jump_progress += 1;
     }
     else if (jump_flag && max_jump < jump_progress){
-      kuina_y += 1;
+      kuina.y += 1;
       jump_progress += 1;
     }
 
@@ -272,7 +276,7 @@ bool game_loop()
         ssd1306_drawImage(character_x, character_y, earthworm_1, 8, 8, 0);
       }
       // draw kuina
-      ssd1306_drawImage(kuina_x, kuina_y, kuina_1, 16, 16, 0);
+      ssd1306_drawImage(kuina.x, kuina.y, kuina_1, 16, 16, 0);
     } else {
       if (character_num == 0){
         // draw grass
@@ -291,7 +295,7 @@ bool game_loop()
         ssd1306_drawImage(character_x, character_y, earthworm_2, 8, 8, 0);
       }
       // draw kuina
-      ssd1306_drawImage(kuina_x, kuina_y, kuina_2, 16, 16, 0);
+      ssd1306_drawImage(kuina.x, kuina.y, kuina_2, 16, 16, 0);
     }
     
     character_x -= 1;
@@ -313,7 +317,7 @@ bool game_loop()
     // } 
     
     // hit judge
-    if (kuina_x < character_x && (kuina_x + character_w) > character_x && kuina_y > (init_kuina_y - character_h)) {
+    if (kuina.x < character_x && (kuina.x + character_w) > character_x && kuina.y > (init_kuina_y - character_h)) {
       game_over();
       break;
     }
