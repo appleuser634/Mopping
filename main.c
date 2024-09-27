@@ -153,6 +153,9 @@ void game_over()
 }
 
 struct character {
+  const unsigned char *img;
+  const unsigned char *img_1;
+  const unsigned char *img_2;
   int x;
   int y;
   int w;
@@ -163,8 +166,10 @@ bool game_loop()
 {
   int init_kuina_x = 15;
   int init_kuina_y = 45;
-  struct character kuina = {init_kuina_x,init_kuina_y,16,16};
+  struct character kuina = {kuina_1,kuina_1,kuina_2,init_kuina_x,init_kuina_y,16,16};
  
+  struct character enemy = {pineapple_1,pineapple_1,pineapple_1,130,53,8,8};
+
   int flip_c = 0;
   bool flip_flag = false;
 
@@ -173,8 +178,6 @@ bool game_loop()
   bool jump_flag = false;
   int max_jump = 30;
   int jump_progress = 0;
-
-  struct character enemy = {130,53,8,8};
 
   bool danger_flag = false;
 
@@ -228,72 +231,52 @@ bool game_loop()
     // decision character
     if (danger_flag){
       if (random_n <= 5){
-        enemy_num = 0;
+        enemy.img = grass_1;
+        enemy.img_1 = grass_1;
+        enemy.img_2 = grass_1;
         enemy.y = 53;
         enemy.w = 8;
         enemy.h = 8;
       }
       else if (random_n <= 8){
-        enemy_num = 1;
+        enemy.img = pineapple_1;
+        enemy.img_1 = pineapple_1;
+        enemy.img_2 = pineapple_1;
         enemy.y = 45;
         enemy.w = 16;
         enemy.h = 16;
       }
       else if (random_n <= 9){
-        enemy_num = 2;
+        enemy.img = mongoose_1;
+        enemy.img_1 = mongoose_1;
+        enemy.img_2 = mongoose_2;
         enemy.y = 53;
         enemy.w = 16;
         enemy.h = 8;
       }
       else if (random_n <= 10){
-        enemy_num = 3;
+        enemy.img = earthworm_1;
+        enemy.img_1 = earthworm_1;
+        enemy.img_2 = earthworm_2;
         enemy.y = 53;
         enemy.w = 8;
         enemy.h = 8;
       }
     }
 
-
-    // show character
+    // flip character
     if (flip_flag){
-      if (enemy_num == 0){
-        // draw grass
-        ssd1306_drawImage(enemy.x, enemy.y, grass_1, 8, 8, 0);
-      }
-      else if (enemy_num == 1){
-        // draw pineapple
-        ssd1306_drawImage(enemy.x, enemy.y, pineapple_1, 16, 16, 0);
-      }
-      else if (enemy_num == 2){
-        // draw mongoose
-        ssd1306_drawImage(enemy.x, enemy.y, mongoose_1, 16, 8, 0);
-      }
-      else if (enemy_num == 3){
-        // draw earthworm
-        ssd1306_drawImage(enemy.x, enemy.y, earthworm_1, 8, 8, 0);
-      }
-      // draw kuina
-      ssd1306_drawImage(kuina.x, kuina.y, kuina_1, 16, 16, 0);
+      enemy.img = enemy.img_1;
+      kuina.img = kuina.img_1;
     } else {
-      if (enemy_num == 0){
-        // draw grass
-        ssd1306_drawImage(enemy.x, enemy.y, grass_1, 8, 8, 0);
-      }
-      else if (enemy_num == 1){
-        // draw pineapple
-        ssd1306_drawImage(enemy.x, enemy.y, pineapple_1, 16, 16, 0);
-      }
-      else if (enemy_num == 2){
-        // draw mongoose
-        ssd1306_drawImage(enemy.x, enemy.y, mongoose_2, 16, 8, 0);
-      }
-      else if (enemy_num == 3){
-        // draw earthworm
-        ssd1306_drawImage(enemy.x, enemy.y, earthworm_2, 8, 8, 0);
-      }
-      // draw kuina
-      ssd1306_drawImage(kuina.x, kuina.y, kuina_2, 16, 16, 0);
+      enemy.img = enemy.img_2;
+      kuina.img = kuina.img_2;
     }
+
+    // draw enemy
+    ssd1306_drawImage(enemy.x, enemy.y, enemy.img, enemy.w, enemy.h, 0);
+    // draw kuina
+    ssd1306_drawImage(kuina.x, kuina.y, kuina.img, kuina.w, kuina.h, 0);
     
     enemy.x -= 1;
     if (enemy.x < 0){
