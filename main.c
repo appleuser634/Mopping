@@ -17,6 +17,18 @@
 #define NOISE_POLY_TAP3 0
 uint32_t lfsr = 1;
 
+typedef struct {
+  int id;
+  const unsigned char *img;
+  const unsigned char *img_1;
+  const unsigned char *img_2;
+  int speed;
+  int x;
+  int y;
+  int w;
+  int h;
+} character;
+
 /*
  * random byte generator
  */
@@ -68,27 +80,27 @@ void init_gpio()
 
 void opening()
 {
-
-
     bool button_state = false;
     int c = 0;
 
-    for (int i = 0; i < 30; i+=2) {
+    for (int i = 0; i < 38; i+=1) {
       ssd1306_setbuf(0);
-      ssd1306_drawImage(i, 0, title, 24, 64, 0);
+			ssd1306_drawstr_sz(i,20, "MOPPING", 1, fontsize_8x8);
       ssd1306_refresh();
-      Delay_Ms(100);
+      Delay_Ms(10);
     }
     
     while (1) {
       ssd1306_setbuf(0);
 
-      ssd1306_drawImage(30, 0, title, 24, 64, 0);
+			ssd1306_drawstr_sz(38,20, "MOPPING", 1, fontsize_8x8);
 
       if (c > 50) {
-        ssd1306_drawImage(80, 20, start, 24, 24, 0);
+			  ssd1306_drawstr_sz(45,45, "start", 1, fontsize_8x8);
+        // ssd1306_drawRect(50, 50, 40, 10, 0);
       } else {
-        ssd1306_drawImage(80, 20, start, 24, 24, 1);
+			  ssd1306_drawstr_sz(45,45, "start", 0, fontsize_8x8);
+        // ssd1306_drawRect(50, 50, 40, 10, 1);
       }
 
       ssd1306_refresh();
@@ -106,6 +118,92 @@ void opening()
         c = 0;
       } 
     }
+   
+    int kuina_x = -130;
+    int kuina_y = 0;
+    int kuina_num = 20;
+    character kuinas[20] = {
+      {100,kuina_1,kuina_1,kuina_2,1,kuina_x,kuina_y,16,16},
+      {100,kuina_1,kuina_1,kuina_2,1,kuina_x+10,kuina_y+50,16,16},
+      {100,kuina_1,kuina_1,kuina_2,1,kuina_x+20,kuina_y+10,16,16},
+      {100,kuina_1,kuina_1,kuina_2,1,kuina_x+30,kuina_y+30,16,16},
+      {100,kuina_1,kuina_1,kuina_2,1,kuina_x+40,kuina_y+0,16,16},
+      {100,kuina_1,kuina_1,kuina_2,1,kuina_x+50,kuina_y+50,16,16},
+      {100,kuina_1,kuina_1,kuina_2,1,kuina_x+60,kuina_y+20,16,16},
+      {100,kuina_1,kuina_1,kuina_2,1,kuina_x+70,kuina_y+40,16,16},
+      {100,kuina_1,kuina_1,kuina_2,1,kuina_x+80,kuina_y+10,16,16},
+      {100,kuina_1,kuina_1,kuina_2,1,kuina_x+90,kuina_y+50,16,16},
+      {100,kuina_1,kuina_1,kuina_2,1,kuina_x+100,kuina_y,16,16},
+      {100,kuina_1,kuina_1,kuina_2,1,kuina_x+110,kuina_y+50,16,16},
+      {100,kuina_1,kuina_1,kuina_2,1,kuina_x+120,kuina_y+10,16,16},
+      {100,kuina_1,kuina_1,kuina_2,1,kuina_x+130,kuina_y+30,16,16},
+      {100,kuina_1,kuina_1,kuina_2,1,kuina_x+140,kuina_y+0,16,16},
+      {100,kuina_1,kuina_1,kuina_2,1,kuina_x+150,kuina_y+50,16,16},
+      {100,kuina_1,kuina_1,kuina_2,1,kuina_x+160,kuina_y+20,16,16},
+      {100,kuina_1,kuina_1,kuina_2,1,kuina_x+170,kuina_y+40,16,16},
+      {100,kuina_1,kuina_1,kuina_2,1,kuina_x+180,kuina_y+10,16,16},
+      {100,kuina_1,kuina_1,kuina_2,1,kuina_x+190,kuina_y+50,16,16}
+    };
+
+    while (1) {
+      ssd1306_setbuf(0);
+      
+      if (kuinas[18].x < 64){
+        ssd1306_drawstr_sz(38,20, "MOPPING", 1, fontsize_8x8);
+        ssd1306_drawstr_sz(45,45, "start", 1, fontsize_8x8); 
+      }
+
+      for (int i = 0; i < kuina_num; i++) {
+        if (kuinas[i].x > 0){
+          if (c < 10){
+            kuinas[i].img = kuinas[i].img_1;
+          }
+          else {
+            kuinas[i].img = kuinas[i].img_2; 
+          }
+          ssd1306_drawImage(kuinas[i].x, kuinas[i].y, kuinas[i].img, kuinas[i].w, kuinas[i].h, 0);
+        }
+        kuinas[i].x += kuinas[i].speed;
+      }
+
+      ssd1306_refresh();
+
+     
+      if (kuinas[0].x > 128) {
+        break;
+      }
+      
+      c ++;      
+      if (c > 20) {
+        c = 0;
+      } 
+    }    
+    
+    character mongoose = {2,mongoose_left_1,mongoose_left_1,mongoose_left_2,1,0,30,16,8};
+
+    while (1) {
+      ssd1306_setbuf(0);
+      
+      if (c < 10){
+        mongoose.img = mongoose.img_1;
+      }
+      else {
+        mongoose.img = mongoose.img_2; 
+      }
+      ssd1306_drawImage(mongoose.x, mongoose.y, mongoose.img, mongoose.w, mongoose.h, 0);
+
+      ssd1306_refresh();
+     
+      mongoose.x += mongoose.speed;
+      if (mongoose.x > 128) {
+        break;
+      }
+
+      c ++;      
+      if (c > 20) {
+        c = 0;
+      } 
+    }    
 }
 
 void show_level(int stage)
@@ -152,17 +250,6 @@ void game_over()
 	  Delay_Ms(2000);
 }
 
-typedef struct {
-  int id;
-  const unsigned char *img;
-  const unsigned char *img_1;
-  const unsigned char *img_2;
-  int x;
-  int y;
-  int w;
-  int h;
-} character;
-
 void gen_enemy(character *enemy)
 { 
   int character_n = get_random(10);
@@ -171,6 +258,7 @@ void gen_enemy(character *enemy)
     enemy[2].img = grass_1;
     enemy[2].img_1 = grass_1;
     enemy[2].img_2 = grass_1;
+    enemy[2].speed = 1;
     enemy[2].y = 53;
     enemy[2].w = 8;
     enemy[2].h = 8;
@@ -180,6 +268,7 @@ void gen_enemy(character *enemy)
     enemy[2].img = pineapple_1;
     enemy[2].img_1 = pineapple_1;
     enemy[2].img_2 = pineapple_1;
+    enemy[2].speed = 1;
     enemy[2].y = 45;
     enemy[2].w = 16;
     enemy[2].h = 16;
@@ -189,6 +278,7 @@ void gen_enemy(character *enemy)
     enemy[2].img = mongoose_1;
     enemy[2].img_1 = mongoose_1;
     enemy[2].img_2 = mongoose_2;
+    enemy[2].speed = 1;
     enemy[2].y = 53;
     enemy[2].w = 16;
     enemy[2].h = 8;
@@ -198,6 +288,7 @@ void gen_enemy(character *enemy)
     enemy[2].img = earthworm_1;
     enemy[2].img_1 = earthworm_1;
     enemy[2].img_2 = earthworm_2;
+    enemy[2].speed = 1;
     enemy[2].y = 53;
     enemy[2].w = 8;
     enemy[2].h = 8;
@@ -212,13 +303,13 @@ bool game_loop()
 {
   int init_kuina_x = 15;
   int init_kuina_y = 45;
-  character kuina = {100,kuina_1,kuina_1,kuina_2,init_kuina_x,init_kuina_y,16,16};
+  character kuina = {100,kuina_1,kuina_1,kuina_2,0,init_kuina_x,init_kuina_y,16,16};
  
   // struct character enemy = {pineapple_1,pineapple_1,pineapple_1,130,53,8,8};
   character enemy[3] = {
-    {0,grass_1,grass_1,grass_1,130,53,8,8},
-    {0,grass_1,grass_1,grass_1,160,53,8,8},
-    {1,pineapple_1,pineapple_1,pineapple_1,210,45,16,16}
+    {0,grass_1,grass_1,grass_1,1,130,53,8,8},
+    {0,grass_1,grass_1,grass_1,1,160,53,8,8},
+    {1,pineapple_1,pineapple_1,pineapple_1,1,210,45,16,16}
   };
 
 
