@@ -121,8 +121,8 @@ void opening()
    
     int kuina_x = -130;
     int kuina_y = 0;
-    int kuina_num = 20;
-    character kuinas[20] = {
+    int kuina_num = 19;
+    character kuinas[19] = {
       {100,kuina_1,kuina_1,kuina_2,1,kuina_x,kuina_y,16,16},
       {100,kuina_1,kuina_1,kuina_2,1,kuina_x+10,kuina_y+50,16,16},
       {100,kuina_1,kuina_1,kuina_2,1,kuina_x+20,kuina_y+10,16,16},
@@ -142,7 +142,6 @@ void opening()
       {100,kuina_1,kuina_1,kuina_2,1,kuina_x+160,kuina_y+20,16,16},
       {100,kuina_1,kuina_1,kuina_2,1,kuina_x+170,kuina_y+40,16,16},
       {100,kuina_1,kuina_1,kuina_2,1,kuina_x+180,kuina_y+10,16,16},
-      {100,kuina_1,kuina_1,kuina_2,1,kuina_x+190,kuina_y+50,16,16}
     };
 
     while (1) {
@@ -371,48 +370,6 @@ bool game_loop()
       gen_enemy(enemy);
     }
 
-    // get random number
-    // if (!danger_flag){
-    //   random_n = get_random();
-    //   danger_flag = true;
-    // }
-
-    // // decision character
-    // if (danger_flag){
-    //   if (random_n <= 5){
-    //     enemy.img = grass_1;
-    //     enemy.img_1 = grass_1;
-    //     enemy.img_2 = grass_1;
-    //     enemy.y = 53;
-    //     enemy.w = 8;
-    //     enemy.h = 8;
-    //   }
-    //   else if (random_n <= 8){
-    //     enemy.img = pineapple_1;
-    //     enemy.img_1 = pineapple_1;
-    //     enemy.img_2 = pineapple_1;
-    //     enemy.y = 45;
-    //     enemy.w = 16;
-    //     enemy.h = 16;
-    //   }
-    //   else if (random_n <= 9){
-    //     enemy.img = mongoose_1;
-    //     enemy.img_1 = mongoose_1;
-    //     enemy.img_2 = mongoose_2;
-    //     enemy.y = 53;
-    //     enemy.w = 16;
-    //     enemy.h = 8;
-    //   }
-    //   else if (random_n <= 10){
-    //     enemy.img = earthworm_1;
-    //     enemy.img_1 = earthworm_1;
-    //     enemy.img_2 = earthworm_2;
-    //     enemy.y = 53;
-    //     enemy.w = 8;
-    //     enemy.h = 8;
-    //   }
-    // }
-
     // flip character
     if (flip_flag){
       enemy[0].img = enemy[0].img_1;
@@ -449,7 +406,7 @@ bool game_loop()
       enemy[i].x -= 1;
 
       // hit judge
-      if (kuina.x < enemy[i].x && (kuina.x + kuina.w) > enemy[i].x && kuina.y > (init_kuina_y - enemy[i].h)) {
+      if (kuina.x + 8 < enemy[i].x + 8 && (kuina.x + 8 + kuina.w) > enemy[i].x + 8 && kuina.y > (init_kuina_y - enemy[i].h)) {
         if (enemy[i].id == 1 | enemy[i].id == 2){
           game_over();
           break;

@@ -4,9 +4,9 @@ main.elf:     file format elf32-littleriscv
 SYMBOL TABLE:
 00000000 l    d  .init	00000000 .init
 000000a0 l    d  .text	00000000 .text
-00001c30 l    d  .fini	00000000 .fini
+00001c10 l    d  .fini	00000000 .fini
 20000000 l    d  .dalign	00000000 .dalign
-00001c30 l    d  .dlalign	00000000 .dlalign
+00001c10 l    d  .dlalign	00000000 .dlalign
 20000000 l    d  .data	00000000 .data
 20000020 l    d  .bss	00000000 .bss
 00000000 l    d  .riscv.attributes	00000000 .riscv.attributes
@@ -29,7 +29,7 @@ SYMBOL TABLE:
 00000368 l     F .text	00000042 get_random
 20000000 l     O .data	00000004 lfsr
 000003aa l     F .text	0000009c ssd1306_drawstr_sz.constprop.0
-00001374 l     O .text	00000800 fontdata
+00001354 l     O .text	00000800 fontdata
 00000446 l     F .text	0000005e ssd1306_drawFastHLine.constprop.0
 000004a4 l     F .text	0000005a ssd1306_drawFastVLine.constprop.0
 000004fe l     F .text	00000048 ssd1306_drawRect.constprop.0
@@ -39,21 +39,21 @@ SYMBOL TABLE:
 000006ec l     F .text	00000014 __puts_uart
 00000796 l     F .text	000001bc mini_vpprintf
 00000974 l     F .text	0000001e ssd1306_i2c_error.isra.0
-00001360 l     O .text	00000014 errstr
+00001340 l     O .text	00000014 errstr
 00000992 l     F .text	00000114 ssd1306_i2c_send.constprop.0.isra.0
 00000aa6 l     F .text	0000001c ssd1306_cmd.isra.0
 00000ad4 l     F .text	00000010 ssd1306_setbuf.constprop.0
 00000b00 l     F .text	00000060 ssd1306_refresh
-00000b60 l     F .text	00000384 opening
-00001c10 l     O .text	00000020 kuina_1
-00001bf0 l     O .text	00000020 kuina_2
-00001be0 l     O .text	00000010 mongoose_left_1
-00001bd0 l     O .text	00000010 mongoose_left_2
-00001b74 l     O .text	0000001a ssd1306_init_array
+00000b60 l     F .text	00000364 opening
+00001bf0 l     O .text	00000020 kuina_1
+00001bd0 l     O .text	00000020 kuina_2
+00001bc0 l     O .text	00000010 mongoose_left_1
+00001bb0 l     O .text	00000010 mongoose_left_2
+00001b54 l     O .text	0000001a ssd1306_init_array
 20000018 l     O .data	00000008 grass_1
-00001bb0 l     O .text	00000020 pineapple_1
-00001ba0 l     O .text	00000010 mongoose_1
-00001b90 l     O .text	00000010 mongoose_2
+00001b90 l     O .text	00000020 pineapple_1
+00001b80 l     O .text	00000010 mongoose_1
+00001b70 l     O .text	00000010 mongoose_2
 20000010 l     O .data	00000008 earthworm_1
 20000008 l     O .data	00000008 earthworm_2
 00000000 l    df *ABS*	00000000 muldi3.o
@@ -70,6 +70,7 @@ SYMBOL TABLE:
 00000ae4 g     F .text	0000001c memcpy
 00000000 g     F .init	0000009c InterruptVector
 000000c0 g     F .text	0000002c .hidden __hidden___udivsi3
+00002a85  w      .debug_info	00000000 .hidden main.c.0c265729
 000000c0 g     F .text	0000002c .hidden __udivsi3
 000000a0 g       .init	00000000 _einit
 00000774 g     F .text	00000002 SPI1_IRQHandler
@@ -89,13 +90,12 @@ SYMBOL TABLE:
 000000a0 g     F .text	00000014 .hidden __mulsi3
 00000774 g     F .text	00000002 DefaultIRQHandler
 20000000 g       .dalign	00000000 _data_vma
-00002a85  w      .debug_info	00000000 .hidden main.c.ca7a85b7
 00000776 g     F .text	0000000e NMI_RCC_CSS_IRQHandler
 00000ac2 g     F .text	00000012 memset
-00000f38 g     F .text	0000032e main
+00000f18 g     F .text	0000032e main
 00000774 g     F .text	00000002 DMA1_Channel5_IRQHandler
 000000b8 g     F .text	00000058 .hidden __divsi3
-00000ee4 g     F .text	00000054 SystemInit
+00000ec4 g     F .text	00000054 SystemInit
 00000000 g       .init	00000000 _sinit
 00000774 g     F .text	00000002 DMA1_Channel3_IRQHandler
 00000774 g     F .text	00000002 TIM1_UP_IRQHandler
@@ -105,7 +105,7 @@ SYMBOL TABLE:
 00000774 g     F .text	00000002 SW_Handler
 00000774 g     F .text	00000002 TIM1_BRK_IRQHandler
 20000020 g       .data	00000000 _edata
-00001c30 g       .dlalign	00000000 _data_lma
+00001c10 g       .dlalign	00000000 _data_lma
 00000110 g     F .text	00000024 .hidden __modsi3
 00000774 g     F .text	00000002 DMA1_Channel2_IRQHandler
 00000700 g     F .text	00000074 handle_reset
