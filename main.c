@@ -237,18 +237,6 @@ void show_clear()
     ssd1306_refresh();
 }
 
-void game_over()
-{
-    // for (int i = -32; i < 64; i++) {
-    //   ssd1306_setbuf(0);
-    //   ssd1306_drawImage(20, 0, game_over_img, 32, 64, 0);
-    //   ssd1306_drawImage(55, i, go_car_img, 32, 50, 0);
-    //   ssd1306_refresh();
-    // }
-    // Delay_Ms(100);
-	  Delay_Ms(2000);
-}
-
 void gen_enemy(character *enemy)
 { 
   int character_n = get_random(10);
@@ -333,7 +321,9 @@ bool game_loop()
 
   int score = 0;
 
-  while (1) {
+  bool loop_flag = true;
+
+  while (loop_flag) {
 
     uint8_t button_is_pressed = !GPIO_digitalRead(BTN_PIN); 
 
@@ -408,7 +398,8 @@ bool game_loop()
       // hit judge
       if (kuina.x + 12 < enemy[i].x + 12 && (kuina.x + 12 + kuina.w) > enemy[i].x + 12 && kuina.y > (init_kuina_y - enemy[i].h)) {
         if (enemy[i].id == 1 | enemy[i].id == 2){
-          game_over();
+		      ssd1306_drawstr_sz(25,30, "GAME OVER!!", 1, fontsize_8x8);
+          loop_flag = false;
           break;
         }
         else if (enemy[i].id == 3){
@@ -427,6 +418,7 @@ bool game_loop()
     ssd1306_refresh();
     ssd1306_setbuf(0);
   }
+	Delay_Ms(2000);
 }
 
 int main()
