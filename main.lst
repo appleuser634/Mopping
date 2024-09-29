@@ -5,38 +5,38 @@ main.elf:     file format elf32-littleriscv
 Disassembly of section .init:
 
 00000000 <InterruptVector>:
-   0:	5420006f          	j	542 <handle_reset>
+   0:	67e0006f          	j	67e <handle_reset>
    4:	00000000          	.word	0x00000000
-   8:	000005b8          	.word	0x000005b8
-   c:	000005b6          	.word	0x000005b6
+   8:	000006f4          	.word	0x000006f4
+   c:	000006f2          	.word	0x000006f2
 	...
-  30:	000005b6          	.word	0x000005b6
+  30:	000006f2          	.word	0x000006f2
   34:	00000000          	.word	0x00000000
-  38:	000005b6          	.word	0x000005b6
+  38:	000006f2          	.word	0x000006f2
   3c:	00000000          	.word	0x00000000
-  40:	000005b6          	.word	0x000005b6
-  44:	000005b6          	.word	0x000005b6
-  48:	000005b6          	.word	0x000005b6
-  4c:	000005b6          	.word	0x000005b6
-  50:	000005b6          	.word	0x000005b6
-  54:	000005b6          	.word	0x000005b6
-  58:	000005b6          	.word	0x000005b6
-  5c:	000005b6          	.word	0x000005b6
-  60:	000005b6          	.word	0x000005b6
-  64:	000005b6          	.word	0x000005b6
-  68:	000005b6          	.word	0x000005b6
-  6c:	000005b6          	.word	0x000005b6
-  70:	000005b6          	.word	0x000005b6
-  74:	000005b6          	.word	0x000005b6
-  78:	000005b6          	.word	0x000005b6
-  7c:	000005b6          	.word	0x000005b6
-  80:	000005b6          	.word	0x000005b6
-  84:	000005b6          	.word	0x000005b6
-  88:	000005b6          	.word	0x000005b6
-  8c:	000005b6          	.word	0x000005b6
-  90:	000005b6          	.word	0x000005b6
-  94:	000005b6          	.word	0x000005b6
-  98:	000005b6          	.word	0x000005b6
+  40:	000006f2          	.word	0x000006f2
+  44:	000006f2          	.word	0x000006f2
+  48:	000006f2          	.word	0x000006f2
+  4c:	000006f2          	.word	0x000006f2
+  50:	000006f2          	.word	0x000006f2
+  54:	000006f2          	.word	0x000006f2
+  58:	000006f2          	.word	0x000006f2
+  5c:	000006f2          	.word	0x000006f2
+  60:	000006f2          	.word	0x000006f2
+  64:	000006f2          	.word	0x000006f2
+  68:	000006f2          	.word	0x000006f2
+  6c:	000006f2          	.word	0x000006f2
+  70:	000006f2          	.word	0x000006f2
+  74:	000006f2          	.word	0x000006f2
+  78:	000006f2          	.word	0x000006f2
+  7c:	000006f2          	.word	0x000006f2
+  80:	000006f2          	.word	0x000006f2
+  84:	000006f2          	.word	0x000006f2
+  88:	000006f2          	.word	0x000006f2
+  8c:	000006f2          	.word	0x000006f2
+  90:	000006f2          	.word	0x000006f2
+  94:	000006f2          	.word	0x000006f2
+  98:	000006f2          	.word	0x000006f2
   9c:	0000                	unimp
 	...
 
@@ -290,7 +290,7 @@ void ssd1306_i2c_setup(void)
      2f0:	4047d703          	lhu	a4,1028(a5) # 40005404 <__global_pointer$+0x20004c04>
 	tempreg &= ~I2C_CTLR2_FREQ;
      2f4:	66c1                	lui	a3,0x10
-     2f6:	fc068693          	addi	a3,a3,-64 # ffc0 <main.c.5d39cb8d+0xda52>
+     2f6:	fc068693          	addi	a3,a3,-64 # ffc0 <main.c.99fa8f27+0xd773>
      2fa:	8f75                	and	a4,a4,a3
 	tempreg |= (FUNCONF_SYSTEM_CORE_CLOCK/SSD1306_I2C_PRERATE)&I2C_CTLR2_FREQ;
      2fc:	01876713          	ori	a4,a4,24
@@ -332,18 +332,10 @@ void ssd1306_i2c_setup(void)
 void ssd1306_drawImage(int x, int y, const unsigned char* input, uint8_t width, uint8_t height, uint8_t color_mode) {
      326:	fcc10113          	addi	sp,sp,-52
      32a:	d03e                	sw	a5,32(sp)
-	int x_absolute;
-	int y_absolute;
-	uint8_t pixel;
-	uint8_t bytes_to_draw = width / 8;
      32c:	0036d793          	srli	a5,a3,0x3
      330:	0f86f693          	andi	a3,a3,248
      334:	c63e                	sw	a5,12(sp)
-	uint16_t buffer_addr;
-
-	for (uint8_t line = 0; line < height; line++) {
      336:	00a687b3          	add	a5,a3,a0
-void ssd1306_drawImage(int x, int y, const unsigned char* input, uint8_t width, uint8_t height, uint8_t color_mode) {
      33a:	d622                	sw	s0,44(sp)
      33c:	d426                	sw	s1,40(sp)
      33e:	d806                	sw	ra,48(sp)
@@ -352,6 +344,11 @@ void ssd1306_drawImage(int x, int y, const unsigned char* input, uint8_t width, 
      344:	cc32                	sw	a2,24(sp)
      346:	ce3a                	sw	a4,28(sp)
      348:	c43e                	sw	a5,8(sp)
+	int y_absolute;
+	uint8_t pixel;
+	uint8_t bytes_to_draw = width / 8;
+	uint16_t buffer_addr;
+
 	for (uint8_t line = 0; line < height; line++) {
      34a:	4401                	li	s0,0
 			break;
@@ -361,1613 +358,1698 @@ void ssd1306_drawImage(int x, int y, const unsigned char* input, uint8_t width, 
 		// bitmask for current pixel in vertical (output) byte
 		uint8_t v_mask = 1 << (y_absolute & 7);
      34c:	4485                	li	s1,1
-		y_absolute = y + line;
-     34e:	47d2                	lw	a5,20(sp)
-     350:	97a2                	add	a5,a5,s0
-    if (y_absolute < 0) {
-     352:	0007de63          	bgez	a5,36e <ssd1306_drawImage+0x48>
 	for (uint8_t line = 0; line < height; line++) {
-     356:	47f2                	lw	a5,28(sp)
-     358:	0405                	addi	s0,s0,1
-     35a:	0ff47413          	zext.b	s0,s0
-     35e:	fef468e3          	bltu	s0,a5,34e <ssd1306_drawImage+0x28>
+     34e:	47f2                	lw	a5,28(sp)
+     350:	00f46863          	bltu	s0,a5,360 <ssd1306_drawImage+0x3a>
 		}
 		#if SSD1306_LOG_IMAGE == 1
 		printf("\n\r");
 		#endif
 	}
 }
-     362:	50c2                	lw	ra,48(sp)
-     364:	5432                	lw	s0,44(sp)
-     366:	54a2                	lw	s1,40(sp)
-     368:	03410113          	addi	sp,sp,52
-     36c:	8082                	ret
+     354:	50c2                	lw	ra,48(sp)
+     356:	5432                	lw	s0,44(sp)
+     358:	54a2                	lw	s1,40(sp)
+     35a:	03410113          	addi	sp,sp,52
+     35e:	8082                	ret
+		y_absolute = y + line;
+     360:	47d2                	lw	a5,20(sp)
+     362:	97a2                	add	a5,a5,s0
+    if (y_absolute < 0) {
+     364:	0007d663          	bgez	a5,370 <ssd1306_drawImage+0x4a>
+	for (uint8_t line = 0; line < height; line++) {
+     368:	0405                	addi	s0,s0,1
+     36a:	0ff47413          	zext.b	s0,s0
+     36e:	b7c5                	j	34e <ssd1306_drawImage+0x28>
 		if (y_absolute >= SSD1306_H || y_absolute < 0) {
-     36e:	03f00713          	li	a4,63
-     372:	fef768e3          	bltu	a4,a5,362 <ssd1306_drawImage+0x3c>
+     370:	03f00713          	li	a4,63
+     374:	fef760e3          	bltu	a4,a5,354 <ssd1306_drawImage+0x2e>
 			uint8_t input_byte = input[byte + line * bytes_to_draw];
-     376:	45b2                	lw	a1,12(sp)
+     378:	45b2                	lw	a1,12(sp)
 		uint8_t v_mask = 1 << (y_absolute & 7);
-     378:	0077f713          	andi	a4,a5,7
-     37c:	c83e                	sw	a5,16(sp)
+     37a:	0077f713          	andi	a4,a5,7
+     37e:	c83e                	sw	a5,16(sp)
 			uint8_t input_byte = input[byte + line * bytes_to_draw];
-     37e:	8522                	mv	a0,s0
+     380:	8522                	mv	a0,s0
 		uint8_t v_mask = 1 << (y_absolute & 7);
-     380:	00e497b3          	sll	a5,s1,a4
-     384:	c23e                	sw	a5,4(sp)
+     382:	00e497b3          	sll	a5,s1,a4
+     386:	c23e                	sw	a5,4(sp)
 			uint8_t input_byte = input[byte + line * bytes_to_draw];
-     386:	3b29                	jal	a0 <__mulsi3>
-     388:	47e2                	lw	a5,24(sp)
-     38a:	4322                	lw	t1,8(sp)
-     38c:	953e                	add	a0,a0,a5
-				buffer_addr = x_absolute + SSD1306_W * (y_absolute / 8);
-     38e:	47c2                	lw	a5,16(sp)
-     390:	878d                	srai	a5,a5,0x3
-     392:	079e                	slli	a5,a5,0x7
-     394:	d23e                	sw	a5,36(sp)
-			uint8_t input_byte = input[byte + line * bytes_to_draw];
-     396:	00054783          	lbu	a5,0(a0)
-     39a:	4581                	li	a1,0
-     39c:	c83e                	sw	a5,16(sp)
-				if (x_absolute >= SSD1306_W) {
-     39e:	00b306b3          	add	a3,t1,a1
-     3a2:	07f00793          	li	a5,127
-     3a6:	00d7d863          	bge	a5,a3,3b6 <ssd1306_drawImage+0x90>
+     388:	3b21                	jal	a0 <__mulsi3>
+     38a:	47e2                	lw	a5,24(sp)
 		for (uint8_t byte = 0; byte < bytes_to_draw; byte++) {
-     3aa:	4782                	lw	a5,0(sp)
-     3ac:	1361                	addi	t1,t1,-8
-     3ae:	0505                	addi	a0,a0,1
-     3b0:	fe6793e3          	bne	a5,t1,396 <ssd1306_drawImage+0x70>
-     3b4:	b74d                	j	356 <ssd1306_drawImage+0x30>
-				uint8_t input_pixel = input_byte & (1 << pixel);
-     3b6:	47c2                	lw	a5,16(sp)
-     3b8:	00b49733          	sll	a4,s1,a1
-						ssd1306_buffer[buffer_addr] = (ssd1306_buffer[buffer_addr] & ~v_mask) | (input_pixel ? v_mask : 0);
-     3bc:	200002b7          	lui	t0,0x20000
-				uint8_t input_pixel = input_byte & (1 << pixel);
-     3c0:	8f7d                	and	a4,a4,a5
+     38c:	4322                	lw	t1,8(sp)
+     38e:	953e                	add	a0,a0,a5
 				buffer_addr = x_absolute + SSD1306_W * (y_absolute / 8);
-     3c2:	5792                	lw	a5,36(sp)
+     390:	47c2                	lw	a5,16(sp)
+     392:	878d                	srai	a5,a5,0x3
+     394:	079e                	slli	a5,a5,0x7
+     396:	d23e                	sw	a5,36(sp)
+		for (uint8_t byte = 0; byte < bytes_to_draw; byte++) {
+     398:	4782                	lw	a5,0(sp)
+     39a:	fc6787e3          	beq	a5,t1,368 <ssd1306_drawImage+0x42>
+			uint8_t input_byte = input[byte + line * bytes_to_draw];
+     39e:	00054783          	lbu	a5,0(a0)
+     3a2:	4581                	li	a1,0
 						ssd1306_buffer[buffer_addr] = (ssd1306_buffer[buffer_addr] & ~v_mask) | (input_pixel ? v_mask : 0);
-     3c4:	8396                	mv	t2,t0
-     3c6:	02028293          	addi	t0,t0,32 # 20000020 <ssd1306_buffer>
+     3a4:	200003b7          	lui	t2,0x20000
+			uint8_t input_byte = input[byte + line * bytes_to_draw];
+     3a8:	c83e                	sw	a5,16(sp)
+				if (x_absolute >= SSD1306_W) {
+     3aa:	00b306b3          	add	a3,t1,a1
+     3ae:	07f00793          	li	a5,127
+     3b2:	00d7d563          	bge	a5,a3,3bc <ssd1306_drawImage+0x96>
+		for (uint8_t byte = 0; byte < bytes_to_draw; byte++) {
+     3b6:	1361                	addi	t1,t1,-8
+     3b8:	0505                	addi	a0,a0,1
+     3ba:	bff9                	j	398 <ssd1306_drawImage+0x72>
+				uint8_t input_pixel = input_byte & (1 << pixel);
+     3bc:	47c2                	lw	a5,16(sp)
+     3be:	00b49733          	sll	a4,s1,a1
+						ssd1306_buffer[buffer_addr] = (ssd1306_buffer[buffer_addr] & ~v_mask) | (input_pixel ? v_mask : 0);
+     3c2:	00410603          	lb	a2,4(sp)
+				uint8_t input_pixel = input_byte & (1 << pixel);
+     3c6:	8f7d                	and	a4,a4,a5
 				buffer_addr = x_absolute + SSD1306_W * (y_absolute / 8);
-     3ca:	96be                	add	a3,a3,a5
+     3c8:	5792                	lw	a5,36(sp)
 						ssd1306_buffer[buffer_addr] = (ssd1306_buffer[buffer_addr] & ~v_mask) | (input_pixel ? v_mask : 0);
-     3cc:	06c2                	slli	a3,a3,0x10
-     3ce:	82c1                	srli	a3,a3,0x10
-     3d0:	00410603          	lb	a2,4(sp)
-     3d4:	92b6                	add	t0,t0,a3
-     3d6:	0002c283          	lbu	t0,0(t0)
-     3da:	fff64793          	not	a5,a2
+     3ca:	fff64293          	not	t0,a2
+				buffer_addr = x_absolute + SSD1306_W * (y_absolute / 8);
+     3ce:	96be                	add	a3,a3,a5
+						ssd1306_buffer[buffer_addr] = (ssd1306_buffer[buffer_addr] & ~v_mask) | (input_pixel ? v_mask : 0);
+     3d0:	06c2                	slli	a3,a3,0x10
+     3d2:	82c1                	srli	a3,a3,0x10
+     3d4:	02038793          	addi	a5,t2,32 # 20000020 <ssd1306_buffer>
+     3d8:	97b6                	add	a5,a5,a3
+     3da:	0007c783          	lbu	a5,0(a5)
      3de:	0057f7b3          	and	a5,a5,t0
-     3e2:	02038293          	addi	t0,t2,32
 				switch (color_mode) {
-     3e6:	5382                	lw	t2,32(sp)
+     3e2:	5282                	lw	t0,32(sp)
 						ssd1306_buffer[buffer_addr] = (ssd1306_buffer[buffer_addr] & ~v_mask) | (input_pixel ? v_mask : 0);
-     3e8:	07e2                	slli	a5,a5,0x18
-     3ea:	87e1                	srai	a5,a5,0x18
+     3e4:	07e2                	slli	a5,a5,0x18
+     3e6:	87e1                	srai	a5,a5,0x18
 				switch (color_mode) {
-     3ec:	02938263          	beq	t2,s1,410 <ssd1306_drawImage+0xea>
+     3e8:	02928763          	beq	t0,s1,416 <ssd1306_drawImage+0xf0>
 						ssd1306_buffer[buffer_addr] = (ssd1306_buffer[buffer_addr] & ~v_mask) | (input_pixel ? v_mask : 0);
-     3f0:	00e03733          	snez	a4,a4
+     3ec:	00e03733          	snez	a4,a4
 						ssd1306_buffer[buffer_addr] = (ssd1306_buffer[buffer_addr] & ~v_mask) | (!input_pixel ? v_mask : 0);
-     3f4:	40e00733          	neg	a4,a4
-     3f8:	8e79                	and	a2,a2,a4
+     3f0:	40e00733          	neg	a4,a4
+     3f4:	8e79                	and	a2,a2,a4
+     3f6:	20000737          	lui	a4,0x20000
      3fa:	8fd1                	or	a5,a5,a2
-     3fc:	0ff7f793          	zext.b	a5,a5
-     400:	92b6                	add	t0,t0,a3
-     402:	00f28023          	sb	a5,0(t0)
+     3fc:	02070713          	addi	a4,a4,32 # 20000020 <ssd1306_buffer>
+     400:	0ff7f793          	zext.b	a5,a5
+     404:	00d702b3          	add	t0,a4,a3
+     408:	00f28023          	sb	a5,0(t0)
 			for (pixel = 0; pixel < 8; pixel++) {
-     406:	0585                	addi	a1,a1,1
-     408:	47a1                	li	a5,8
-     40a:	f8f59ae3          	bne	a1,a5,39e <ssd1306_drawImage+0x78>
-     40e:	bf71                	j	3aa <ssd1306_drawImage+0x84>
+     40c:	0585                	addi	a1,a1,1
+     40e:	47a1                	li	a5,8
+     410:	f8f59de3          	bne	a1,a5,3aa <ssd1306_drawImage+0x84>
+     414:	b74d                	j	3b6 <ssd1306_drawImage+0x90>
 						ssd1306_buffer[buffer_addr] = (ssd1306_buffer[buffer_addr] & ~v_mask) | (!input_pixel ? v_mask : 0);
-     410:	00173713          	seqz	a4,a4
-     414:	b7c5                	j	3f4 <ssd1306_drawImage+0xce>
+     416:	00173713          	seqz	a4,a4
+     41a:	bfd9                	j	3f0 <ssd1306_drawImage+0xca>
 
-00000416 <get_random>:
-int get_random(void)
+0000041c <get_random>:
+int get_random(int num)
 {
 	uint8_t bit;
 	uint32_t new_data;
 	
 	for(bit=0;bit<NOISE_BITS;bit++)
-     416:	200006b7          	lui	a3,0x20000
-     41a:	0006a503          	lw	a0,0(a3) # 20000000 <lfsr>
+     41c:	20000637          	lui	a2,0x20000
+     420:	00062783          	lw	a5,0(a2) # 20000000 <lfsr>
 {
-     41e:	1171                	addi	sp,sp,-4
-     420:	c006                	sw	ra,0(sp)
-     422:	4721                	li	a4,8
+     424:	1171                	addi	sp,sp,-4
+     426:	c006                	sw	ra,0(sp)
+     428:	46a1                	li	a3,8
 	{
 		new_data = ((lfsr>>NOISE_POLY_TAP0) ^
 					(lfsr>>NOISE_POLY_TAP1) ^
-     424:	01555613          	srli	a2,a0,0x15
+     42a:	0157d593          	srli	a1,a5,0x15
 		new_data = ((lfsr>>NOISE_POLY_TAP0) ^
-     428:	01f55793          	srli	a5,a0,0x1f
-     42c:	8fb1                	xor	a5,a5,a2
-     42e:	8fa9                	xor	a5,a5,a0
+     42e:	01f7d713          	srli	a4,a5,0x1f
+     432:	8f2d                	xor	a4,a4,a1
+     434:	8f3d                	xor	a4,a4,a5
 					(lfsr>>NOISE_POLY_TAP2) ^
-     430:	00155613          	srli	a2,a0,0x1
+     436:	0017d593          	srli	a1,a5,0x1
 		new_data = ((lfsr>>NOISE_POLY_TAP0) ^
-     434:	8fb1                	xor	a5,a5,a2
+     43a:	8f2d                	xor	a4,a4,a1
 	for(bit=0;bit<NOISE_BITS;bit++)
-     436:	177d                	addi	a4,a4,-1
+     43c:	16fd                	addi	a3,a3,-1
 					(lfsr>>NOISE_POLY_TAP3));
 		lfsr = (lfsr<<1) | (new_data&1);
-     438:	8b85                	andi	a5,a5,1
-     43a:	0506                	slli	a0,a0,0x1
+     43e:	8b05                	andi	a4,a4,1
+     440:	0786                	slli	a5,a5,0x1
 	for(bit=0;bit<NOISE_BITS;bit++)
-     43c:	0ff77713          	zext.b	a4,a4
+     442:	0ff6f693          	zext.b	a3,a3
 		lfsr = (lfsr<<1) | (new_data&1);
-     440:	8d5d                	or	a0,a0,a5
+     446:	8fd9                	or	a5,a5,a4
 	for(bit=0;bit<NOISE_BITS;bit++)
-     442:	f36d                	bnez	a4,424 <get_random+0xe>
-     444:	00a6a023          	sw	a0,0(a3)
+     448:	f2ed                	bnez	a3,42a <get_random+0xe>
 	}
 
   int random_8 = lfsr&NOISE_MASK;
-	return random_8 % 11;
-     448:	45ad                	li	a1,11
-     44a:	0ff57513          	zext.b	a0,a0
-     44e:	31c9                	jal	110 <__modsi3>
+	return random_8 % (num + 1);
+     44a:	00150593          	addi	a1,a0,1
+     44e:	0ff7f513          	zext.b	a0,a5
+     452:	00f62023          	sw	a5,0(a2)
+     456:	396d                	jal	110 <__modsi3>
 }
-     450:	4082                	lw	ra,0(sp)
-     452:	0111                	addi	sp,sp,4
-     454:	8082                	ret
+     458:	4082                	lw	ra,0(sp)
+     45a:	0111                	addi	sp,sp,4
+     45c:	8082                	ret
 
-00000456 <internal_handle_input.constprop.0>:
-     456:	e00007b7          	lui	a5,0xe0000
-     45a:	0f47a783          	lw	a5,244(a5) # e00000f4 <__global_pointer$+0xbffff8f4>
-     45e:	8082                	ret
+0000045e <ssd1306_drawPixel.constprop.0>:
+	if(x >= SSD1306_W)
+     45e:	01851793          	slli	a5,a0,0x18
+     462:	87e1                	srai	a5,a5,0x18
+     464:	0207c863          	bltz	a5,494 <ssd1306_drawPixel.constprop.0+0x36>
+	if(y >= SSD1306_H)
+     468:	03f00793          	li	a5,63
+     46c:	02b7e463          	bltu	a5,a1,494 <ssd1306_drawPixel.constprop.0+0x36>
+	addr = x + SSD1306_W*(y/8);
+     470:	0035d793          	srli	a5,a1,0x3
+     474:	079e                	slli	a5,a5,0x7
+		ssd1306_buffer[addr] |= (1<<(y&7));
+     476:	953e                	add	a0,a0,a5
+     478:	200007b7          	lui	a5,0x20000
+     47c:	02078793          	addi	a5,a5,32 # 20000020 <ssd1306_buffer>
+     480:	97aa                	add	a5,a5,a0
+     482:	0007c683          	lbu	a3,0(a5)
+     486:	899d                	andi	a1,a1,7
+     488:	4705                	li	a4,1
+     48a:	00b71733          	sll	a4,a4,a1
+     48e:	8f55                	or	a4,a4,a3
+     490:	00e78023          	sb	a4,0(a5)
+}
+     494:	8082                	ret
 
-00000460 <_write.constprop.0>:
-     460:	1121                	addi	sp,sp,-24
-     462:	c822                	sw	s0,16(sp)
-     464:	ca06                	sw	ra,20(sp)
-     466:	c626                	sw	s1,12(sp)
-     468:	c402                	sw	zero,8(sp)
-     46a:	842e                	mv	s0,a1
-     46c:	eddd                	bnez	a1,52a <_write.constprop.0+0xca>
-     46e:	e00007b7          	lui	a5,0xe0000
-     472:	0f47a783          	lw	a5,244(a5) # e00000f4 <__global_pointer$+0xbffff8f4>
-     476:	c789                	beqz	a5,480 <_write.constprop.0+0x20>
-     478:	0807f793          	andi	a5,a5,128
-     47c:	e391                	bnez	a5,480 <_write.constprop.0+0x20>
-     47e:	3fe1                	jal	456 <internal_handle_input.constprop.0>
-     480:	40d2                	lw	ra,20(sp)
-     482:	8522                	mv	a0,s0
-     484:	4442                	lw	s0,16(sp)
-     486:	44b2                	lw	s1,12(sp)
-     488:	0161                	addi	sp,sp,24
-     48a:	8082                	ret
-     48c:	409407b3          	sub	a5,s0,s1
-     490:	471d                	li	a4,7
-     492:	00f75363          	bge	a4,a5,498 <_write.constprop.0+0x38>
-     496:	87ba                	mv	a5,a4
-     498:	00027737          	lui	a4,0x27
-     49c:	e00006b7          	lui	a3,0xe0000
-     4a0:	10170713          	addi	a4,a4,257 # 27101 <main.c.5d39cb8d+0x24b93>
-     4a4:	0f468693          	addi	a3,a3,244 # e00000f4 <__global_pointer$+0xbffff8f4>
-     4a8:	4290                	lw	a2,0(a3)
-     4aa:	08067593          	andi	a1,a2,128
-     4ae:	e1a5                	bnez	a1,50e <_write.constprop.0+0xae>
-     4b0:	c611                	beqz	a2,4bc <_write.constprop.0+0x5c>
-     4b2:	c22a                	sw	a0,4(sp)
-     4b4:	c03e                	sw	a5,0(sp)
-     4b6:	3745                	jal	456 <internal_handle_input.constprop.0>
-     4b8:	4512                	lw	a0,4(sp)
-     4ba:	4782                	lw	a5,0(sp)
-     4bc:	0034                	addi	a3,sp,8
-     4be:	470d                	li	a4,3
-     4c0:	85b6                	mv	a1,a3
-     4c2:	04f74a63          	blt	a4,a5,516 <_write.constprop.0+0xb6>
-     4c6:	46a2                	lw	a3,8(sp)
-     4c8:	e0000737          	lui	a4,0xe0000
-     4cc:	460d                	li	a2,3
-     4ce:	0ed72c23          	sw	a3,248(a4) # e00000f8 <__global_pointer$+0xbffff8f8>
-     4d2:	009506b3          	add	a3,a0,s1
-     4d6:	4701                	li	a4,0
-     4d8:	0006c283          	lbu	t0,0(a3)
-     4dc:	0705                	addi	a4,a4,1
-     4de:	00e58333          	add	t1,a1,a4
-     4e2:	00530023          	sb	t0,0(t1)
-     4e6:	00e78563          	beq	a5,a4,4f0 <_write.constprop.0+0x90>
-     4ea:	0685                	addi	a3,a3,1
-     4ec:	fec716e3          	bne	a4,a2,4d8 <_write.constprop.0+0x78>
-     4f0:	00478713          	addi	a4,a5,4
-     4f4:	f8076713          	ori	a4,a4,-128
-     4f8:	00e10423          	sb	a4,8(sp)
-     4fc:	46a2                	lw	a3,8(sp)
-     4fe:	e0000737          	lui	a4,0xe0000
-     502:	94be                	add	s1,s1,a5
-     504:	0ed72a23          	sw	a3,244(a4) # e00000f4 <__global_pointer$+0xbffff8f4>
-     508:	f884c2e3          	blt	s1,s0,48c <_write.constprop.0+0x2c>
-     50c:	bf95                	j	480 <_write.constprop.0+0x20>
-     50e:	177d                	addi	a4,a4,-1
-     510:	ff41                	bnez	a4,4a8 <_write.constprop.0+0x48>
-     512:	8426                	mv	s0,s1
-     514:	b7b5                	j	480 <_write.constprop.0+0x20>
-     516:	00e48633          	add	a2,s1,a4
-     51a:	962a                	add	a2,a2,a0
-     51c:	00064603          	lbu	a2,0(a2)
-     520:	0705                	addi	a4,a4,1
-     522:	0685                	addi	a3,a3,1
-     524:	fec68fa3          	sb	a2,-1(a3)
-     528:	bf69                	j	4c2 <_write.constprop.0+0x62>
-     52a:	4481                	li	s1,0
-     52c:	bff1                	j	508 <_write.constprop.0+0xa8>
+00000496 <ssd1306_drawFastHLine.constprop.0>:
+ *  fast horiz line
+ */
+void ssd1306_drawFastHLine(uint8_t x, uint8_t y, uint8_t w, uint8_t color)
+{
+	// clipping
+	if((x >= SSD1306_W) || (y >= SSD1306_H)) return;
+     496:	01851793          	slli	a5,a0,0x18
+     49a:	87e1                	srai	a5,a5,0x18
+     49c:	0407ca63          	bltz	a5,4f0 <ssd1306_drawFastHLine.constprop.0+0x5a>
+void ssd1306_drawFastHLine(uint8_t x, uint8_t y, uint8_t w, uint8_t color)
+     4a0:	1141                	addi	sp,sp,-16
+     4a2:	c226                	sw	s1,4(sp)
+     4a4:	c606                	sw	ra,12(sp)
+     4a6:	c422                	sw	s0,8(sp)
+	if((x >= SSD1306_W) || (y >= SSD1306_H)) return;
+     4a8:	03f00793          	li	a5,63
+     4ac:	84ae                	mv	s1,a1
+     4ae:	02b7e263          	bltu	a5,a1,4d2 <ssd1306_drawFastHLine.constprop.0+0x3c>
+	if((x+w-1) >= SSD1306_W)  w = SSD1306_W-x;
+     4b2:	00c507b3          	add	a5,a0,a2
+     4b6:	08000713          	li	a4,128
+     4ba:	00f75763          	bge	a4,a5,4c8 <ssd1306_drawFastHLine.constprop.0+0x32>
+     4be:	f8000613          	li	a2,-128
+     4c2:	8e09                	sub	a2,a2,a0
+     4c4:	0ff67613          	zext.b	a2,a2
+     4c8:	962a                	add	a2,a2,a0
+     4ca:	0ff67413          	zext.b	s0,a2
 
-0000052e <__puts_uart>:
-     52e:	1161                	addi	sp,sp,-8
-     530:	c022                	sw	s0,0(sp)
-     532:	c206                	sw	ra,4(sp)
-     534:	842e                	mv	s0,a1
-     536:	372d                	jal	460 <_write.constprop.0>
-     538:	4092                	lw	ra,4(sp)
-     53a:	8522                	mv	a0,s0
-     53c:	4402                	lw	s0,0(sp)
-     53e:	0121                	addi	sp,sp,8
-     540:	8082                	ret
+	while (w--)
+     4ce:	00851763          	bne	a0,s0,4dc <ssd1306_drawFastHLine.constprop.0+0x46>
+	{
+        ssd1306_drawPixel(x++, y, color);
+	}
+}
+     4d2:	40b2                	lw	ra,12(sp)
+     4d4:	4422                	lw	s0,8(sp)
+     4d6:	4492                	lw	s1,4(sp)
+     4d8:	0141                	addi	sp,sp,16
+     4da:	8082                	ret
+        ssd1306_drawPixel(x++, y, color);
+     4dc:	00150793          	addi	a5,a0,1
+     4e0:	0ff7f793          	zext.b	a5,a5
+     4e4:	85a6                	mv	a1,s1
+     4e6:	c03e                	sw	a5,0(sp)
+     4e8:	3f9d                	jal	45e <ssd1306_drawPixel.constprop.0>
+     4ea:	4782                	lw	a5,0(sp)
+     4ec:	853e                	mv	a0,a5
+     4ee:	b7c5                	j	4ce <ssd1306_drawFastHLine.constprop.0+0x38>
+     4f0:	8082                	ret
 
-00000542 <handle_reset>:
-     542:	20000197          	auipc	gp,0x20000
-     546:	2be18193          	addi	gp,gp,702 # 20000800 <__global_pointer$>
-     54a:	00018113          	mv	sp,gp
-     54e:	08000513          	li	a0,128
-     552:	30051073          	csrw	mstatus,a0
-     556:	468d                	li	a3,3
-     558:	00000517          	auipc	a0,0x0
-     55c:	aa850513          	addi	a0,a0,-1368 # 0 <InterruptVector>
-     560:	8d55                	or	a0,a0,a3
-     562:	30551073          	csrw	mtvec,a0
-     566:	82018513          	addi	a0,gp,-2016 # 20000020 <ssd1306_buffer>
-     56a:	c2018593          	addi	a1,gp,-992 # 20000420 <_ebss>
-     56e:	4601                	li	a2,0
-     570:	00b55663          	bge	a0,a1,57c <handle_reset+0x3a>
-     574:	c110                	sw	a2,0(a0)
-     576:	0511                	addi	a0,a0,4
-     578:	feb54ee3          	blt	a0,a1,574 <handle_reset+0x32>
-     57c:	00001517          	auipc	a0,0x1
-     580:	27850513          	addi	a0,a0,632 # 17f4 <_data_lma>
-     584:	20000597          	auipc	a1,0x20000
-     588:	a7c58593          	addi	a1,a1,-1412 # 20000000 <lfsr>
-     58c:	82018613          	addi	a2,gp,-2016 # 20000020 <ssd1306_buffer>
-     590:	00c58863          	beq	a1,a2,5a0 <handle_reset+0x5e>
-     594:	4114                	lw	a3,0(a0)
-     596:	c194                	sw	a3,0(a1)
-     598:	0511                	addi	a0,a0,4
-     59a:	0591                	addi	a1,a1,4
-     59c:	fec59ae3          	bne	a1,a2,590 <handle_reset+0x4e>
-     5a0:	e000f7b7          	lui	a5,0xe000f
-     5a4:	4705                	li	a4,1
-     5a6:	c398                	sw	a4,0(a5)
-     5a8:	6785                	lui	a5,0x1
-     5aa:	9f678793          	addi	a5,a5,-1546 # 9f6 <main>
-     5ae:	34179073          	csrw	mepc,a5
-     5b2:	30200073          	mret
+000004f2 <ssd1306_drawFastVLine.constprop.0>:
+	if((x >= SSD1306_W) || (y >= SSD1306_H)) return;
+     4f2:	01851793          	slli	a5,a0,0x18
+     4f6:	87e1                	srai	a5,a5,0x18
+     4f8:	0407c863          	bltz	a5,548 <ssd1306_drawFastVLine.constprop.0+0x56>
+     4fc:	03f00793          	li	a5,63
+     500:	04b7e463          	bltu	a5,a1,548 <ssd1306_drawFastVLine.constprop.0+0x56>
+void ssd1306_drawFastVLine(uint8_t x, uint8_t y, uint8_t h, uint8_t color)
+     504:	1141                	addi	sp,sp,-16
+     506:	c226                	sw	s1,4(sp)
+     508:	c606                	sw	ra,12(sp)
+     50a:	c422                	sw	s0,8(sp)
+	if((y+h-1) >= SSD1306_H) h = SSD1306_H-y;
+     50c:	00c58733          	add	a4,a1,a2
+     510:	04000793          	li	a5,64
+     514:	84aa                	mv	s1,a0
+     516:	00e7d563          	bge	a5,a4,520 <ssd1306_drawFastVLine.constprop.0+0x2e>
+     51a:	8f8d                	sub	a5,a5,a1
+     51c:	0ff7f613          	zext.b	a2,a5
+     520:	962e                	add	a2,a2,a1
+     522:	0ff67413          	zext.b	s0,a2
+	while(h--)
+     526:	00859763          	bne	a1,s0,534 <ssd1306_drawFastVLine.constprop.0+0x42>
+}
+     52a:	40b2                	lw	ra,12(sp)
+     52c:	4422                	lw	s0,8(sp)
+     52e:	4492                	lw	s1,4(sp)
+     530:	0141                	addi	sp,sp,16
+     532:	8082                	ret
+        ssd1306_drawPixel(x, y++, color);
+     534:	00158793          	addi	a5,a1,1
+     538:	0ff7f793          	zext.b	a5,a5
+     53c:	8526                	mv	a0,s1
+     53e:	c03e                	sw	a5,0(sp)
+     540:	3f39                	jal	45e <ssd1306_drawPixel.constprop.0>
+     542:	4782                	lw	a5,0(sp)
+     544:	85be                	mv	a1,a5
+     546:	b7c5                	j	526 <ssd1306_drawFastVLine.constprop.0+0x34>
+     548:	8082                	ret
 
-000005b6 <ADC1_IRQHandler>:
-     5b6:	a001                	j	5b6 <ADC1_IRQHandler>
+0000054a <ssd1306_drawRect.constprop.0>:
+}
 
-000005b8 <NMI_Handler>:
-     5b8:	40021737          	lui	a4,0x40021
-     5bc:	471c                	lw	a5,8(a4)
-     5be:	008006b7          	lui	a3,0x800
-     5c2:	8fd5                	or	a5,a5,a3
-     5c4:	c71c                	sw	a5,8(a4)
+/*
+ *  draw a rectangle
+ */
+void ssd1306_drawRect(uint8_t x, uint8_t y, uint8_t w, uint8_t h, uint8_t color)
+     54a:	1131                	addi	sp,sp,-20
+     54c:	c426                	sw	s1,8(sp)
+     54e:	84b2                	mv	s1,a2
+{
+	ssd1306_drawFastVLine(x, y, h, color);
+     550:	8636                	mv	a2,a3
+void ssd1306_drawRect(uint8_t x, uint8_t y, uint8_t w, uint8_t h, uint8_t color)
+     552:	c806                	sw	ra,16(sp)
+     554:	c622                	sw	s0,12(sp)
+     556:	c236                	sw	a3,4(sp)
+     558:	842a                	mv	s0,a0
+     55a:	c02e                	sw	a1,0(sp)
+	ssd1306_drawFastVLine(x, y, h, color);
+     55c:	3f59                	jal	4f2 <ssd1306_drawFastVLine.constprop.0>
+	ssd1306_drawFastVLine(x+w-1, y, h, color);
+     55e:	4612                	lw	a2,4(sp)
+     560:	4582                	lw	a1,0(sp)
+     562:	fff48513          	addi	a0,s1,-1
+     566:	9522                	add	a0,a0,s0
+     568:	0ff57513          	zext.b	a0,a0
+     56c:	3759                	jal	4f2 <ssd1306_drawFastVLine.constprop.0>
+	ssd1306_drawFastHLine(x, y, w, color);
+     56e:	4582                	lw	a1,0(sp)
+     570:	8626                	mv	a2,s1
+     572:	8522                	mv	a0,s0
+     574:	370d                	jal	496 <ssd1306_drawFastHLine.constprop.0>
+	ssd1306_drawFastHLine(x, y+h-1, w, color);
+     576:	4792                	lw	a5,4(sp)
+     578:	4702                	lw	a4,0(sp)
+     57a:	8522                	mv	a0,s0
+}
+     57c:	4432                	lw	s0,12(sp)
+     57e:	40c2                	lw	ra,16(sp)
+	ssd1306_drawFastHLine(x, y+h-1, w, color);
+     580:	17fd                	addi	a5,a5,-1
+     582:	8626                	mv	a2,s1
+}
+     584:	44a2                	lw	s1,8(sp)
+	ssd1306_drawFastHLine(x, y+h-1, w, color);
+     586:	00f705b3          	add	a1,a4,a5
+     58a:	0ff5f593          	zext.b	a1,a1
+}
+     58e:	0151                	addi	sp,sp,20
+	ssd1306_drawFastHLine(x, y+h-1, w, color);
+     590:	b719                	j	496 <ssd1306_drawFastHLine.constprop.0>
 
-000005c6 <strlen>:
-     5c6:	87aa                	mv	a5,a0
-     5c8:	0007c703          	lbu	a4,0(a5)
-     5cc:	e701                	bnez	a4,5d4 <strlen+0xe>
-     5ce:	40a78533          	sub	a0,a5,a0
-     5d2:	8082                	ret
-     5d4:	0785                	addi	a5,a5,1
-     5d6:	bfcd                	j	5c8 <strlen+0x2>
+00000592 <internal_handle_input.constprop.0>:
+     592:	e00007b7          	lui	a5,0xe0000
+     596:	0f47a783          	lw	a5,244(a5) # e00000f4 <__global_pointer$+0xbffff8f4>
+     59a:	8082                	ret
 
-000005d8 <mini_vpprintf>:
-     5d8:	fa410113          	addi	sp,sp,-92
-     5dc:	caa2                	sw	s0,84(sp)
-     5de:	c8a6                	sw	s1,80(sp)
-     5e0:	cc86                	sw	ra,88(sp)
-     5e2:	c02a                	sw	a0,0(sp)
-     5e4:	c22e                	sw	a1,4(sp)
-     5e6:	8432                	mv	s0,a2
-     5e8:	84b6                	mv	s1,a3
-     5ea:	e509                	bnez	a0,5f4 <mini_vpprintf+0x1c>
-     5ec:	13600793          	li	a5,310
-     5f0:	c202                	sw	zero,4(sp)
-     5f2:	c03e                	sw	a5,0(sp)
-     5f4:	ca02                	sw	zero,20(sp)
-     5f6:	00044783          	lbu	a5,0(s0)
-     5fa:	00140713          	addi	a4,s0,1
-     5fe:	00f10fa3          	sb	a5,31(sp)
-     602:	eb81                	bnez	a5,612 <mini_vpprintf+0x3a>
-     604:	40e6                	lw	ra,88(sp)
-     606:	4456                	lw	s0,84(sp)
-     608:	4552                	lw	a0,20(sp)
-     60a:	44c6                	lw	s1,80(sp)
-     60c:	05c10113          	addi	sp,sp,92
-     610:	8082                	ret
-     612:	c63a                	sw	a4,12(sp)
-     614:	02500693          	li	a3,37
-     618:	02d78063          	beq	a5,a3,638 <mini_vpprintf+0x60>
-     61c:	4612                	lw	a2,4(sp)
-     61e:	4782                	lw	a5,0(sp)
-     620:	4585                	li	a1,1
-     622:	01f10513          	addi	a0,sp,31
-     626:	9782                	jalr	a5
-     628:	4732                	lw	a4,12(sp)
-     62a:	c426                	sw	s1,8(sp)
-     62c:	843a                	mv	s0,a4
-     62e:	47d2                	lw	a5,20(sp)
-     630:	44a2                	lw	s1,8(sp)
-     632:	97aa                	add	a5,a5,a0
-     634:	ca3e                	sw	a5,20(sp)
-     636:	b7c1                	j	5f6 <mini_vpprintf+0x1e>
-     638:	00144783          	lbu	a5,1(s0)
-     63c:	03000693          	li	a3,48
-     640:	00240713          	addi	a4,s0,2
-     644:	00f10fa3          	sb	a5,31(sp)
-     648:	c63e                	sw	a5,12(sp)
-     64a:	08d79363          	bne	a5,a3,6d0 <mini_vpprintf+0xf8>
-     64e:	843a                	mv	s0,a4
-     650:	4681                	li	a3,0
-     652:	4701                	li	a4,0
-     654:	45a5                	li	a1,9
-     656:	a819                	j	66c <mini_vpprintf+0x94>
-     658:	00271793          	slli	a5,a4,0x2
-     65c:	97ba                	add	a5,a5,a4
-     65e:	0786                	slli	a5,a5,0x1
-     660:	0405                	addi	s0,s0,1
-     662:	00f60733          	add	a4,a2,a5
-     666:	fff44783          	lbu	a5,-1(s0)
-     66a:	4685                	li	a3,1
-     66c:	fd078613          	addi	a2,a5,-48
-     670:	0ff67513          	zext.b	a0,a2
-     674:	fea5f2e3          	bgeu	a1,a0,658 <mini_vpprintf+0x80>
-     678:	c299                	beqz	a3,67e <mini_vpprintf+0xa6>
-     67a:	00f10fa3          	sb	a5,31(sp)
-     67e:	c83a                	sw	a4,16(sp)
-     680:	46e1                	li	a3,24
-     682:	00e6d363          	bge	a3,a4,688 <mini_vpprintf+0xb0>
-     686:	c836                	sw	a3,16(sp)
-     688:	06c00613          	li	a2,108
-     68c:	4681                	li	a3,0
-     68e:	00c79863          	bne	a5,a2,69e <mini_vpprintf+0xc6>
-     692:	00044783          	lbu	a5,0(s0)
-     696:	4685                	li	a3,1
-     698:	0405                	addi	s0,s0,1
-     69a:	00f10fa3          	sb	a5,31(sp)
-     69e:	01f14603          	lbu	a2,31(sp)
-     6a2:	06400793          	li	a5,100
-     6a6:	06f60563          	beq	a2,a5,710 <mini_vpprintf+0x138>
-     6aa:	02c7e763          	bltu	a5,a2,6d8 <mini_vpprintf+0x100>
-     6ae:	05800793          	li	a5,88
-     6b2:	0af60063          	beq	a2,a5,752 <mini_vpprintf+0x17a>
-     6b6:	06300793          	li	a5,99
-     6ba:	0af60d63          	beq	a2,a5,774 <mini_vpprintf+0x19c>
-     6be:	d239                	beqz	a2,604 <mini_vpprintf+0x2c>
-     6c0:	4612                	lw	a2,4(sp)
-     6c2:	4782                	lw	a5,0(sp)
-     6c4:	4585                	li	a1,1
-     6c6:	01f10513          	addi	a0,sp,31
-     6ca:	9782                	jalr	a5
-     6cc:	c426                	sw	s1,8(sp)
-     6ce:	b785                	j	62e <mini_vpprintf+0x56>
-     6d0:	02000693          	li	a3,32
-     6d4:	c636                	sw	a3,12(sp)
-     6d6:	bfa5                	j	64e <mini_vpprintf+0x76>
-     6d8:	07500793          	li	a5,117
-     6dc:	02f60a63          	beq	a2,a5,710 <mini_vpprintf+0x138>
-     6e0:	07800793          	li	a5,120
-     6e4:	06f60763          	beq	a2,a5,752 <mini_vpprintf+0x17a>
-     6e8:	07300793          	li	a5,115
-     6ec:	fcf61ae3          	bne	a2,a5,6c0 <mini_vpprintf+0xe8>
-     6f0:	00448793          	addi	a5,s1,4
-     6f4:	4084                	lw	s1,0(s1)
-     6f6:	cc3a                	sw	a4,24(sp)
-     6f8:	c43e                	sw	a5,8(sp)
-     6fa:	8526                	mv	a0,s1
-     6fc:	35e9                	jal	5c6 <strlen>
-     6fe:	4762                	lw	a4,24(sp)
-     700:	85aa                	mv	a1,a0
-     702:	08e05663          	blez	a4,78e <mini_vpprintf+0x1b6>
-     706:	46c2                	lw	a3,16(sp)
-     708:	4632                	lw	a2,12(sp)
-     70a:	1838                	addi	a4,sp,56
-     70c:	8526                	mv	a0,s1
-     70e:	a01d                	j	734 <mini_vpprintf+0x15c>
-     710:	00448793          	addi	a5,s1,4
-     714:	c43e                	sw	a5,8(sp)
-     716:	c695                	beqz	a3,742 <mini_vpprintf+0x16a>
-     718:	f8b60613          	addi	a2,a2,-117
-     71c:	1018                	addi	a4,sp,32
-     71e:	00163693          	seqz	a3,a2
-     722:	4088                	lw	a0,0(s1)
-     724:	4601                	li	a2,0
-     726:	45a9                	li	a1,10
-     728:	34ed                	jal	212 <mini_itoa.part.0>
-     72a:	46c2                	lw	a3,16(sp)
-     72c:	4632                	lw	a2,12(sp)
-     72e:	1838                	addi	a4,sp,56
-     730:	85aa                	mv	a1,a0
-     732:	1008                	addi	a0,sp,32
-     734:	3489                	jal	176 <mini_pad>
-     736:	4612                	lw	a2,4(sp)
-     738:	85aa                	mv	a1,a0
-     73a:	1828                	addi	a0,sp,56
-     73c:	4782                	lw	a5,0(sp)
-     73e:	9782                	jalr	a5
-     740:	b5fd                	j	62e <mini_vpprintf+0x56>
-     742:	07500793          	li	a5,117
-     746:	1018                	addi	a4,sp,32
-     748:	4685                	li	a3,1
-     74a:	fcf60ce3          	beq	a2,a5,722 <mini_vpprintf+0x14a>
-     74e:	4681                	li	a3,0
-     750:	bfc9                	j	722 <mini_vpprintf+0x14a>
-     752:	4088                	lw	a0,0(s1)
-     754:	fa860613          	addi	a2,a2,-88
-     758:	00448793          	addi	a5,s1,4
-     75c:	1018                	addi	a4,sp,32
-     75e:	4685                	li	a3,1
-     760:	00163613          	seqz	a2,a2
-     764:	45c1                	li	a1,16
-     766:	c43e                	sw	a5,8(sp)
-     768:	346d                	jal	212 <mini_itoa.part.0>
-     76a:	46c2                	lw	a3,16(sp)
-     76c:	4632                	lw	a2,12(sp)
-     76e:	85aa                	mv	a1,a0
-     770:	1838                	addi	a4,sp,56
-     772:	b7c1                	j	732 <mini_vpprintf+0x15a>
-     774:	00448793          	addi	a5,s1,4
-     778:	c43e                	sw	a5,8(sp)
-     77a:	409c                	lw	a5,0(s1)
-     77c:	46c2                	lw	a3,16(sp)
-     77e:	4632                	lw	a2,12(sp)
+0000059c <_write.constprop.0>:
+     59c:	1121                	addi	sp,sp,-24
+     59e:	c822                	sw	s0,16(sp)
+     5a0:	ca06                	sw	ra,20(sp)
+     5a2:	c626                	sw	s1,12(sp)
+     5a4:	c402                	sw	zero,8(sp)
+     5a6:	842e                	mv	s0,a1
+     5a8:	eddd                	bnez	a1,666 <_write.constprop.0+0xca>
+     5aa:	e00007b7          	lui	a5,0xe0000
+     5ae:	0f47a783          	lw	a5,244(a5) # e00000f4 <__global_pointer$+0xbffff8f4>
+     5b2:	c789                	beqz	a5,5bc <_write.constprop.0+0x20>
+     5b4:	0807f793          	andi	a5,a5,128
+     5b8:	e391                	bnez	a5,5bc <_write.constprop.0+0x20>
+     5ba:	3fe1                	jal	592 <internal_handle_input.constprop.0>
+     5bc:	40d2                	lw	ra,20(sp)
+     5be:	8522                	mv	a0,s0
+     5c0:	4442                	lw	s0,16(sp)
+     5c2:	44b2                	lw	s1,12(sp)
+     5c4:	0161                	addi	sp,sp,24
+     5c6:	8082                	ret
+     5c8:	409407b3          	sub	a5,s0,s1
+     5cc:	471d                	li	a4,7
+     5ce:	00f75363          	bge	a4,a5,5d4 <_write.constprop.0+0x38>
+     5d2:	87ba                	mv	a5,a4
+     5d4:	00027737          	lui	a4,0x27
+     5d8:	e00006b7          	lui	a3,0xe0000
+     5dc:	10170713          	addi	a4,a4,257 # 27101 <main.c.99fa8f27+0x248b4>
+     5e0:	0f468693          	addi	a3,a3,244 # e00000f4 <__global_pointer$+0xbffff8f4>
+     5e4:	4290                	lw	a2,0(a3)
+     5e6:	08067593          	andi	a1,a2,128
+     5ea:	e1a5                	bnez	a1,64a <_write.constprop.0+0xae>
+     5ec:	c611                	beqz	a2,5f8 <_write.constprop.0+0x5c>
+     5ee:	c22a                	sw	a0,4(sp)
+     5f0:	c03e                	sw	a5,0(sp)
+     5f2:	3745                	jal	592 <internal_handle_input.constprop.0>
+     5f4:	4512                	lw	a0,4(sp)
+     5f6:	4782                	lw	a5,0(sp)
+     5f8:	0034                	addi	a3,sp,8
+     5fa:	470d                	li	a4,3
+     5fc:	85b6                	mv	a1,a3
+     5fe:	04f74a63          	blt	a4,a5,652 <_write.constprop.0+0xb6>
+     602:	46a2                	lw	a3,8(sp)
+     604:	e0000737          	lui	a4,0xe0000
+     608:	460d                	li	a2,3
+     60a:	0ed72c23          	sw	a3,248(a4) # e00000f8 <__global_pointer$+0xbffff8f8>
+     60e:	009506b3          	add	a3,a0,s1
+     612:	4701                	li	a4,0
+     614:	0006c283          	lbu	t0,0(a3)
+     618:	0705                	addi	a4,a4,1
+     61a:	00e58333          	add	t1,a1,a4
+     61e:	00530023          	sb	t0,0(t1)
+     622:	00e78563          	beq	a5,a4,62c <_write.constprop.0+0x90>
+     626:	0685                	addi	a3,a3,1
+     628:	fec716e3          	bne	a4,a2,614 <_write.constprop.0+0x78>
+     62c:	00478713          	addi	a4,a5,4
+     630:	f8076713          	ori	a4,a4,-128
+     634:	00e10423          	sb	a4,8(sp)
+     638:	46a2                	lw	a3,8(sp)
+     63a:	e0000737          	lui	a4,0xe0000
+     63e:	94be                	add	s1,s1,a5
+     640:	0ed72a23          	sw	a3,244(a4) # e00000f4 <__global_pointer$+0xbffff8f4>
+     644:	f884c2e3          	blt	s1,s0,5c8 <_write.constprop.0+0x2c>
+     648:	bf95                	j	5bc <_write.constprop.0+0x20>
+     64a:	177d                	addi	a4,a4,-1
+     64c:	ff41                	bnez	a4,5e4 <_write.constprop.0+0x48>
+     64e:	8426                	mv	s0,s1
+     650:	b7b5                	j	5bc <_write.constprop.0+0x20>
+     652:	00e48633          	add	a2,s1,a4
+     656:	962a                	add	a2,a2,a0
+     658:	00064603          	lbu	a2,0(a2)
+     65c:	0705                	addi	a4,a4,1
+     65e:	0685                	addi	a3,a3,1
+     660:	fec68fa3          	sb	a2,-1(a3)
+     664:	bf69                	j	5fe <_write.constprop.0+0x62>
+     666:	4481                	li	s1,0
+     668:	bff1                	j	644 <_write.constprop.0+0xa8>
+
+0000066a <__puts_uart>:
+     66a:	1161                	addi	sp,sp,-8
+     66c:	c022                	sw	s0,0(sp)
+     66e:	c206                	sw	ra,4(sp)
+     670:	842e                	mv	s0,a1
+     672:	372d                	jal	59c <_write.constprop.0>
+     674:	4092                	lw	ra,4(sp)
+     676:	8522                	mv	a0,s0
+     678:	4402                	lw	s0,0(sp)
+     67a:	0121                	addi	sp,sp,8
+     67c:	8082                	ret
+
+0000067e <handle_reset>:
+     67e:	20000197          	auipc	gp,0x20000
+     682:	18218193          	addi	gp,gp,386 # 20000800 <__global_pointer$>
+     686:	00018113          	mv	sp,gp
+     68a:	08000513          	li	a0,128
+     68e:	30051073          	csrw	mstatus,a0
+     692:	468d                	li	a3,3
+     694:	00000517          	auipc	a0,0x0
+     698:	96c50513          	addi	a0,a0,-1684 # 0 <InterruptVector>
+     69c:	8d55                	or	a0,a0,a3
+     69e:	30551073          	csrw	mtvec,a0
+     6a2:	82018513          	addi	a0,gp,-2016 # 20000020 <ssd1306_buffer>
+     6a6:	c2018593          	addi	a1,gp,-992 # 20000420 <_ebss>
+     6aa:	4601                	li	a2,0
+     6ac:	00b55663          	bge	a0,a1,6b8 <handle_reset+0x3a>
+     6b0:	c110                	sw	a2,0(a0)
+     6b2:	0511                	addi	a0,a0,4
+     6b4:	feb54ee3          	blt	a0,a1,6b0 <handle_reset+0x32>
+     6b8:	00001517          	auipc	a0,0x1
+     6bc:	ac450513          	addi	a0,a0,-1340 # 117c <_data_lma>
+     6c0:	20000597          	auipc	a1,0x20000
+     6c4:	94058593          	addi	a1,a1,-1728 # 20000000 <lfsr>
+     6c8:	82018613          	addi	a2,gp,-2016 # 20000020 <ssd1306_buffer>
+     6cc:	00c58863          	beq	a1,a2,6dc <handle_reset+0x5e>
+     6d0:	4114                	lw	a3,0(a0)
+     6d2:	c194                	sw	a3,0(a1)
+     6d4:	0511                	addi	a0,a0,4
+     6d6:	0591                	addi	a1,a1,4
+     6d8:	fec59ae3          	bne	a1,a2,6cc <handle_reset+0x4e>
+     6dc:	e000f7b7          	lui	a5,0xe000f
+     6e0:	4705                	li	a4,1
+     6e2:	c398                	sw	a4,0(a5)
+     6e4:	6785                	lui	a5,0x1
+     6e6:	b3278793          	addi	a5,a5,-1230 # b32 <main>
+     6ea:	34179073          	csrw	mepc,a5
+     6ee:	30200073          	mret
+
+000006f2 <ADC1_IRQHandler>:
+     6f2:	a001                	j	6f2 <ADC1_IRQHandler>
+
+000006f4 <NMI_Handler>:
+     6f4:	40021737          	lui	a4,0x40021
+     6f8:	471c                	lw	a5,8(a4)
+     6fa:	008006b7          	lui	a3,0x800
+     6fe:	8fd5                	or	a5,a5,a3
+     700:	c71c                	sw	a5,8(a4)
+
+00000702 <strlen>:
+     702:	87aa                	mv	a5,a0
+     704:	0007c703          	lbu	a4,0(a5)
+     708:	e701                	bnez	a4,710 <strlen+0xe>
+     70a:	40a78533          	sub	a0,a5,a0
+     70e:	8082                	ret
+     710:	0785                	addi	a5,a5,1
+     712:	bfcd                	j	704 <strlen+0x2>
+
+00000714 <mini_vpprintf>:
+     714:	fa410113          	addi	sp,sp,-92
+     718:	caa2                	sw	s0,84(sp)
+     71a:	c8a6                	sw	s1,80(sp)
+     71c:	cc86                	sw	ra,88(sp)
+     71e:	c02a                	sw	a0,0(sp)
+     720:	c22e                	sw	a1,4(sp)
+     722:	8432                	mv	s0,a2
+     724:	84b6                	mv	s1,a3
+     726:	e509                	bnez	a0,730 <mini_vpprintf+0x1c>
+     728:	13600793          	li	a5,310
+     72c:	c202                	sw	zero,4(sp)
+     72e:	c03e                	sw	a5,0(sp)
+     730:	ca02                	sw	zero,20(sp)
+     732:	00044783          	lbu	a5,0(s0)
+     736:	00140713          	addi	a4,s0,1
+     73a:	00f10fa3          	sb	a5,31(sp)
+     73e:	eb81                	bnez	a5,74e <mini_vpprintf+0x3a>
+     740:	40e6                	lw	ra,88(sp)
+     742:	4456                	lw	s0,84(sp)
+     744:	4552                	lw	a0,20(sp)
+     746:	44c6                	lw	s1,80(sp)
+     748:	05c10113          	addi	sp,sp,92
+     74c:	8082                	ret
+     74e:	c63a                	sw	a4,12(sp)
+     750:	02500693          	li	a3,37
+     754:	02d78063          	beq	a5,a3,774 <mini_vpprintf+0x60>
+     758:	4612                	lw	a2,4(sp)
+     75a:	4782                	lw	a5,0(sp)
+     75c:	4585                	li	a1,1
+     75e:	01f10513          	addi	a0,sp,31
+     762:	9782                	jalr	a5
+     764:	4732                	lw	a4,12(sp)
+     766:	c426                	sw	s1,8(sp)
+     768:	843a                	mv	s0,a4
+     76a:	47d2                	lw	a5,20(sp)
+     76c:	44a2                	lw	s1,8(sp)
+     76e:	97aa                	add	a5,a5,a0
+     770:	ca3e                	sw	a5,20(sp)
+     772:	b7c1                	j	732 <mini_vpprintf+0x1e>
+     774:	00144783          	lbu	a5,1(s0)
+     778:	03000693          	li	a3,48
+     77c:	00240713          	addi	a4,s0,2
      780:	00f10fa3          	sb	a5,31(sp)
-     784:	1838                	addi	a4,sp,56
-     786:	4585                	li	a1,1
-     788:	01f10513          	addi	a0,sp,31
-     78c:	b765                	j	734 <mini_vpprintf+0x15c>
-     78e:	4612                	lw	a2,4(sp)
-     790:	8526                	mv	a0,s1
-     792:	b76d                	j	73c <mini_vpprintf+0x164>
+     784:	c63e                	sw	a5,12(sp)
+     786:	08d79363          	bne	a5,a3,80c <mini_vpprintf+0xf8>
+     78a:	843a                	mv	s0,a4
+     78c:	4681                	li	a3,0
+     78e:	4701                	li	a4,0
+     790:	45a5                	li	a1,9
+     792:	a819                	j	7a8 <mini_vpprintf+0x94>
+     794:	00271793          	slli	a5,a4,0x2
+     798:	97ba                	add	a5,a5,a4
+     79a:	0786                	slli	a5,a5,0x1
+     79c:	0405                	addi	s0,s0,1
+     79e:	00f60733          	add	a4,a2,a5
+     7a2:	fff44783          	lbu	a5,-1(s0)
+     7a6:	4685                	li	a3,1
+     7a8:	fd078613          	addi	a2,a5,-48
+     7ac:	0ff67513          	zext.b	a0,a2
+     7b0:	fea5f2e3          	bgeu	a1,a0,794 <mini_vpprintf+0x80>
+     7b4:	c299                	beqz	a3,7ba <mini_vpprintf+0xa6>
+     7b6:	00f10fa3          	sb	a5,31(sp)
+     7ba:	c83a                	sw	a4,16(sp)
+     7bc:	46e1                	li	a3,24
+     7be:	00e6d363          	bge	a3,a4,7c4 <mini_vpprintf+0xb0>
+     7c2:	c836                	sw	a3,16(sp)
+     7c4:	06c00613          	li	a2,108
+     7c8:	4681                	li	a3,0
+     7ca:	00c79863          	bne	a5,a2,7da <mini_vpprintf+0xc6>
+     7ce:	00044783          	lbu	a5,0(s0)
+     7d2:	4685                	li	a3,1
+     7d4:	0405                	addi	s0,s0,1
+     7d6:	00f10fa3          	sb	a5,31(sp)
+     7da:	01f14603          	lbu	a2,31(sp)
+     7de:	06400793          	li	a5,100
+     7e2:	06f60563          	beq	a2,a5,84c <mini_vpprintf+0x138>
+     7e6:	02c7e763          	bltu	a5,a2,814 <mini_vpprintf+0x100>
+     7ea:	05800793          	li	a5,88
+     7ee:	0af60063          	beq	a2,a5,88e <mini_vpprintf+0x17a>
+     7f2:	06300793          	li	a5,99
+     7f6:	0af60d63          	beq	a2,a5,8b0 <mini_vpprintf+0x19c>
+     7fa:	d239                	beqz	a2,740 <mini_vpprintf+0x2c>
+     7fc:	4612                	lw	a2,4(sp)
+     7fe:	4782                	lw	a5,0(sp)
+     800:	4585                	li	a1,1
+     802:	01f10513          	addi	a0,sp,31
+     806:	9782                	jalr	a5
+     808:	c426                	sw	s1,8(sp)
+     80a:	b785                	j	76a <mini_vpprintf+0x56>
+     80c:	02000693          	li	a3,32
+     810:	c636                	sw	a3,12(sp)
+     812:	bfa5                	j	78a <mini_vpprintf+0x76>
+     814:	07500793          	li	a5,117
+     818:	02f60a63          	beq	a2,a5,84c <mini_vpprintf+0x138>
+     81c:	07800793          	li	a5,120
+     820:	06f60763          	beq	a2,a5,88e <mini_vpprintf+0x17a>
+     824:	07300793          	li	a5,115
+     828:	fcf61ae3          	bne	a2,a5,7fc <mini_vpprintf+0xe8>
+     82c:	00448793          	addi	a5,s1,4
+     830:	4084                	lw	s1,0(s1)
+     832:	cc3a                	sw	a4,24(sp)
+     834:	c43e                	sw	a5,8(sp)
+     836:	8526                	mv	a0,s1
+     838:	35e9                	jal	702 <strlen>
+     83a:	4762                	lw	a4,24(sp)
+     83c:	85aa                	mv	a1,a0
+     83e:	08e05663          	blez	a4,8ca <mini_vpprintf+0x1b6>
+     842:	46c2                	lw	a3,16(sp)
+     844:	4632                	lw	a2,12(sp)
+     846:	1838                	addi	a4,sp,56
+     848:	8526                	mv	a0,s1
+     84a:	a01d                	j	870 <mini_vpprintf+0x15c>
+     84c:	00448793          	addi	a5,s1,4
+     850:	c43e                	sw	a5,8(sp)
+     852:	c695                	beqz	a3,87e <mini_vpprintf+0x16a>
+     854:	f8b60613          	addi	a2,a2,-117
+     858:	1018                	addi	a4,sp,32
+     85a:	00163693          	seqz	a3,a2
+     85e:	4088                	lw	a0,0(s1)
+     860:	4601                	li	a2,0
+     862:	45a9                	li	a1,10
+     864:	327d                	jal	212 <mini_itoa.part.0>
+     866:	46c2                	lw	a3,16(sp)
+     868:	4632                	lw	a2,12(sp)
+     86a:	1838                	addi	a4,sp,56
+     86c:	85aa                	mv	a1,a0
+     86e:	1008                	addi	a0,sp,32
+     870:	3219                	jal	176 <mini_pad>
+     872:	4612                	lw	a2,4(sp)
+     874:	85aa                	mv	a1,a0
+     876:	1828                	addi	a0,sp,56
+     878:	4782                	lw	a5,0(sp)
+     87a:	9782                	jalr	a5
+     87c:	b5fd                	j	76a <mini_vpprintf+0x56>
+     87e:	07500793          	li	a5,117
+     882:	1018                	addi	a4,sp,32
+     884:	4685                	li	a3,1
+     886:	fcf60ce3          	beq	a2,a5,85e <mini_vpprintf+0x14a>
+     88a:	4681                	li	a3,0
+     88c:	bfc9                	j	85e <mini_vpprintf+0x14a>
+     88e:	4088                	lw	a0,0(s1)
+     890:	fa860613          	addi	a2,a2,-88
+     894:	00448793          	addi	a5,s1,4
+     898:	1018                	addi	a4,sp,32
+     89a:	4685                	li	a3,1
+     89c:	00163613          	seqz	a2,a2
+     8a0:	45c1                	li	a1,16
+     8a2:	c43e                	sw	a5,8(sp)
+     8a4:	32bd                	jal	212 <mini_itoa.part.0>
+     8a6:	46c2                	lw	a3,16(sp)
+     8a8:	4632                	lw	a2,12(sp)
+     8aa:	85aa                	mv	a1,a0
+     8ac:	1838                	addi	a4,sp,56
+     8ae:	b7c1                	j	86e <mini_vpprintf+0x15a>
+     8b0:	00448793          	addi	a5,s1,4
+     8b4:	c43e                	sw	a5,8(sp)
+     8b6:	409c                	lw	a5,0(s1)
+     8b8:	46c2                	lw	a3,16(sp)
+     8ba:	4632                	lw	a2,12(sp)
+     8bc:	00f10fa3          	sb	a5,31(sp)
+     8c0:	1838                	addi	a4,sp,56
+     8c2:	4585                	li	a1,1
+     8c4:	01f10513          	addi	a0,sp,31
+     8c8:	b765                	j	870 <mini_vpprintf+0x15c>
+     8ca:	4612                	lw	a2,4(sp)
+     8cc:	8526                	mv	a0,s1
+     8ce:	b76d                	j	878 <mini_vpprintf+0x164>
 
-00000794 <printf>:
-     794:	1111                	addi	sp,sp,-28
-     796:	c632                	sw	a2,12(sp)
-     798:	862a                	mv	a2,a0
-     79a:	c42e                	sw	a1,8(sp)
-     79c:	c836                	sw	a3,16(sp)
-     79e:	4581                	li	a1,0
-     7a0:	0034                	addi	a3,sp,8
-     7a2:	52e00513          	li	a0,1326
-     7a6:	c206                	sw	ra,4(sp)
-     7a8:	ca3a                	sw	a4,20(sp)
-     7aa:	cc3e                	sw	a5,24(sp)
-     7ac:	c036                	sw	a3,0(sp)
-     7ae:	352d                	jal	5d8 <mini_vpprintf>
-     7b0:	4092                	lw	ra,4(sp)
-     7b2:	0171                	addi	sp,sp,28
-     7b4:	8082                	ret
+000008d0 <printf>:
+     8d0:	1111                	addi	sp,sp,-28
+     8d2:	c632                	sw	a2,12(sp)
+     8d4:	862a                	mv	a2,a0
+     8d6:	c42e                	sw	a1,8(sp)
+     8d8:	c836                	sw	a3,16(sp)
+     8da:	4581                	li	a1,0
+     8dc:	0034                	addi	a3,sp,8
+     8de:	66a00513          	li	a0,1642
+     8e2:	c206                	sw	ra,4(sp)
+     8e4:	ca3a                	sw	a4,20(sp)
+     8e6:	cc3e                	sw	a5,24(sp)
+     8e8:	c036                	sw	a3,0(sp)
+     8ea:	352d                	jal	714 <mini_vpprintf>
+     8ec:	4092                	lw	ra,4(sp)
+     8ee:	0171                	addi	sp,sp,28
+     8f0:	8082                	ret
 
-000007b6 <ssd1306_i2c_error.isra.0>:
+000008f2 <ssd1306_i2c_error.isra.0>:
  * error handler
  */
 uint8_t ssd1306_i2c_error(uint8_t err)
 {
 	// report error
 	printf("ssd1306_i2c_error - timeout waiting for %s\n\r", errstr[err]);
-     7b6:	6785                	lui	a5,0x1
-     7b8:	050a                	slli	a0,a0,0x2
-     7ba:	e3c78793          	addi	a5,a5,-452 # e3c <errstr>
-     7be:	97aa                	add	a5,a5,a0
-     7c0:	438c                	lw	a1,0(a5)
-     7c2:	6505                	lui	a0,0x1
+     8f2:	6785                	lui	a5,0x1
+     8f4:	050a                	slli	a0,a0,0x2
+     8f6:	fc478793          	addi	a5,a5,-60 # fc4 <errstr>
+     8fa:	97aa                	add	a5,a5,a0
+     8fc:	438c                	lw	a1,0(a5)
+     8fe:	6505                	lui	a0,0x1
 uint8_t ssd1306_i2c_error(uint8_t err)
-     7c4:	1171                	addi	sp,sp,-4
+     900:	1171                	addi	sp,sp,-4
 	printf("ssd1306_i2c_error - timeout waiting for %s\n\r", errstr[err]);
-     7c6:	dc050513          	addi	a0,a0,-576 # dc0 <main+0x3ca>
+     902:	f4850513          	addi	a0,a0,-184 # f48 <main+0x416>
 uint8_t ssd1306_i2c_error(uint8_t err)
-     7ca:	c006                	sw	ra,0(sp)
+     906:	c006                	sw	ra,0(sp)
 	printf("ssd1306_i2c_error - timeout waiting for %s\n\r", errstr[err]);
-     7cc:	37e1                	jal	794 <printf>
+     908:	37e1                	jal	8d0 <printf>
 	
 	// reset & initialize I2C
 	ssd1306_i2c_setup();
 
 	return 1;
 }
-     7ce:	4082                	lw	ra,0(sp)
-     7d0:	0111                	addi	sp,sp,4
+     90a:	4082                	lw	ra,0(sp)
+     90c:	0111                	addi	sp,sp,4
 	ssd1306_i2c_setup();
-     7d2:	b601                	j	2d2 <ssd1306_i2c_setup>
+     90e:	b2d1                	j	2d2 <ssd1306_i2c_setup>
 
-000007d4 <ssd1306_i2c_send.constprop.0.isra.0>:
+00000910 <ssd1306_i2c_send.constprop.0.isra.0>:
 uint8_t ssd1306_i2c_send(uint8_t addr, uint8_t *data, uint8_t sz)
 {
 	int32_t timeout;
 	
 	// wait for not busy
 	timeout = TIMEOUT_MAX;
-     7d4:	6761                	lui	a4,0x18
+     910:	6761                	lui	a4,0x18
 	while((I2C1->STAR2 & I2C_STAR2_BUSY) && (timeout--));
-     7d6:	400057b7          	lui	a5,0x40005
+     912:	400057b7          	lui	a5,0x40005
 	timeout = TIMEOUT_MAX;
-     7da:	6a070713          	addi	a4,a4,1696 # 186a0 <main.c.5d39cb8d+0x16132>
+     916:	6a070713          	addi	a4,a4,1696 # 186a0 <main.c.99fa8f27+0x15e53>
 	while((I2C1->STAR2 & I2C_STAR2_BUSY) && (timeout--));
-     7de:	40078793          	addi	a5,a5,1024 # 40005400 <__global_pointer$+0x20004c00>
-     7e2:	567d                	li	a2,-1
-     7e4:	0187d683          	lhu	a3,24(a5)
-     7e8:	8a89                	andi	a3,a3,2
-     7ea:	cedd                	beqz	a3,8a8 <ssd1306_i2c_send.constprop.0.isra.0+0xd4>
-     7ec:	177d                	addi	a4,a4,-1
-     7ee:	fec71be3          	bne	a4,a2,7e4 <ssd1306_i2c_send.constprop.0.isra.0+0x10>
+     91a:	40078793          	addi	a5,a5,1024 # 40005400 <__global_pointer$+0x20004c00>
+     91e:	567d                	li	a2,-1
+     920:	0187d683          	lhu	a3,24(a5)
+     924:	8a89                	andi	a3,a3,2
+     926:	cedd                	beqz	a3,9e4 <ssd1306_i2c_send.constprop.0.isra.0+0xd4>
+     928:	177d                	addi	a4,a4,-1
+     92a:	fec71be3          	bne	a4,a2,920 <ssd1306_i2c_send.constprop.0.isra.0+0x10>
 	if(timeout==-1)
 		return ssd1306_i2c_error(0);
-     7f2:	4501                	li	a0,0
-     7f4:	a821                	j	80c <ssd1306_i2c_send.constprop.0.isra.0+0x38>
-     7f6:	67e1                	lui	a5,0x18
-     7f8:	6a178793          	addi	a5,a5,1697 # 186a1 <main.c.5d39cb8d+0x16133>
+     92e:	4501                	li	a0,0
+     930:	a821                	j	948 <ssd1306_i2c_send.constprop.0.isra.0+0x38>
+     932:	67e1                	lui	a5,0x18
+     934:	6a178793          	addi	a5,a5,1697 # 186a1 <main.c.99fa8f27+0x15e54>
 	// send data one byte at a time
 	while(sz--)
 	{
 		// wait for TX Empty
 		timeout = TIMEOUT_MAX;
 		while(!(I2C1->STAR1 & I2C_STAR1_TXE) && (timeout--));
-     7fc:	01475683          	lhu	a3,20(a4)
-     800:	0806f693          	andi	a3,a3,128
-     804:	e689                	bnez	a3,80e <ssd1306_i2c_send.constprop.0.isra.0+0x3a>
-     806:	17fd                	addi	a5,a5,-1
-     808:	fbf5                	bnez	a5,7fc <ssd1306_i2c_send.constprop.0.isra.0+0x28>
+     938:	01475683          	lhu	a3,20(a4)
+     93c:	0806f693          	andi	a3,a3,128
+     940:	e689                	bnez	a3,94a <ssd1306_i2c_send.constprop.0.isra.0+0x3a>
+     942:	17fd                	addi	a5,a5,-1
+     944:	fbf5                	bnez	a5,938 <ssd1306_i2c_send.constprop.0.isra.0+0x28>
 		if(timeout==-1)
 			return ssd1306_i2c_error(3);
-     80a:	450d                	li	a0,3
+     946:	450d                	li	a0,3
 		return ssd1306_i2c_error(0);
-     80c:	b76d                	j	7b6 <ssd1306_i2c_error.isra.0>
+     948:	b76d                	j	8f2 <ssd1306_i2c_error.isra.0>
 		
 		// send command
 		I2C1->DATAR = *data++;
-     80e:	00054783          	lbu	a5,0(a0)
-     812:	0505                	addi	a0,a0,1
-     814:	00f71823          	sh	a5,16(a4)
+     94a:	00054783          	lbu	a5,0(a0)
+     94e:	0505                	addi	a0,a0,1
+     950:	00f71823          	sh	a5,16(a4)
 	while(sz--)
-     818:	fcb51fe3          	bne	a0,a1,7f6 <ssd1306_i2c_send.constprop.0.isra.0+0x22>
+     954:	fcb51fe3          	bne	a0,a1,932 <ssd1306_i2c_send.constprop.0.isra.0+0x22>
 	}
 
 	// wait for tx complete
 	timeout = TIMEOUT_MAX;
-     81c:	66e1                	lui	a3,0x18
+     958:	66e1                	lui	a3,0x18
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
-     81e:	40005737          	lui	a4,0x40005
+     95a:	40005737          	lui	a4,0x40005
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_BYTE_TRANSMITTED)) && (timeout--));
-     822:	00070637          	lui	a2,0x70
+     95e:	00070637          	lui	a2,0x70
 	timeout = TIMEOUT_MAX;
-     826:	6a068693          	addi	a3,a3,1696 # 186a0 <main.c.5d39cb8d+0x16132>
+     962:	6a068693          	addi	a3,a3,1696 # 186a0 <main.c.99fa8f27+0x15e53>
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
-     82a:	40070713          	addi	a4,a4,1024 # 40005400 <__global_pointer$+0x20004c00>
+     966:	40070713          	addi	a4,a4,1024 # 40005400 <__global_pointer$+0x20004c00>
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_BYTE_TRANSMITTED)) && (timeout--));
-     82e:	08460613          	addi	a2,a2,132 # 70084 <main.c.5d39cb8d+0x6db16>
-     832:	55fd                	li	a1,-1
+     96a:	08460613          	addi	a2,a2,132 # 70084 <main.c.99fa8f27+0x6d837>
+     96e:	55fd                	li	a1,-1
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
-     834:	01475503          	lhu	a0,20(a4)
-     838:	01875783          	lhu	a5,24(a4)
-     83c:	07c2                	slli	a5,a5,0x10
-     83e:	8fc9                	or	a5,a5,a0
+     970:	01475503          	lhu	a0,20(a4)
+     974:	01875783          	lhu	a5,24(a4)
+     978:	07c2                	slli	a5,a5,0x10
+     97a:	8fc9                	or	a5,a5,a0
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_BYTE_TRANSMITTED)) && (timeout--));
-     840:	8ff1                	and	a5,a5,a2
-     842:	00c78763          	beq	a5,a2,850 <ssd1306_i2c_send.constprop.0.isra.0+0x7c>
-     846:	16fd                	addi	a3,a3,-1
-     848:	feb696e3          	bne	a3,a1,834 <ssd1306_i2c_send.constprop.0.isra.0+0x60>
+     97c:	8ff1                	and	a5,a5,a2
+     97e:	00c78763          	beq	a5,a2,98c <ssd1306_i2c_send.constprop.0.isra.0+0x7c>
+     982:	16fd                	addi	a3,a3,-1
+     984:	feb696e3          	bne	a3,a1,970 <ssd1306_i2c_send.constprop.0.isra.0+0x60>
 	if(timeout==-1)
 		return ssd1306_i2c_error(4);
-     84c:	4511                	li	a0,4
-     84e:	bf7d                	j	80c <ssd1306_i2c_send.constprop.0.isra.0+0x38>
+     988:	4511                	li	a0,4
+     98a:	bf7d                	j	948 <ssd1306_i2c_send.constprop.0.isra.0+0x38>
 
 	// set STOP condition
 	I2C1->CTLR1 |= I2C_CTLR1_STOP;
-     850:	00075783          	lhu	a5,0(a4)
-     854:	2007e793          	ori	a5,a5,512
-     858:	00f71023          	sh	a5,0(a4)
+     98c:	00075783          	lhu	a5,0(a4)
+     990:	2007e793          	ori	a5,a5,512
+     994:	00f71023          	sh	a5,0(a4)
 	
 	// we're happy
 	return 0;
 }
-     85c:	8082                	ret
+     998:	8082                	ret
 		while(!(I2C1->STAR1 & I2C_STAR1_TXE) && (timeout--));
-     85e:	40005737          	lui	a4,0x40005
-     862:	95aa                	add	a1,a1,a0
-     864:	40070713          	addi	a4,a4,1024 # 40005400 <__global_pointer$+0x20004c00>
-     868:	bf45                	j	818 <ssd1306_i2c_send.constprop.0.isra.0+0x44>
+     99a:	40005737          	lui	a4,0x40005
+     99e:	95aa                	add	a1,a1,a0
+     9a0:	40070713          	addi	a4,a4,1024 # 40005400 <__global_pointer$+0x20004c00>
+     9a4:	bf45                	j	954 <ssd1306_i2c_send.constprop.0.isra.0+0x44>
 	I2C1->DATAR = addr<<1;
-     86a:	07800793          	li	a5,120
-     86e:	00f71823          	sh	a5,16(a4)
+     9a6:	07800793          	li	a5,120
+     9aa:	00f71823          	sh	a5,16(a4)
 	timeout = TIMEOUT_MAX;
-     872:	6661                	lui	a2,0x18
+     9ae:	6661                	lui	a2,0x18
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
-     874:	400056b7          	lui	a3,0x40005
+     9b0:	400056b7          	lui	a3,0x40005
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED)) && (timeout--));
-     878:	00070737          	lui	a4,0x70
+     9b4:	00070737          	lui	a4,0x70
 	timeout = TIMEOUT_MAX;
-     87c:	6a060613          	addi	a2,a2,1696 # 186a0 <main.c.5d39cb8d+0x16132>
+     9b8:	6a060613          	addi	a2,a2,1696 # 186a0 <main.c.99fa8f27+0x15e53>
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
-     880:	40068693          	addi	a3,a3,1024 # 40005400 <__global_pointer$+0x20004c00>
+     9bc:	40068693          	addi	a3,a3,1024 # 40005400 <__global_pointer$+0x20004c00>
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED)) && (timeout--));
-     884:	08270713          	addi	a4,a4,130 # 70082 <main.c.5d39cb8d+0x6db14>
-     888:	537d                	li	t1,-1
+     9c0:	08270713          	addi	a4,a4,130 # 70082 <main.c.99fa8f27+0x6d835>
+     9c4:	537d                	li	t1,-1
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
-     88a:	0146d283          	lhu	t0,20(a3)
-     88e:	0186d783          	lhu	a5,24(a3)
-     892:	07c2                	slli	a5,a5,0x10
-     894:	0057e7b3          	or	a5,a5,t0
+     9c6:	0146d283          	lhu	t0,20(a3)
+     9ca:	0186d783          	lhu	a5,24(a3)
+     9ce:	07c2                	slli	a5,a5,0x10
+     9d0:	0057e7b3          	or	a5,a5,t0
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED)) && (timeout--));
-     898:	8ff9                	and	a5,a5,a4
-     89a:	fce782e3          	beq	a5,a4,85e <ssd1306_i2c_send.constprop.0.isra.0+0x8a>
-     89e:	167d                	addi	a2,a2,-1
-     8a0:	fe6615e3          	bne	a2,t1,88a <ssd1306_i2c_send.constprop.0.isra.0+0xb6>
+     9d4:	8ff9                	and	a5,a5,a4
+     9d6:	fce782e3          	beq	a5,a4,99a <ssd1306_i2c_send.constprop.0.isra.0+0x8a>
+     9da:	167d                	addi	a2,a2,-1
+     9dc:	fe6615e3          	bne	a2,t1,9c6 <ssd1306_i2c_send.constprop.0.isra.0+0xb6>
 		return ssd1306_i2c_error(2);
-     8a4:	4509                	li	a0,2
-     8a6:	b79d                	j	80c <ssd1306_i2c_send.constprop.0.isra.0+0x38>
+     9e0:	4509                	li	a0,2
+     9e2:	b79d                	j	948 <ssd1306_i2c_send.constprop.0.isra.0+0x38>
 	I2C1->CTLR1 |= I2C_CTLR1_START;
-     8a8:	0007d703          	lhu	a4,0(a5)
+     9e4:	0007d703          	lhu	a4,0(a5)
 	timeout = TIMEOUT_MAX;
-     8ac:	66e1                	lui	a3,0x18
+     9e8:	66e1                	lui	a3,0x18
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_MODE_SELECT)) && (timeout--));
-     8ae:	00030637          	lui	a2,0x30
+     9ea:	00030637          	lui	a2,0x30
 	I2C1->CTLR1 |= I2C_CTLR1_START;
-     8b2:	10076713          	ori	a4,a4,256
-     8b6:	00e79023          	sh	a4,0(a5)
+     9ee:	10076713          	ori	a4,a4,256
+     9f2:	00e79023          	sh	a4,0(a5)
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
-     8ba:	40005737          	lui	a4,0x40005
+     9f6:	40005737          	lui	a4,0x40005
 	timeout = TIMEOUT_MAX;
-     8be:	6a068693          	addi	a3,a3,1696 # 186a0 <main.c.5d39cb8d+0x16132>
+     9fa:	6a068693          	addi	a3,a3,1696 # 186a0 <main.c.99fa8f27+0x15e53>
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
-     8c2:	40070713          	addi	a4,a4,1024 # 40005400 <__global_pointer$+0x20004c00>
+     9fe:	40070713          	addi	a4,a4,1024 # 40005400 <__global_pointer$+0x20004c00>
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_MODE_SELECT)) && (timeout--));
-     8c6:	0605                	addi	a2,a2,1 # 30001 <main.c.5d39cb8d+0x2da93>
-     8c8:	537d                	li	t1,-1
+     a02:	0605                	addi	a2,a2,1 # 30001 <main.c.99fa8f27+0x2d7b4>
+     a04:	537d                	li	t1,-1
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
-     8ca:	01475283          	lhu	t0,20(a4)
-     8ce:	01875783          	lhu	a5,24(a4)
-     8d2:	07c2                	slli	a5,a5,0x10
-     8d4:	0057e7b3          	or	a5,a5,t0
+     a06:	01475283          	lhu	t0,20(a4)
+     a0a:	01875783          	lhu	a5,24(a4)
+     a0e:	07c2                	slli	a5,a5,0x10
+     a10:	0057e7b3          	or	a5,a5,t0
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_MODE_SELECT)) && (timeout--));
-     8d8:	8ff1                	and	a5,a5,a2
-     8da:	f8c788e3          	beq	a5,a2,86a <ssd1306_i2c_send.constprop.0.isra.0+0x96>
-     8de:	16fd                	addi	a3,a3,-1
-     8e0:	fe6695e3          	bne	a3,t1,8ca <ssd1306_i2c_send.constprop.0.isra.0+0xf6>
+     a14:	8ff1                	and	a5,a5,a2
+     a16:	f8c788e3          	beq	a5,a2,9a6 <ssd1306_i2c_send.constprop.0.isra.0+0x96>
+     a1a:	16fd                	addi	a3,a3,-1
+     a1c:	fe6695e3          	bne	a3,t1,a06 <ssd1306_i2c_send.constprop.0.isra.0+0xf6>
 		return ssd1306_i2c_error(1);
-     8e4:	4505                	li	a0,1
-     8e6:	b71d                	j	80c <ssd1306_i2c_send.constprop.0.isra.0+0x38>
+     a20:	4505                	li	a0,1
+     a22:	b71d                	j	948 <ssd1306_i2c_send.constprop.0.isra.0+0x38>
 
-000008e8 <ssd1306_cmd.isra.0>:
+00000a24 <ssd1306_cmd.isra.0>:
 uint8_t ssd1306_cmd(uint8_t cmd)
-     8e8:	fd810113          	addi	sp,sp,-40
+     a24:	fd810113          	addi	sp,sp,-40
 	
 	/* build command or data packets */
 	if(cmd)
 	{
 		pkt[0] = 0;
 		pkt[1] = *data;
-     8ec:	00a100a3          	sb	a0,1(sp)
+     a28:	00a100a3          	sb	a0,1(sp)
 	else
 	{
 		pkt[0] = 0x40;
 		memcpy(&pkt[1], data, sz);
 	}
 	return ssd1306_i2c_send(SSD1306_I2C_ADDR, pkt, sz+1);
-     8f0:	4589                	li	a1,2
-     8f2:	850a                	mv	a0,sp
-     8f4:	d206                	sw	ra,36(sp)
+     a2c:	4589                	li	a1,2
+     a2e:	850a                	mv	a0,sp
+     a30:	d206                	sw	ra,36(sp)
 		pkt[0] = 0;
-     8f6:	00010023          	sb	zero,0(sp)
+     a32:	00010023          	sb	zero,0(sp)
 	return ssd1306_i2c_send(SSD1306_I2C_ADDR, pkt, sz+1);
-     8fa:	3de9                	jal	7d4 <ssd1306_i2c_send.constprop.0.isra.0>
+     a36:	3de9                	jal	910 <ssd1306_i2c_send.constprop.0.isra.0>
 }
-     8fc:	5092                	lw	ra,36(sp)
-     8fe:	02810113          	addi	sp,sp,40
-     902:	8082                	ret
+     a38:	5092                	lw	ra,36(sp)
+     a3a:	02810113          	addi	sp,sp,40
+     a3e:	8082                	ret
 
-00000904 <memset>:
-     904:	962a                	add	a2,a2,a0
-     906:	87aa                	mv	a5,a0
-     908:	00c79363          	bne	a5,a2,90e <memset+0xa>
-     90c:	8082                	ret
-     90e:	00b78023          	sb	a1,0(a5)
-     912:	0785                	addi	a5,a5,1
-     914:	bfd5                	j	908 <memset+0x4>
+00000a40 <memset>:
+     a40:	962a                	add	a2,a2,a0
+     a42:	87aa                	mv	a5,a0
+     a44:	00c79363          	bne	a5,a2,a4a <memset+0xa>
+     a48:	8082                	ret
+     a4a:	00b78023          	sb	a1,0(a5)
+     a4e:	0785                	addi	a5,a5,1
+     a50:	bfd5                	j	a44 <memset+0x4>
 
-00000916 <ssd1306_setbuf.constprop.0>:
+00000a52 <ssd1306_setbuf.constprop.0>:
 	memset(ssd1306_buffer, color ? 0xFF : 0x00, sizeof(ssd1306_buffer));
-     916:	20000537          	lui	a0,0x20000
-     91a:	40000613          	li	a2,1024
-     91e:	4581                	li	a1,0
-     920:	02050513          	addi	a0,a0,32 # 20000020 <ssd1306_buffer>
-     924:	b7c5                	j	904 <memset>
+     a52:	20000537          	lui	a0,0x20000
+     a56:	40000613          	li	a2,1024
+     a5a:	4581                	li	a1,0
+     a5c:	02050513          	addi	a0,a0,32 # 20000020 <ssd1306_buffer>
+     a60:	b7c5                	j	a40 <memset>
 
-00000926 <memcpy>:
-     926:	4781                	li	a5,0
-     928:	00f61363          	bne	a2,a5,92e <memcpy+0x8>
-     92c:	8082                	ret
-     92e:	00f58733          	add	a4,a1,a5
-     932:	00074683          	lbu	a3,0(a4)
-     936:	00f50733          	add	a4,a0,a5
-     93a:	0785                	addi	a5,a5,1
-     93c:	00d70023          	sb	a3,0(a4)
-     940:	b7e5                	j	928 <memcpy+0x2>
+00000a62 <memcpy>:
+     a62:	4781                	li	a5,0
+     a64:	00f61363          	bne	a2,a5,a6a <memcpy+0x8>
+     a68:	8082                	ret
+     a6a:	00f58733          	add	a4,a1,a5
+     a6e:	00074683          	lbu	a3,0(a4)
+     a72:	00f50733          	add	a4,a0,a5
+     a76:	0785                	addi	a5,a5,1
+     a78:	00d70023          	sb	a3,0(a4)
+     a7c:	b7e5                	j	a64 <memcpy+0x2>
 
-00000942 <ssd1306_refresh>:
+00000a7e <ssd1306_refresh>:
 {
-     942:	7179                	addi	sp,sp,-48
+     a7e:	7179                	addi	sp,sp,-48
 	ssd1306_cmd(SSD1306_COLUMNADDR);
-     944:	02100513          	li	a0,33
+     a80:	02100513          	li	a0,33
 {
-     948:	d606                	sw	ra,44(sp)
-     94a:	d422                	sw	s0,40(sp)
-     94c:	d226                	sw	s1,36(sp)
+     a84:	d606                	sw	ra,44(sp)
+     a86:	d422                	sw	s0,40(sp)
+     a88:	d226                	sw	s1,36(sp)
 	ssd1306_cmd(SSD1306_COLUMNADDR);
-     94e:	3f69                	jal	8e8 <ssd1306_cmd.isra.0>
+     a8a:	3f69                	jal	a24 <ssd1306_cmd.isra.0>
 	ssd1306_cmd(SSD1306_OFFSET);   // Column start address (0 = reset)
-     950:	4501                	li	a0,0
-     952:	3f59                	jal	8e8 <ssd1306_cmd.isra.0>
+     a8c:	4501                	li	a0,0
+     a8e:	3f59                	jal	a24 <ssd1306_cmd.isra.0>
 	ssd1306_cmd(SSD1306_OFFSET+SSD1306_W-1); // Column end address (127 = reset)
-     954:	07f00513          	li	a0,127
-     958:	3f41                	jal	8e8 <ssd1306_cmd.isra.0>
+     a90:	07f00513          	li	a0,127
+     a94:	3f41                	jal	a24 <ssd1306_cmd.isra.0>
 	ssd1306_cmd(SSD1306_PAGEADDR);
-     95a:	02200513          	li	a0,34
-     95e:	3769                	jal	8e8 <ssd1306_cmd.isra.0>
+     a96:	02200513          	li	a0,34
+     a9a:	3769                	jal	a24 <ssd1306_cmd.isra.0>
 	ssd1306_cmd(0); // Page start address (0 = reset)
-     960:	4501                	li	a0,0
-     962:	3759                	jal	8e8 <ssd1306_cmd.isra.0>
+     a9c:	4501                	li	a0,0
+     a9e:	3759                	jal	a24 <ssd1306_cmd.isra.0>
 	ssd1306_cmd(7); // Page end address
-     964:	20000437          	lui	s0,0x20000
-     968:	451d                	li	a0,7
-     96a:	02040413          	addi	s0,s0,32 # 20000020 <ssd1306_buffer>
-     96e:	3fad                	jal	8e8 <ssd1306_cmd.isra.0>
+     aa0:	20000437          	lui	s0,0x20000
+     aa4:	451d                	li	a0,7
+     aa6:	02040413          	addi	s0,s0,32 # 20000020 <ssd1306_buffer>
+     aaa:	3fad                	jal	a24 <ssd1306_cmd.isra.0>
     for(i=0;i<sizeof(ssd1306_buffer);i+=SSD1306_PSZ)
-     970:	40040493          	addi	s1,s0,1024
+     aac:	40040493          	addi	s1,s0,1024
 		pkt[0] = 0x40;
-     974:	04000793          	li	a5,64
+     ab0:	04000793          	li	a5,64
 		memcpy(&pkt[1], data, sz);
-     978:	85a2                	mv	a1,s0
-     97a:	02000613          	li	a2,32
-     97e:	00110513          	addi	a0,sp,1
+     ab4:	85a2                	mv	a1,s0
+     ab6:	02000613          	li	a2,32
+     aba:	00110513          	addi	a0,sp,1
 		pkt[0] = 0x40;
-     982:	00f10023          	sb	a5,0(sp)
+     abe:	00f10023          	sb	a5,0(sp)
 		memcpy(&pkt[1], data, sz);
-     986:	3745                	jal	926 <memcpy>
+     ac2:	3745                	jal	a62 <memcpy>
 	return ssd1306_i2c_send(SSD1306_I2C_ADDR, pkt, sz+1);
-     988:	02100593          	li	a1,33
-     98c:	850a                	mv	a0,sp
-     98e:	02040413          	addi	s0,s0,32
-     992:	3589                	jal	7d4 <ssd1306_i2c_send.constprop.0.isra.0>
-     994:	fe9410e3          	bne	s0,s1,974 <ssd1306_refresh+0x32>
+     ac4:	02100593          	li	a1,33
+     ac8:	850a                	mv	a0,sp
+     aca:	02040413          	addi	s0,s0,32
+     ace:	3589                	jal	910 <ssd1306_i2c_send.constprop.0.isra.0>
+     ad0:	fe9410e3          	bne	s0,s1,ab0 <ssd1306_refresh+0x32>
 }
-     998:	50b2                	lw	ra,44(sp)
-     99a:	5422                	lw	s0,40(sp)
-     99c:	5492                	lw	s1,36(sp)
-     99e:	6145                	addi	sp,sp,48
-     9a0:	8082                	ret
+     ad4:	50b2                	lw	ra,44(sp)
+     ad6:	5422                	lw	s0,40(sp)
+     ad8:	5492                	lw	s1,36(sp)
+     ada:	6145                	addi	sp,sp,48
+     adc:	8082                	ret
 
-000009a2 <SystemInit>:
-     9a2:	400227b7          	lui	a5,0x40022
-     9a6:	4705                	li	a4,1
-     9a8:	c398                	sw	a4,0(a5)
-     9aa:	400217b7          	lui	a5,0x40021
-     9ae:	01080737          	lui	a4,0x1080
-     9b2:	0007a223          	sw	zero,4(a5) # 40021004 <__global_pointer$+0x20020804>
-     9b6:	08170713          	addi	a4,a4,129 # 1080081 <main.c.5d39cb8d+0x107db13>
-     9ba:	c398                	sw	a4,0(a5)
-     9bc:	009f0737          	lui	a4,0x9f0
-     9c0:	c798                	sw	a4,8(a5)
-     9c2:	4398                	lw	a4,0(a5)
-     9c4:	00671693          	slli	a3,a4,0x6
-     9c8:	fe06dde3          	bgez	a3,9c2 <SystemInit+0x20>
-     9cc:	43d8                	lw	a4,4(a5)
-     9ce:	400216b7          	lui	a3,0x40021
-     9d2:	9b71                	andi	a4,a4,-4
-     9d4:	00276713          	ori	a4,a4,2
-     9d8:	c3d8                	sw	a4,4(a5)
-     9da:	4721                	li	a4,8
-     9dc:	42dc                	lw	a5,4(a3)
-     9de:	8bb1                	andi	a5,a5,12
-     9e0:	fee79ee3          	bne	a5,a4,9dc <SystemInit+0x3a>
-     9e4:	e00007b7          	lui	a5,0xe0000
-     9e8:	0e07ac23          	sw	zero,248(a5) # e00000f8 <__global_pointer$+0xbffff8f8>
-     9ec:	08000713          	li	a4,128
-     9f0:	0ee7aa23          	sw	a4,244(a5)
-     9f4:	8082                	ret
+00000ade <SystemInit>:
+     ade:	400227b7          	lui	a5,0x40022
+     ae2:	4705                	li	a4,1
+     ae4:	c398                	sw	a4,0(a5)
+     ae6:	400217b7          	lui	a5,0x40021
+     aea:	01080737          	lui	a4,0x1080
+     aee:	0007a223          	sw	zero,4(a5) # 40021004 <__global_pointer$+0x20020804>
+     af2:	08170713          	addi	a4,a4,129 # 1080081 <main.c.99fa8f27+0x107d834>
+     af6:	c398                	sw	a4,0(a5)
+     af8:	009f0737          	lui	a4,0x9f0
+     afc:	c798                	sw	a4,8(a5)
+     afe:	4398                	lw	a4,0(a5)
+     b00:	00671693          	slli	a3,a4,0x6
+     b04:	fe06dde3          	bgez	a3,afe <SystemInit+0x20>
+     b08:	43d8                	lw	a4,4(a5)
+     b0a:	400216b7          	lui	a3,0x40021
+     b0e:	9b71                	andi	a4,a4,-4
+     b10:	00276713          	ori	a4,a4,2
+     b14:	c3d8                	sw	a4,4(a5)
+     b16:	4721                	li	a4,8
+     b18:	42dc                	lw	a5,4(a3)
+     b1a:	8bb1                	andi	a5,a5,12
+     b1c:	fee79ee3          	bne	a5,a4,b18 <SystemInit+0x3a>
+     b20:	e00007b7          	lui	a5,0xe0000
+     b24:	0e07ac23          	sw	zero,248(a5) # e00000f8 <__global_pointer$+0xbffff8f8>
+     b28:	08000713          	li	a4,128
+     b2c:	0ee7aa23          	sw	a4,244(a5)
+     b30:	8082                	ret
 
-000009f6 <main>:
+00000b32 <main>:
     ssd1306_setbuf(0);
   }
 }
 
 int main()
 {
-     9f6:	7159                	addi	sp,sp,-112
-     9f8:	d686                	sw	ra,108(sp)
-     9fa:	d4a2                	sw	s0,104(sp)
-     9fc:	d2a6                	sw	s1,100(sp)
+     b32:	f4810113          	addi	sp,sp,-184
+     b36:	db06                	sw	ra,180(sp)
+     b38:	d922                	sw	s0,176(sp)
+     b3a:	d726                	sw	s1,172(sp)
     GPIO_port_enable(GPIO_port_A);
-     9fe:	40021437          	lui	s0,0x40021
+     b3c:	40021437          	lui	s0,0x40021
 	// 48MHz internal clock
 	SystemInit();
-     a02:	3745                	jal	9a2 <SystemInit>
+     b40:	3f79                	jal	ade <SystemInit>
     GPIO_port_enable(GPIO_port_A);
-     a04:	4c1c                	lw	a5,24(s0)
+     b42:	4c1c                	lw	a5,24(s0)
     GPIO_pinMode(BTN_PIN, GPIO_pinMode_I_pullUp, GPIO_Speed_10MHz);
-     a06:	400114b7          	lui	s1,0x40011
+     b44:	400114b7          	lui	s1,0x40011
 
   init_gpio();
 
 	Delay_Ms( 200 );
-     a0a:	00125537          	lui	a0,0x125
+     b48:	00125537          	lui	a0,0x125
     GPIO_port_enable(GPIO_port_A);
-     a0e:	0047e793          	ori	a5,a5,4
-     a12:	cc1c                	sw	a5,24(s0)
+     b4c:	0047e793          	ori	a5,a5,4
+     b50:	cc1c                	sw	a5,24(s0)
     GPIO_port_enable(GPIO_port_D);
-     a14:	4c1c                	lw	a5,24(s0)
+     b52:	4c1c                	lw	a5,24(s0)
 	Delay_Ms( 200 );
-     a16:	f8050513          	addi	a0,a0,-128 # 124f80 <main.c.5d39cb8d+0x122a12>
+     b54:	f8050513          	addi	a0,a0,-128 # 124f80 <main.c.99fa8f27+0x122733>
     GPIO_port_enable(GPIO_port_D);
-     a1a:	0207e793          	ori	a5,a5,32
-     a1e:	cc1c                	sw	a5,24(s0)
+     b58:	0207e793          	ori	a5,a5,32
+     b5c:	cc1c                	sw	a5,24(s0)
     GPIO_port_enable(GPIO_port_C);
-     a20:	4c1c                	lw	a5,24(s0)
-     a22:	0107e793          	ori	a5,a5,16
-     a26:	cc1c                	sw	a5,24(s0)
+     b5e:	4c1c                	lw	a5,24(s0)
+     b60:	0107e793          	ori	a5,a5,16
+     b64:	cc1c                	sw	a5,24(s0)
     GPIO_pinMode(BTN_PIN, GPIO_pinMode_I_pullUp, GPIO_Speed_10MHz);
-     a28:	40048793          	addi	a5,s1,1024 # 40011400 <__global_pointer$+0x20010c00>
-     a2c:	4398                	lw	a4,0(a5)
-     a2e:	f0f77713          	andi	a4,a4,-241
-     a32:	c398                	sw	a4,0(a5)
-     a34:	4398                	lw	a4,0(a5)
-     a36:	08076713          	ori	a4,a4,128
-     a3a:	c398                	sw	a4,0(a5)
-     a3c:	4709                	li	a4,2
-     a3e:	cb98                	sw	a4,16(a5)
+     b66:	40048793          	addi	a5,s1,1024 # 40011400 <__global_pointer$+0x20010c00>
+     b6a:	4398                	lw	a4,0(a5)
+     b6c:	f0f77713          	andi	a4,a4,-241
+     b70:	c398                	sw	a4,0(a5)
+     b72:	4398                	lw	a4,0(a5)
+     b74:	08076713          	ori	a4,a4,128
+     b78:	c398                	sw	a4,0(a5)
+     b7a:	4709                	li	a4,2
+     b7c:	cb98                	sw	a4,16(a5)
 	Delay_Ms( 200 );
-     a40:	fc0ff0ef          	jal	200 <DelaySysTick>
+     b7e:	e82ff0ef          	jal	200 <DelaySysTick>
  * init I2C and GPIO
  */
 uint8_t ssd1306_i2c_init(void)
 {
 	// Enable GPIOC and I2C
 	RCC->APB2PCENR |= RCC_APB2Periph_GPIOC;
-     a44:	4c1c                	lw	a5,24(s0)
+     b82:	4c1c                	lw	a5,24(s0)
 	RCC->APB1PCENR |= RCC_APB1Periph_I2C1;
-     a46:	00200737          	lui	a4,0x200
+     b84:	00200737          	lui	a4,0x200
 	RCC->APB2PCENR |= RCC_APB2Periph_GPIOC;
-     a4a:	0107e793          	ori	a5,a5,16
-     a4e:	cc1c                	sw	a5,24(s0)
+     b88:	0107e793          	ori	a5,a5,16
+     b8c:	cc1c                	sw	a5,24(s0)
 	RCC->APB1PCENR |= RCC_APB1Periph_I2C1;
-     a50:	4c5c                	lw	a5,28(s0)
-     a52:	8fd9                	or	a5,a5,a4
-     a54:	cc5c                	sw	a5,28(s0)
+     b8e:	4c5c                	lw	a5,28(s0)
+     b90:	8fd9                	or	a5,a5,a4
+     b92:	cc5c                	sw	a5,28(s0)
 	
 	// PC1 is SDA, 10MHz Output, alt func, open-drain
 	GPIOC->CFGLR &= ~(0xf<<(4*1));
-     a56:	409c                	lw	a5,0(s1)
+     b94:	409c                	lw	a5,0(s1)
 	GPIOC->CFGLR |= (GPIO_Speed_10MHz | GPIO_CNF_OUT_OD_AF)<<(4*1);
 	
 	// PC2 is SCL, 10MHz Output, alt func, open-drain
 	GPIOC->CFGLR &= ~(0xf<<(4*2));
-     a58:	777d                	lui	a4,0xfffff
-     a5a:	0ff70713          	addi	a4,a4,255 # fffff0ff <__global_pointer$+0xdfffe8ff>
+     b96:	777d                	lui	a4,0xfffff
+     b98:	0ff70713          	addi	a4,a4,255 # fffff0ff <__global_pointer$+0xdfffe8ff>
 	GPIOC->CFGLR &= ~(0xf<<(4*1));
-     a5e:	f0f7f793          	andi	a5,a5,-241
-     a62:	c09c                	sw	a5,0(s1)
+     b9c:	f0f7f793          	andi	a5,a5,-241
+     ba0:	c09c                	sw	a5,0(s1)
 	GPIOC->CFGLR |= (GPIO_Speed_10MHz | GPIO_CNF_OUT_OD_AF)<<(4*1);
-     a64:	409c                	lw	a5,0(s1)
+     ba2:	409c                	lw	a5,0(s1)
 {
 	// pulse reset
 	ssd1306_rst();
 	
 	// initialize OLED
 	uint8_t *cmd_list = (uint8_t *)ssd1306_init_array;
-     a66:	6405                	lui	s0,0x1
-     a68:	e5040413          	addi	s0,s0,-432 # e50 <ssd1306_init_array>
-     a6c:	0d07e793          	ori	a5,a5,208
-     a70:	c09c                	sw	a5,0(s1)
+     ba4:	6405                	lui	s0,0x1
+     ba6:	fd840413          	addi	s0,s0,-40 # fd8 <ssd1306_init_array>
+     baa:	0d07e793          	ori	a5,a5,208
+     bae:	c09c                	sw	a5,0(s1)
 	GPIOC->CFGLR &= ~(0xf<<(4*2));
-     a72:	409c                	lw	a5,0(s1)
-     a74:	8ff9                	and	a5,a5,a4
-     a76:	c09c                	sw	a5,0(s1)
+     bb0:	409c                	lw	a5,0(s1)
+     bb2:	8ff9                	and	a5,a5,a4
+     bb4:	c09c                	sw	a5,0(s1)
 	GPIOC->CFGLR |= (GPIO_Speed_10MHz | GPIO_CNF_OUT_OD_AF)<<(4*2);
-     a78:	409c                	lw	a5,0(s1)
-     a7a:	6705                	lui	a4,0x1
-     a7c:	d0070713          	addi	a4,a4,-768 # d00 <main+0x30a>
-     a80:	8fd9                	or	a5,a5,a4
-     a82:	c09c                	sw	a5,0(s1)
+     bb6:	409c                	lw	a5,0(s1)
+     bb8:	6705                	lui	a4,0x1
+     bba:	d0070713          	addi	a4,a4,-768 # d00 <main+0x1ce>
+     bbe:	8fd9                	or	a5,a5,a4
+     bc0:	c09c                	sw	a5,0(s1)
 	GPIOC->CFGLR |= (GPIO_Speed_10MHz | GPIO_CNF_OUT_PP)<<(4*4);
 	GPIOC->BSHR = (1<<(16+4));
 #endif
 
 	// load I2C regs
 	ssd1306_i2c_setup();
-     a84:	84fff0ef          	jal	2d2 <ssd1306_i2c_setup>
+     bc2:	f10ff0ef          	jal	2d2 <ssd1306_i2c_setup>
 	while(*cmd_list != SSD1306_TERMINATE_CMDS)
-     a88:	00044503          	lbu	a0,0(s0)
-     a8c:	0ff00793          	li	a5,255
-     a90:	08f51c63          	bne	a0,a5,b28 <main+0x132>
+     bc6:	00044503          	lbu	a0,0(s0)
+     bca:	0ff00793          	li	a5,255
+     bce:	08f51c63          	bne	a0,a5,c66 <main+0x134>
 		if(ssd1306_cmd(*cmd_list++))
 			return 1;
 	}
 	
 	// clear display
 	ssd1306_setbuf(0);
-     a94:	3549                	jal	916 <ssd1306_setbuf.constprop.0>
+     bd2:	3541                	jal	a52 <ssd1306_setbuf.constprop.0>
     for (int i = 0; i < 30; i+=2) {
-     a96:	4401                	li	s0,0
+     bd4:	4401                	li	s0,0
 	ssd1306_refresh();
-     a98:	356d                	jal	942 <ssd1306_refresh>
+     bd6:	3565                	jal	a7e <ssd1306_refresh>
       ssd1306_setbuf(0);
-     a9a:	3db5                	jal	916 <ssd1306_setbuf.constprop.0>
+     bd8:	3dad                	jal	a52 <ssd1306_setbuf.constprop.0>
       ssd1306_drawImage(i, 0, title, 24, 64, 0);
-     a9c:	6485                	lui	s1,0x1
-     a9e:	4781                	li	a5,0
-     aa0:	8522                	mv	a0,s0
-     aa2:	04000713          	li	a4,64
-     aa6:	46e1                	li	a3,24
-     aa8:	eb448613          	addi	a2,s1,-332 # eb4 <title>
-     aac:	4581                	li	a1,0
-     aae:	879ff0ef          	jal	326 <ssd1306_drawImage>
+     bda:	6485                	lui	s1,0x1
+     bdc:	4781                	li	a5,0
+     bde:	8522                	mv	a0,s0
+     be0:	04000713          	li	a4,64
+     be4:	46e1                	li	a3,24
+     be6:	03c48613          	addi	a2,s1,60 # 103c <title>
+     bea:	4581                	li	a1,0
+     bec:	f3aff0ef          	jal	326 <ssd1306_drawImage>
       ssd1306_refresh();
-     ab2:	3d41                	jal	942 <ssd1306_refresh>
+     bf0:	3579                	jal	a7e <ssd1306_refresh>
       Delay_Ms(100);
-     ab4:	00092537          	lui	a0,0x92
-     ab8:	7c050513          	addi	a0,a0,1984 # 927c0 <main.c.5d39cb8d+0x90252>
-     abc:	f44ff0ef          	jal	200 <DelaySysTick>
+     bf2:	00092537          	lui	a0,0x92
+     bf6:	7c050513          	addi	a0,a0,1984 # 927c0 <main.c.99fa8f27+0x8ff73>
+     bfa:	e06ff0ef          	jal	200 <DelaySysTick>
     for (int i = 0; i < 30; i+=2) {
-     ac0:	0409                	addi	s0,s0,2
-     ac2:	47f9                	li	a5,30
-     ac4:	fcf41be3          	bne	s0,a5,a9a <main+0xa4>
+     bfe:	0409                	addi	s0,s0,2
+     c00:	47f9                	li	a5,30
+     c02:	fcf41be3          	bne	s0,a5,bd8 <main+0xa6>
     int c = 0;
-     ac8:	4401                	li	s0,0
+     c06:	4401                	li	s0,0
     bool button_state = false;
-     aca:	c402                	sw	zero,8(sp)
+     c08:	c202                	sw	zero,4(sp)
       ssd1306_setbuf(0);
-     acc:	35a9                	jal	916 <ssd1306_setbuf.constprop.0>
+     c0a:	35a1                	jal	a52 <ssd1306_setbuf.constprop.0>
       ssd1306_drawImage(30, 0, title, 24, 64, 0);
-     ace:	4781                	li	a5,0
-     ad0:	eb448613          	addi	a2,s1,-332
-     ad4:	04000713          	li	a4,64
-     ad8:	46e1                	li	a3,24
-     ada:	4581                	li	a1,0
-     adc:	4579                	li	a0,30
-     ade:	849ff0ef          	jal	326 <ssd1306_drawImage>
+     c0c:	4781                	li	a5,0
+     c0e:	03c48613          	addi	a2,s1,60
+     c12:	04000713          	li	a4,64
+     c16:	46e1                	li	a3,24
+     c18:	4581                	li	a1,0
+     c1a:	4579                	li	a0,30
+     c1c:	f0aff0ef          	jal	326 <ssd1306_drawImage>
       if (c > 50) {
-     ae2:	03200793          	li	a5,50
-     ae6:	6605                	lui	a2,0x1
-     ae8:	0487d363          	bge	a5,s0,b2e <main+0x138>
+     c20:	03200793          	li	a5,50
+     c24:	6605                	lui	a2,0x1
+     c26:	0487d363          	bge	a5,s0,c6c <main+0x13a>
         ssd1306_drawImage(80, 20, start, 24, 24, 0);
-     aec:	4781                	li	a5,0
+     c2a:	4781                	li	a5,0
         ssd1306_drawImage(80, 20, start, 24, 24, 1);
-     aee:	4761                	li	a4,24
-     af0:	86ba                	mv	a3,a4
-     af2:	e6c60613          	addi	a2,a2,-404 # e6c <start>
-     af6:	45d1                	li	a1,20
-     af8:	05000513          	li	a0,80
-     afc:	82bff0ef          	jal	326 <ssd1306_drawImage>
+     c2c:	4761                	li	a4,24
+     c2e:	86ba                	mv	a3,a4
+     c30:	ff460613          	addi	a2,a2,-12 # ff4 <start>
+     c34:	45d1                	li	a1,20
+     c36:	05000513          	li	a0,80
+     c3a:	eecff0ef          	jal	326 <ssd1306_drawImage>
       ssd1306_refresh();
-     b00:	3589                	jal	942 <ssd1306_refresh>
+     c3e:	3581                	jal	a7e <ssd1306_refresh>
       uint8_t button_is_pressed = !GPIO_digitalRead(BTN_PIN);
-     b02:	400117b7          	lui	a5,0x40011
-     b06:	40078793          	addi	a5,a5,1024 # 40011400 <__global_pointer$+0x20010c00>
-     b0a:	479c                	lw	a5,8(a5)
+     c40:	400117b7          	lui	a5,0x40011
+     c44:	40078793          	addi	a5,a5,1024 # 40011400 <__global_pointer$+0x20010c00>
+     c48:	479c                	lw	a5,8(a5)
       if (button_state && !button_is_pressed){
-     b0c:	4722                	lw	a4,8(sp)
-     b0e:	8b89                	andi	a5,a5,2
-     b10:	c311                	beqz	a4,b14 <main+0x11e>
-     b12:	e385                	bnez	a5,b32 <main+0x13c>
+     c4a:	4712                	lw	a4,4(sp)
+     c4c:	8b89                	andi	a5,a5,2
+     c4e:	c311                	beqz	a4,c52 <main+0x120>
+     c50:	e385                	bnez	a5,c70 <main+0x13e>
       button_state = button_is_pressed;
-     b14:	0017b793          	seqz	a5,a5
-     b18:	c43e                	sw	a5,8(sp)
+     c52:	0017b793          	seqz	a5,a5
+     c56:	c23e                	sw	a5,4(sp)
       c ++;      
-     b1a:	0405                	addi	s0,s0,1
+     c58:	0405                	addi	s0,s0,1
       if (c > 100) {
-     b1c:	06500793          	li	a5,101
-     b20:	faf416e3          	bne	s0,a5,acc <main+0xd6>
+     c5a:	06500793          	li	a5,101
+     c5e:	faf416e3          	bne	s0,a5,c0a <main+0xd8>
         c = 0;
-     b24:	4401                	li	s0,0
-     b26:	b75d                	j	acc <main+0xd6>
+     c62:	4401                	li	s0,0
+     c64:	b75d                	j	c0a <main+0xd8>
 		if(ssd1306_cmd(*cmd_list++))
-     b28:	0405                	addi	s0,s0,1
-     b2a:	3b7d                	jal	8e8 <ssd1306_cmd.isra.0>
-     b2c:	bfb1                	j	a88 <main+0x92>
+     c66:	0405                	addi	s0,s0,1
+     c68:	3b75                	jal	a24 <ssd1306_cmd.isra.0>
+     c6a:	bfb1                	j	bc6 <main+0x94>
         ssd1306_drawImage(80, 20, start, 24, 24, 1);
-     b2e:	4785                	li	a5,1
-     b30:	bf7d                	j	aee <main+0xf8>
+     c6c:	4785                	li	a5,1
+     c6e:	bf7d                	j	c2c <main+0xfa>
 		ssd1306_init();
 
     opening();
     
     // clear display
     ssd1306_setbuf(0);
-     b32:	33d5                	jal	916 <ssd1306_setbuf.constprop.0>
+     c70:	33cd                	jal	a52 <ssd1306_setbuf.constprop.0>
     ssd1306_refresh();
-     b34:	3539                	jal	942 <ssd1306_refresh>
-  int random_n = get_random();
-     b36:	8e1ff0ef          	jal	416 <get_random>
-  struct character enemy = {pineapple_1,pineapple_1,pineapple_1,130,53,8,8};
-     b3a:	03500793          	li	a5,53
-     b3e:	cc3e                	sw	a5,24(sp)
-     b40:	08200793          	li	a5,130
-     b44:	c23e                	sw	a5,4(sp)
-     b46:	6785                	lui	a5,0x1
-     b48:	7d478713          	addi	a4,a5,2004 # 17d4 <pineapple_1>
-     b4c:	7d478793          	addi	a5,a5,2004
-     b50:	44a1                	li	s1,8
-     b52:	ce3e                	sw	a5,28(sp)
-  struct character kuina = {kuina_1,kuina_1,kuina_2,init_kuina_x,init_kuina_y,16,16};
-     b54:	02d00793          	li	a5,45
-  int random_n = get_random();
-     b58:	ca2a                	sw	a0,20(sp)
-  struct character enemy = {pineapple_1,pineapple_1,pineapple_1,130,53,8,8};
-     b5a:	c826                	sw	s1,16(sp)
-     b5c:	d03a                	sw	a4,32(sp)
-  struct character kuina = {kuina_1,kuina_1,kuina_2,init_kuina_x,init_kuina_y,16,16};
-     b5e:	c03e                	sw	a5,0(sp)
-  bool danger_flag = false;
-     b60:	4401                	li	s0,0
+     c72:	3531                	jal	a7e <ssd1306_refresh>
+  character enemy[3] = {
+     c74:	6585                	lui	a1,0x1
+     c76:	06000613          	li	a2,96
+     c7a:	ee858593          	addi	a1,a1,-280 # ee8 <main+0x3b6>
+     c7e:	00e8                	addi	a0,sp,76
+     c80:	33cd                	jal	a62 <memcpy>
+  int random_n = get_random(10);
+     c82:	4529                	li	a0,10
+     c84:	f98ff0ef          	jal	41c <get_random>
+  character kuina = {100,kuina_1,kuina_1,kuina_2,init_kuina_x,init_kuina_y,16,16};
+     c88:	02d00413          	li	s0,45
   int jump_progress = 0;
-     b62:	c602                	sw	zero,12(sp)
+     c8c:	c002                	sw	zero,0(sp)
   bool jump_flag = false;
-     b64:	d202                	sw	zero,36(sp)
+     c8e:	c402                	sw	zero,8(sp)
   bool button_state = false;
-     b66:	d802                	sw	zero,48(sp)
+     c90:	ca02                	sw	zero,20(sp)
   bool flip_flag = false;
-     b68:	d602                	sw	zero,44(sp)
+     c92:	c802                	sw	zero,16(sp)
   int flip_c = 0;
-     b6a:	d402                	sw	zero,40(sp)
+     c94:	c602                	sw	zero,12(sp)
     uint8_t button_is_pressed = !GPIO_digitalRead(BTN_PIN); 
-     b6c:	400117b7          	lui	a5,0x40011
-     b70:	40078793          	addi	a5,a5,1024 # 40011400 <__global_pointer$+0x20010c00>
-     b74:	479c                	lw	a5,8(a5)
+     c96:	400117b7          	lui	a5,0x40011
+     c9a:	40078793          	addi	a5,a5,1024 # 40011400 <__global_pointer$+0x20010c00>
+     c9e:	479c                	lw	a5,8(a5)
     if (!button_state && button_is_pressed && !jump_flag){
-     b76:	5742                	lw	a4,48(sp)
-     b78:	8b89                	andi	a5,a5,2
-     b7a:	e311                	bnez	a4,b7e <main+0x188>
-     b7c:	c3c9                	beqz	a5,bfe <main+0x208>
+     ca0:	4752                	lw	a4,20(sp)
+     ca2:	8b89                	andi	a5,a5,2
+     ca4:	e311                	bnez	a4,ca8 <main+0x176>
+     ca6:	c3c1                	beqz	a5,d26 <main+0x1f4>
     button_state = button_is_pressed;
-     b7e:	0017b793          	seqz	a5,a5
-     b82:	d83e                	sw	a5,48(sp)
+     ca8:	0017b793          	seqz	a5,a5
+     cac:	ca3e                	sw	a5,20(sp)
     if (jump_flag && (max_jump * 2) < jump_progress){
-     b84:	5792                	lw	a5,36(sp)
-     b86:	c395                	beqz	a5,baa <main+0x1b4>
-     b88:	4732                	lw	a4,12(sp)
-     b8a:	03c00793          	li	a5,60
-     b8e:	06e7ce63          	blt	a5,a4,c0a <main+0x214>
+     cae:	47a2                	lw	a5,8(sp)
+     cb0:	c385                	beqz	a5,cd0 <main+0x19e>
+     cb2:	4702                	lw	a4,0(sp)
+     cb4:	03c00793          	li	a5,60
+     cb8:	06e7cc63          	blt	a5,a4,d30 <main+0x1fe>
     else if (jump_flag && max_jump >= jump_progress){
-     b92:	46b2                	lw	a3,12(sp)
+     cbc:	4682                	lw	a3,0(sp)
       jump_progress += 1;
-     b94:	00170793          	addi	a5,a4,1
+     cbe:	00170793          	addi	a5,a4,1
     else if (jump_flag && max_jump >= jump_progress){
-     b98:	4779                	li	a4,30
-     b9a:	06d74563          	blt	a4,a3,c04 <main+0x20e>
+     cc2:	4779                	li	a4,30
+     cc4:	06d74463          	blt	a4,a3,d2c <main+0x1fa>
       kuina.y -= 1;
-     b9e:	4702                	lw	a4,0(sp)
-     ba0:	177d                	addi	a4,a4,-1
+     cc8:	147d                	addi	s0,s0,-1
       jump_progress += 1;
-     ba2:	c63e                	sw	a5,12(sp)
+     cca:	c03e                	sw	a5,0(sp)
       kuina.y += 1;
-     ba4:	47a2                	lw	a5,8(sp)
-     ba6:	c03a                	sw	a4,0(sp)
-     ba8:	d23e                	sw	a5,36(sp)
+     ccc:	4792                	lw	a5,4(sp)
+     cce:	c43e                	sw	a5,8(sp)
     flip_c ++;
-     baa:	57a2                	lw	a5,40(sp)
-     bac:	0785                	addi	a5,a5,1
-     bae:	d43e                	sw	a5,40(sp)
+     cd0:	47b2                	lw	a5,12(sp)
+     cd2:	0785                	addi	a5,a5,1
+     cd4:	c63e                	sw	a5,12(sp)
     if (flip_c > 20) {
-     bb0:	5722                	lw	a4,40(sp)
-     bb2:	47d5                	li	a5,21
-     bb4:	00f71763          	bne	a4,a5,bc2 <main+0x1cc>
+     cd6:	4732                	lw	a4,12(sp)
+     cd8:	47d5                	li	a5,21
+     cda:	00f71763          	bne	a4,a5,ce8 <main+0x1b6>
       flip_flag = !flip_flag;
-     bb8:	57b2                	lw	a5,44(sp)
+     cde:	47c2                	lw	a5,16(sp)
       flip_c = 0;
-     bba:	d402                	sw	zero,40(sp)
+     ce0:	c602                	sw	zero,12(sp)
       flip_flag = !flip_flag;
-     bbc:	0017c793          	xori	a5,a5,1
-     bc0:	d63e                	sw	a5,44(sp)
-    if (!danger_flag){
-     bc2:	e401                	bnez	s0,bca <main+0x1d4>
-      random_n = get_random();
-     bc4:	853ff0ef          	jal	416 <get_random>
-     bc8:	ca2a                	sw	a0,20(sp)
-      if (random_n <= 5){
-     bca:	46d2                	lw	a3,20(sp)
-     bcc:	4715                	li	a4,5
-     bce:	47a1                	li	a5,8
-     bd0:	04d75363          	bge	a4,a3,c16 <main+0x220>
-      else if (random_n <= 8){
-     bd4:	0cd7d763          	bge	a5,a3,ca2 <main+0x2ac>
-      else if (random_n <= 9){
-     bd8:	4725                	li	a4,9
-     bda:	0ee68063          	beq	a3,a4,cba <main+0x2c4>
-      else if (random_n <= 10){
-     bde:	4729                	li	a4,10
-     be0:	04e69663          	bne	a3,a4,c2c <main+0x236>
-        enemy.h = 8;
-     be4:	84be                	mv	s1,a5
-        enemy.w = 8;
-     be6:	c83e                	sw	a5,16(sp)
-        enemy.y = 53;
-     be8:	03500793          	li	a5,53
-     bec:	cc3e                	sw	a5,24(sp)
-        enemy.img_2 = earthworm_2;
-     bee:	200007b7          	lui	a5,0x20000
-     bf2:	00878793          	addi	a5,a5,8 # 20000008 <earthworm_2>
-     bf6:	d03e                	sw	a5,32(sp)
-        enemy.img_1 = earthworm_1;
-     bf8:	81818793          	addi	a5,gp,-2024 # 20000018 <earthworm_1>
-     bfc:	a03d                	j	c2a <main+0x234>
+     ce2:	0017c793          	xori	a5,a5,1
+     ce6:	c83e                	sw	a5,16(sp)
+    if (enemy[0].x < 0) {
+     ce8:	47f6                	lw	a5,92(sp)
+     cea:	0a07d463          	bgez	a5,d92 <main+0x260>
+      enemy[0] = enemy[1];
+     cee:	02000613          	li	a2,32
+     cf2:	10ec                	addi	a1,sp,108
+     cf4:	00e8                	addi	a0,sp,76
+     cf6:	33b5                	jal	a62 <memcpy>
+      enemy[1] = enemy[2];
+     cf8:	02000613          	li	a2,32
+     cfc:	016c                	addi	a1,sp,140
+     cfe:	10e8                	addi	a0,sp,108
+     d00:	338d                	jal	a62 <memcpy>
+  int character_n = get_random(10);
+     d02:	4529                	li	a0,10
+     d04:	f18ff0ef          	jal	41c <get_random>
+  if (character_n <= 5){
+     d08:	4795                	li	a5,5
+     d0a:	02a7c863          	blt	a5,a0,d3a <main+0x208>
+    enemy[2].img = grass_1;
+     d0e:	81818793          	addi	a5,gp,-2024 # 20000018 <grass_1>
+     d12:	c93e                	sw	a5,144(sp)
+    enemy[2].img_1 = grass_1;
+     d14:	cb3e                	sw	a5,148(sp)
+    enemy[2].img_2 = grass_1;
+     d16:	cd3e                	sw	a5,152(sp)
+    enemy[2].y = 53;
+     d18:	03500793          	li	a5,53
+     d1c:	d13e                	sw	a5,160(sp)
+    enemy[2].id = 0;
+     d1e:	c702                	sw	zero,140(sp)
+    enemy[2].w = 8;
+     d20:	47a1                	li	a5,8
+    enemy[2].w = 8;
+     d22:	d33e                	sw	a5,164(sp)
+     d24:	a8b1                	j	d80 <main+0x24e>
     button_state = button_is_pressed;
-     bfe:	47a2                	lw	a5,8(sp)
-     c00:	d83e                	sw	a5,48(sp)
-     c02:	b759                	j	b88 <main+0x192>
+     d26:	4792                	lw	a5,4(sp)
+     d28:	ca3e                	sw	a5,20(sp)
+     d2a:	b761                	j	cb2 <main+0x180>
       kuina.y += 1;
-     c04:	4702                	lw	a4,0(sp)
-     c06:	0705                	addi	a4,a4,1
-     c08:	bf69                	j	ba2 <main+0x1ac>
+     d2c:	0405                	addi	s0,s0,1
+     d2e:	bf71                	j	cca <main+0x198>
       kuina.y = init_kuina_y;
-     c0a:	02d00793          	li	a5,45
-     c0e:	c03e                	sw	a5,0(sp)
+     d30:	02d00413          	li	s0,45
       jump_progress = 0;
-     c10:	c602                	sw	zero,12(sp)
+     d34:	c002                	sw	zero,0(sp)
       jump_flag = false;
-     c12:	d202                	sw	zero,36(sp)
-     c14:	bf59                	j	baa <main+0x1b4>
-        enemy.h = 8;
-     c16:	84be                	mv	s1,a5
-        enemy.w = 8;
-     c18:	c83e                	sw	a5,16(sp)
-        enemy.y = 53;
-     c1a:	03500793          	li	a5,53
-     c1e:	cc3e                	sw	a5,24(sp)
-        enemy.img_2 = grass_1;
-     c20:	81018713          	addi	a4,gp,-2032 # 20000010 <grass_1>
-     c24:	d03a                	sw	a4,32(sp)
-        enemy.img_1 = grass_1;
-     c26:	81018793          	addi	a5,gp,-2032 # 20000010 <grass_1>
-        enemy.img_1 = earthworm_1;
-     c2a:	ce3e                	sw	a5,28(sp)
+     d36:	c402                	sw	zero,8(sp)
+     d38:	bf61                	j	cd0 <main+0x19e>
+  else if (character_n <= 8){
+     d3a:	47a1                	li	a5,8
+     d3c:	00a7cf63          	blt	a5,a0,d5a <main+0x228>
+    enemy[2].id = 1;
+     d40:	4785                	li	a5,1
+     d42:	c73e                	sw	a5,140(sp)
+    enemy[2].img = pineapple_1;
+     d44:	6785                	lui	a5,0x1
+     d46:	11c78793          	addi	a5,a5,284 # 111c <pineapple_1>
+     d4a:	c93e                	sw	a5,144(sp)
+    enemy[2].img_1 = pineapple_1;
+     d4c:	cb3e                	sw	a5,148(sp)
+    enemy[2].img_2 = pineapple_1;
+     d4e:	cd3e                	sw	a5,152(sp)
+    enemy[2].y = 45;
+     d50:	02d00793          	li	a5,45
+     d54:	d13e                	sw	a5,160(sp)
+    enemy[2].w = 16;
+     d56:	47c1                	li	a5,16
+     d58:	b7e9                	j	d22 <main+0x1f0>
+  else if (character_n <= 9){
+     d5a:	4725                	li	a4,9
+     d5c:	12e51c63          	bne	a0,a4,e94 <main+0x362>
+    enemy[2].id = 2;
+     d60:	4709                	li	a4,2
+     d62:	c73a                	sw	a4,140(sp)
+    enemy[2].img = mongoose_1;
+     d64:	6705                	lui	a4,0x1
+     d66:	10c70713          	addi	a4,a4,268 # 110c <mongoose_1>
+     d6a:	c93a                	sw	a4,144(sp)
+    enemy[2].img_1 = mongoose_1;
+     d6c:	cb3a                	sw	a4,148(sp)
+    enemy[2].img_2 = mongoose_2;
+     d6e:	6705                	lui	a4,0x1
+     d70:	0fc70713          	addi	a4,a4,252 # 10fc <mongoose_2>
+     d74:	cd3a                	sw	a4,152(sp)
+    enemy[2].y = 53;
+     d76:	03500713          	li	a4,53
+     d7a:	d13a                	sw	a4,160(sp)
+    enemy[2].w = 16;
+     d7c:	4741                	li	a4,16
+     d7e:	d33a                	sw	a4,164(sp)
+    enemy[2].h = 8;
+     d80:	d53e                	sw	a5,168(sp)
+  int enemy_distance = get_random(30);
+     d82:	4579                	li	a0,30
+     d84:	e98ff0ef          	jal	41c <get_random>
+  enemy[2].x = enemy[1].x + distance_buffer + enemy_distance;
+     d88:	57f6                	lw	a5,124(sp)
+     d8a:	03278793          	addi	a5,a5,50
+     d8e:	97aa                	add	a5,a5,a0
+     d90:	cf3e                	sw	a5,156(sp)
     if (flip_flag){
-     c2c:	57b2                	lw	a5,44(sp)
-     c2e:	c7c5                	beqz	a5,cd6 <main+0x2e0>
-      enemy.img = enemy.img_1;
-     c30:	4672                	lw	a2,28(sp)
+     d92:	47c2                	lw	a5,16(sp)
+     d94:	12078263          	beqz	a5,eb8 <main+0x386>
+      enemy[0].img = enemy[0].img_1;
+     d98:	4756                	lw	a4,84(sp)
+     d9a:	107c                	addi	a5,sp,44
+      enemy[2].img = enemy[2].img_1;
+     d9c:	57bc                	lw	a5,104(a5)
+      enemy[0].img = enemy[0].img_1;
+     d9e:	c8ba                	sw	a4,80(sp)
+      enemy[1].img = enemy[1].img_1;
+     da0:	5756                	lw	a4,116(sp)
       kuina.img = kuina.img_1;
-     c32:	6405                	lui	s0,0x1
-     c34:	79440413          	addi	s0,s0,1940 # 1794 <kuina_1>
-    ssd1306_drawImage(enemy.x, enemy.y, enemy.img, enemy.w, enemy.h, 0);
-     c38:	46c2                	lw	a3,16(sp)
-     c3a:	45e2                	lw	a1,24(sp)
-     c3c:	4512                	lw	a0,4(sp)
-     c3e:	4781                	li	a5,0
-     c40:	8726                	mv	a4,s1
-     c42:	ee4ff0ef          	jal	326 <ssd1306_drawImage>
+     da2:	6485                	lui	s1,0x1
+     da4:	15c48493          	addi	s1,s1,348 # 115c <kuina_1>
+      enemy[1].img = enemy[1].img_1;
+     da8:	d8ba                	sw	a4,112(sp)
     ssd1306_drawImage(kuina.x, kuina.y, kuina.img, kuina.w, kuina.h, 0);
-     c46:	4582                	lw	a1,0(sp)
-     c48:	4741                	li	a4,16
-     c4a:	4781                	li	a5,0
-     c4c:	86ba                	mv	a3,a4
-     c4e:	8622                	mv	a2,s0
-     c50:	453d                	li	a0,15
-     c52:	ed4ff0ef          	jal	326 <ssd1306_drawImage>
-    enemy.x -= 1;
-     c56:	4792                	lw	a5,4(sp)
-     c58:	17fd                	addi	a5,a5,-1
-     c5a:	c23e                	sw	a5,4(sp)
-    if (enemy.x < 0){
-     c5c:	4712                	lw	a4,4(sp)
-     c5e:	57fd                	li	a5,-1
-     c60:	08f70063          	beq	a4,a5,ce0 <main+0x2ea>
-    if (kuina.x < enemy.x && (kuina.x + enemy.w) > enemy.x && kuina.y > (init_kuina_y - enemy.h)) {
-     c64:	47bd                	li	a5,15
-     c66:	4422                	lw	s0,8(sp)
-     c68:	08e7d063          	bge	a5,a4,ce8 <main+0x2f2>
-     c6c:	47c2                	lw	a5,16(sp)
-     c6e:	17e1                	addi	a5,a5,-8
-     c70:	00f037b3          	snez	a5,a5
-     c74:	078e                	slli	a5,a5,0x3
-     c76:	07dd                	addi	a5,a5,23
-     c78:	06f75863          	bge	a4,a5,ce8 <main+0x2f2>
-     c7c:	ff848793          	addi	a5,s1,-8
-     c80:	00f037b3          	snez	a5,a5
-     c84:	40f007b3          	neg	a5,a5
-     c88:	4702                	lw	a4,0(sp)
-     c8a:	9be1                	andi	a5,a5,-8
-     c8c:	02578793          	addi	a5,a5,37
-     c90:	04e7dc63          	bge	a5,a4,ce8 <main+0x2f2>
+     daa:	4741                	li	a4,16
+     dac:	86ba                	mv	a3,a4
+     dae:	8626                	mv	a2,s1
+      enemy[2].img = enemy[2].img_1;
+     db0:	c93e                	sw	a5,144(sp)
+    ssd1306_drawImage(kuina.x, kuina.y, kuina.img, kuina.w, kuina.h, 0);
+     db2:	85a2                	mv	a1,s0
+     db4:	4781                	li	a5,0
+     db6:	453d                	li	a0,15
+     db8:	d6eff0ef          	jal	326 <ssd1306_drawImage>
+    ssd1306_drawRect(kuina.x, kuina.y, kuina.w, kuina.h, 1);
+     dbc:	46c1                	li	a3,16
+     dbe:	8636                	mv	a2,a3
+     dc0:	0ff47593          	zext.b	a1,s0
+     dc4:	453d                	li	a0,15
+     dc6:	f84ff0ef          	jal	54a <ssd1306_drawRect.constprop.0>
+    ssd1306_drawImage(-8, 0, kuina.img, kuina.w, kuina.h, 0);
+     dca:	4741                	li	a4,16
+     dcc:	86ba                	mv	a3,a4
+     dce:	8626                	mv	a2,s1
+     dd0:	4781                	li	a5,0
+     dd2:	4581                	li	a1,0
+     dd4:	5561                	li	a0,-8
+     dd6:	d50ff0ef          	jal	326 <ssd1306_drawImage>
+    ssd1306_drawRect(0, 0, kuina.w, kuina.h, 1);
+     dda:	46c1                	li	a3,16
+     ddc:	8636                	mv	a2,a3
+     dde:	4581                	li	a1,0
+     de0:	4501                	li	a0,0
+     de2:	f68ff0ef          	jal	54a <ssd1306_drawRect.constprop.0>
+     de6:	00e4                	addi	s1,sp,76
+      ssd1306_drawImage(enemy[i].x, enemy[i].y, enemy[i].img, enemy[i].w, enemy[i].h, 0);
+     de8:	0184c783          	lbu	a5,24(s1)
+     dec:	0104a283          	lw	t0,16(s1)
+     df0:	01c4a383          	lw	t2,28(s1)
+     df4:	cc3e                	sw	a5,24(sp)
+     df6:	48cc                	lw	a1,20(s1)
+     df8:	46e2                	lw	a3,24(sp)
+     dfa:	40d0                	lw	a2,4(s1)
+     dfc:	0ff3f713          	zext.b	a4,t2
+     e00:	4781                	li	a5,0
+     e02:	8516                	mv	a0,t0
+     e04:	d41e                	sw	t2,40(sp)
+     e06:	d23a                	sw	a4,36(sp)
+     e08:	d02e                	sw	a1,32(sp)
+     e0a:	ce16                	sw	t0,28(sp)
+     e0c:	d1aff0ef          	jal	326 <ssd1306_drawImage>
+      ssd1306_drawRect(enemy[i].x, enemy[i].y, enemy[i].w, enemy[i].h, 1);
+     e10:	42f2                	lw	t0,28(sp)
+     e12:	5712                	lw	a4,36(sp)
+     e14:	5582                	lw	a1,32(sp)
+     e16:	4662                	lw	a2,24(sp)
+     e18:	0ff2f513          	zext.b	a0,t0
+     e1c:	86ba                	mv	a3,a4
+     e1e:	0ff5f593          	zext.b	a1,a1
+     e22:	cc16                	sw	t0,24(sp)
+     e24:	f26ff0ef          	jal	54a <ssd1306_drawRect.constprop.0>
+      enemy[i].x -= 1;
+     e28:	42e2                	lw	t0,24(sp)
+     e2a:	fff28793          	addi	a5,t0,-1
+     e2e:	c89c                	sw	a5,16(s1)
+      if (kuina.x < enemy[i].x && (kuina.x + kuina.w) > enemy[i].x && kuina.y > (init_kuina_y - enemy[i].h)) {
+     e30:	12bd                	addi	t0,t0,-17
+     e32:	47b9                	li	a5,14
+     e34:	0857ec63          	bltu	a5,t0,ecc <main+0x39a>
+     e38:	53a2                	lw	t2,40(sp)
+     e3a:	02d00793          	li	a5,45
+     e3e:	407787b3          	sub	a5,a5,t2
+     e42:	0887d563          	bge	a5,s0,ecc <main+0x39a>
+        if (enemy[i].id == 1 | enemy[i].id == 2){
+     e46:	409c                	lw	a5,0(s1)
+     e48:	4705                	li	a4,1
+     e4a:	17fd                	addi	a5,a5,-1
+     e4c:	08f76063          	bltu	a4,a5,ecc <main+0x39a>
 	  Delay_Ms(2000);
-     c94:	00b72537          	lui	a0,0xb72
-     c98:	b0050513          	addi	a0,a0,-1280 # b71b00 <main.c.5d39cb8d+0xb6f592>
-     c9c:	d64ff0ef          	jal	200 <DelaySysTick>
-}
-     ca0:	bd59                	j	b36 <main+0x140>
-        enemy.y = 45;
-     ca2:	02d00793          	li	a5,45
-     ca6:	cc3e                	sw	a5,24(sp)
-        enemy.img_2 = pineapple_1;
-     ca8:	6785                	lui	a5,0x1
-     caa:	7d478713          	addi	a4,a5,2004 # 17d4 <pineapple_1>
-        enemy.h = 16;
-     cae:	44c1                	li	s1,16
-        enemy.w = 16;
-     cb0:	c826                	sw	s1,16(sp)
-        enemy.img_2 = pineapple_1;
-     cb2:	d03a                	sw	a4,32(sp)
-        enemy.img_1 = pineapple_1;
-     cb4:	7d478793          	addi	a5,a5,2004
-     cb8:	bf8d                	j	c2a <main+0x234>
-        enemy.h = 8;
-     cba:	84be                	mv	s1,a5
-        enemy.w = 16;
-     cbc:	47c1                	li	a5,16
-     cbe:	c83e                	sw	a5,16(sp)
-        enemy.y = 53;
-     cc0:	03500793          	li	a5,53
-     cc4:	cc3e                	sw	a5,24(sp)
-        enemy.img_2 = mongoose_2;
-     cc6:	6785                	lui	a5,0x1
-     cc8:	7b478793          	addi	a5,a5,1972 # 17b4 <mongoose_2>
-     ccc:	d03e                	sw	a5,32(sp)
-        enemy.img_1 = mongoose_1;
-     cce:	6785                	lui	a5,0x1
-     cd0:	7c478793          	addi	a5,a5,1988 # 17c4 <mongoose_1>
-     cd4:	bf99                	j	c2a <main+0x234>
-      kuina.img = kuina.img_2;
-     cd6:	6405                	lui	s0,0x1
-      enemy.img = enemy.img_2;
-     cd8:	5602                	lw	a2,32(sp)
-      kuina.img = kuina.img_2;
-     cda:	77440413          	addi	s0,s0,1908 # 1774 <kuina_2>
-     cde:	bfa9                	j	c38 <main+0x242>
-      enemy.x = 130;
-     ce0:	08200793          	li	a5,130
-      danger_flag = false;
-     ce4:	4401                	li	s0,0
-      enemy.x = 130;
-     ce6:	c23e                	sw	a5,4(sp)
+     e50:	00b72537          	lui	a0,0xb72
+     e54:	b0050513          	addi	a0,a0,-1280 # b71b00 <main.c.99fa8f27+0xb6f2b3>
+     e58:	ba8ff0ef          	jal	200 <DelaySysTick>
     char score_txt[30] = "Score:"; 
-     ce8:	726f67b7          	lui	a5,0x726f6
-     cec:	35378793          	addi	a5,a5,851 # 726f6353 <__global_pointer$+0x526f5b53>
-     cf0:	c2be                	sw	a5,68(sp)
-     cf2:	6791                	lui	a5,0x4
-     cf4:	a6578793          	addi	a5,a5,-1435 # 3a65 <main.c.5d39cb8d+0x14f7>
-     cf8:	4659                	li	a2,22
-     cfa:	4581                	li	a1,0
-     cfc:	00e8                	addi	a0,sp,76
-     cfe:	c4be                	sw	a5,72(sp)
-     d00:	3111                	jal	904 <memset>
-     d02:	00d8                	addi	a4,sp,68
+     e5c:	726f67b7          	lui	a5,0x726f6
+     e60:	35378793          	addi	a5,a5,851 # 726f6353 <__global_pointer$+0x526f5b53>
+     e64:	d63e                	sw	a5,44(sp)
+     e66:	6791                	lui	a5,0x4
+     e68:	a6578793          	addi	a5,a5,-1435 # 3a65 <main.c.99fa8f27+0x1218>
+     e6c:	4659                	li	a2,22
+     e6e:	4581                	li	a1,0
+     e70:	1848                	addi	a0,sp,52
+     e72:	d83e                	sw	a5,48(sp)
+     e74:	36f1                	jal	a40 <memset>
+     e76:	107c                	addi	a5,sp,44
     while (*dest != '\0') {
-     d04:	00074783          	lbu	a5,0(a4)
-     d08:	e7c5                	bnez	a5,db0 <main+0x3ba>
-     d0a:	6685                	lui	a3,0x1
-     d0c:	df068693          	addi	a3,a3,-528 # df0 <main+0x3fa>
+     e78:	0007c703          	lbu	a4,0(a5)
+     e7c:	ef31                	bnez	a4,ed8 <main+0x3a6>
+     e7e:	6705                	lui	a4,0x1
+     e80:	f7870713          	addi	a4,a4,-136 # f78 <main+0x446>
     while (*src != '\0') {
-     d10:	0006c783          	lbu	a5,0(a3)
-     d14:	e3c5                	bnez	a5,db4 <main+0x3be>
+     e84:	00074683          	lbu	a3,0(a4)
+     e88:	eab1                	bnez	a3,edc <main+0x3aa>
     *dest = '\0';
-     d16:	00070023          	sb	zero,0(a4)
-}
-     d1a:	00d4                	addi	a3,sp,68
-     d1c:	20000737          	lui	a4,0x20000
-     d20:	02070713          	addi	a4,a4,32 # 20000020 <ssd1306_buffer>
-     d24:	da36                	sw	a3,52(sp)
-	while((c=*str++))
-     d26:	56d2                	lw	a3,52(sp)
-     d28:	0006c603          	lbu	a2,0(a3)
-     d2c:	0685                	addi	a3,a3,1
-     d2e:	da36                	sw	a3,52(sp)
-     d30:	ce2d                	beqz	a2,daa <main+0x3b4>
-        d = fontdata[(chr << 3) + i];
-     d32:	060e                	slli	a2,a2,0x3
-     d34:	4681                	li	a3,0
-     d36:	c0b2                	sw	a2,64(sp)
-     d38:	4606                	lw	a2,64(sp)
-     d3a:	6585                	lui	a1,0x1
-     d3c:	f7458593          	addi	a1,a1,-140 # f74 <fontdata>
-     d40:	9636                	add	a2,a2,a3
-     d42:	962e                	add	a2,a2,a1
-     d44:	00064583          	lbu	a1,0(a2)
-		ssd1306_buffer[addr] |= (1<<(y&7));
-     d48:	4605                	li	a2,1
-     d4a:	00d61333          	sll	t1,a2,a3
-		ssd1306_buffer[addr] &= ~(1<<(y&7));
-     d4e:	fff34293          	not	t0,t1
-     d52:	0ff2f613          	zext.b	a2,t0
-     d56:	de32                	sw	a2,60(sp)
-     d58:	0ff37613          	zext.b	a2,t1
-     d5c:	dc32                	sw	a2,56(sp)
-     d5e:	853a                	mv	a0,a4
-     d60:	4621                	li	a2,8
-		ssd1306_buffer[addr] |= (1<<(y&7));
-     d62:	00054283          	lbu	t0,0(a0)
-		ssd1306_buffer[addr] &= ~(1<<(y&7));
-     d66:	5372                	lw	t1,60(sp)
-	if(color)
-     d68:	01859393          	slli	t2,a1,0x18
-     d6c:	4183d393          	srai	t2,t2,0x18
-		ssd1306_buffer[addr] &= ~(1<<(y&7));
-     d70:	0062f333          	and	t1,t0,t1
-	if(color)
-     d74:	0003d563          	bgez	t2,d7e <main+0x388>
-		ssd1306_buffer[addr] |= (1<<(y&7));
-     d78:	5362                	lw	t1,56(sp)
-     d7a:	0062e333          	or	t1,t0,t1
-        for (j = 0; j < 8; j++)
-     d7e:	167d                	addi	a2,a2,-1
-     d80:	0642                	slli	a2,a2,0x10
-		ssd1306_buffer[addr] |= (1<<(y&7));
-     d82:	00650023          	sb	t1,0(a0)
-            d <<= 1;
-     d86:	0586                	slli	a1,a1,0x1
-        for (j = 0; j < 8; j++)
-     d88:	8241                	srli	a2,a2,0x10
-            d <<= 1;
-     d8a:	0ff5f593          	zext.b	a1,a1
-        for (j = 0; j < 8; j++)
-     d8e:	0505                	addi	a0,a0,1
-     d90:	fa69                	bnez	a2,d62 <main+0x36c>
-    for (i = 0; i < 8; i++)
-     d92:	0685                	addi	a3,a3,1
-     d94:	4621                	li	a2,8
-     d96:	fac691e3          	bne	a3,a2,d38 <main+0x342>
-		x += 8 * font_size;
-     d9a:	97b2                	add	a5,a5,a2
-     d9c:	0ff7f793          	zext.b	a5,a5
-		if(x>128 - 8 * font_size)
-     da0:	08000693          	li	a3,128
-     da4:	9732                	add	a4,a4,a2
-     da6:	f8d790e3          	bne	a5,a3,d26 <main+0x330>
+     e8a:	00078023          	sb	zero,0(a5)
     ssd1306_refresh();
-     daa:	3e61                	jal	942 <ssd1306_refresh>
+     e8e:	3ec5                	jal	a7e <ssd1306_refresh>
     ssd1306_setbuf(0);
-     dac:	36ad                	jal	916 <ssd1306_setbuf.constprop.0>
+     e90:	36c9                	jal	a52 <ssd1306_setbuf.constprop.0>
   while (1) {
-     dae:	bb7d                	j	b6c <main+0x176>
+     e92:	b511                	j	c96 <main+0x164>
+  else if (character_n <= 10){
+     e94:	4729                	li	a4,10
+     e96:	eee516e3          	bne	a0,a4,d82 <main+0x250>
+    enemy[2].id = 3;
+     e9a:	470d                	li	a4,3
+     e9c:	c73a                	sw	a4,140(sp)
+    enemy[2].img = earthworm_1;
+     e9e:	81018713          	addi	a4,gp,-2032 # 20000010 <earthworm_1>
+     ea2:	c93a                	sw	a4,144(sp)
+    enemy[2].img_1 = earthworm_1;
+     ea4:	cb3a                	sw	a4,148(sp)
+    enemy[2].img_2 = earthworm_2;
+     ea6:	20000737          	lui	a4,0x20000
+     eaa:	00870713          	addi	a4,a4,8 # 20000008 <earthworm_2>
+     eae:	cd3a                	sw	a4,152(sp)
+    enemy[2].y = 53;
+     eb0:	03500713          	li	a4,53
+     eb4:	d13a                	sw	a4,160(sp)
+     eb6:	b5b5                	j	d22 <main+0x1f0>
+      enemy[0].img = enemy[0].img_2;
+     eb8:	4766                	lw	a4,88(sp)
+     eba:	107c                	addi	a5,sp,44
+      kuina.img = kuina.img_2;
+     ebc:	6485                	lui	s1,0x1
+      enemy[0].img = enemy[0].img_2;
+     ebe:	c8ba                	sw	a4,80(sp)
+      enemy[1].img = enemy[1].img_2;
+     ec0:	5766                	lw	a4,120(sp)
+      enemy[2].img = enemy[2].img_2;
+     ec2:	57fc                	lw	a5,108(a5)
+      kuina.img = kuina.img_2;
+     ec4:	13c48493          	addi	s1,s1,316 # 113c <kuina_2>
+      enemy[1].img = enemy[1].img_2;
+     ec8:	d8ba                	sw	a4,112(sp)
+     eca:	b5c5                	j	daa <main+0x278>
+    for (int i=0; i < 3; i++){
+     ecc:	02048493          	addi	s1,s1,32
+     ed0:	117c                	addi	a5,sp,172
+     ed2:	f0979be3          	bne	a5,s1,de8 <main+0x2b6>
+     ed6:	b759                	j	e5c <main+0x32a>
         dest++;
-     db0:	0705                	addi	a4,a4,1
-     db2:	bf89                	j	d04 <main+0x30e>
+     ed8:	0785                	addi	a5,a5,1
+     eda:	bf79                	j	e78 <main+0x346>
         *dest = *src;
-     db4:	00f70023          	sb	a5,0(a4)
+     edc:	00d78023          	sb	a3,0(a5)
         src++;
-     db8:	0685                	addi	a3,a3,1
+     ee0:	0705                	addi	a4,a4,1
         dest++;
-     dba:	0705                	addi	a4,a4,1
-     dbc:	bf91                	j	d10 <main+0x31a>
-     dbe:	0000                	unimp
-     dc0:	31647373          	.insn	4, 0x31647373
-     dc4:	5f363033          	.insn	4, 0x5f363033
-     dc8:	3269                	jal	752 <mini_vpprintf+0x17a>
-     dca:	72655f63          	bge	a0,t1,1508 <fontdata+0x594>
-     dce:	6f72                	.insn	2, 0x6f72
-     dd0:	2072                	.insn	2, 0x2072
-     dd2:	202d                	jal	dfc <main+0x406>
-     dd4:	6974                	.insn	2, 0x6974
-     dd6:	656d                	lui	a0,0x1b
-     dd8:	2074756f          	jal	a0,487de <main.c.5d39cb8d+0x46270>
-     ddc:	74696177          	.insn	4, 0x74696177
-     de0:	6e69                	lui	t3,0x1a
-     de2:	6f662067          	.insn	4, 0x6f662067
-     de6:	2072                	.insn	2, 0x2072
-     de8:	7325                	lui	t1,0xfffe9
-     dea:	0d0a                	slli	s10,s10,0x2
-     dec:	0000                	unimp
-     dee:	0000                	unimp
-     df0:	3031                	jal	5fc <mini_vpprintf+0x24>
-     df2:	0000                	unimp
-     df4:	6f6e                	.insn	2, 0x6f6e
-     df6:	2074                	.insn	2, 0x2074
-     df8:	7562                	.insn	2, 0x7562
-     dfa:	00007973          	.insn	4, 0x7973
-     dfe:	0000                	unimp
-     e00:	616d                	addi	sp,sp,240
-     e02:	72657473          	.insn	4, 0x72657473
-     e06:	6d20                	.insn	2, 0x6d20
-     e08:	0065646f          	jal	s0,56e0e <main.c.5d39cb8d+0x548a0>
-     e0c:	7274                	.insn	2, 0x7274
-     e0e:	6e61                	lui	t3,0x18
-     e10:	74696d73          	.insn	4, 0x74696d73
-     e14:	6d20                	.insn	2, 0x6d20
-     e16:	0065646f          	jal	s0,56e1c <main.c.5d39cb8d+0x548ae>
-     e1a:	0000                	unimp
-     e1c:	7874                	.insn	2, 0x7874
-     e1e:	6520                	.insn	2, 0x6520
-     e20:	706d                	c.lui	zero,0xffffb
-     e22:	7974                	.insn	2, 0x7974
-     e24:	0000                	unimp
-     e26:	0000                	unimp
-     e28:	7274                	.insn	2, 0x7274
-     e2a:	6e61                	lui	t3,0x18
-     e2c:	74696d73          	.insn	4, 0x74696d73
-     e30:	6320                	.insn	2, 0x6320
-     e32:	6c706d6f          	jal	s10,7cf8 <main.c.5d39cb8d+0x578a>
-     e36:	7465                	lui	s0,0xffff9
-     e38:	0065                	c.nop	25
+     ee2:	0785                	addi	a5,a5,1
+     ee4:	b745                	j	e84 <main+0x352>
+     ee6:	0000                	unimp
+     ee8:	0000                	unimp
+     eea:	0000                	unimp
+     eec:	0018                	.insn	2, 0x0018
+     eee:	2000                	.insn	2, 0x2000
+     ef0:	0018                	.insn	2, 0x0018
+     ef2:	2000                	.insn	2, 0x2000
+     ef4:	0018                	.insn	2, 0x0018
+     ef6:	2000                	.insn	2, 0x2000
+     ef8:	0082                	c.slli64	ra
+     efa:	0000                	unimp
+     efc:	0035                	c.nop	13
+     efe:	0000                	unimp
+     f00:	0008                	.insn	2, 0x0008
+     f02:	0000                	unimp
+     f04:	0008                	.insn	2, 0x0008
+     f06:	0000                	unimp
+     f08:	0000                	unimp
+     f0a:	0000                	unimp
+     f0c:	0018                	.insn	2, 0x0018
+     f0e:	2000                	.insn	2, 0x2000
+     f10:	0018                	.insn	2, 0x0018
+     f12:	2000                	.insn	2, 0x2000
+     f14:	0018                	.insn	2, 0x0018
+     f16:	2000                	.insn	2, 0x2000
+     f18:	00a0                	addi	s0,sp,72
+     f1a:	0000                	unimp
+     f1c:	0035                	c.nop	13
+     f1e:	0000                	unimp
+     f20:	0008                	.insn	2, 0x0008
+     f22:	0000                	unimp
+     f24:	0008                	.insn	2, 0x0008
+     f26:	0000                	unimp
+     f28:	0001                	nop
+     f2a:	0000                	unimp
+     f2c:	111c                	addi	a5,sp,160
+     f2e:	0000                	unimp
+     f30:	111c                	addi	a5,sp,160
+     f32:	0000                	unimp
+     f34:	111c                	addi	a5,sp,160
+     f36:	0000                	unimp
+     f38:	00d2                	slli	ra,ra,0x14
+     f3a:	0000                	unimp
+     f3c:	002d                	c.nop	11
+     f3e:	0000                	unimp
+     f40:	0010                	.insn	2, 0x0010
+     f42:	0000                	unimp
+     f44:	0010                	.insn	2, 0x0010
+     f46:	0000                	unimp
+     f48:	31647373          	.insn	4, 0x31647373
+     f4c:	5f363033          	.insn	4, 0x5f363033
+     f50:	3269                	jal	8da <printf+0xa>
+     f52:	72655f63          	bge	a0,t1,1690 <_data_lma+0x514>
+     f56:	6f72                	.insn	2, 0x6f72
+     f58:	2072                	.insn	2, 0x2072
+     f5a:	202d                	jal	f84 <main+0x452>
+     f5c:	6974                	.insn	2, 0x6974
+     f5e:	656d                	lui	a0,0x1b
+     f60:	2074756f          	jal	a0,48966 <main.c.99fa8f27+0x46119>
+     f64:	74696177          	.insn	4, 0x74696177
+     f68:	6e69                	lui	t3,0x1a
+     f6a:	6f662067          	.insn	4, 0x6f662067
+     f6e:	2072                	.insn	2, 0x2072
+     f70:	7325                	lui	t1,0xfffe9
+     f72:	0d0a                	slli	s10,s10,0x2
+     f74:	0000                	unimp
+     f76:	0000                	unimp
+     f78:	3031                	jal	784 <mini_vpprintf+0x70>
+     f7a:	0000                	unimp
+     f7c:	6f6e                	.insn	2, 0x6f6e
+     f7e:	2074                	.insn	2, 0x2074
+     f80:	7562                	.insn	2, 0x7562
+     f82:	00007973          	.insn	4, 0x7973
+     f86:	0000                	unimp
+     f88:	616d                	addi	sp,sp,240
+     f8a:	72657473          	.insn	4, 0x72657473
+     f8e:	6d20                	.insn	2, 0x6d20
+     f90:	0065646f          	jal	s0,56f96 <main.c.99fa8f27+0x54749>
+     f94:	7274                	.insn	2, 0x7274
+     f96:	6e61                	lui	t3,0x18
+     f98:	74696d73          	.insn	4, 0x74696d73
+     f9c:	6d20                	.insn	2, 0x6d20
+     f9e:	0065646f          	jal	s0,56fa4 <main.c.99fa8f27+0x54757>
+     fa2:	0000                	unimp
+     fa4:	7874                	.insn	2, 0x7874
+     fa6:	6520                	.insn	2, 0x6520
+     fa8:	706d                	c.lui	zero,0xffffb
+     faa:	7974                	.insn	2, 0x7974
+     fac:	0000                	unimp
+     fae:	0000                	unimp
+     fb0:	7274                	.insn	2, 0x7274
+     fb2:	6e61                	lui	t3,0x18
+     fb4:	74696d73          	.insn	4, 0x74696d73
+     fb8:	6320                	.insn	2, 0x6320
+     fba:	6c706d6f          	jal	s10,7e80 <main.c.99fa8f27+0x5633>
+     fbe:	7465                	lui	s0,0xffff9
+     fc0:	0065                	c.nop	25
 	...
 
-00000e3c <errstr>:
-     e3c:	0df4 0000 0e00 0000 0e0c 0000 0e1c 0000     ................
-     e4c:	0e28 0000                                   (...
+00000fc4 <errstr>:
+     fc4:	0f7c 0000 0f88 0000 0f94 0000 0fa4 0000     |...............
+     fd4:	0fb0 0000                                   ....
 
-00000e50 <ssd1306_init_array>:
-     e50:	d5ae a880 d33f 4000 148d 0020 c8a1 12da     ....?..@.. .....
-     e60:	8f81 f1d9 40db a6a4 ffaf 0000               .....@......
+00000fd8 <ssd1306_init_array>:
+     fd8:	d5ae a880 d33f 4000 148d 0020 c8a1 12da     ....?..@.. .....
+     fe8:	8f81 f1d9 40db a6a4 ffaf 0000               .....@......
 
-00000e6c <start>:
-     e6c:	0000 0000 0004 7c00 0000 0004 0000 0000     .......|........
-     e7c:	0068 1400 0000 0014 7800 0000 0000 7800     h........x.....x
-     e8c:	0000 0014 1400 0000 0078 0000 0000 0004     ........x.......
-     e9c:	7c00 0000 0004 0000 0000 0024 5400 0000     .|........$..T..
-     eac:	0054 4800 0000 0000                         T..H....
+00000ff4 <start>:
+     ff4:	0000 0000 0004 7c00 0000 0004 0000 0000     .......|........
+    1004:	0068 1400 0000 0014 7800 0000 0000 7800     h........x.....x
+    1014:	0000 0014 1400 0000 0078 0000 0000 0004     ........x.......
+    1024:	7c00 0000 0004 0000 0000 0024 5400 0000     .|........$..T..
+    1034:	0054 4800 0000 0000                         T..H....
 
-00000eb4 <title>:
+0000103c <title>:
 	...
-     ebc:	0000 00f8 0401 0200 00fa 0603 0200 0002     ................
-     ecc:	0202 0300 00fe 0202 0300 00fe 0000 0000     ................
-     edc:	0000 fe03 0200 0002 fe03 0000 0000 0000     ................
-     eec:	0000 00f8 0401 0200 00fa 0603 0200 0002     ................
-     efc:	0202 0200 0002 0401 0000 00f8 0000 0000     ................
-     f0c:	0006 1800 0000 0020 c000 0300 00b0 dc00     ...... .........
-     f1c:	0000 0026 1a00 0000 0006 0000 0000 00f8     ..&.............
-     f2c:	0401 0200 00fa 0603 0200 0002 0202 0200     ................
-     f3c:	0002 0401 0000 00f8 0000 0300 00fe 0202     ................
-     f4c:	0300 00fe 0400 0000 0018 6000 0100 00a0     ...........`....
-     f5c:	5000 0000 002c 1600 0300 00fe 0000 0000     .P..,...........
-	...
-
-00000f74 <fontdata>:
-	...
-     f7c:	817e 81a5 99bd 7e81 ff7e ffdb e7c3 7eff     ~......~~......~
-     f8c:	fe6c fefe 387c 0010 3810 fe7c 387c 0010     l...|8...8|.|8..
-     f9c:	7c38 fe38 d6fe 3810 3810 fe7c 7cfe 3810     8|8....8.8|..|.8
-     fac:	0000 3c18 183c 0000 ffff c3e7 e7c3 ffff     ...<<...........
-     fbc:	3c00 4266 6642 003c c3ff bd99 99bd ffc3     .<fBBf<.........
-     fcc:	070f 7d0f cccc 78cc 663c 6666 183c 187e     ...}...x<fff<.~.
-     fdc:	333f 303f 7030 e0f0 637f 637f 6763 c0e6     ?3?00p...c.ccg..
-     fec:	db18 e73c 3ce7 18db e080 fef8 e0f8 0080     ..<..<..........
-     ffc:	0e02 fe3e 0e3e 0002 3c18 187e 7e18 183c     ..>.>....<~..~<.
-    100c:	6666 6666 0066 0066 db7f 7bdb 1b1b 001b     fffff.f....{....
-    101c:	613e 663c 3c66 7c86 0000 0000 7e7e 007e     >a<ff<.|....~~~.
-    102c:	3c18 187e 3c7e ff18 3c18 187e 1818 0018     .<~.~<...<~.....
-    103c:	1818 1818 3c7e 0018 1800 fe0c 180c 0000     ....~<..........
-    104c:	3000 fe60 3060 0000 0000 c0c0 fec0 0000     .0`.`0..........
-    105c:	2400 ff66 2466 0000 1800 7e3c ffff 0000     .$f.f$....<~....
-    106c:	ff00 7eff 183c 0000 0000 0000 0000 0000     ...~<...........
-    107c:	3c18 183c 0018 0018 6666 0024 0000 0000     .<<.....ff$.....
-    108c:	6c6c 6cfe 6cfe 006c 3e18 3c60 7c06 0018     ll.l.ll..>`<.|..
-    109c:	c600 18cc 6630 00c6 6c38 7638 ccdc 0076     ....0f..8l8v..v.
-    10ac:	1818 0030 0000 0000 180c 3030 1830 000c     ..0.......000...
-    10bc:	1830 0c0c 180c 0030 6600 ff3c 663c 0000     0.....0..f<.<f..
-    10cc:	1800 7e18 1818 0000 0000 0000 1800 3018     ...~...........0
-    10dc:	0000 7e00 0000 0000 0000 0000 1800 0018     ...~............
-    10ec:	0c06 3018 c060 0080 6c38 d6c6 6cc6 0038     ...0`...8l...l8.
-    10fc:	3818 1818 1818 007e c67c 1c06 6630 00fe     .8....~.|...0f..
-    110c:	c67c 3c06 c606 007c 3c1c cc6c 0cfe 001e     |..<..|..<l.....
-    111c:	c0fe fcc0 c606 007c 6038 fcc0 c6c6 007c     ......|.8`....|.
-    112c:	c6fe 180c 3030 0030 c67c 7cc6 c6c6 007c     ....000.|..|..|.
-    113c:	c67c 7ec6 0c06 0078 1800 0018 1800 0018     |..~..x.........
-    114c:	1800 0018 1800 3018 0c06 3018 0c18 0006     .......0...0....
-    115c:	0000 007e 7e00 0000 3060 0c18 3018 0060     ..~..~..`0...0`.
-    116c:	c67c 180c 0018 0018 c67c dede c0de 0078     |.......|.....x.
-    117c:	6c38 fec6 c6c6 00c6 66fc 7c66 6666 00fc     8l.......ff|ff..
-    118c:	663c c0c0 66c0 003c 6cf8 6666 6c66 00f8     <f...f<..lfffl..
-    119c:	62fe 7868 6268 00fe 62fe 7868 6068 00f0     .bhxhb...bhxh`..
-    11ac:	663c c0c0 66ce 003a c6c6 fec6 c6c6 00c6     <f...f:.........
-    11bc:	183c 1818 1818 003c 0c1e 0c0c cccc 0078     <.....<.......x.
-    11cc:	66e6 786c 666c 00e6 60f0 6060 6662 00fe     .flxlf...```bf..
-    11dc:	eec6 fefe c6d6 00c6 e6c6 def6 c6ce 00c6     ................
-    11ec:	c67c c6c6 c6c6 007c 66fc 7c66 6060 00f0     |.....|..ff|``..
-    11fc:	c67c c6c6 cec6 0e7c 66fc 7c66 666c 00e6     |.....|..ff|lf..
-    120c:	663c 1830 660c 003c 7e7e 185a 1818 003c     <f0..f<.~~Z...<.
-    121c:	c6c6 c6c6 c6c6 007c c6c6 c6c6 6cc6 0038     ......|......l8.
-    122c:	c6c6 d6c6 fed6 006c c6c6 386c c66c 00c6     ......l...l8l...
-    123c:	6666 3c66 1818 003c c6fe 188c 6632 00fe     fff<..<.....2f..
-    124c:	303c 3030 3030 003c 60c0 1830 060c 0002     <00000<..`0.....
-    125c:	0c3c 0c0c 0c0c 003c 3810 c66c 0000 0000     <.....<..8l.....
-    126c:	0000 0000 0000 ff00 1830 000c 0000 0000     ........0.......
-    127c:	0000 0c78 cc7c 0076 60e0 667c 6666 00dc     ..x.|.v..`|fff..
-    128c:	0000 c67c c6c0 007c 0c1c cc7c cccc 0076     ..|...|...|...v.
-    129c:	0000 c67c c0fe 007c 663c f860 6060 00f0     ..|...|.<f`.``..
-    12ac:	0000 cc76 7ccc f80c 60e0 766c 6666 00e6     ..v..|...`lvff..
-    12bc:	0018 1838 1818 003c 0006 0606 6606 3c66     ..8...<......ff<
-    12cc:	60e0 6c66 6c78 00e6 1838 1818 1818 003c     .`flxl..8.....<.
-    12dc:	0000 feec d6d6 00d6 0000 66dc 6666 0066     ...........ffff.
-    12ec:	0000 c67c c6c6 007c 0000 66dc 7c66 f060     ..|...|....ff|`.
-    12fc:	0000 cc76 7ccc 1e0c 0000 76dc 6060 00f0     ..v..|.....v``..
-    130c:	0000 c07e 067c 00fc 3030 30fc 3630 001c     ..~.|...00.006..
-    131c:	0000 cccc cccc 0076 0000 c6c6 6cc6 0038     ......v......l8.
-    132c:	0000 d6c6 fed6 006c 0000 6cc6 6c38 00c6     ......l....l8l..
-    133c:	0000 c6c6 7ec6 fc06 0000 4c7e 3218 007e     .....~....~L.2~.
-    134c:	180e 7018 1818 000e 1818 1818 1818 0018     ...p............
-    135c:	1870 0e18 1818 0070 dc76 0000 0000 0000     p.....p.v.......
-    136c:	1000 6c38 c6c6 00fe c67c c0c0 7cc6 780c     ..8l....|....|.x
-    137c:	00cc cccc cccc 0076 180c c67c c0fe 007c     ......v...|...|.
-    138c:	827c 0c78 cc7c 0076 00c6 0c78 cc7c 0076     |.x.|.v...x.|.v.
-    139c:	1830 0c78 cc7c 0076 3030 0c78 cc7c 0076     0.x.|.v.00x.|.v.
-    13ac:	0000 c07e 7ec0 380c 827c c67c c0fe 007c     ..~..~.8|.|...|.
-    13bc:	00c6 c67c c0fe 007c 1830 c67c c0fe 007c     ..|...|.0.|...|.
-    13cc:	0066 1838 1818 003c 827c 1838 1818 003c     f.8...<.|.8...<.
-    13dc:	1830 3800 1818 003c 38c6 c66c c6fe 00c6     0..8..<..8l.....
-    13ec:	6c38 c67c c6fe 00c6 3018 c0fe c0f8 00fe     8l|......0......
-    13fc:	0000 187e d87e 007e 6c3e fecc cccc 00ce     ..~.~.~.>l......
-    140c:	827c c67c c6c6 007c 00c6 c67c c6c6 007c     |.|...|...|...|.
-    141c:	1830 c67c c6c6 007c 8478 cc00 cccc 0076     0.|...|.x.....v.
-    142c:	3060 cccc cccc 0076 00c6 c6c6 7ec6 fc06     `0....v......~..
-    143c:	38c6 c66c 6cc6 0038 00c6 c6c6 c6c6 007c     .8l..l8.......|.
-    144c:	1818 c07e 7ec0 1818 6c38 f064 6660 00fc     ..~..~..8ld.`f..
-    145c:	6666 7e3c 7e18 1818 ccf8 facc cfc6 c7c6     ff<~.~..........
-    146c:	1b0e 3c18 d818 0070 3018 0c78 cc7c 0076     ...<..p..0x.|.v.
-    147c:	180c 3800 1818 003c 180c c67c c6c6 007c     ...8..<...|...|.
-    148c:	3018 cccc cccc 0076 dc76 dc00 6666 0066     .0....v.v...fff.
-    149c:	dc76 e600 def6 00ce 6c3c 3e6c 7e00 0000     v.......<ll>.~..
-    14ac:	6c38 386c 7c00 0000 0018 1818 6330 003e     8ll8.|......0c>.
-    14bc:	0000 fe00 c0c0 0000 0000 fe00 0606 0000     ................
-    14cc:	e663 7e6c 6633 0fcc e663 7a6c 6a36 06df     c.l~3f..c.lz6j..
-    14dc:	0018 1818 3c3c 0018 3300 cc66 3366 0000     ....<<...3f.f3..
-    14ec:	cc00 3366 cc66 0000 8822 8822 8822 8822     ..f3f...".".".".
-    14fc:	aa55 aa55 aa55 aa55 dd77 dd77 dd77 dd77     U.U.U.U.w.w.w.w.
-    150c:	1818 1818 1818 1818 1818 1818 18f8 1818     ................
-    151c:	1818 18f8 18f8 1818 3636 3636 36f6 3636     ........6666.666
-    152c:	0000 0000 36fe 3636 0000 18f8 18f8 1818     .....666........
-    153c:	3636 06f6 36f6 3636 3636 3636 3636 3636     66...66666666666
-    154c:	0000 06fe 36f6 3636 3636 06f6 00fe 0000     .....66666......
-    155c:	3636 3636 00fe 0000 1818 18f8 00f8 0000     6666............
-    156c:	0000 0000 18f8 1818 1818 1818 001f 0000     ................
-    157c:	1818 1818 00ff 0000 0000 0000 18ff 1818     ................
-    158c:	1818 1818 181f 1818 0000 0000 00ff 0000     ................
-    159c:	1818 1818 18ff 1818 1818 181f 181f 1818     ................
-    15ac:	3636 3636 3637 3636 3636 3037 003f 0000     666676666670?...
-    15bc:	0000 303f 3637 3636 3636 00f7 00ff 0000     ..?0766666......
-    15cc:	0000 00ff 36f7 3636 3636 3037 3637 3636     .....66666707666
-    15dc:	0000 00ff 00ff 0000 3636 00f7 36f7 3636     ........66...666
-    15ec:	1818 00ff 00ff 0000 3636 3636 00ff 0000     ........6666....
-    15fc:	0000 00ff 18ff 1818 0000 0000 36ff 3636     .............666
-    160c:	3636 3636 003f 0000 1818 181f 001f 0000     6666?...........
-    161c:	0000 181f 181f 1818 0000 0000 363f 3636     ............?666
-    162c:	3636 3636 36ff 3636 1818 18ff 18ff 1818     6666.666........
-    163c:	1818 1818 00f8 0000 0000 0000 181f 1818     ................
-    164c:	ffff ffff ffff ffff 0000 0000 ffff ffff     ................
-    165c:	f0f0 f0f0 f0f0 f0f0 0f0f 0f0f 0f0f 0f0f     ................
-    166c:	ffff ffff 0000 0000 0000 dc76 dcc8 0076     ..........v...v.
-    167c:	cc78 d8cc c6cc 00cc c6fe c0c0 c0c0 00c0     x...............
-    168c:	0000 6cfe 6c6c 006c c6fe 3060 c660 00fe     ...llll...`0`...
-    169c:	0000 d87e d8d8 0070 0000 6666 6666 c07c     ..~...p...ffff|.
-    16ac:	7600 18dc 1818 0018 187e 663c 3c66 7e18     .v......~.<ff<.~
-    16bc:	6c38 fec6 6cc6 0038 6c38 c6c6 6c6c 00ee     8l...l8.8l..ll..
-    16cc:	180e 3e0c 6666 003c 0000 db7e 7edb 0000     ...>ff<...~..~..
-    16dc:	0c06 db7e 7edb c060 301e 7e60 3060 001e     ..~..~`..0`~`0..
-    16ec:	7c00 c6c6 c6c6 00c6 fe00 fe00 fe00 0000     .|..............
-    16fc:	1818 187e 0018 007e 1830 180c 0030 007e     ..~...~.0...0.~.
-    170c:	180c 1830 000c 007e 1b0e 181b 1818 1818     ..0...~.........
-    171c:	1818 1818 d818 70d8 1800 7e00 1800 0000     .......p...~....
-    172c:	7600 00dc dc76 0000 6c38 386c 0000 0000     .v..v...8ll8....
-    173c:	0000 1800 0018 0000 0000 1800 0000 0000     ................
-    174c:	0c0f 0c0c 6cec 1c3c 366c 3636 0036 0000     .....l<.l6666...
-    175c:	0c78 3018 007c 0000 0000 3c3c 3c3c 0000     x..0|.....<<<<..
+    1044:	0000 00f8 0401 0200 00fa 0603 0200 0002     ................
+    1054:	0202 0300 00fe 0202 0300 00fe 0000 0000     ................
+    1064:	0000 fe03 0200 0002 fe03 0000 0000 0000     ................
+    1074:	0000 00f8 0401 0200 00fa 0603 0200 0002     ................
+    1084:	0202 0200 0002 0401 0000 00f8 0000 0000     ................
+    1094:	0006 1800 0000 0020 c000 0300 00b0 dc00     ...... .........
+    10a4:	0000 0026 1a00 0000 0006 0000 0000 00f8     ..&.............
+    10b4:	0401 0200 00fa 0603 0200 0002 0202 0200     ................
+    10c4:	0002 0401 0000 00f8 0000 0300 00fe 0202     ................
+    10d4:	0300 00fe 0400 0000 0018 6000 0100 00a0     ...........`....
+    10e4:	5000 0000 002c 1600 0300 00fe 0000 0000     .P..,...........
 	...
 
-00001774 <kuina_2>:
-    1774:	c03f c03f c0f3 c0f3 fc3f fc3f ff33 ff33     ?.?.....?.?.3.3.
-    1784:	cf00 cf00 3c33 3c33 c00c c00c 3030 3030     ....3<3<....0000
+000010fc <mongoose_2>:
+    10fc:	1800 1e00 ff1f ff7f fecf f007 3006 300e     .............0.0
 
-00001794 <kuina_1>:
-    1794:	c03f c03f c0f3 c0f3 fc3f fc3f ff33 ff33     ?.?.....?.?.3.3.
-    17a4:	cf00 cf00 3c33 3c33 c00c c00c c00c c00c     ....3<3<........
+0000110c <mongoose_1>:
+    110c:	0800 8e0f ff1f fd7f ffee f08f 681e 4c13     .............h.L
 
-000017b4 <mongoose_2>:
-    17b4:	1800 1e00 ff1f ff7f fecf f007 3006 300e     .............0.0
+0000111c <pineapple_1>:
+    111c:	0008 600c 4862 b01b 600f c007 600d a00a     ...`bH...`...`..
+    112c:	600d a00a 600d c7e7 1e79 f81f f00f c007     .`...`..y.......
 
-000017c4 <mongoose_1>:
-    17c4:	0800 8e0f ff1f fd7f ffee f08f 681e 4c13     .............h.L
+0000113c <kuina_2>:
+    113c:	c03f c03f c0f3 c0f3 fc3f fc3f ff33 ff33     ?.?.....?.?.3.3.
+    114c:	cf00 cf00 3c33 3c33 c00c c00c 3030 3030     ....3<3<....0000
 
-000017d4 <pineapple_1>:
-    17d4:	0008 600c 4862 b01b 600f c007 600d a00a     ...`bH...`...`..
-    17e4:	600d a00a 600d c7e7 1e79 f81f f00f c007     .`...`..y.......
+0000115c <kuina_1>:
+    115c:	c03f c03f c0f3 c0f3 fc3f fc3f ff33 ff33     ?.?.....?.?.3.3.
+    116c:	cf00 cf00 3c33 3c33 c00c c00c c00c c00c     ....3<3<........

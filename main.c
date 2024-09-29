@@ -20,7 +20,7 @@ uint32_t lfsr = 1;
 /*
  * random byte generator
  */
-int get_random(void)
+int get_random(int num)
 {
 	uint8_t bit;
 	uint32_t new_data;
@@ -35,7 +35,7 @@ int get_random(void)
 	}
 
   int random_8 = lfsr&NOISE_MASK;
-	return random_8 % 11;
+	return random_8 % (num + 1);
 }
 
 void string_concat(char *dest, const char *src) {
@@ -152,7 +152,8 @@ void game_over()
 	  Delay_Ms(2000);
 }
 
-struct character {
+typedef struct {
+  int id;
   const unsigned char *img;
   const unsigned char *img_1;
   const unsigned char *img_2;
@@ -160,15 +161,66 @@ struct character {
   int y;
   int w;
   int h;
-};
+} character;
+
+void gen_enemy(character *enemy)
+{ 
+  int character_n = get_random(10);
+  if (character_n <= 5){
+    enemy[2].id = 0;
+    enemy[2].img = grass_1;
+    enemy[2].img_1 = grass_1;
+    enemy[2].img_2 = grass_1;
+    enemy[2].y = 53;
+    enemy[2].w = 8;
+    enemy[2].h = 8;
+  }
+  else if (character_n <= 8){
+    enemy[2].id = 1;
+    enemy[2].img = pineapple_1;
+    enemy[2].img_1 = pineapple_1;
+    enemy[2].img_2 = pineapple_1;
+    enemy[2].y = 45;
+    enemy[2].w = 16;
+    enemy[2].h = 16;
+  }
+  else if (character_n <= 9){
+    enemy[2].id = 2;
+    enemy[2].img = mongoose_1;
+    enemy[2].img_1 = mongoose_1;
+    enemy[2].img_2 = mongoose_2;
+    enemy[2].y = 53;
+    enemy[2].w = 16;
+    enemy[2].h = 8;
+  }
+  else if (character_n <= 10){
+    enemy[2].id = 3;
+    enemy[2].img = earthworm_1;
+    enemy[2].img_1 = earthworm_1;
+    enemy[2].img_2 = earthworm_2;
+    enemy[2].y = 53;
+    enemy[2].w = 8;
+    enemy[2].h = 8;
+  }
+
+  int enemy_distance = get_random(30);
+  int distance_buffer = 50;
+  enemy[2].x = enemy[1].x + distance_buffer + enemy_distance;
+}
 
 bool game_loop()
 {
   int init_kuina_x = 15;
   int init_kuina_y = 45;
-  struct character kuina = {kuina_1,kuina_1,kuina_2,init_kuina_x,init_kuina_y,16,16};
+  character kuina = {100,kuina_1,kuina_1,kuina_2,init_kuina_x,init_kuina_y,16,16};
  
-  struct character enemy = {pineapple_1,pineapple_1,pineapple_1,130,53,8,8};
+  // struct character enemy = {pineapple_1,pineapple_1,pineapple_1,130,53,8,8};
+  character enemy[3] = {
+    {0,grass_1,grass_1,grass_1,130,53,8,8},
+    {0,grass_1,grass_1,grass_1,160,53,8,8},
+    {1,pineapple_1,pineapple_1,pineapple_1,210,45,16,16}
+  };
+
 
   int flip_c = 0;
   bool flip_flag = false;
@@ -187,7 +239,7 @@ bool game_loop()
   // 3 is earthworm  10%
   int enemy_num = 0;
 
-  int random_n = get_random();
+  int random_n = get_random(10);
 
   int score = 0;
 
@@ -222,73 +274,74 @@ bool game_loop()
       flip_c = 0;
     }
 
-    // get random number
-    if (!danger_flag){
-      random_n = get_random();
-      danger_flag = true;
+    if (enemy[0].x < 0) {
+      enemy[0] = enemy[1];
+      enemy[1] = enemy[2];
+      gen_enemy(enemy);
     }
 
-    // decision character
-    if (danger_flag){
-      if (random_n <= 5){
-        enemy.img = grass_1;
-        enemy.img_1 = grass_1;
-        enemy.img_2 = grass_1;
-        enemy.y = 53;
-        enemy.w = 8;
-        enemy.h = 8;
-      }
-      else if (random_n <= 8){
-        enemy.img = pineapple_1;
-        enemy.img_1 = pineapple_1;
-        enemy.img_2 = pineapple_1;
-        enemy.y = 45;
-        enemy.w = 16;
-        enemy.h = 16;
-      }
-      else if (random_n <= 9){
-        enemy.img = mongoose_1;
-        enemy.img_1 = mongoose_1;
-        enemy.img_2 = mongoose_2;
-        enemy.y = 53;
-        enemy.w = 16;
-        enemy.h = 8;
-      }
-      else if (random_n <= 10){
-        enemy.img = earthworm_1;
-        enemy.img_1 = earthworm_1;
-        enemy.img_2 = earthworm_2;
-        enemy.y = 53;
-        enemy.w = 8;
-        enemy.h = 8;
-      }
-    }
+    // get random number
+    // if (!danger_flag){
+    //   random_n = get_random();
+    //   danger_flag = true;
+    // }
+
+    // // decision character
+    // if (danger_flag){
+    //   if (random_n <= 5){
+    //     enemy.img = grass_1;
+    //     enemy.img_1 = grass_1;
+    //     enemy.img_2 = grass_1;
+    //     enemy.y = 53;
+    //     enemy.w = 8;
+    //     enemy.h = 8;
+    //   }
+    //   else if (random_n <= 8){
+    //     enemy.img = pineapple_1;
+    //     enemy.img_1 = pineapple_1;
+    //     enemy.img_2 = pineapple_1;
+    //     enemy.y = 45;
+    //     enemy.w = 16;
+    //     enemy.h = 16;
+    //   }
+    //   else if (random_n <= 9){
+    //     enemy.img = mongoose_1;
+    //     enemy.img_1 = mongoose_1;
+    //     enemy.img_2 = mongoose_2;
+    //     enemy.y = 53;
+    //     enemy.w = 16;
+    //     enemy.h = 8;
+    //   }
+    //   else if (random_n <= 10){
+    //     enemy.img = earthworm_1;
+    //     enemy.img_1 = earthworm_1;
+    //     enemy.img_2 = earthworm_2;
+    //     enemy.y = 53;
+    //     enemy.w = 8;
+    //     enemy.h = 8;
+    //   }
+    // }
 
     // flip character
     if (flip_flag){
-      enemy.img = enemy.img_1;
+      enemy[0].img = enemy[0].img_1;
+      enemy[1].img = enemy[1].img_1;
+      enemy[2].img = enemy[2].img_1;
       kuina.img = kuina.img_1;
     } else {
-      enemy.img = enemy.img_2;
+      enemy[0].img = enemy[0].img_2;
+      enemy[1].img = enemy[1].img_2;
+      enemy[2].img = enemy[2].img_2;
       kuina.img = kuina.img_2;
     }
 
-    // draw enemy
-    ssd1306_drawImage(enemy.x, enemy.y, enemy.img, enemy.w, enemy.h, 0);
     // draw kuina
     ssd1306_drawImage(kuina.x, kuina.y, kuina.img, kuina.w, kuina.h, 0);
+    ssd1306_drawRect(kuina.x, kuina.y, kuina.w, kuina.h, 1);
     
-    enemy.x -= 1;
-    if (enemy.x < 0){
-      enemy.x = 130;
-      danger_flag = false;
-      if (enemy_num == 1){
-        score += 10;
-      }
-      else if (enemy_num == 2){
-        score += 50;
-      }
-    }
+    ssd1306_drawImage(-8, 0, kuina.img, kuina.w, kuina.h, 0);
+    ssd1306_drawRect(0, 0, kuina.w, kuina.h, 1);
+    
     score += 1;
     
     // earthworm_x -= 1;
@@ -296,16 +349,31 @@ bool game_loop()
     //   earthworm_x = 130;
     // } 
     
-    // hit judge
-    if (kuina.x < enemy.x && (kuina.x + enemy.w) > enemy.x && kuina.y > (init_kuina_y - enemy.h)) {
-      game_over();
-      break;
+    for (int i=0; i < 3; i++){
+
+      // draw enemy
+      ssd1306_drawImage(enemy[i].x, enemy[i].y, enemy[i].img, enemy[i].w, enemy[i].h, 0);
+      ssd1306_drawRect(enemy[i].x, enemy[i].y, enemy[i].w, enemy[i].h, 1);
+
+      enemy[i].x -= 1;
+
+      // hit judge
+      if (kuina.x < enemy[i].x && (kuina.x + kuina.w) > enemy[i].x && kuina.y > (init_kuina_y - enemy[i].h)) {
+        if (enemy[i].id == 1 | enemy[i].id == 2){
+          game_over();
+          break;
+        }
+        else if (enemy[i].id == 3){
+          // bonus point
+          score += 50;
+        }
+      }
     }
 
     // draw jump score
     char score_txt[30] = "Score:"; 
     string_concat(score_txt, "10");
-		ssd1306_drawstr_sz(0,0, score_txt, 1, fontsize_8x8);
+		//ssd1306_drawstr_sz(0,0, score_txt, 1, fontsize_8x8);
 
     // draw_road();
     ssd1306_refresh();
