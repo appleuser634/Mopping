@@ -67,6 +67,42 @@ void string_concat(char *dest, const char *src) {
     *dest = '\0';
 }
 
+void intToStr(int num, char *str) {
+    int i = 0;
+    int isNegative = 0;
+
+    // 負の数の場合、符号を記録し、正の数に変換
+    if (num < 0) {
+        isNegative = 1;
+        num = -num;
+    }
+
+    // 数字を1桁ずつ取り出して、文字に変換して保存
+    do {
+        str[i++] = (num % 10) + '0';  // 最後の桁を文字に変換して保存
+        num /= 10;
+    } while (num != 0);
+
+    // 負の数の場合、符号を追加
+    if (isNegative) {
+        str[i++] = '-';
+    }
+
+    // 文字列の終端
+    str[i] = '\0';
+
+    // 桁が逆になっているので、逆順に並べ替える
+    int start = 0;
+    int end = i - 1;
+    while (start < end) {
+        char temp = str[start];
+        str[start] = str[end];
+        str[end] = temp;
+        start++;
+        end--;
+    }
+}
+
 #define BTN_PIN GPIOv_from_PORT_PIN(GPIO_port_D, 1)
 
 void init_gpio()
@@ -121,8 +157,8 @@ void opening()
    
     int kuina_x = -130;
     int kuina_y = 0;
-    int kuina_num = 19;
-    character kuinas[19] = {
+    int kuina_num = 18;
+    character kuinas[18] = {
       {100,kuina_1,kuina_1,kuina_2,1,kuina_x,kuina_y,16,16},
       {100,kuina_1,kuina_1,kuina_2,1,kuina_x+10,kuina_y+50,16,16},
       {100,kuina_1,kuina_1,kuina_2,1,kuina_x+20,kuina_y+10,16,16},
@@ -147,7 +183,7 @@ void opening()
     while (1) {
       ssd1306_setbuf(0);
       
-      if (kuinas[18].x < 64){
+      if (kuinas[17].x < 64){
         ssd1306_drawstr_sz(38,20, "MOPPING", 1, fontsize_8x8);
         ssd1306_drawstr_sz(45,45, "start", 1, fontsize_8x8); 
       }
@@ -319,6 +355,7 @@ bool game_loop()
 
   int random_n = get_random(10);
 
+  int count = 0;
   int score = 0;
 
   bool loop_flag = true;
@@ -380,7 +417,6 @@ bool game_loop()
     // ssd1306_drawImage(-8, 0, kuina.img, kuina.w, kuina.h, 0);
     // ssd1306_drawRect(0, 0, kuina.w, kuina.h, 1);
     
-    score += 1;
     
     // earthworm_x -= 1;
     // if (earthworm_x < -32){
@@ -404,14 +440,22 @@ bool game_loop()
         }
         else if (enemy[i].id == 3){
           // bonus point
-          score += 50;
+          score += 100;
         }
       }
+    }
+   
+    count += 1;
+    if (count > 10) {
+      score += 1;
+      count = 0;
     }
 
     // draw jump score
     char score_txt[30] = "Score:"; 
-    string_concat(score_txt, "10");
+    char str_score[30];
+    intToStr(score,str_score);
+    string_concat(score_txt, str_score);
 		ssd1306_drawstr_sz(0,0, score_txt, 1, fontsize_8x8);
 
     // draw_road();
