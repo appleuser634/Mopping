@@ -83,9 +83,9 @@ void opening()
     bool button_state = false;
     int c = 0;
 
-    for (int i = 0; i < 38; i+=1) {
+    for (int i = 0; i < 20; i+=1) {
       ssd1306_setbuf(0);
-			ssd1306_drawstr_sz(i,20, "MOPPING", 1, fontsize_8x8);
+			ssd1306_drawstr_sz(38,i, "MOPPING", 1, fontsize_8x8);
       ssd1306_refresh();
       Delay_Ms(10);
     }
@@ -294,7 +294,7 @@ void gen_enemy(character *enemy)
   }
 
   int enemy_distance = get_random(30);
-  int distance_buffer = 50;
+  int distance_buffer = 60;
   enemy[2].x = enemy[1].x + distance_buffer + enemy_distance;
 }
 
@@ -385,10 +385,10 @@ bool game_loop()
 
     // draw kuina
     ssd1306_drawImage(kuina.x, kuina.y, kuina.img, kuina.w, kuina.h, 0);
-    ssd1306_drawRect(kuina.x, kuina.y, kuina.w, kuina.h, 1);
+    // ssd1306_drawRect(kuina.x, kuina.y, kuina.w, kuina.h, 1);
     
-    ssd1306_drawImage(-8, 0, kuina.img, kuina.w, kuina.h, 0);
-    ssd1306_drawRect(0, 0, kuina.w, kuina.h, 1);
+    // ssd1306_drawImage(-8, 0, kuina.img, kuina.w, kuina.h, 0);
+    // ssd1306_drawRect(0, 0, kuina.w, kuina.h, 1);
     
     score += 1;
     
@@ -401,12 +401,12 @@ bool game_loop()
 
       // draw enemy
       ssd1306_drawImage(enemy[i].x, enemy[i].y, enemy[i].img, enemy[i].w, enemy[i].h, 0);
-      ssd1306_drawRect(enemy[i].x, enemy[i].y, enemy[i].w, enemy[i].h, 1);
+      // ssd1306_drawRect(enemy[i].x, enemy[i].y, enemy[i].w, enemy[i].h, 1);
 
       enemy[i].x -= 1;
 
       // hit judge
-      if (kuina.x + 8 < enemy[i].x + 8 && (kuina.x + 8 + kuina.w) > enemy[i].x + 8 && kuina.y > (init_kuina_y - enemy[i].h)) {
+      if (kuina.x + 12 < enemy[i].x + 12 && (kuina.x + 12 + kuina.w) > enemy[i].x + 12 && kuina.y > (init_kuina_y - enemy[i].h)) {
         if (enemy[i].id == 1 | enemy[i].id == 2){
           game_over();
           break;
@@ -421,7 +421,7 @@ bool game_loop()
     // draw jump score
     char score_txt[30] = "Score:"; 
     string_concat(score_txt, "10");
-		//ssd1306_drawstr_sz(0,0, score_txt, 1, fontsize_8x8);
+		ssd1306_drawstr_sz(0,0, score_txt, 1, fontsize_8x8);
 
     // draw_road();
     ssd1306_refresh();
