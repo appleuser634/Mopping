@@ -22,7 +22,7 @@ typedef struct {
   const unsigned char *img;
   const unsigned char *img_1;
   const unsigned char *img_2;
-  int speed;
+  bool show;
   int x;
   int y;
   int w;
@@ -198,7 +198,7 @@ void opening()
           }
           ssd1306_drawImage(kuinas[i].x, kuinas[i].y, kuinas[i].img, kuinas[i].w, kuinas[i].h, 0);
         }
-        kuinas[i].x += kuinas[i].speed;
+        kuinas[i].x += 1;
       }
 
       ssd1306_refresh();
@@ -229,7 +229,7 @@ void opening()
 
       ssd1306_refresh();
      
-      mongoose.x += mongoose.speed;
+      mongoose.x += 1;
       if (mongoose.x > 128) {
         break;
       }
@@ -281,7 +281,7 @@ void gen_enemy(character *enemy)
     enemy[2].img = grass_1;
     enemy[2].img_1 = grass_1;
     enemy[2].img_2 = grass_1;
-    enemy[2].speed = 1;
+    enemy[2].show = true;
     enemy[2].y = 53;
     enemy[2].w = 8;
     enemy[2].h = 8;
@@ -291,7 +291,7 @@ void gen_enemy(character *enemy)
     enemy[2].img = pineapple_1;
     enemy[2].img_1 = pineapple_1;
     enemy[2].img_2 = pineapple_1;
-    enemy[2].speed = 1;
+    enemy[2].show = true;
     enemy[2].y = 45;
     enemy[2].w = 16;
     enemy[2].h = 16;
@@ -301,7 +301,7 @@ void gen_enemy(character *enemy)
     enemy[2].img = mongoose_1;
     enemy[2].img_1 = mongoose_1;
     enemy[2].img_2 = mongoose_2;
-    enemy[2].speed = 1;
+    enemy[2].show = true;
     enemy[2].y = 53;
     enemy[2].w = 16;
     enemy[2].h = 8;
@@ -311,7 +311,7 @@ void gen_enemy(character *enemy)
     enemy[2].img = earthworm_1;
     enemy[2].img_1 = earthworm_1;
     enemy[2].img_2 = earthworm_2;
-    enemy[2].speed = 1;
+    enemy[2].show = true;
     enemy[2].y = 53;
     enemy[2].w = 8;
     enemy[2].h = 8;
@@ -409,24 +409,13 @@ bool game_loop()
       enemy[2].img = enemy[2].img_2;
       kuina.img = kuina.img_2;
     }
-
-    // draw kuina
-    ssd1306_drawImage(kuina.x, kuina.y, kuina.img, kuina.w, kuina.h, 0);
-    // ssd1306_drawRect(kuina.x, kuina.y, kuina.w, kuina.h, 1);
-    
-    // ssd1306_drawImage(-8, 0, kuina.img, kuina.w, kuina.h, 0);
-    // ssd1306_drawRect(0, 0, kuina.w, kuina.h, 1);
-    
-    
-    // earthworm_x -= 1;
-    // if (earthworm_x < -32){
-    //   earthworm_x = 130;
-    // } 
-    
+ 
     for (int i=0; i < 3; i++){
 
       // draw enemy
-      ssd1306_drawImage(enemy[i].x, enemy[i].y, enemy[i].img, enemy[i].w, enemy[i].h, 0);
+      if (enemy[i].show) {
+        ssd1306_drawImage(enemy[i].x, enemy[i].y, enemy[i].img, enemy[i].w, enemy[i].h, 0);
+      }
       // ssd1306_drawRect(enemy[i].x, enemy[i].y, enemy[i].w, enemy[i].h, 1);
 
       enemy[i].x -= 1;
@@ -434,16 +423,20 @@ bool game_loop()
       // hit judge
       if (kuina.x + 12 < enemy[i].x + 12 && (kuina.x + 12 + kuina.w) > enemy[i].x + 12 && kuina.y > (init_kuina_y - enemy[i].h)) {
         if (enemy[i].id == 1 | enemy[i].id == 2){
-		      ssd1306_drawstr_sz(25,30, "GAME OVER!!", 1, fontsize_8x8);
+		      ssd1306_drawstr_sz(25,20, "GAME OVER!!", 1, fontsize_8x8);
           loop_flag = false;
           break;
         }
-        else if (enemy[i].id == 3){
+        else if (enemy[i].id == 3 && enemy[i].show){
           // bonus point
           score += 100;
+          enemy[i].show = false;
         }
       }
     }
+
+    // draw kuina
+    ssd1306_drawImage(kuina.x, kuina.y, kuina.img, kuina.w, kuina.h, 0);
    
     count += 1;
     if (count > 10) {
