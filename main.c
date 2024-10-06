@@ -467,7 +467,18 @@ bool game_loop()
     ssd1306_refresh();
     ssd1306_setbuf(0);
   }
-	Delay_Ms(2000);
+
+	Delay_Ms(1000);
+  // wait push button...
+  while (1) {
+    uint8_t button_is_pressed = !GPIO_digitalRead(BTN_PIN); 
+    // jump trigger
+    if (!button_state && button_is_pressed && !jump_flag){
+      break;
+    }
+    button_state = button_is_pressed;
+  }
+
 }
 
 int main()

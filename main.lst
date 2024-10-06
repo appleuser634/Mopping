@@ -290,7 +290,7 @@ void ssd1306_i2c_setup(void)
      2f0:	4047d703          	lhu	a4,1028(a5) # 40005404 <__global_pointer$+0x20004c04>
 	tempreg &= ~I2C_CTLR2_FREQ;
      2f4:	66c1                	lui	a3,0x10
-     2f6:	fc068693          	addi	a3,a3,-64 # ffc0 <main.c.5e928d26+0xd718>
+     2f6:	fc068693          	addi	a3,a3,-64 # ffc0 <main.c.052829f9+0xd6f9>
      2fa:	8f75                	and	a4,a4,a3
 	tempreg |= (FUNCONF_SYSTEM_CORE_CLOCK/SSD1306_I2C_PRERATE)&I2C_CTLR2_FREQ;
      2fc:	01876713          	ori	a4,a4,24
@@ -400,7 +400,7 @@ void ssd1306_drawstr_sz(uint8_t x, uint8_t y, char *str, uint8_t color, font_siz
      384:	c43e                	sw	a5,8(sp)
      386:	47a2                	lw	a5,8(sp)
      388:	6705                	lui	a4,0x1
-     38a:	2c470713          	addi	a4,a4,708 # 12c4 <fontdata>
+     38a:	2e070713          	addi	a4,a4,736 # 12e0 <fontdata>
      38e:	97ae                	add	a5,a5,a1
      390:	97ba                	add	a5,a5,a4
      392:	0007c303          	lbu	t1,0(a5)
@@ -607,7 +607,7 @@ void ssd1306_drawImage(int x, int y, const unsigned char* input, uint8_t width, 
      538:	87ba                	mv	a5,a4
      53a:	00027737          	lui	a4,0x27
      53e:	e00006b7          	lui	a3,0xe0000
-     542:	10170713          	addi	a4,a4,257 # 27101 <main.c.5e928d26+0x24859>
+     542:	10170713          	addi	a4,a4,257 # 27101 <main.c.052829f9+0x2483a>
      546:	0f468693          	addi	a3,a3,244 # e00000f4 <__global_pointer$+0xbffff8f4>
      54a:	4290                	lw	a2,0(a3)
      54c:	08067593          	andi	a1,a2,128
@@ -689,7 +689,7 @@ void ssd1306_drawImage(int x, int y, const unsigned char* input, uint8_t width, 
      618:	0511                	addi	a0,a0,4
      61a:	feb54ee3          	blt	a0,a1,616 <handle_reset+0x32>
      61e:	00001517          	auipc	a0,0x1
-     622:	56250513          	addi	a0,a0,1378 # 1b80 <_data_lma>
+     622:	57e50513          	addi	a0,a0,1406 # 1b9c <_data_lma>
      626:	20000597          	auipc	a1,0x20000
      62a:	9da58593          	addi	a1,a1,-1574 # 20000000 <lfsr>
      62e:	82818613          	addi	a2,gp,-2008 # 20000028 <ssd1306_buffer>
@@ -922,14 +922,14 @@ uint8_t ssd1306_i2c_error(uint8_t err)
 	printf("ssd1306_i2c_error - timeout waiting for %s\n\r", errstr[err]);
      858:	6785                	lui	a5,0x1
      85a:	050a                	slli	a0,a0,0x2
-     85c:	2b078793          	addi	a5,a5,688 # 12b0 <errstr>
+     85c:	2cc78793          	addi	a5,a5,716 # 12cc <errstr>
      860:	97aa                	add	a5,a5,a0
      862:	438c                	lw	a1,0(a5)
      864:	6505                	lui	a0,0x1
 uint8_t ssd1306_i2c_error(uint8_t err)
      866:	1171                	addi	sp,sp,-4
 	printf("ssd1306_i2c_error - timeout waiting for %s\n\r", errstr[err]);
-     868:	21c50513          	addi	a0,a0,540 # 121c <main+0x488>
+     868:	23850513          	addi	a0,a0,568 # 1238 <main+0x4a4>
 uint8_t ssd1306_i2c_error(uint8_t err)
      86c:	c006                	sw	ra,0(sp)
 	printf("ssd1306_i2c_error - timeout waiting for %s\n\r", errstr[err]);
@@ -956,7 +956,7 @@ uint8_t ssd1306_i2c_send(uint8_t addr, uint8_t *data, uint8_t sz)
 	while((I2C1->STAR2 & I2C_STAR2_BUSY) && (timeout--));
      878:	400057b7          	lui	a5,0x40005
 	timeout = TIMEOUT_MAX;
-     87c:	6a070713          	addi	a4,a4,1696 # 186a0 <main.c.5e928d26+0x15df8>
+     87c:	6a070713          	addi	a4,a4,1696 # 186a0 <main.c.052829f9+0x15dd9>
 	while((I2C1->STAR2 & I2C_STAR2_BUSY) && (timeout--));
      880:	40078793          	addi	a5,a5,1024 # 40005400 <__global_pointer$+0x20004c00>
      884:	567d                	li	a2,-1
@@ -970,7 +970,7 @@ uint8_t ssd1306_i2c_send(uint8_t addr, uint8_t *data, uint8_t sz)
      894:	4501                	li	a0,0
      896:	a821                	j	8ae <ssd1306_i2c_send.constprop.0.isra.0+0x38>
      898:	67e1                	lui	a5,0x18
-     89a:	6a178793          	addi	a5,a5,1697 # 186a1 <main.c.5e928d26+0x15df9>
+     89a:	6a178793          	addi	a5,a5,1697 # 186a1 <main.c.052829f9+0x15dda>
 	// send data one byte at a time
 	while(sz--)
 	{
@@ -1005,11 +1005,11 @@ uint8_t ssd1306_i2c_send(uint8_t addr, uint8_t *data, uint8_t sz)
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_BYTE_TRANSMITTED)) && (timeout--));
      8c4:	00070637          	lui	a2,0x70
 	timeout = TIMEOUT_MAX;
-     8c8:	6a068693          	addi	a3,a3,1696 # 186a0 <main.c.5e928d26+0x15df8>
+     8c8:	6a068693          	addi	a3,a3,1696 # 186a0 <main.c.052829f9+0x15dd9>
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      8cc:	40070713          	addi	a4,a4,1024 # 40005400 <__global_pointer$+0x20004c00>
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_BYTE_TRANSMITTED)) && (timeout--));
-     8d0:	08460613          	addi	a2,a2,132 # 70084 <main.c.5e928d26+0x6d7dc>
+     8d0:	08460613          	addi	a2,a2,132 # 70084 <main.c.052829f9+0x6d7bd>
      8d4:	55fd                	li	a1,-1
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      8d6:	01475503          	lhu	a0,20(a4)
@@ -1051,11 +1051,11 @@ uint8_t ssd1306_i2c_send(uint8_t addr, uint8_t *data, uint8_t sz)
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED)) && (timeout--));
      91a:	00070737          	lui	a4,0x70
 	timeout = TIMEOUT_MAX;
-     91e:	6a060613          	addi	a2,a2,1696 # 186a0 <main.c.5e928d26+0x15df8>
+     91e:	6a060613          	addi	a2,a2,1696 # 186a0 <main.c.052829f9+0x15dd9>
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      922:	40068693          	addi	a3,a3,1024 # 40005400 <__global_pointer$+0x20004c00>
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_TRANSMITTER_MODE_SELECTED)) && (timeout--));
-     926:	08270713          	addi	a4,a4,130 # 70082 <main.c.5e928d26+0x6d7da>
+     926:	08270713          	addi	a4,a4,130 # 70082 <main.c.052829f9+0x6d7bb>
      92a:	537d                	li	t1,-1
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      92c:	0146d283          	lhu	t0,20(a3)
@@ -1082,11 +1082,11 @@ uint8_t ssd1306_i2c_send(uint8_t addr, uint8_t *data, uint8_t sz)
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      95c:	40005737          	lui	a4,0x40005
 	timeout = TIMEOUT_MAX;
-     960:	6a068693          	addi	a3,a3,1696 # 186a0 <main.c.5e928d26+0x15df8>
+     960:	6a068693          	addi	a3,a3,1696 # 186a0 <main.c.052829f9+0x15dd9>
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      964:	40070713          	addi	a4,a4,1024 # 40005400 <__global_pointer$+0x20004c00>
 	while((!ssd1306_i2c_chk_evt(SSD1306_I2C_EVENT_MASTER_MODE_SELECT)) && (timeout--));
-     968:	0605                	addi	a2,a2,1 # 30001 <main.c.5e928d26+0x2d759>
+     968:	0605                	addi	a2,a2,1 # 30001 <main.c.052829f9+0x2d73a>
      96a:	537d                	li	t1,-1
 	uint32_t status = I2C1->STAR1 | (I2C1->STAR2<<16);
      96c:	01475283          	lhu	t0,20(a4)
@@ -1231,7 +1231,7 @@ void opening()
      a56:	378d                	jal	9b8 <ssd1306_setbuf.constprop.0>
 			ssd1306_drawstr_sz(38,i, "MOPPING", 1, fontsize_8x8);
      a58:	6785                	lui	a5,0x1
-     a5a:	24c78613          	addi	a2,a5,588 # 124c <main+0x4b8>
+     a5a:	26878613          	addi	a2,a5,616 # 1268 <main+0x4d4>
      a5e:	0ff47593          	zext.b	a1,s0
      a62:	4685                	li	a3,1
      a64:	02600513          	li	a0,38
@@ -1240,7 +1240,7 @@ void opening()
      a6a:	3fad                	jal	9e4 <ssd1306_refresh>
       Delay_Ms(10);
      a6c:	653d                	lui	a0,0xf
-     a6e:	a6050513          	addi	a0,a0,-1440 # ea60 <main.c.5e928d26+0xc1b8>
+     a6e:	a6050513          	addi	a0,a0,-1440 # ea60 <main.c.052829f9+0xc199>
      a72:	f8eff0ef          	jal	200 <DelaySysTick>
     for (int i = 0; i < 20; i+=1) {
      a76:	0405                	addi	s0,s0,1
@@ -1259,7 +1259,7 @@ void opening()
 			ssd1306_drawstr_sz(38,20, "MOPPING", 1, fontsize_8x8);
      a84:	6785                	lui	a5,0x1
      a86:	4685                	li	a3,1
-     a88:	24c78613          	addi	a2,a5,588 # 124c <main+0x4b8>
+     a88:	26878613          	addi	a2,a5,616 # 1268 <main+0x4d4>
      a8c:	45d1                	li	a1,20
      a8e:	02600513          	li	a0,38
      a92:	8d7ff0ef          	jal	368 <ssd1306_drawstr_sz.constprop.0>
@@ -1276,7 +1276,7 @@ void opening()
 			  ssd1306_drawstr_sz(45,45, "start", 0, fontsize_8x8);
      aa2:	4681                	li	a3,0
      aa4:	02d00593          	li	a1,45
-     aa8:	25448613          	addi	a2,s1,596 # 1254 <main+0x4c0>
+     aa8:	27048613          	addi	a2,s1,624 # 1270 <main+0x4dc>
      aac:	852e                	mv	a0,a1
      aae:	8bbff0ef          	jal	368 <ssd1306_drawstr_sz.constprop.0>
         // ssd1306_drawRect(50, 50, 40, 10, 1);
@@ -1322,8 +1322,8 @@ void opening()
      ae6:	f9c00513          	li	a0,-100
      aea:	6689                	lui	a3,0x2
      aec:	6709                	lui	a4,0x2
-     aee:	b6068693          	addi	a3,a3,-1184 # 1b60 <kuina_1>
-     af2:	b4070713          	addi	a4,a4,-1216 # 1b40 <kuina_2>
+     aee:	b7c68693          	addi	a3,a3,-1156 # 1b7c <kuina_1>
+     af2:	b5c70713          	addi	a4,a4,-1188 # 1b5c <kuina_2>
      af6:	4379                	li	t1,30
      af8:	ce3e                	sw	a5,28(sp)
      afa:	c0b2                	sw	a2,64(sp)
@@ -1456,14 +1456,14 @@ void opening()
         ssd1306_drawstr_sz(38,20, "MOPPING", 1, fontsize_8x8);
      c78:	6785                	lui	a5,0x1
      c7a:	4685                	li	a3,1
-     c7c:	24c78613          	addi	a2,a5,588 # 124c <main+0x4b8>
+     c7c:	26878613          	addi	a2,a5,616 # 1268 <main+0x4d4>
      c80:	45d1                	li	a1,20
      c82:	02600513          	li	a0,38
      c86:	ee2ff0ef          	jal	368 <ssd1306_drawstr_sz.constprop.0>
         ssd1306_drawstr_sz(45,45, "start", 1, fontsize_8x8); 
      c8a:	02d00593          	li	a1,45
      c8e:	4685                	li	a3,1
-     c90:	25448613          	addi	a2,s1,596
+     c90:	27048613          	addi	a2,s1,624
      c94:	852e                	mv	a0,a1
      c96:	ed2ff0ef          	jal	368 <ssd1306_drawstr_sz.constprop.0>
       }
@@ -1539,7 +1539,7 @@ void opening()
      cf8:	0287c763          	blt	a5,s0,d26 <opening+0x2e2>
         mongoose.img = mongoose.img_1;
      cfc:	6609                	lui	a2,0x2
-     cfe:	b3060613          	addi	a2,a2,-1232 # 1b30 <mongoose_left_1>
+     cfe:	b4c60613          	addi	a2,a2,-1204 # 1b4c <mongoose_left_1>
       ssd1306_drawImage(mongoose.x, mongoose.y, mongoose.img, mongoose.w, mongoose.h, 0);
      d02:	4721                	li	a4,8
      d04:	46c1                	li	a3,16
@@ -1561,7 +1561,7 @@ void opening()
      d24:	bfc1                	j	cf4 <opening+0x2b0>
         mongoose.img = mongoose.img_2; 
      d26:	6609                	lui	a2,0x2
-     d28:	b2060613          	addi	a2,a2,-1248 # 1b20 <mongoose_left_2>
+     d28:	b3c60613          	addi	a2,a2,-1220 # 1b3c <mongoose_left_2>
      d2c:	bfd9                	j	d02 <opening+0x2be>
       } 
     }    
@@ -1579,7 +1579,7 @@ void opening()
      d48:	400217b7          	lui	a5,0x40021
      d4c:	01080737          	lui	a4,0x1080
      d50:	0007a223          	sw	zero,4(a5) # 40021004 <__global_pointer$+0x20020804>
-     d54:	08170713          	addi	a4,a4,129 # 1080081 <main.c.5e928d26+0x107d7d9>
+     d54:	08170713          	addi	a4,a4,129 # 1080081 <main.c.052829f9+0x107d7ba>
      d58:	c398                	sw	a4,0(a5)
      d5a:	009f0737          	lui	a4,0x9f0
      d5e:	c798                	sw	a4,8(a5)
@@ -1603,7 +1603,7 @@ void opening()
 
 00000d94 <main>:
   }
-	Delay_Ms(2000);
+
 }
 
 int main()
@@ -1632,7 +1632,7 @@ int main()
     GPIO_port_enable(GPIO_port_D);
      db4:	4c1c                	lw	a5,24(s0)
 	Delay_Ms( 200 );
-     db6:	f8050513          	addi	a0,a0,-128 # 124f80 <main.c.5e928d26+0x1226d8>
+     db6:	f8050513          	addi	a0,a0,-128 # 124f80 <main.c.052829f9+0x1226b9>
     GPIO_port_enable(GPIO_port_D);
      dba:	0207e793          	ori	a5,a5,32
      dbe:	cc1c                	sw	a5,24(s0)
@@ -1690,7 +1690,7 @@ uint8_t ssd1306_i2c_init(void)
 	// initialize OLED
 	uint8_t *cmd_list = (uint8_t *)ssd1306_init_array;
      e06:	6409                	lui	s0,0x2
-     e08:	ac440413          	addi	s0,s0,-1340 # 1ac4 <ssd1306_init_array>
+     e08:	ae040413          	addi	s0,s0,-1312 # 1ae0 <ssd1306_init_array>
      e0c:	0d07e793          	ori	a5,a5,208
      e10:	c09c                	sw	a5,0(s1)
 	GPIOC->CFGLR &= ~(0xf<<(4*2));
@@ -1738,7 +1738,7 @@ uint8_t ssd1306_i2c_init(void)
   character enemy[3] = {
      e3e:	6585                	lui	a1,0x1
      e40:	06c00613          	li	a2,108
-     e44:	1b058593          	addi	a1,a1,432 # 11b0 <main+0x41c>
+     e44:	1cc58593          	addi	a1,a1,460 # 11cc <main+0x438>
      e48:	18e8                	addi	a0,sp,124
      e4a:	3ebd                	jal	9c8 <memcpy>
   int random_n = get_random(10);
@@ -1751,13 +1751,13 @@ uint8_t ssd1306_i2c_init(void)
   int score = 0;
      e58:	4401                	li	s0,0
   int count = 0;
-     e5a:	ca02                	sw	zero,20(sp)
+     e5a:	cc02                	sw	zero,24(sp)
   int hart_cnt = 0;
-     e5c:	c402                	sw	zero,8(sp)
+     e5c:	c802                	sw	zero,16(sp)
   bool flip_flag = false;
-     e5e:	cc02                	sw	zero,24(sp)
+     e5e:	ce02                	sw	zero,28(sp)
   int flip_c = 0;
-     e60:	c802                	sw	zero,16(sp)
+     e60:	ca02                	sw	zero,20(sp)
   character kuina = {100,kuina_1,kuina_1,kuina_2,0,init_kuina_x,init_kuina_y,16,16};
      e62:	c03e                	sw	a5,0(sp)
   int jump_progress = 0;
@@ -1765,19 +1765,19 @@ uint8_t ssd1306_i2c_init(void)
   bool jump_flag = false;
      e66:	c602                	sw	zero,12(sp)
   bool button_state = false;
-     e68:	ce02                	sw	zero,28(sp)
+     e68:	c402                	sw	zero,8(sp)
     uint8_t button_is_pressed = !GPIO_digitalRead(BTN_PIN); 
      e6a:	400117b7          	lui	a5,0x40011
      e6e:	40078793          	addi	a5,a5,1024 # 40011400 <__global_pointer$+0x20010c00>
      e72:	479c                	lw	a5,8(a5)
     if (!button_state && button_is_pressed && !jump_flag){
-     e74:	4772                	lw	a4,28(sp)
+     e74:	4722                	lw	a4,8(sp)
      e76:	8b89                	andi	a5,a5,2
      e78:	e311                	bnez	a4,e7c <main+0xe8>
      e7a:	cbc1                	beqz	a5,f0a <main+0x176>
     button_state = button_is_pressed;
      e7c:	0017b793          	seqz	a5,a5
-     e80:	ce3e                	sw	a5,28(sp)
+     e80:	c43e                	sw	a5,8(sp)
     if (jump_flag && (max_jump * 2) < jump_progress){
      e82:	47b2                	lw	a5,12(sp)
      e84:	c395                	beqz	a5,ea8 <main+0x114>
@@ -1801,20 +1801,20 @@ uint8_t ssd1306_i2c_init(void)
      ea4:	c03a                	sw	a4,0(sp)
      ea6:	c63e                	sw	a5,12(sp)
     flip_c ++;
-     ea8:	47c2                	lw	a5,16(sp)
+     ea8:	47d2                	lw	a5,20(sp)
      eaa:	0785                	addi	a5,a5,1
-     eac:	c83e                	sw	a5,16(sp)
+     eac:	ca3e                	sw	a5,20(sp)
     if (flip_c > 20) {
-     eae:	4742                	lw	a4,16(sp)
+     eae:	4752                	lw	a4,20(sp)
      eb0:	47d5                	li	a5,21
      eb2:	00f71763          	bne	a4,a5,ec0 <main+0x12c>
       flip_flag = !flip_flag;
-     eb6:	47e2                	lw	a5,24(sp)
+     eb6:	47f2                	lw	a5,28(sp)
       flip_c = 0;
-     eb8:	c802                	sw	zero,16(sp)
+     eb8:	ca02                	sw	zero,20(sp)
       flip_flag = !flip_flag;
      eba:	0017c793          	xori	a5,a5,1
-     ebe:	cc3e                	sw	a5,24(sp)
+     ebe:	ce3e                	sw	a5,28(sp)
     if (enemy[0].x < 0) {
      ec0:	47ca                	lw	a5,144(sp)
      ec2:	0c07d163          	bgez	a5,f84 <main+0x1f0>
@@ -1860,7 +1860,7 @@ uint8_t ssd1306_i2c_init(void)
      f08:	b705                	j	e28 <main+0x94>
     button_state = button_is_pressed;
      f0a:	4785                	li	a5,1
-     f0c:	ce3e                	sw	a5,28(sp)
+     f0c:	c43e                	sw	a5,8(sp)
      f0e:	bfa5                	j	e86 <main+0xf2>
       kuina.y += 1;
      f10:	4702                	lw	a4,0(sp)
@@ -1879,7 +1879,7 @@ uint8_t ssd1306_i2c_init(void)
      f24:	02a7c163          	blt	a5,a0,f46 <main+0x1b2>
     enemy[2].img = pineapple_1;
      f28:	6789                	lui	a5,0x2
-     f2a:	b0078793          	addi	a5,a5,-1280 # 1b00 <pineapple_1>
+     f2a:	b1c78793          	addi	a5,a5,-1252 # 1b1c <pineapple_1>
     enemy[2].id = 1;
      f2e:	4705                	li	a4,1
     enemy[2].img = pineapple_1;
@@ -1900,19 +1900,19 @@ uint8_t ssd1306_i2c_init(void)
      f44:	bf75                	j	f00 <main+0x16c>
   else if (character_n <= 9){
      f46:	4725                	li	a4,9
-     f48:	1ce51763          	bne	a0,a4,1116 <main+0x382>
+     f48:	1ee51663          	bne	a0,a4,1134 <main+0x3a0>
     enemy[2].id = 2;
      f4c:	4709                	li	a4,2
      f4e:	c3ba                	sw	a4,196(sp)
     enemy[2].img = mongoose_1;
      f50:	6709                	lui	a4,0x2
-     f52:	af070713          	addi	a4,a4,-1296 # 1af0 <mongoose_1>
+     f52:	b0c70713          	addi	a4,a4,-1268 # 1b0c <mongoose_1>
      f56:	c5ba                	sw	a4,200(sp)
     enemy[2].img_1 = mongoose_1;
      f58:	c7ba                	sw	a4,204(sp)
     enemy[2].img_2 = mongoose_2;
      f5a:	6709                	lui	a4,0x2
-     f5c:	ae070713          	addi	a4,a4,-1312 # 1ae0 <mongoose_2>
+     f5c:	afc70713          	addi	a4,a4,-1284 # 1afc <mongoose_2>
      f60:	c9ba                	sw	a4,208(sp)
     enemy[2].show = true;
      f62:	4705                	li	a4,1
@@ -1934,14 +1934,14 @@ uint8_t ssd1306_i2c_init(void)
      f80:	97aa                	add	a5,a5,a0
      f82:	cdbe                	sw	a5,216(sp)
     if (flip_flag){
-     f84:	47e2                	lw	a5,24(sp)
-     f86:	1a078d63          	beqz	a5,1140 <main+0x3ac>
+     f84:	47f2                	lw	a5,28(sp)
+     f86:	1c078c63          	beqz	a5,115e <main+0x3ca>
       enemy[0].img = enemy[0].img_1;
      f8a:	10bc                	addi	a5,sp,104
      f8c:	4fd8                	lw	a4,28(a5)
       kuina.img = kuina.img_1;
      f8e:	6489                	lui	s1,0x2
-     f90:	b6048493          	addi	s1,s1,-1184 # 1b60 <kuina_1>
+     f90:	b7c48493          	addi	s1,s1,-1156 # 1b7c <kuina_1>
       enemy[0].img = enemy[0].img_1;
      f94:	cf98                	sw	a4,24(a5)
       enemy[1].img = enemy[1].img_1;
@@ -1975,20 +1975,20 @@ uint8_t ssd1306_i2c_init(void)
       if (kuina.x + 12 < enemy[i].x + 12 && (kuina.x + 4 + kuina.w) > enemy[i].x + 12 && kuina.y > (init_kuina_y - enemy[i].h)) {
      fcc:	153d                	addi	a0,a0,-17
      fce:	4719                	li	a4,6
-     fd0:	18a76c63          	bltu	a4,a0,1168 <main+0x3d4>
+     fd0:	1aa76b63          	bltu	a4,a0,1186 <main+0x3f2>
      fd4:	5394                	lw	a3,32(a5)
      fd6:	02d00713          	li	a4,45
      fda:	8f15                	sub	a4,a4,a3
      fdc:	4682                	lw	a3,0(sp)
-     fde:	18d75563          	bge	a4,a3,1168 <main+0x3d4>
+     fde:	1ad75463          	bge	a4,a3,1186 <main+0x3f2>
         if (enemy[i].id == 1 | enemy[i].id == 2){
      fe2:	4398                	lw	a4,0(a5)
      fe4:	4685                	li	a3,1
      fe6:	fff70613          	addi	a2,a4,-1
-     fea:	16c6e563          	bltu	a3,a2,1154 <main+0x3c0>
+     fea:	18c6e463          	bltu	a3,a2,1172 <main+0x3de>
 		      ssd1306_drawstr_sz(25,20, "GAME OVER!!", 1, fontsize_8x8);
      fee:	6605                	lui	a2,0x1
-     ff0:	25c60613          	addi	a2,a2,604 # 125c <main+0x4c8>
+     ff0:	27860613          	addi	a2,a2,632 # 1278 <main+0x4e4>
      ff4:	45d1                	li	a1,20
      ff6:	4565                	li	a0,25
      ff8:	b70ff0ef          	jal	368 <ssd1306_drawstr_sz.constprop.0>
@@ -1996,10 +1996,10 @@ uint8_t ssd1306_i2c_init(void)
      ffc:	d202                	sw	zero,36(sp)
     if (hart_flag && hart_cnt < 60) {
      ffe:	5782                	lw	a5,32(sp)
-    1000:	16078c63          	beqz	a5,1178 <main+0x3e4>
-    1004:	4722                	lw	a4,8(sp)
+    1000:	18078b63          	beqz	a5,1196 <main+0x402>
+    1004:	4742                	lw	a4,16(sp)
     1006:	03c00793          	li	a5,60
-    100a:	16f70963          	beq	a4,a5,117c <main+0x3e8>
+    100a:	18f70863          	beq	a4,a5,119a <main+0x406>
       ssd1306_drawImage(20, 30, hart, 8, 8, 0);
     100e:	4721                	li	a4,8
     1010:	86ba                	mv	a3,a4
@@ -2008,9 +2008,9 @@ uint8_t ssd1306_i2c_init(void)
     1018:	4551                	li	a0,20
     101a:	c10ff0ef          	jal	42a <ssd1306_drawImage.constprop.0>
       hart_cnt ++;
-    101e:	47a2                	lw	a5,8(sp)
+    101e:	47c2                	lw	a5,16(sp)
     1020:	0785                	addi	a5,a5,1
-    1022:	c43e                	sw	a5,8(sp)
+    1022:	c83e                	sw	a5,16(sp)
     ssd1306_drawImage(kuina.x, kuina.y, kuina.img, kuina.w, kuina.h, 0);
     1024:	4582                	lw	a1,0(sp)
     1026:	4741                	li	a4,16
@@ -2019,30 +2019,30 @@ uint8_t ssd1306_i2c_init(void)
     102c:	453d                	li	a0,15
     102e:	bfcff0ef          	jal	42a <ssd1306_drawImage.constprop.0>
     count += 1;
-    1032:	47d2                	lw	a5,20(sp)
+    1032:	47e2                	lw	a5,24(sp)
     1034:	0785                	addi	a5,a5,1
-    1036:	ca3e                	sw	a5,20(sp)
+    1036:	cc3e                	sw	a5,24(sp)
     if (count > 10) {
-    1038:	4752                	lw	a4,20(sp)
+    1038:	4762                	lw	a4,24(sp)
     103a:	47ad                	li	a5,11
     103c:	00f71463          	bne	a4,a5,1044 <main+0x2b0>
       score += 1;
     1040:	0405                	addi	s0,s0,1
       count = 0;
-    1042:	ca02                	sw	zero,20(sp)
+    1042:	cc02                	sw	zero,24(sp)
     char score_txt[30] = "Score:"; 
     1044:	726f67b7          	lui	a5,0x726f6
     1048:	35378793          	addi	a5,a5,851 # 726f6353 <__global_pointer$+0x526f5b53>
     104c:	de3e                	sw	a5,60(sp)
     104e:	6791                	lui	a5,0x4
-    1050:	a6578793          	addi	a5,a5,-1435 # 3a65 <main.c.5e928d26+0x11bd>
+    1050:	a6578793          	addi	a5,a5,-1435 # 3a65 <main.c.052829f9+0x119e>
     1054:	4659                	li	a2,22
     1056:	4581                	li	a1,0
     1058:	00c8                	addi	a0,sp,68
     105a:	c0be                	sw	a5,64(sp)
     105c:	94bff0ef          	jal	9a6 <memset>
     if (num < 0) {
-    1060:	12045163          	bgez	s0,1182 <main+0x3ee>
+    1060:	14045063          	bgez	s0,11a0 <main+0x40c>
         num = -num;
     1064:	408004b3          	neg	s1,s0
         isNegative = 1;
@@ -2100,15 +2100,15 @@ uint8_t ssd1306_i2c_init(void)
     10ce:	08fc                	addi	a5,sp,92
     10d0:	97b6                	add	a5,a5,a3
     10d2:	40968633          	sub	a2,a3,s1
-    10d6:	0ac4c963          	blt	s1,a2,1188 <main+0x3f4>
+    10d6:	0cc4c863          	blt	s1,a2,11a6 <main+0x412>
     10da:	187c                	addi	a5,sp,60
     while (*dest != '\0') {
     10dc:	0007c703          	lbu	a4,0(a5)
-    10e0:	e361                	bnez	a4,11a0 <main+0x40c>
+    10e0:	ef79                	bnez	a4,11be <main+0x42a>
     10e2:	08f8                	addi	a4,sp,92
     while (*src != '\0') {
     10e4:	00074683          	lbu	a3,0(a4)
-    10e8:	eed5                	bnez	a3,11a4 <main+0x410>
+    10e8:	eee9                	bnez	a3,11c2 <main+0x42e>
     *dest = '\0';
     10ea:	00078023          	sb	zero,0(a5)
 		ssd1306_drawstr_sz(0,0, score_txt, 1, fontsize_8x8);
@@ -2124,375 +2124,388 @@ uint8_t ssd1306_i2c_init(void)
   while (loop_flag) {
     1102:	5792                	lw	a5,36(sp)
     1104:	d60793e3          	bnez	a5,e6a <main+0xd6>
-	Delay_Ms(2000);
-    1108:	00b72537          	lui	a0,0xb72
-    110c:	b0050513          	addi	a0,a0,-1280 # b71b00 <main.c.5e928d26+0xb6f258>
+	Delay_Ms(1000);
+    1108:	005b9537          	lui	a0,0x5b9
+    110c:	d8050513          	addi	a0,a0,-640 # 5b8d80 <main.c.052829f9+0x5b64b9>
     1110:	8f0ff0ef          	jal	200 <DelaySysTick>
-}
-    1114:	b32d                	j	e3e <main+0xaa>
+    uint8_t button_is_pressed = !GPIO_digitalRead(BTN_PIN); 
+    1114:	40011737          	lui	a4,0x40011
+    1118:	40070713          	addi	a4,a4,1024 # 40011400 <__global_pointer$+0x20010c00>
+    111c:	471c                	lw	a5,8(a4)
+    if (!button_state && button_is_pressed && !jump_flag){
+    111e:	46a2                	lw	a3,8(sp)
+    1120:	8b89                	andi	a5,a5,2
+    1122:	e689                	bnez	a3,112c <main+0x398>
+    1124:	e781                	bnez	a5,112c <main+0x398>
+    1126:	46b2                	lw	a3,12(sp)
+    1128:	d0068be3          	beqz	a3,e3e <main+0xaa>
+    button_state = button_is_pressed;
+    112c:	0017b793          	seqz	a5,a5
+    1130:	c43e                	sw	a5,8(sp)
+  while (1) {
+    1132:	b7ed                	j	111c <main+0x388>
   else if (character_n <= 10){
-    1116:	4729                	li	a4,10
-    1118:	e4e51ee3          	bne	a0,a4,f74 <main+0x1e0>
+    1134:	4729                	li	a4,10
+    1136:	e2e51fe3          	bne	a0,a4,f74 <main+0x1e0>
     enemy[2].id = 3;
-    111c:	470d                	li	a4,3
-    111e:	c3ba                	sw	a4,196(sp)
+    113a:	470d                	li	a4,3
+    113c:	c3ba                	sw	a4,196(sp)
     enemy[2].img = earthworm_1;
-    1120:	81018713          	addi	a4,gp,-2032 # 20000010 <earthworm_1>
-    1124:	c5ba                	sw	a4,200(sp)
+    113e:	81018713          	addi	a4,gp,-2032 # 20000010 <earthworm_1>
+    1142:	c5ba                	sw	a4,200(sp)
     enemy[2].img_1 = earthworm_1;
-    1126:	c7ba                	sw	a4,204(sp)
+    1144:	c7ba                	sw	a4,204(sp)
     enemy[2].img_2 = earthworm_2;
-    1128:	20000737          	lui	a4,0x20000
-    112c:	00870713          	addi	a4,a4,8 # 20000008 <earthworm_2>
-    1130:	c9ba                	sw	a4,208(sp)
+    1146:	20000737          	lui	a4,0x20000
+    114a:	00870713          	addi	a4,a4,8 # 20000008 <earthworm_2>
+    114e:	c9ba                	sw	a4,208(sp)
     enemy[2].show = true;
-    1132:	4705                	li	a4,1
-    1134:	0ce10a23          	sb	a4,212(sp)
+    1150:	4705                	li	a4,1
+    1152:	0ce10a23          	sb	a4,212(sp)
     enemy[2].y = 53;
-    1138:	03500713          	li	a4,53
-    113c:	cfba                	sw	a4,220(sp)
-    113e:	b3c9                	j	f00 <main+0x16c>
+    1156:	03500713          	li	a4,53
+    115a:	cfba                	sw	a4,220(sp)
+    115c:	b355                	j	f00 <main+0x16c>
       enemy[0].img = enemy[0].img_2;
-    1140:	10bc                	addi	a5,sp,104
-    1142:	5398                	lw	a4,32(a5)
+    115e:	10bc                	addi	a5,sp,104
+    1160:	5398                	lw	a4,32(a5)
       kuina.img = kuina.img_2;
-    1144:	6489                	lui	s1,0x2
-    1146:	b4048493          	addi	s1,s1,-1216 # 1b40 <kuina_2>
+    1162:	6489                	lui	s1,0x2
+    1164:	b5c48493          	addi	s1,s1,-1188 # 1b5c <kuina_2>
       enemy[0].img = enemy[0].img_2;
-    114a:	cf98                	sw	a4,24(a5)
+    1168:	cf98                	sw	a4,24(a5)
       enemy[1].img = enemy[1].img_2;
-    114c:	43f8                	lw	a4,68(a5)
-    114e:	dfd8                	sw	a4,60(a5)
+    116a:	43f8                	lw	a4,68(a5)
+    116c:	dfd8                	sw	a4,60(a5)
       enemy[2].img = enemy[2].img_2;
-    1150:	57bc                	lw	a5,104(a5)
-    1152:	b5a9                	j	f9c <main+0x208>
+    116e:	57bc                	lw	a5,104(a5)
+    1170:	b535                	j	f9c <main+0x208>
         else if (enemy[i].id == 3 && enemy[i].show){
-    1154:	468d                	li	a3,3
-    1156:	00d71963          	bne	a4,a3,1168 <main+0x3d4>
-    115a:	00030763          	beqz	t1,1168 <main+0x3d4>
+    1172:	468d                	li	a3,3
+    1174:	00d71963          	bne	a4,a3,1186 <main+0x3f2>
+    1178:	00030763          	beqz	t1,1186 <main+0x3f2>
           score += 100;
-    115e:	06440413          	addi	s0,s0,100
+    117c:	06440413          	addi	s0,s0,100
           enemy[i].show = false;
-    1162:	00078823          	sb	zero,16(a5)
+    1180:	00078823          	sb	zero,16(a5)
           hart_flag = true;
-    1166:	d01a                	sw	t1,32(sp)
+    1184:	d01a                	sw	t1,32(sp)
     for (int i=0; i < 3; i++){
-    1168:	02478793          	addi	a5,a5,36
-    116c:	11b8                	addi	a4,sp,232
-    116e:	e2e799e3          	bne	a5,a4,fa0 <main+0x20c>
-    1172:	4785                	li	a5,1
-    1174:	d23e                	sw	a5,36(sp)
-    1176:	b561                	j	ffe <main+0x26a>
+    1186:	02478793          	addi	a5,a5,36
+    118a:	11b8                	addi	a4,sp,232
+    118c:	e0e79ae3          	bne	a5,a4,fa0 <main+0x20c>
+    1190:	4785                	li	a5,1
+    1192:	d23e                	sw	a5,36(sp)
+    1194:	b5ad                	j	ffe <main+0x26a>
       hart_cnt = 0;
-    1178:	c402                	sw	zero,8(sp)
-    117a:	b56d                	j	1024 <main+0x290>
-    117c:	c402                	sw	zero,8(sp)
+    1196:	c802                	sw	zero,16(sp)
+    1198:	b571                	j	1024 <main+0x290>
+    119a:	c802                	sw	zero,16(sp)
       hart_flag = false;
-    117e:	d002                	sw	zero,32(sp)
-    1180:	b555                	j	1024 <main+0x290>
-    1182:	84a2                	mv	s1,s0
+    119c:	d002                	sw	zero,32(sp)
+    119e:	b559                	j	1024 <main+0x290>
+    11a0:	84a2                	mv	s1,s0
     int isNegative = 0;
-    1184:	4301                	li	t1,0
-    1186:	b5d5                	j	106a <main+0x2d6>
+    11a2:	4301                	li	t1,0
+    11a4:	b5d9                	j	106a <main+0x2d6>
         str[start] = str[end];
-    1188:	0007c583          	lbu	a1,0(a5)
+    11a6:	0007c583          	lbu	a1,0(a5)
         char temp = str[start];
-    118c:	00074603          	lbu	a2,0(a4)
+    11aa:	00074603          	lbu	a2,0(a4)
         start++;
-    1190:	0485                	addi	s1,s1,1
+    11ae:	0485                	addi	s1,s1,1
         str[start] = str[end];
-    1192:	00b70023          	sb	a1,0(a4)
+    11b0:	00b70023          	sb	a1,0(a4)
         str[end] = temp;
-    1196:	00c78023          	sb	a2,0(a5)
+    11b4:	00c78023          	sb	a2,0(a5)
         end--;
-    119a:	0705                	addi	a4,a4,1
-    119c:	17fd                	addi	a5,a5,-1
-    119e:	bf15                	j	10d2 <main+0x33e>
+    11b8:	0705                	addi	a4,a4,1
+    11ba:	17fd                	addi	a5,a5,-1
+    11bc:	bf19                	j	10d2 <main+0x33e>
         dest++;
-    11a0:	0785                	addi	a5,a5,1
-    11a2:	bf2d                	j	10dc <main+0x348>
+    11be:	0785                	addi	a5,a5,1
+    11c0:	bf31                	j	10dc <main+0x348>
         *dest = *src;
-    11a4:	00d78023          	sb	a3,0(a5)
+    11c2:	00d78023          	sb	a3,0(a5)
         src++;
-    11a8:	0705                	addi	a4,a4,1
+    11c6:	0705                	addi	a4,a4,1
         dest++;
-    11aa:	0785                	addi	a5,a5,1
+    11c8:	0785                	addi	a5,a5,1
         src++;
-    11ac:	bf25                	j	10e4 <main+0x350>
-    11ae:	0000                	unimp
-    11b0:	0000                	unimp
-    11b2:	0000                	unimp
-    11b4:	0018                	.insn	2, 0x0018
-    11b6:	2000                	.insn	2, 0x2000
-    11b8:	0018                	.insn	2, 0x0018
-    11ba:	2000                	.insn	2, 0x2000
-    11bc:	0018                	.insn	2, 0x0018
-    11be:	2000                	.insn	2, 0x2000
-    11c0:	0001                	nop
-    11c2:	0000                	unimp
-    11c4:	0082                	c.slli64	ra
-    11c6:	0000                	unimp
-    11c8:	0035                	c.nop	13
-    11ca:	0000                	unimp
-    11cc:	0008                	.insn	2, 0x0008
+    11ca:	bf29                	j	10e4 <main+0x350>
+    11cc:	0000                	unimp
     11ce:	0000                	unimp
-    11d0:	0008                	.insn	2, 0x0008
-    11d2:	0000                	unimp
-    11d4:	0000                	unimp
-    11d6:	0000                	unimp
+    11d0:	0018                	.insn	2, 0x0018
+    11d2:	2000                	.insn	2, 0x2000
+    11d4:	0018                	.insn	2, 0x0018
+    11d6:	2000                	.insn	2, 0x2000
     11d8:	0018                	.insn	2, 0x0018
     11da:	2000                	.insn	2, 0x2000
-    11dc:	0018                	.insn	2, 0x0018
-    11de:	2000                	.insn	2, 0x2000
-    11e0:	0018                	.insn	2, 0x0018
-    11e2:	2000                	.insn	2, 0x2000
-    11e4:	0001                	nop
+    11dc:	0001                	nop
+    11de:	0000                	unimp
+    11e0:	0082                	c.slli64	ra
+    11e2:	0000                	unimp
+    11e4:	0035                	c.nop	13
     11e6:	0000                	unimp
-    11e8:	00a0                	addi	s0,sp,72
+    11e8:	0008                	.insn	2, 0x0008
     11ea:	0000                	unimp
-    11ec:	0035                	c.nop	13
+    11ec:	0008                	.insn	2, 0x0008
     11ee:	0000                	unimp
-    11f0:	0008                	.insn	2, 0x0008
+    11f0:	0000                	unimp
     11f2:	0000                	unimp
-    11f4:	0008                	.insn	2, 0x0008
-    11f6:	0000                	unimp
-    11f8:	0001                	nop
-    11fa:	0000                	unimp
-    11fc:	1b00                	addi	s0,sp,432
-    11fe:	0000                	unimp
-    1200:	1b00                	addi	s0,sp,432
+    11f4:	0018                	.insn	2, 0x0018
+    11f6:	2000                	.insn	2, 0x2000
+    11f8:	0018                	.insn	2, 0x0018
+    11fa:	2000                	.insn	2, 0x2000
+    11fc:	0018                	.insn	2, 0x0018
+    11fe:	2000                	.insn	2, 0x2000
+    1200:	0001                	nop
     1202:	0000                	unimp
-    1204:	1b00                	addi	s0,sp,432
+    1204:	00a0                	addi	s0,sp,72
     1206:	0000                	unimp
-    1208:	0001                	nop
+    1208:	0035                	c.nop	13
     120a:	0000                	unimp
-    120c:	00d2                	slli	ra,ra,0x14
+    120c:	0008                	.insn	2, 0x0008
     120e:	0000                	unimp
-    1210:	002d                	c.nop	11
+    1210:	0008                	.insn	2, 0x0008
     1212:	0000                	unimp
-    1214:	0010                	.insn	2, 0x0010
+    1214:	0001                	nop
     1216:	0000                	unimp
-    1218:	0010                	.insn	2, 0x0010
+    1218:	1b1c                	addi	a5,sp,432
     121a:	0000                	unimp
-    121c:	31647373          	.insn	4, 0x31647373
-    1220:	5f363033          	.insn	4, 0x5f363033
-    1224:	3269                	jal	bae <opening+0x16a>
-    1226:	72655f63          	bge	a0,t1,1964 <fontdata+0x6a0>
-    122a:	6f72                	.insn	2, 0x6f72
-    122c:	2072                	.insn	2, 0x2072
-    122e:	202d                	jal	1258 <main+0x4c4>
-    1230:	6974                	.insn	2, 0x6974
-    1232:	656d                	lui	a0,0x1b
-    1234:	2074756f          	jal	a0,48c3a <main.c.5e928d26+0x46392>
-    1238:	74696177          	.insn	4, 0x74696177
-    123c:	6e69                	lui	t3,0x1a
-    123e:	6f662067          	.insn	4, 0x6f662067
-    1242:	2072                	.insn	2, 0x2072
-    1244:	7325                	lui	t1,0xfffe9
-    1246:	0d0a                	slli	s10,s10,0x2
-    1248:	0000                	unimp
-    124a:	0000                	unimp
-    124c:	4f4d                	li	t5,19
-    124e:	5050                	lw	a2,36(s0)
-    1250:	4e49                	li	t3,18
-    1252:	74730047          	.insn	4, 0x74730047
-    1256:	7261                	lui	tp,0xffff8
-    1258:	0074                	addi	a3,sp,12
-    125a:	0000                	unimp
-    125c:	454d4147          	.insn	4, 0x454d4147
-    1260:	4f20                	lw	s0,88(a4)
-    1262:	4556                	lw	a0,84(sp)
-    1264:	2152                	.insn	2, 0x2152
-    1266:	0021                	c.nop	8
-    1268:	6f6e                	.insn	2, 0x6f6e
-    126a:	2074                	.insn	2, 0x2074
-    126c:	7562                	.insn	2, 0x7562
-    126e:	00007973          	.insn	4, 0x7973
-    1272:	0000                	unimp
-    1274:	616d                	addi	sp,sp,240
-    1276:	72657473          	.insn	4, 0x72657473
-    127a:	6d20                	.insn	2, 0x6d20
-    127c:	0065646f          	jal	s0,57282 <main.c.5e928d26+0x549da>
-    1280:	7274                	.insn	2, 0x7274
-    1282:	6e61                	lui	t3,0x18
-    1284:	74696d73          	.insn	4, 0x74696d73
-    1288:	6d20                	.insn	2, 0x6d20
-    128a:	0065646f          	jal	s0,57290 <main.c.5e928d26+0x549e8>
+    121c:	1b1c                	addi	a5,sp,432
+    121e:	0000                	unimp
+    1220:	1b1c                	addi	a5,sp,432
+    1222:	0000                	unimp
+    1224:	0001                	nop
+    1226:	0000                	unimp
+    1228:	00d2                	slli	ra,ra,0x14
+    122a:	0000                	unimp
+    122c:	002d                	c.nop	11
+    122e:	0000                	unimp
+    1230:	0010                	.insn	2, 0x0010
+    1232:	0000                	unimp
+    1234:	0010                	.insn	2, 0x0010
+    1236:	0000                	unimp
+    1238:	31647373          	.insn	4, 0x31647373
+    123c:	5f363033          	.insn	4, 0x5f363033
+    1240:	3269                	jal	bca <opening+0x186>
+    1242:	72655f63          	bge	a0,t1,1980 <fontdata+0x6a0>
+    1246:	6f72                	.insn	2, 0x6f72
+    1248:	2072                	.insn	2, 0x2072
+    124a:	202d                	jal	1274 <main+0x4e0>
+    124c:	6974                	.insn	2, 0x6974
+    124e:	656d                	lui	a0,0x1b
+    1250:	2074756f          	jal	a0,48c56 <main.c.052829f9+0x4638f>
+    1254:	74696177          	.insn	4, 0x74696177
+    1258:	6e69                	lui	t3,0x1a
+    125a:	6f662067          	.insn	4, 0x6f662067
+    125e:	2072                	.insn	2, 0x2072
+    1260:	7325                	lui	t1,0xfffe9
+    1262:	0d0a                	slli	s10,s10,0x2
+    1264:	0000                	unimp
+    1266:	0000                	unimp
+    1268:	4f4d                	li	t5,19
+    126a:	5050                	lw	a2,36(s0)
+    126c:	4e49                	li	t3,18
+    126e:	74730047          	.insn	4, 0x74730047
+    1272:	7261                	lui	tp,0xffff8
+    1274:	0074                	addi	a3,sp,12
+    1276:	0000                	unimp
+    1278:	454d4147          	.insn	4, 0x454d4147
+    127c:	4f20                	lw	s0,88(a4)
+    127e:	4556                	lw	a0,84(sp)
+    1280:	2152                	.insn	2, 0x2152
+    1282:	0021                	c.nop	8
+    1284:	6f6e                	.insn	2, 0x6f6e
+    1286:	2074                	.insn	2, 0x2074
+    1288:	7562                	.insn	2, 0x7562
+    128a:	00007973          	.insn	4, 0x7973
     128e:	0000                	unimp
-    1290:	7874                	.insn	2, 0x7874
-    1292:	6520                	.insn	2, 0x6520
-    1294:	706d                	c.lui	zero,0xffffb
-    1296:	7974                	.insn	2, 0x7974
-    1298:	0000                	unimp
-    129a:	0000                	unimp
+    1290:	616d                	addi	sp,sp,240
+    1292:	72657473          	.insn	4, 0x72657473
+    1296:	6d20                	.insn	2, 0x6d20
+    1298:	0065646f          	jal	s0,5729e <main.c.052829f9+0x549d7>
     129c:	7274                	.insn	2, 0x7274
     129e:	6e61                	lui	t3,0x18
     12a0:	74696d73          	.insn	4, 0x74696d73
-    12a4:	6320                	.insn	2, 0x6320
-    12a6:	6c706d6f          	jal	s10,816c <main.c.5e928d26+0x58c4>
-    12aa:	7465                	lui	s0,0xffff9
-    12ac:	0065                	c.nop	25
+    12a4:	6d20                	.insn	2, 0x6d20
+    12a6:	0065646f          	jal	s0,572ac <main.c.052829f9+0x549e5>
+    12aa:	0000                	unimp
+    12ac:	7874                	.insn	2, 0x7874
+    12ae:	6520                	.insn	2, 0x6520
+    12b0:	706d                	c.lui	zero,0xffffb
+    12b2:	7974                	.insn	2, 0x7974
+    12b4:	0000                	unimp
+    12b6:	0000                	unimp
+    12b8:	7274                	.insn	2, 0x7274
+    12ba:	6e61                	lui	t3,0x18
+    12bc:	74696d73          	.insn	4, 0x74696d73
+    12c0:	6320                	.insn	2, 0x6320
+    12c2:	6c706d6f          	jal	s10,8188 <main.c.052829f9+0x58c1>
+    12c6:	7465                	lui	s0,0xffff9
+    12c8:	0065                	c.nop	25
 	...
 
-000012b0 <errstr>:
-    12b0:	1268 0000 1274 0000 1280 0000 1290 0000     h...t...........
-    12c0:	129c 0000                                   ....
+000012cc <errstr>:
+    12cc:	1284 0000 1290 0000 129c 0000 12ac 0000     ................
+    12dc:	12b8 0000                                   ....
 
-000012c4 <fontdata>:
+000012e0 <fontdata>:
 	...
-    12cc:	817e 81a5 99bd 7e81 ff7e ffdb e7c3 7eff     ~......~~......~
-    12dc:	fe6c fefe 387c 0010 3810 fe7c 387c 0010     l...|8...8|.|8..
-    12ec:	7c38 fe38 d6fe 3810 3810 fe7c 7cfe 3810     8|8....8.8|..|.8
-    12fc:	0000 3c18 183c 0000 ffff c3e7 e7c3 ffff     ...<<...........
-    130c:	3c00 4266 6642 003c c3ff bd99 99bd ffc3     .<fBBf<.........
-    131c:	070f 7d0f cccc 78cc 663c 6666 183c 187e     ...}...x<fff<.~.
-    132c:	333f 303f 7030 e0f0 637f 637f 6763 c0e6     ?3?00p...c.ccg..
-    133c:	db18 e73c 3ce7 18db e080 fef8 e0f8 0080     ..<..<..........
-    134c:	0e02 fe3e 0e3e 0002 3c18 187e 7e18 183c     ..>.>....<~..~<.
-    135c:	6666 6666 0066 0066 db7f 7bdb 1b1b 001b     fffff.f....{....
-    136c:	613e 663c 3c66 7c86 0000 0000 7e7e 007e     >a<ff<.|....~~~.
-    137c:	3c18 187e 3c7e ff18 3c18 187e 1818 0018     .<~.~<...<~.....
-    138c:	1818 1818 3c7e 0018 1800 fe0c 180c 0000     ....~<..........
-    139c:	3000 fe60 3060 0000 0000 c0c0 fec0 0000     .0`.`0..........
-    13ac:	2400 ff66 2466 0000 1800 7e3c ffff 0000     .$f.f$....<~....
-    13bc:	ff00 7eff 183c 0000 0000 0000 0000 0000     ...~<...........
-    13cc:	3c18 183c 0018 0018 6666 0024 0000 0000     .<<.....ff$.....
-    13dc:	6c6c 6cfe 6cfe 006c 3e18 3c60 7c06 0018     ll.l.ll..>`<.|..
-    13ec:	c600 18cc 6630 00c6 6c38 7638 ccdc 0076     ....0f..8l8v..v.
-    13fc:	1818 0030 0000 0000 180c 3030 1830 000c     ..0.......000...
-    140c:	1830 0c0c 180c 0030 6600 ff3c 663c 0000     0.....0..f<.<f..
-    141c:	1800 7e18 1818 0000 0000 0000 1800 3018     ...~...........0
-    142c:	0000 7e00 0000 0000 0000 0000 1800 0018     ...~............
-    143c:	0c06 3018 c060 0080 6c38 d6c6 6cc6 0038     ...0`...8l...l8.
-    144c:	3818 1818 1818 007e c67c 1c06 6630 00fe     .8....~.|...0f..
-    145c:	c67c 3c06 c606 007c 3c1c cc6c 0cfe 001e     |..<..|..<l.....
-    146c:	c0fe fcc0 c606 007c 6038 fcc0 c6c6 007c     ......|.8`....|.
-    147c:	c6fe 180c 3030 0030 c67c 7cc6 c6c6 007c     ....000.|..|..|.
-    148c:	c67c 7ec6 0c06 0078 1800 0018 1800 0018     |..~..x.........
-    149c:	1800 0018 1800 3018 0c06 3018 0c18 0006     .......0...0....
-    14ac:	0000 007e 7e00 0000 3060 0c18 3018 0060     ..~..~..`0...0`.
-    14bc:	c67c 180c 0018 0018 c67c dede c0de 0078     |.......|.....x.
-    14cc:	6c38 fec6 c6c6 00c6 66fc 7c66 6666 00fc     8l.......ff|ff..
-    14dc:	663c c0c0 66c0 003c 6cf8 6666 6c66 00f8     <f...f<..lfffl..
-    14ec:	62fe 7868 6268 00fe 62fe 7868 6068 00f0     .bhxhb...bhxh`..
-    14fc:	663c c0c0 66ce 003a c6c6 fec6 c6c6 00c6     <f...f:.........
-    150c:	183c 1818 1818 003c 0c1e 0c0c cccc 0078     <.....<.......x.
-    151c:	66e6 786c 666c 00e6 60f0 6060 6662 00fe     .flxlf...```bf..
-    152c:	eec6 fefe c6d6 00c6 e6c6 def6 c6ce 00c6     ................
-    153c:	c67c c6c6 c6c6 007c 66fc 7c66 6060 00f0     |.....|..ff|``..
-    154c:	c67c c6c6 cec6 0e7c 66fc 7c66 666c 00e6     |.....|..ff|lf..
-    155c:	663c 1830 660c 003c 7e7e 185a 1818 003c     <f0..f<.~~Z...<.
-    156c:	c6c6 c6c6 c6c6 007c c6c6 c6c6 6cc6 0038     ......|......l8.
-    157c:	c6c6 d6c6 fed6 006c c6c6 386c c66c 00c6     ......l...l8l...
-    158c:	6666 3c66 1818 003c c6fe 188c 6632 00fe     fff<..<.....2f..
-    159c:	303c 3030 3030 003c 60c0 1830 060c 0002     <00000<..`0.....
-    15ac:	0c3c 0c0c 0c0c 003c 3810 c66c 0000 0000     <.....<..8l.....
-    15bc:	0000 0000 0000 ff00 1830 000c 0000 0000     ........0.......
-    15cc:	0000 0c78 cc7c 0076 60e0 667c 6666 00dc     ..x.|.v..`|fff..
-    15dc:	0000 c67c c6c0 007c 0c1c cc7c cccc 0076     ..|...|...|...v.
-    15ec:	0000 c67c c0fe 007c 663c f860 6060 00f0     ..|...|.<f`.``..
-    15fc:	0000 cc76 7ccc f80c 60e0 766c 6666 00e6     ..v..|...`lvff..
-    160c:	0018 1838 1818 003c 0006 0606 6606 3c66     ..8...<......ff<
-    161c:	60e0 6c66 6c78 00e6 1838 1818 1818 003c     .`flxl..8.....<.
-    162c:	0000 feec d6d6 00d6 0000 66dc 6666 0066     ...........ffff.
-    163c:	0000 c67c c6c6 007c 0000 66dc 7c66 f060     ..|...|....ff|`.
-    164c:	0000 cc76 7ccc 1e0c 0000 76dc 6060 00f0     ..v..|.....v``..
-    165c:	0000 c07e 067c 00fc 3030 30fc 3630 001c     ..~.|...00.006..
-    166c:	0000 cccc cccc 0076 0000 c6c6 6cc6 0038     ......v......l8.
-    167c:	0000 d6c6 fed6 006c 0000 6cc6 6c38 00c6     ......l....l8l..
-    168c:	0000 c6c6 7ec6 fc06 0000 4c7e 3218 007e     .....~....~L.2~.
-    169c:	180e 7018 1818 000e 1818 1818 1818 0018     ...p............
-    16ac:	1870 0e18 1818 0070 dc76 0000 0000 0000     p.....p.v.......
-    16bc:	1000 6c38 c6c6 00fe c67c c0c0 7cc6 780c     ..8l....|....|.x
-    16cc:	00cc cccc cccc 0076 180c c67c c0fe 007c     ......v...|...|.
-    16dc:	827c 0c78 cc7c 0076 00c6 0c78 cc7c 0076     |.x.|.v...x.|.v.
-    16ec:	1830 0c78 cc7c 0076 3030 0c78 cc7c 0076     0.x.|.v.00x.|.v.
-    16fc:	0000 c07e 7ec0 380c 827c c67c c0fe 007c     ..~..~.8|.|...|.
-    170c:	00c6 c67c c0fe 007c 1830 c67c c0fe 007c     ..|...|.0.|...|.
-    171c:	0066 1838 1818 003c 827c 1838 1818 003c     f.8...<.|.8...<.
-    172c:	1830 3800 1818 003c 38c6 c66c c6fe 00c6     0..8..<..8l.....
-    173c:	6c38 c67c c6fe 00c6 3018 c0fe c0f8 00fe     8l|......0......
-    174c:	0000 187e d87e 007e 6c3e fecc cccc 00ce     ..~.~.~.>l......
-    175c:	827c c67c c6c6 007c 00c6 c67c c6c6 007c     |.|...|...|...|.
-    176c:	1830 c67c c6c6 007c 8478 cc00 cccc 0076     0.|...|.x.....v.
-    177c:	3060 cccc cccc 0076 00c6 c6c6 7ec6 fc06     `0....v......~..
-    178c:	38c6 c66c 6cc6 0038 00c6 c6c6 c6c6 007c     .8l..l8.......|.
-    179c:	1818 c07e 7ec0 1818 6c38 f064 6660 00fc     ..~..~..8ld.`f..
-    17ac:	6666 7e3c 7e18 1818 ccf8 facc cfc6 c7c6     ff<~.~..........
-    17bc:	1b0e 3c18 d818 0070 3018 0c78 cc7c 0076     ...<..p..0x.|.v.
-    17cc:	180c 3800 1818 003c 180c c67c c6c6 007c     ...8..<...|...|.
-    17dc:	3018 cccc cccc 0076 dc76 dc00 6666 0066     .0....v.v...fff.
-    17ec:	dc76 e600 def6 00ce 6c3c 3e6c 7e00 0000     v.......<ll>.~..
-    17fc:	6c38 386c 7c00 0000 0018 1818 6330 003e     8ll8.|......0c>.
-    180c:	0000 fe00 c0c0 0000 0000 fe00 0606 0000     ................
-    181c:	e663 7e6c 6633 0fcc e663 7a6c 6a36 06df     c.l~3f..c.lz6j..
-    182c:	0018 1818 3c3c 0018 3300 cc66 3366 0000     ....<<...3f.f3..
-    183c:	cc00 3366 cc66 0000 8822 8822 8822 8822     ..f3f...".".".".
-    184c:	aa55 aa55 aa55 aa55 dd77 dd77 dd77 dd77     U.U.U.U.w.w.w.w.
-    185c:	1818 1818 1818 1818 1818 1818 18f8 1818     ................
-    186c:	1818 18f8 18f8 1818 3636 3636 36f6 3636     ........6666.666
-    187c:	0000 0000 36fe 3636 0000 18f8 18f8 1818     .....666........
-    188c:	3636 06f6 36f6 3636 3636 3636 3636 3636     66...66666666666
-    189c:	0000 06fe 36f6 3636 3636 06f6 00fe 0000     .....66666......
-    18ac:	3636 3636 00fe 0000 1818 18f8 00f8 0000     6666............
-    18bc:	0000 0000 18f8 1818 1818 1818 001f 0000     ................
-    18cc:	1818 1818 00ff 0000 0000 0000 18ff 1818     ................
-    18dc:	1818 1818 181f 1818 0000 0000 00ff 0000     ................
-    18ec:	1818 1818 18ff 1818 1818 181f 181f 1818     ................
-    18fc:	3636 3636 3637 3636 3636 3037 003f 0000     666676666670?...
-    190c:	0000 303f 3637 3636 3636 00f7 00ff 0000     ..?0766666......
-    191c:	0000 00ff 36f7 3636 3636 3037 3637 3636     .....66666707666
-    192c:	0000 00ff 00ff 0000 3636 00f7 36f7 3636     ........66...666
-    193c:	1818 00ff 00ff 0000 3636 3636 00ff 0000     ........6666....
-    194c:	0000 00ff 18ff 1818 0000 0000 36ff 3636     .............666
-    195c:	3636 3636 003f 0000 1818 181f 001f 0000     6666?...........
-    196c:	0000 181f 181f 1818 0000 0000 363f 3636     ............?666
-    197c:	3636 3636 36ff 3636 1818 18ff 18ff 1818     6666.666........
-    198c:	1818 1818 00f8 0000 0000 0000 181f 1818     ................
-    199c:	ffff ffff ffff ffff 0000 0000 ffff ffff     ................
-    19ac:	f0f0 f0f0 f0f0 f0f0 0f0f 0f0f 0f0f 0f0f     ................
-    19bc:	ffff ffff 0000 0000 0000 dc76 dcc8 0076     ..........v...v.
-    19cc:	cc78 d8cc c6cc 00cc c6fe c0c0 c0c0 00c0     x...............
-    19dc:	0000 6cfe 6c6c 006c c6fe 3060 c660 00fe     ...llll...`0`...
-    19ec:	0000 d87e d8d8 0070 0000 6666 6666 c07c     ..~...p...ffff|.
-    19fc:	7600 18dc 1818 0018 187e 663c 3c66 7e18     .v......~.<ff<.~
-    1a0c:	6c38 fec6 6cc6 0038 6c38 c6c6 6c6c 00ee     8l...l8.8l..ll..
-    1a1c:	180e 3e0c 6666 003c 0000 db7e 7edb 0000     ...>ff<...~..~..
-    1a2c:	0c06 db7e 7edb c060 301e 7e60 3060 001e     ..~..~`..0`~`0..
-    1a3c:	7c00 c6c6 c6c6 00c6 fe00 fe00 fe00 0000     .|..............
-    1a4c:	1818 187e 0018 007e 1830 180c 0030 007e     ..~...~.0...0.~.
-    1a5c:	180c 1830 000c 007e 1b0e 181b 1818 1818     ..0...~.........
-    1a6c:	1818 1818 d818 70d8 1800 7e00 1800 0000     .......p...~....
-    1a7c:	7600 00dc dc76 0000 6c38 386c 0000 0000     .v..v...8ll8....
-    1a8c:	0000 1800 0018 0000 0000 1800 0000 0000     ................
-    1a9c:	0c0f 0c0c 6cec 1c3c 366c 3636 0036 0000     .....l<.l6666...
-    1aac:	0c78 3018 007c 0000 0000 3c3c 3c3c 0000     x..0|.....<<<<..
+    12e8:	817e 81a5 99bd 7e81 ff7e ffdb e7c3 7eff     ~......~~......~
+    12f8:	fe6c fefe 387c 0010 3810 fe7c 387c 0010     l...|8...8|.|8..
+    1308:	7c38 fe38 d6fe 3810 3810 fe7c 7cfe 3810     8|8....8.8|..|.8
+    1318:	0000 3c18 183c 0000 ffff c3e7 e7c3 ffff     ...<<...........
+    1328:	3c00 4266 6642 003c c3ff bd99 99bd ffc3     .<fBBf<.........
+    1338:	070f 7d0f cccc 78cc 663c 6666 183c 187e     ...}...x<fff<.~.
+    1348:	333f 303f 7030 e0f0 637f 637f 6763 c0e6     ?3?00p...c.ccg..
+    1358:	db18 e73c 3ce7 18db e080 fef8 e0f8 0080     ..<..<..........
+    1368:	0e02 fe3e 0e3e 0002 3c18 187e 7e18 183c     ..>.>....<~..~<.
+    1378:	6666 6666 0066 0066 db7f 7bdb 1b1b 001b     fffff.f....{....
+    1388:	613e 663c 3c66 7c86 0000 0000 7e7e 007e     >a<ff<.|....~~~.
+    1398:	3c18 187e 3c7e ff18 3c18 187e 1818 0018     .<~.~<...<~.....
+    13a8:	1818 1818 3c7e 0018 1800 fe0c 180c 0000     ....~<..........
+    13b8:	3000 fe60 3060 0000 0000 c0c0 fec0 0000     .0`.`0..........
+    13c8:	2400 ff66 2466 0000 1800 7e3c ffff 0000     .$f.f$....<~....
+    13d8:	ff00 7eff 183c 0000 0000 0000 0000 0000     ...~<...........
+    13e8:	3c18 183c 0018 0018 6666 0024 0000 0000     .<<.....ff$.....
+    13f8:	6c6c 6cfe 6cfe 006c 3e18 3c60 7c06 0018     ll.l.ll..>`<.|..
+    1408:	c600 18cc 6630 00c6 6c38 7638 ccdc 0076     ....0f..8l8v..v.
+    1418:	1818 0030 0000 0000 180c 3030 1830 000c     ..0.......000...
+    1428:	1830 0c0c 180c 0030 6600 ff3c 663c 0000     0.....0..f<.<f..
+    1438:	1800 7e18 1818 0000 0000 0000 1800 3018     ...~...........0
+    1448:	0000 7e00 0000 0000 0000 0000 1800 0018     ...~............
+    1458:	0c06 3018 c060 0080 6c38 d6c6 6cc6 0038     ...0`...8l...l8.
+    1468:	3818 1818 1818 007e c67c 1c06 6630 00fe     .8....~.|...0f..
+    1478:	c67c 3c06 c606 007c 3c1c cc6c 0cfe 001e     |..<..|..<l.....
+    1488:	c0fe fcc0 c606 007c 6038 fcc0 c6c6 007c     ......|.8`....|.
+    1498:	c6fe 180c 3030 0030 c67c 7cc6 c6c6 007c     ....000.|..|..|.
+    14a8:	c67c 7ec6 0c06 0078 1800 0018 1800 0018     |..~..x.........
+    14b8:	1800 0018 1800 3018 0c06 3018 0c18 0006     .......0...0....
+    14c8:	0000 007e 7e00 0000 3060 0c18 3018 0060     ..~..~..`0...0`.
+    14d8:	c67c 180c 0018 0018 c67c dede c0de 0078     |.......|.....x.
+    14e8:	6c38 fec6 c6c6 00c6 66fc 7c66 6666 00fc     8l.......ff|ff..
+    14f8:	663c c0c0 66c0 003c 6cf8 6666 6c66 00f8     <f...f<..lfffl..
+    1508:	62fe 7868 6268 00fe 62fe 7868 6068 00f0     .bhxhb...bhxh`..
+    1518:	663c c0c0 66ce 003a c6c6 fec6 c6c6 00c6     <f...f:.........
+    1528:	183c 1818 1818 003c 0c1e 0c0c cccc 0078     <.....<.......x.
+    1538:	66e6 786c 666c 00e6 60f0 6060 6662 00fe     .flxlf...```bf..
+    1548:	eec6 fefe c6d6 00c6 e6c6 def6 c6ce 00c6     ................
+    1558:	c67c c6c6 c6c6 007c 66fc 7c66 6060 00f0     |.....|..ff|``..
+    1568:	c67c c6c6 cec6 0e7c 66fc 7c66 666c 00e6     |.....|..ff|lf..
+    1578:	663c 1830 660c 003c 7e7e 185a 1818 003c     <f0..f<.~~Z...<.
+    1588:	c6c6 c6c6 c6c6 007c c6c6 c6c6 6cc6 0038     ......|......l8.
+    1598:	c6c6 d6c6 fed6 006c c6c6 386c c66c 00c6     ......l...l8l...
+    15a8:	6666 3c66 1818 003c c6fe 188c 6632 00fe     fff<..<.....2f..
+    15b8:	303c 3030 3030 003c 60c0 1830 060c 0002     <00000<..`0.....
+    15c8:	0c3c 0c0c 0c0c 003c 3810 c66c 0000 0000     <.....<..8l.....
+    15d8:	0000 0000 0000 ff00 1830 000c 0000 0000     ........0.......
+    15e8:	0000 0c78 cc7c 0076 60e0 667c 6666 00dc     ..x.|.v..`|fff..
+    15f8:	0000 c67c c6c0 007c 0c1c cc7c cccc 0076     ..|...|...|...v.
+    1608:	0000 c67c c0fe 007c 663c f860 6060 00f0     ..|...|.<f`.``..
+    1618:	0000 cc76 7ccc f80c 60e0 766c 6666 00e6     ..v..|...`lvff..
+    1628:	0018 1838 1818 003c 0006 0606 6606 3c66     ..8...<......ff<
+    1638:	60e0 6c66 6c78 00e6 1838 1818 1818 003c     .`flxl..8.....<.
+    1648:	0000 feec d6d6 00d6 0000 66dc 6666 0066     ...........ffff.
+    1658:	0000 c67c c6c6 007c 0000 66dc 7c66 f060     ..|...|....ff|`.
+    1668:	0000 cc76 7ccc 1e0c 0000 76dc 6060 00f0     ..v..|.....v``..
+    1678:	0000 c07e 067c 00fc 3030 30fc 3630 001c     ..~.|...00.006..
+    1688:	0000 cccc cccc 0076 0000 c6c6 6cc6 0038     ......v......l8.
+    1698:	0000 d6c6 fed6 006c 0000 6cc6 6c38 00c6     ......l....l8l..
+    16a8:	0000 c6c6 7ec6 fc06 0000 4c7e 3218 007e     .....~....~L.2~.
+    16b8:	180e 7018 1818 000e 1818 1818 1818 0018     ...p............
+    16c8:	1870 0e18 1818 0070 dc76 0000 0000 0000     p.....p.v.......
+    16d8:	1000 6c38 c6c6 00fe c67c c0c0 7cc6 780c     ..8l....|....|.x
+    16e8:	00cc cccc cccc 0076 180c c67c c0fe 007c     ......v...|...|.
+    16f8:	827c 0c78 cc7c 0076 00c6 0c78 cc7c 0076     |.x.|.v...x.|.v.
+    1708:	1830 0c78 cc7c 0076 3030 0c78 cc7c 0076     0.x.|.v.00x.|.v.
+    1718:	0000 c07e 7ec0 380c 827c c67c c0fe 007c     ..~..~.8|.|...|.
+    1728:	00c6 c67c c0fe 007c 1830 c67c c0fe 007c     ..|...|.0.|...|.
+    1738:	0066 1838 1818 003c 827c 1838 1818 003c     f.8...<.|.8...<.
+    1748:	1830 3800 1818 003c 38c6 c66c c6fe 00c6     0..8..<..8l.....
+    1758:	6c38 c67c c6fe 00c6 3018 c0fe c0f8 00fe     8l|......0......
+    1768:	0000 187e d87e 007e 6c3e fecc cccc 00ce     ..~.~.~.>l......
+    1778:	827c c67c c6c6 007c 00c6 c67c c6c6 007c     |.|...|...|...|.
+    1788:	1830 c67c c6c6 007c 8478 cc00 cccc 0076     0.|...|.x.....v.
+    1798:	3060 cccc cccc 0076 00c6 c6c6 7ec6 fc06     `0....v......~..
+    17a8:	38c6 c66c 6cc6 0038 00c6 c6c6 c6c6 007c     .8l..l8.......|.
+    17b8:	1818 c07e 7ec0 1818 6c38 f064 6660 00fc     ..~..~..8ld.`f..
+    17c8:	6666 7e3c 7e18 1818 ccf8 facc cfc6 c7c6     ff<~.~..........
+    17d8:	1b0e 3c18 d818 0070 3018 0c78 cc7c 0076     ...<..p..0x.|.v.
+    17e8:	180c 3800 1818 003c 180c c67c c6c6 007c     ...8..<...|...|.
+    17f8:	3018 cccc cccc 0076 dc76 dc00 6666 0066     .0....v.v...fff.
+    1808:	dc76 e600 def6 00ce 6c3c 3e6c 7e00 0000     v.......<ll>.~..
+    1818:	6c38 386c 7c00 0000 0018 1818 6330 003e     8ll8.|......0c>.
+    1828:	0000 fe00 c0c0 0000 0000 fe00 0606 0000     ................
+    1838:	e663 7e6c 6633 0fcc e663 7a6c 6a36 06df     c.l~3f..c.lz6j..
+    1848:	0018 1818 3c3c 0018 3300 cc66 3366 0000     ....<<...3f.f3..
+    1858:	cc00 3366 cc66 0000 8822 8822 8822 8822     ..f3f...".".".".
+    1868:	aa55 aa55 aa55 aa55 dd77 dd77 dd77 dd77     U.U.U.U.w.w.w.w.
+    1878:	1818 1818 1818 1818 1818 1818 18f8 1818     ................
+    1888:	1818 18f8 18f8 1818 3636 3636 36f6 3636     ........6666.666
+    1898:	0000 0000 36fe 3636 0000 18f8 18f8 1818     .....666........
+    18a8:	3636 06f6 36f6 3636 3636 3636 3636 3636     66...66666666666
+    18b8:	0000 06fe 36f6 3636 3636 06f6 00fe 0000     .....66666......
+    18c8:	3636 3636 00fe 0000 1818 18f8 00f8 0000     6666............
+    18d8:	0000 0000 18f8 1818 1818 1818 001f 0000     ................
+    18e8:	1818 1818 00ff 0000 0000 0000 18ff 1818     ................
+    18f8:	1818 1818 181f 1818 0000 0000 00ff 0000     ................
+    1908:	1818 1818 18ff 1818 1818 181f 181f 1818     ................
+    1918:	3636 3636 3637 3636 3636 3037 003f 0000     666676666670?...
+    1928:	0000 303f 3637 3636 3636 00f7 00ff 0000     ..?0766666......
+    1938:	0000 00ff 36f7 3636 3636 3037 3637 3636     .....66666707666
+    1948:	0000 00ff 00ff 0000 3636 00f7 36f7 3636     ........66...666
+    1958:	1818 00ff 00ff 0000 3636 3636 00ff 0000     ........6666....
+    1968:	0000 00ff 18ff 1818 0000 0000 36ff 3636     .............666
+    1978:	3636 3636 003f 0000 1818 181f 001f 0000     6666?...........
+    1988:	0000 181f 181f 1818 0000 0000 363f 3636     ............?666
+    1998:	3636 3636 36ff 3636 1818 18ff 18ff 1818     6666.666........
+    19a8:	1818 1818 00f8 0000 0000 0000 181f 1818     ................
+    19b8:	ffff ffff ffff ffff 0000 0000 ffff ffff     ................
+    19c8:	f0f0 f0f0 f0f0 f0f0 0f0f 0f0f 0f0f 0f0f     ................
+    19d8:	ffff ffff 0000 0000 0000 dc76 dcc8 0076     ..........v...v.
+    19e8:	cc78 d8cc c6cc 00cc c6fe c0c0 c0c0 00c0     x...............
+    19f8:	0000 6cfe 6c6c 006c c6fe 3060 c660 00fe     ...llll...`0`...
+    1a08:	0000 d87e d8d8 0070 0000 6666 6666 c07c     ..~...p...ffff|.
+    1a18:	7600 18dc 1818 0018 187e 663c 3c66 7e18     .v......~.<ff<.~
+    1a28:	6c38 fec6 6cc6 0038 6c38 c6c6 6c6c 00ee     8l...l8.8l..ll..
+    1a38:	180e 3e0c 6666 003c 0000 db7e 7edb 0000     ...>ff<...~..~..
+    1a48:	0c06 db7e 7edb c060 301e 7e60 3060 001e     ..~..~`..0`~`0..
+    1a58:	7c00 c6c6 c6c6 00c6 fe00 fe00 fe00 0000     .|..............
+    1a68:	1818 187e 0018 007e 1830 180c 0030 007e     ..~...~.0...0.~.
+    1a78:	180c 1830 000c 007e 1b0e 181b 1818 1818     ..0...~.........
+    1a88:	1818 1818 d818 70d8 1800 7e00 1800 0000     .......p...~....
+    1a98:	7600 00dc dc76 0000 6c38 386c 0000 0000     .v..v...8ll8....
+    1aa8:	0000 1800 0018 0000 0000 1800 0000 0000     ................
+    1ab8:	0c0f 0c0c 6cec 1c3c 366c 3636 0036 0000     .....l<.l6666...
+    1ac8:	0c78 3018 007c 0000 0000 3c3c 3c3c 0000     x..0|.....<<<<..
 	...
 
-00001ac4 <ssd1306_init_array>:
-    1ac4:	d5ae a880 d33f 4000 148d 0020 c8a1 12da     ....?..@.. .....
-    1ad4:	8f81 f1d9 40db a6a4 ffaf 0000               .....@......
+00001ae0 <ssd1306_init_array>:
+    1ae0:	d5ae a880 d33f 4000 148d 0020 c8a1 12da     ....?..@.. .....
+    1af0:	8f81 f1d9 40db a6a4 ffaf 0000               .....@......
 
-00001ae0 <mongoose_2>:
-    1ae0:	1800 1e00 ff1f ff7f fecf f007 3006 300e     .............0.0
+00001afc <mongoose_2>:
+    1afc:	1800 1e00 ff1f ff7f fecf f007 3006 300e     .............0.0
 
-00001af0 <mongoose_1>:
-    1af0:	0800 8e0f ff1f fd7f ffee f08f 681e 4c13     .............h.L
+00001b0c <mongoose_1>:
+    1b0c:	0800 8e0f ff1f fd7f ffee f08f 681e 4c13     .............h.L
 
-00001b00 <pineapple_1>:
-    1b00:	0008 600c 4862 b01b 600f c007 600d a00a     ...`bH...`...`..
-    1b10:	600d a00a 600d c7e7 1e79 f81f f00f c007     .`...`..y.......
+00001b1c <pineapple_1>:
+    1b1c:	0008 600c 4862 b01b 600f c007 600d a00a     ...`bH...`...`..
+    1b2c:	600d a00a 600d c7e7 1e79 f81f f00f c007     .`...`..y.......
 
-00001b20 <mongoose_left_2>:
-    1b20:	0018 0078 f8ff feff f37f e00f 600c 700c     ..x..........`.p
+00001b3c <mongoose_left_2>:
+    1b3c:	0018 0078 f8ff feff f37f e00f 600c 700c     ..x..........`.p
 
-00001b30 <mongoose_left_1>:
-    1b30:	0010 f071 f8ff febf 77ff f10f 7816 c832     ..q......w...x2.
+00001b4c <mongoose_left_1>:
+    1b4c:	0010 f071 f8ff febf 77ff f10f 7816 c832     ..q......w...x2.
 
-00001b40 <kuina_2>:
-    1b40:	c03f c03f c0f3 c0f3 fc3f fc3f ff33 ff33     ?.?.....?.?.3.3.
-    1b50:	cf00 cf00 3c33 3c33 c00c c00c 3030 3030     ....3<3<....0000
+00001b5c <kuina_2>:
+    1b5c:	c03f c03f c0f3 c0f3 fc3f fc3f ff33 ff33     ?.?.....?.?.3.3.
+    1b6c:	cf00 cf00 3c33 3c33 c00c c00c 3030 3030     ....3<3<....0000
 
-00001b60 <kuina_1>:
-    1b60:	c03f c03f c0f3 c0f3 fc3f fc3f ff33 ff33     ?.?.....?.?.3.3.
-    1b70:	cf00 cf00 3c33 3c33 c00c c00c c00c c00c     ....3<3<........
+00001b7c <kuina_1>:
+    1b7c:	c03f c03f c0f3 c0f3 fc3f fc3f ff33 ff33     ?.?.....?.?.3.3.
+    1b8c:	cf00 cf00 3c33 3c33 c00c c00c c00c c00c     ....3<3<........
