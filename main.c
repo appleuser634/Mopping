@@ -415,13 +415,13 @@ bool game_loop()
       // draw enemy
       if (enemy[i].show) {
         ssd1306_drawImage(enemy[i].x, enemy[i].y, enemy[i].img, enemy[i].w, enemy[i].h, 0);
+        // ssd1306_drawRect(enemy[i].x, enemy[i].y, enemy[i].w, enemy[i].h, 1);
       }
-      // ssd1306_drawRect(enemy[i].x, enemy[i].y, enemy[i].w, enemy[i].h, 1);
 
       enemy[i].x -= 1;
 
       // hit judge
-      if (kuina.x + 12 < enemy[i].x + 12 && (kuina.x + 12 + kuina.w) > enemy[i].x + 12 && kuina.y > (init_kuina_y - enemy[i].h)) {
+      if (kuina.x + 12 < enemy[i].x + 12 && (kuina.x + 4 + kuina.w) > enemy[i].x + 12 && kuina.y > (init_kuina_y - enemy[i].h)) {
         if (enemy[i].id == 1 | enemy[i].id == 2){
 		      ssd1306_drawstr_sz(25,20, "GAME OVER!!", 1, fontsize_8x8);
           loop_flag = false;
