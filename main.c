@@ -158,7 +158,7 @@ void opening()
     int kuina_x = -130;
     int kuina_y = 0;
     int kuina_num = 18;
-    character kuinas[18] = {
+    character kuinas[17] = {
       {100,kuina_1,kuina_1,kuina_2,1,kuina_x,kuina_y,16,16},
       {100,kuina_1,kuina_1,kuina_2,1,kuina_x+10,kuina_y+50,16,16},
       {100,kuina_1,kuina_1,kuina_2,1,kuina_x+20,kuina_y+10,16,16},
@@ -183,7 +183,7 @@ void opening()
     while (1) {
       ssd1306_setbuf(0);
       
-      if (kuinas[17].x < 64){
+      if (kuinas[16].x < 64){
         ssd1306_drawstr_sz(38,20, "MOPPING", 1, fontsize_8x8);
         ssd1306_drawstr_sz(45,45, "start", 1, fontsize_8x8); 
       }
@@ -360,6 +360,9 @@ bool game_loop()
 
   bool loop_flag = true;
 
+  bool hart_flag = false;
+  int hart_cnt = 0;
+
   while (loop_flag) {
 
     uint8_t button_is_pressed = !GPIO_digitalRead(BTN_PIN); 
@@ -431,8 +434,17 @@ bool game_loop()
           // bonus point
           score += 100;
           enemy[i].show = false;
+          hart_flag = true;
         }
       }
+    }
+
+    if (hart_flag && hart_cnt < 60) {
+      ssd1306_drawImage(20, 30, hart, 8, 8, 0);
+      hart_cnt ++;
+    } else {
+      hart_flag = false;
+      hart_cnt = 0;
     }
 
     // draw kuina
