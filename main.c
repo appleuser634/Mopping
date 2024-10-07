@@ -176,8 +176,6 @@ void opening()
       {100,kuina_1,kuina_1,kuina_2,1,kuina_x+140,kuina_y+0,16,16},
       {100,kuina_1,kuina_1,kuina_2,1,kuina_x+150,kuina_y+50,16,16},
       {100,kuina_1,kuina_1,kuina_2,1,kuina_x+160,kuina_y+20,16,16},
-      {100,kuina_1,kuina_1,kuina_2,1,kuina_x+170,kuina_y+40,16,16},
-      {100,kuina_1,kuina_1,kuina_2,1,kuina_x+180,kuina_y+10,16,16},
     };
 
     while (1) {
@@ -473,7 +471,7 @@ bool game_loop()
   while (1) {
     uint8_t button_is_pressed = !GPIO_digitalRead(BTN_PIN); 
     // jump trigger
-    if (!button_state && button_is_pressed && !jump_flag){
+    if (!button_state && button_is_pressed){
       break;
     }
     button_state = button_is_pressed;
