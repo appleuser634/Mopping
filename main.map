@@ -58,6 +58,7 @@ SYMBOL TABLE:
 00000836 g     F .text	00000022 printf
 20000800 g       .data	00000000 __global_pointer$
 00000658 g     F .text	00000002 TIM1_CC_IRQHandler
+000028b7  w      .debug_info	00000000 .hidden main.c.837310e5
 00000658 g     F .text	00000002 HardFault_Handler
 00000658 g     F .text	00000002 SysTick_Handler
 00000658 g     F .text	00000002 PVD_IRQHandler
@@ -65,7 +66,6 @@ SYMBOL TABLE:
 00000000 g     F .init	0000009c InterruptVectorDefault
 20000028 g       .bss	00000000 _sbss
 000009c8 g     F .text	0000001c memcpy
-000028c7  w      .debug_info	00000000 .hidden main.c.ff2c1787
 00000000 g     F .init	0000009c InterruptVector
 000000c0 g     F .text	0000002c .hidden __hidden___udivsi3
 000000c0 g     F .text	0000002c .hidden __udivsi3
@@ -73,7 +73,6 @@ SYMBOL TABLE:
 00000658 g     F .text	00000002 SPI1_IRQHandler
 00000658 g     F .text	00000002 AWU_IRQHandler
 00000658 g     F .text	00000002 EXTI7_0_IRQHandler
-00001af1  w      .debug_info	00000000 .hidden ch32v003fun.c.6d50d047
 00000658 g     F .text	00000002 DMA1_Channel4_IRQHandler
 00000658 g     F .text	00000002 ADC1_IRQHandler
 20000428 g       .bss	00000000 _ebss
@@ -82,6 +81,7 @@ SYMBOL TABLE:
 00000658 g     F .text	00000002 I2C1_EV_IRQHandler
 00000658 g     F .text	00000002 DMA1_Channel6_IRQHandler
 00000658 g     F .text	00000002 RCC_IRQHandler
+00001af2  w      .debug_info	00000000 .hidden ch32v003fun.c.df40f545
 00000658 g     F .text	00000002 TIM1_TRG_COM_IRQHandler
 00000658 g     F .text	00000002 DMA1_Channel1_IRQHandler
 000000a0 g     F .text	00000014 .hidden __mulsi3
